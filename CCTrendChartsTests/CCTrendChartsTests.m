@@ -1,6 +1,6 @@
 //
-//  CCTrendChartTests.m
-//  CCTrendChartTests
+//  CCTrendChartsTests.m
+//  CCTrendChartsTests
 //
 //  Created by Cocos on 2019/9/5.
 //  Copyright © 2019 Cocos. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface CCTrendChartTests : XCTestCase
+@interface CCTrendChartsTests : XCTestCase
 
 @end
 
-@implementation CCTrendChartTests
+@implementation CCTrendChartsTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.

@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EDABB2562320E46E00C65D3F /* CCTrendChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDABB24C2320E46D00C65D3F /* CCTrendChart.framework */; };
-		EDABB25B2320E46E00C65D3F /* CCTrendChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDABB25A2320E46E00C65D3F /* CCTrendChartTests.m */; };
-		EDABB25D2320E46E00C65D3F /* CCTrendChart.h in Headers */ = {isa = PBXBuildFile; fileRef = EDABB24F2320E46D00C65D3F /* CCTrendChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDABB2562320E46E00C65D3F /* CCTrendCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDABB24C2320E46D00C65D3F /* CCTrendCharts.framework */; };
+		EDABB25B2320E46E00C65D3F /* CCTrendChartsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDABB25A2320E46E00C65D3F /* CCTrendChartsTests.m */; };
+		EDABB25D2320E46E00C65D3F /* CCTrendCharts.h in Headers */ = {isa = PBXBuildFile; fileRef = EDABB24F2320E46D00C65D3F /* CCTrendCharts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDABB2682320E68700C65D3F /* CCMain.h in Headers */ = {isa = PBXBuildFile; fileRef = EDABB2662320E68700C65D3F /* CCMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDABB2692320E68700C65D3F /* CCMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EDABB2672320E68700C65D3F /* CCMain.m */; };
 		EDFA74B72320FC6900CDB6BC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDFA74B62320FC6900CDB6BC /* LICENSE */; };
@@ -27,11 +27,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EDABB24C2320E46D00C65D3F /* CCTrendChart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CCTrendChart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDABB24F2320E46D00C65D3F /* CCTrendChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTrendChart.h; sourceTree = "<group>"; };
+		EDABB24C2320E46D00C65D3F /* CCTrendCharts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CCTrendCharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDABB24F2320E46D00C65D3F /* CCTrendCharts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTrendCharts.h; sourceTree = "<group>"; };
 		EDABB2502320E46D00C65D3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDABB2552320E46E00C65D3F /* CCTrendChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCTrendChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDABB25A2320E46E00C65D3F /* CCTrendChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTrendChartTests.m; sourceTree = "<group>"; };
+		EDABB2552320E46E00C65D3F /* CCTrendChartsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCTrendChartsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDABB25A2320E46E00C65D3F /* CCTrendChartsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTrendChartsTests.m; sourceTree = "<group>"; };
 		EDABB25C2320E46E00C65D3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDABB2662320E68700C65D3F /* CCMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCMain.h; sourceTree = "<group>"; };
 		EDABB2672320E68700C65D3F /* CCMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCMain.m; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDABB2562320E46E00C65D3F /* CCTrendChart.framework in Frameworks */,
+				EDABB2562320E46E00C65D3F /* CCTrendCharts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,8 +63,8 @@
 			children = (
 				EDFA74B82320FC8600CDB6BC /* README.md */,
 				EDFA74B62320FC6900CDB6BC /* LICENSE */,
-				EDABB24E2320E46D00C65D3F /* CCTrendChart */,
-				EDABB2592320E46E00C65D3F /* CCTrendChartTests */,
+				EDABB24E2320E46D00C65D3F /* CCTrendCharts */,
+				EDABB2592320E46E00C65D3F /* CCTrendChartsTests */,
 				EDABB24D2320E46D00C65D3F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,31 +72,31 @@
 		EDABB24D2320E46D00C65D3F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EDABB24C2320E46D00C65D3F /* CCTrendChart.framework */,
-				EDABB2552320E46E00C65D3F /* CCTrendChartTests.xctest */,
+				EDABB24C2320E46D00C65D3F /* CCTrendCharts.framework */,
+				EDABB2552320E46E00C65D3F /* CCTrendChartsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EDABB24E2320E46D00C65D3F /* CCTrendChart */ = {
+		EDABB24E2320E46D00C65D3F /* CCTrendCharts */ = {
 			isa = PBXGroup;
 			children = (
 				EDFA74AE2320F41B00CDB6BC /* Core */,
-				EDABB24F2320E46D00C65D3F /* CCTrendChart.h */,
+				EDABB24F2320E46D00C65D3F /* CCTrendCharts.h */,
 				EDABB2502320E46D00C65D3F /* Info.plist */,
 				EDABB2662320E68700C65D3F /* CCMain.h */,
 				EDABB2672320E68700C65D3F /* CCMain.m */,
 			);
-			path = CCTrendChart;
+			path = CCTrendCharts;
 			sourceTree = "<group>";
 		};
-		EDABB2592320E46E00C65D3F /* CCTrendChartTests */ = {
+		EDABB2592320E46E00C65D3F /* CCTrendChartsTests */ = {
 			isa = PBXGroup;
 			children = (
-				EDABB25A2320E46E00C65D3F /* CCTrendChartTests.m */,
+				EDABB25A2320E46E00C65D3F /* CCTrendChartsTests.m */,
 				EDABB25C2320E46E00C65D3F /* Info.plist */,
 			);
-			path = CCTrendChartTests;
+			path = CCTrendChartsTests;
 			sourceTree = "<group>";
 		};
 		EDFA74AE2320F41B00CDB6BC /* Core */ = {
@@ -169,7 +169,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDABB25D2320E46E00C65D3F /* CCTrendChart.h in Headers */,
+				EDABB25D2320E46E00C65D3F /* CCTrendCharts.h in Headers */,
 				EDABB2682320E68700C65D3F /* CCMain.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,9 +177,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EDABB24B2320E46D00C65D3F /* CCTrendChart */ = {
+		EDABB24B2320E46D00C65D3F /* CCTrendCharts */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EDABB2602320E46E00C65D3F /* Build configuration list for PBXNativeTarget "CCTrendChart" */;
+			buildConfigurationList = EDABB2602320E46E00C65D3F /* Build configuration list for PBXNativeTarget "CCTrendCharts" */;
 			buildPhases = (
 				EDABB2472320E46D00C65D3F /* Headers */,
 				EDABB2482320E46D00C65D3F /* Sources */,
@@ -190,14 +190,14 @@
 			);
 			dependencies = (
 			);
-			name = CCTrendChart;
+			name = CCTrendCharts;
 			productName = CCTrendChart;
-			productReference = EDABB24C2320E46D00C65D3F /* CCTrendChart.framework */;
+			productReference = EDABB24C2320E46D00C65D3F /* CCTrendCharts.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EDABB2542320E46E00C65D3F /* CCTrendChartTests */ = {
+		EDABB2542320E46E00C65D3F /* CCTrendChartsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EDABB2632320E46E00C65D3F /* Build configuration list for PBXNativeTarget "CCTrendChartTests" */;
+			buildConfigurationList = EDABB2632320E46E00C65D3F /* Build configuration list for PBXNativeTarget "CCTrendChartsTests" */;
 			buildPhases = (
 				EDABB2512320E46E00C65D3F /* Sources */,
 				EDABB2522320E46E00C65D3F /* Frameworks */,
@@ -208,9 +208,9 @@
 			dependencies = (
 				EDABB2582320E46E00C65D3F /* PBXTargetDependency */,
 			);
-			name = CCTrendChartTests;
+			name = CCTrendChartsTests;
 			productName = CCTrendChartTests;
-			productReference = EDABB2552320E46E00C65D3F /* CCTrendChartTests.xctest */;
+			productReference = EDABB2552320E46E00C65D3F /* CCTrendChartsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -230,7 +230,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EDABB2462320E46D00C65D3F /* Build configuration list for PBXProject "CCTrendChart" */;
+			buildConfigurationList = EDABB2462320E46D00C65D3F /* Build configuration list for PBXProject "CCTrendCharts" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -242,8 +242,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EDABB24B2320E46D00C65D3F /* CCTrendChart */,
-				EDABB2542320E46E00C65D3F /* CCTrendChartTests */,
+				EDABB24B2320E46D00C65D3F /* CCTrendCharts */,
+				EDABB2542320E46E00C65D3F /* CCTrendChartsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -280,7 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDABB25B2320E46E00C65D3F /* CCTrendChartTests.m in Sources */,
+				EDABB25B2320E46E00C65D3F /* CCTrendChartsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +289,7 @@
 /* Begin PBXTargetDependency section */
 		EDABB2582320E46E00C65D3F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EDABB24B2320E46D00C65D3F /* CCTrendChart */;
+			target = EDABB24B2320E46D00C65D3F /* CCTrendCharts */;
 			targetProxy = EDABB2572320E46E00C65D3F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -424,14 +424,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CCTrendChart/Info.plist;
+				INFOPLIST_FILE = CCTrendCharts/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cocos.com.CCTrendChart;
+				PRODUCT_BUNDLE_IDENTIFIER = cocos.com.CCTrendCharts;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -447,14 +447,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CCTrendChart/Info.plist;
+				INFOPLIST_FILE = CCTrendCharts/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cocos.com.CCTrendChart;
+				PRODUCT_BUNDLE_IDENTIFIER = cocos.com.CCTrendCharts;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -465,13 +465,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CCTrendChartTests/Info.plist;
+				INFOPLIST_FILE = CCTrendChartsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cocos.com.CCTrendChartTests;
+				PRODUCT_BUNDLE_IDENTIFIER = cocos.com.CCTrendChartsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -481,13 +481,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CCTrendChartTests/Info.plist;
+				INFOPLIST_FILE = CCTrendChartsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cocos.com.CCTrendChartTests;
+				PRODUCT_BUNDLE_IDENTIFIER = cocos.com.CCTrendChartsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -496,7 +496,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EDABB2462320E46D00C65D3F /* Build configuration list for PBXProject "CCTrendChart" */ = {
+		EDABB2462320E46D00C65D3F /* Build configuration list for PBXProject "CCTrendCharts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EDABB25E2320E46E00C65D3F /* Debug */,
@@ -505,7 +505,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EDABB2602320E46E00C65D3F /* Build configuration list for PBXNativeTarget "CCTrendChart" */ = {
+		EDABB2602320E46E00C65D3F /* Build configuration list for PBXNativeTarget "CCTrendCharts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EDABB2612320E46E00C65D3F /* Debug */,
@@ -514,7 +514,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EDABB2632320E46E00C65D3F /* Build configuration list for PBXNativeTarget "CCTrendChartTests" */ = {
+		EDABB2632320E46E00C65D3F /* Build configuration list for PBXNativeTarget "CCTrendChartsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EDABB2642320E46E00C65D3F /* Debug */,
