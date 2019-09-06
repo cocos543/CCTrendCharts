@@ -14,6 +14,8 @@
 		EDABB2692320E68700C65D3F /* CCMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EDABB2672320E68700C65D3F /* CCMain.m */; };
 		EDFA74B72320FC6900CDB6BC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDFA74B62320FC6900CDB6BC /* LICENSE */; };
 		EDFA74B92320FC8600CDB6BC /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EDFA74B82320FC8600CDB6BC /* README.md */; };
+		EDFA74BF2321079200CDB6BC /* UIColor+CCUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EDFA74BD2321079200CDB6BC /* UIColor+CCUtility.h */; };
+		EDFA74C02321079200CDB6BC /* UIColor+CCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFA74BE2321079200CDB6BC /* UIColor+CCUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 		EDABB2672320E68700C65D3F /* CCMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCMain.m; sourceTree = "<group>"; };
 		EDFA74B62320FC6900CDB6BC /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		EDFA74B82320FC8600CDB6BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EDFA74BD2321079200CDB6BC /* UIColor+CCUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+CCUtility.h"; sourceTree = "<group>"; };
+		EDFA74BE2321079200CDB6BC /* UIColor+CCUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CCUtility.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +106,10 @@
 		EDFA74AE2320F41B00CDB6BC /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				EDFA74B42320FB9600CDB6BC /* Animated */,
+				EDFA74B42320FB9600CDB6BC /* Animator */,
 				EDFA74AF2320F79300CDB6BC /* Base */,
 				EDFA74B32320FB4600CDB6BC /* Common */,
-				EDFA74B02320F7AD00CDB6BC /* DataTransform */,
+				EDFA74B02320F7AD00CDB6BC /* DataProvider */,
 				EDFA74B22320FAFF00CDB6BC /* Gesture */,
 				EDFA74B12320F98500CDB6BC /* Renderer */,
 				EDFA74B52320FBC300CDB6BC /* View */,
@@ -120,11 +124,11 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		EDFA74B02320F7AD00CDB6BC /* DataTransform */ = {
+		EDFA74B02320F7AD00CDB6BC /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = DataTransform;
+			path = DataProvider;
 			sourceTree = "<group>";
 		};
 		EDFA74B12320F98500CDB6BC /* Renderer */ = {
@@ -144,15 +148,17 @@
 		EDFA74B32320FB4600CDB6BC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EDFA74BD2321079200CDB6BC /* UIColor+CCUtility.h */,
+				EDFA74BE2321079200CDB6BC /* UIColor+CCUtility.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		EDFA74B42320FB9600CDB6BC /* Animated */ = {
+		EDFA74B42320FB9600CDB6BC /* Animator */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Animated;
+			path = Animator;
 			sourceTree = "<group>";
 		};
 		EDFA74B52320FBC300CDB6BC /* View */ = {
@@ -170,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDABB25D2320E46E00C65D3F /* CCTrendCharts.h in Headers */,
+				EDFA74BF2321079200CDB6BC /* UIColor+CCUtility.h in Headers */,
 				EDABB2682320E68700C65D3F /* CCMain.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDABB2692320E68700C65D3F /* CCMain.m in Sources */,
+				EDFA74C02321079200CDB6BC /* UIColor+CCUtility.m in Sources */,
 				EDFA74B92320FC8600CDB6BC /* README.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
