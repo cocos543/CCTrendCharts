@@ -7,11 +7,19 @@
 //
 
 #import "CCMain.h"
+#import "CCTestViewBase.h"
 
 @implementation CCMain
 
 - (void)hello {
-    printf("hello CCMain3 ~");
+    printf("hello CCMain3 ~\n");
+    
+    CCTestViewBase *view = [[CCTestViewBase alloc] init];
+    //view.yAxis = [[CCDefualtYAxis alloc] init];
+    NSLog(@"%@", view);
+    NSLog(@"%@", view.yAxis);
+    
+    
 }
 
 - (void)hello2 {
