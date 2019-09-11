@@ -17,12 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CCChartViewBase : UIView <CCProtocolChartViewBase>
 
-// 提供Y轴上文案的信息
-@property (nonatomic, strong) id<CCProtocolYAxis> yAxis;
-
-// 提供X轴上文案信息
-@property (nonatomic, strong) id<CCProtocolXAxis> xAxis;
-
 @end
 
 NS_ASSUME_NONNULL_END

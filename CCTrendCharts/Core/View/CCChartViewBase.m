@@ -9,6 +9,9 @@
 #import "CCChartViewBase.h"
 
 @implementation CCChartViewBase
+@synthesize xAxis = _xAxis;
+@synthesize yAxis = _yAxis;
+
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -35,5 +38,7 @@
     // Drawing code
 }
 */
+
+
 
 @end

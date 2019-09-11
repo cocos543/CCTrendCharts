@@ -9,10 +9,12 @@
 #import "CCChartViewBase.h"
 #import "CCDefualtYAxis.h"
 #import "CCDefualtXAxis.h"
+#import "CCProtocolRectangularCoordinateChartDataProvider.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CCTestViewBase : CCChartViewBase
+@interface CCTestViewBase : CCChartViewBase <CCProtocolRectangularCoordinateChartDataProvider>
 
 @end
 

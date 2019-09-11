@@ -2,7 +2,7 @@
 //  CCChartViewPixelHandler.h
 //  CCTrendCharts
 //
-//  所有放大缩小操作都会做用到Handler对象上
+//  所有放大缩小操作都会作用到Handler对象上
 //
 //  Created by Cocos on 2019/9/9.
 //  Copyright © 2019 Cocos. All rights reserved.

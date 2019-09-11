@@ -10,4 +10,15 @@
 
 @implementation CCDefualtXAxis
 
+@synthesize axisColor = _axisColor;
+@synthesize axisLineWidth = _axisLineWidth;
+@synthesize font = _font;
+@synthesize labelColor = _labelColor;
+@synthesize labelCount = _labelCount;
+@synthesize labelMaxLine = _labelMaxLine;
+
+- (NSInteger)startIndexForDrawLabel {
+    return 0;
+}
+
 @end
