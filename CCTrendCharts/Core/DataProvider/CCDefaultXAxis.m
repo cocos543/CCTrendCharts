@@ -1,14 +1,14 @@
 //
-//  CCDefualtXAxis.m
+//  CCDefaultXAxis.m
 //  CCTrendCharts
 //
 //  Created by Cocos on 2019/9/6.
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import "CCDefualtXAxis.h"
+#import "CCDefaultXAxis.h"
 
-@implementation CCDefualtXAxis
+@implementation CCDefaultXAxis
 
 @synthesize axisColor = _axisColor;
 @synthesize axisLineWidth = _axisLineWidth;

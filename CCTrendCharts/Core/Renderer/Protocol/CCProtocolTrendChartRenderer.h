@@ -13,16 +13,16 @@
 /**
  绘制趋势图数据
  
- @param parentLayer 绘制出的layer将会作为parentLayer的子layer
+ @param contentLayer 将数据渲染到contentLayer上
  */
-- (void)renderValues:(CALayer *)parentLayer;
+- (void)renderValues:(CALayer *)contentLayer;
 
 
 /**
  绘制趋势图高亮部分信息
 
- @param parentLayer 绘制出的layer将会作为parentLayer的子layer
+ @param contentLayer 将数据渲染到contentLayer上
  */
-- (void)renderHighlighted:(CALayer *)parentLayer;
+- (void)renderHighlighted:(CALayer *)contentLayer;
 
 @end

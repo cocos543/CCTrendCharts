@@ -7,14 +7,14 @@
 //
 
 #import "CCMain.h"
-#import "CCTestViewBase.h"
+#import "CCKLineChartView.h"
 
 @implementation CCMain
 
 - (void)hello {
     printf("hello CCMain3 ~\n");
     
-    CCTestViewBase *view = [[CCTestViewBase alloc] init];
+    CCKLineChartView *view = [[CCKLineChartView alloc] init];
     //view.yAxis = [[CCDefualtYAxis alloc] init];
     NSLog(@"%@", view);
     NSLog(@"%@", view.yAxis);

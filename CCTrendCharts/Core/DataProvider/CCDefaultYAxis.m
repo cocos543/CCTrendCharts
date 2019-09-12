@@ -1,14 +1,14 @@
 //
-//  CCDefualtYAxis.m
+//  CCDefaultYAxis.m
 //  CCTrendCharts
 //
 //  Created by Cocos on 2019/9/6.
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import "CCDefualtYAxis.h"
+#import "CCDefaultYAxis.h"
 
-@implementation CCDefualtYAxis
+@implementation CCDefaultYAxis
 
 @synthesize font = _font;
 @synthesize labelColor = _labelColor;
@@ -28,6 +28,19 @@
     _axisMaxValue = axisMaxValue;
 }
 
+- (NSInteger)entityCount {
+    return _entities.count;
+}
+
+- (void)setLabelCount:(NSInteger)labelCount {
+    if (labelCount > 25) {
+        _labelCount = 25;
+    }else if (labelCount < 2) {
+        _labelCount = 2;
+    }else {
+        _labelCount = labelCount;
+    }
+}
 
 
 @end

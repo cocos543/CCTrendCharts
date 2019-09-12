@@ -1,27 +1,25 @@
 //
-//  CCTestViewBase.m
+//  CCKLineChartView.m
 //  CCTrendCharts
 //
 //  Created by Cocos on 2019/9/6.
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import "CCTestViewBase.h"
-#import "CCDefualtYAxis.h"
-#import "CCDefualtXAxis.h"
+#import "CCKLineChartView.h"
 
-@interface CCTestViewBase ()
+@interface CCKLineChartView ()
 
 @end
 
-@implementation CCTestViewBase
+@implementation CCKLineChartView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // 这里使用父类提供的方法初始化
-        self.yAxis = [[CCDefualtYAxis alloc] init];
-        self.xAxis = [[CCDefualtXAxis alloc] init];
+        self.yAxis = [[CCDefaultYAxis alloc] init];
+        self.xAxis = [[CCDefaultXAxis alloc] init];
     }
     return self;
 }

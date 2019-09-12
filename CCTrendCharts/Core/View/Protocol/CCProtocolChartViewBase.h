@@ -10,17 +10,17 @@
 
 #import <UIKit/UIKit.h>
 
-#import "CCDefualtYAxis.h"
-#import "CCDefualtXAxis.h"
+#import "CCDefaultYAxis.h"
+#import "CCDefaultXAxis.h"
 
 @protocol CCProtocolChartViewBase <CCProtocolBase>
 @required
 
 // 提供Y轴上文案的信息
-@property (nonatomic, strong) CCDefualtYAxis *yAxis;
+@property (nonatomic, strong) CCDefaultYAxis *yAxis;
 
 
 // 提供X轴上文案信息
-@property (nonatomic, strong) CCDefualtXAxis *xAxis;
+@property (nonatomic, strong) CCDefaultXAxis *xAxis;
 
 @end
