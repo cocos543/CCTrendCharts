@@ -8,6 +8,7 @@
 
 #import "CCKLineChartView.h"
 
+
 @interface CCKLineChartView ()
 
 @end
@@ -18,7 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // 这里使用父类提供的方法初始化
-        self.yAxis = [[CCDefaultYAxis alloc] init];
+        self.leftAxis = [[CCDefaultYAxis alloc] init];
         self.xAxis = [[CCDefaultXAxis alloc] init];
     }
     return self;
@@ -39,5 +40,7 @@
     // Drawing code
 }
 */
+
+
 
 @end

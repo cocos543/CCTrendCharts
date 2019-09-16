@@ -7,11 +7,13 @@
 //
 
 #import "CCChartViewBase.h"
-#import "CCDefaultYAxis.h"
-#import "CCDefaultXAxis.h"
+
 #import "CCDefaultYAxisRenderer.h"
 #import "CCDefaultXAxisRenderer.h"
+
+
 #import "CCProtocolRectangularCoordinateChartDataProvider.h"
+#import "CCKLineChartData.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -22,6 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) id<CCProtocolAxisRenderer> xAxisrenderer;
 
 @property (nonatomic, strong) id<CCProtocolAxisRenderer> yAxisrenderer;
+
+
+/**
+ 定义CCProtocolRectangularCoordinateChartDataProvider协议中的数据源, 这里可以换成其他合法子类
+ */
+//@property (nonatomic, strong) CCKLineChartData *data;
 
 @end
 

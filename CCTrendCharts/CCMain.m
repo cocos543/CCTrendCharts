@@ -17,7 +17,7 @@
     CCKLineChartView *view = [[CCKLineChartView alloc] init];
     //view.yAxis = [[CCDefualtYAxis alloc] init];
     NSLog(@"%@", view);
-    NSLog(@"%@", view.yAxis);
+    NSLog(@"%@", view.leftAxis);
     
     
 }

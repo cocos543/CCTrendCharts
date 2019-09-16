@@ -6,7 +6,7 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "CCProtocolAxisBase.h"
 #import "CCProtocolXAxisFormatterBase.h"
 

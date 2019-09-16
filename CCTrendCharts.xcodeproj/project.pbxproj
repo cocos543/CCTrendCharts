@@ -26,6 +26,16 @@
 		EDA3C4322328CCF700843C7A /* CCXAxisDefaultFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA3C4302328CCF700843C7A /* CCXAxisDefaultFormatter.m */; };
 		EDA3C4352328D0C500843C7A /* CCProtocolAxisBase.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3C4332328D0C500843C7A /* CCProtocolAxisBase.h */; };
 		EDA3C43F2328E82C00843C7A /* CCProtocolRectangularCoordinateChartDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3C43D2328E82C00843C7A /* CCProtocolRectangularCoordinateChartDataProvider.h */; };
+		EDA3E2EC232F655F00222E83 /* CCProtocolChartDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3E2EA232F655F00222E83 /* CCProtocolChartDataSet.h */; };
+		EDA3E2F0232F666700222E83 /* CCChartData.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3E2EE232F666700222E83 /* CCChartData.h */; };
+		EDA3E2F1232F666700222E83 /* CCChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA3E2EF232F666700222E83 /* CCChartData.m */; };
+		EDA3E2F4232F746200222E83 /* CCChartDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3E2F2232F746200222E83 /* CCChartDataEntity.h */; };
+		EDA3E2F5232F746200222E83 /* CCChartDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA3E2F3232F746200222E83 /* CCChartDataEntity.m */; };
+		EDA3E2F8232F7B4700222E83 /* CCProtocolKLineChartDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3E2F6232F7B4700222E83 /* CCProtocolKLineChartDataSet.h */; };
+		EDA3E300232F7BE000222E83 /* CCKLineChartData.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3E2FE232F7BE000222E83 /* CCKLineChartData.h */; };
+		EDA3E301232F7BE000222E83 /* CCKLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA3E2FF232F7BE000222E83 /* CCKLineChartData.m */; };
+		EDA3E304232F7E7600222E83 /* CCKLineChartDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3E302232F7E7600222E83 /* CCKLineChartDataSet.h */; };
+		EDA3E305232F7E7600222E83 /* CCKLineChartDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA3E303232F7E7600222E83 /* CCKLineChartDataSet.m */; };
 		EDABB2562320E46E00C65D3F /* CCTrendCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDABB24C2320E46D00C65D3F /* CCTrendCharts.framework */; };
 		EDABB25B2320E46E00C65D3F /* CCTrendChartsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDABB25A2320E46E00C65D3F /* CCTrendChartsTests.m */; };
 		EDABB25D2320E46E00C65D3F /* CCTrendCharts.h in Headers */ = {isa = PBXBuildFile; fileRef = EDABB24F2320E46D00C65D3F /* CCTrendCharts.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -76,6 +86,16 @@
 		EDA3C4302328CCF700843C7A /* CCXAxisDefaultFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCXAxisDefaultFormatter.m; sourceTree = "<group>"; };
 		EDA3C4332328D0C500843C7A /* CCProtocolAxisBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolAxisBase.h; sourceTree = "<group>"; };
 		EDA3C43D2328E82C00843C7A /* CCProtocolRectangularCoordinateChartDataProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolRectangularCoordinateChartDataProvider.h; sourceTree = "<group>"; };
+		EDA3E2EA232F655F00222E83 /* CCProtocolChartDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolChartDataSet.h; sourceTree = "<group>"; };
+		EDA3E2EE232F666700222E83 /* CCChartData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChartData.h; sourceTree = "<group>"; };
+		EDA3E2EF232F666700222E83 /* CCChartData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCChartData.m; sourceTree = "<group>"; };
+		EDA3E2F2232F746200222E83 /* CCChartDataEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChartDataEntity.h; sourceTree = "<group>"; };
+		EDA3E2F3232F746200222E83 /* CCChartDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCChartDataEntity.m; sourceTree = "<group>"; };
+		EDA3E2F6232F7B4700222E83 /* CCProtocolKLineChartDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolKLineChartDataSet.h; sourceTree = "<group>"; };
+		EDA3E2FE232F7BE000222E83 /* CCKLineChartData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKLineChartData.h; sourceTree = "<group>"; };
+		EDA3E2FF232F7BE000222E83 /* CCKLineChartData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKLineChartData.m; sourceTree = "<group>"; };
+		EDA3E302232F7E7600222E83 /* CCKLineChartDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKLineChartDataSet.h; sourceTree = "<group>"; };
+		EDA3E303232F7E7600222E83 /* CCKLineChartDataSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKLineChartDataSet.m; sourceTree = "<group>"; };
 		EDABB24C2320E46D00C65D3F /* CCTrendCharts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CCTrendCharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDABB24F2320E46D00C65D3F /* CCTrendCharts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTrendCharts.h; sourceTree = "<group>"; };
 		EDABB2502320E46D00C65D3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,9 +141,11 @@
 		ED21EAC02325EAA10087AE67 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				ED21EAC22325EE0D0087AE67 /* CCProtocolChartDataProvider.h */,
 				EDA3C4332328D0C500843C7A /* CCProtocolAxisBase.h */,
+				ED21EAC22325EE0D0087AE67 /* CCProtocolChartDataProvider.h */,
 				EDA3C43D2328E82C00843C7A /* CCProtocolRectangularCoordinateChartDataProvider.h */,
+				EDA3E2EA232F655F00222E83 /* CCProtocolChartDataSet.h */,
+				EDA3E2F6232F7B4700222E83 /* CCProtocolKLineChartDataSet.h */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -152,6 +174,17 @@
 				EDA3C4262328A11600843C7A /* CCProtocolXAxisFormatterBase.h */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		EDA3E306232F7ECB00222E83 /* Axis */ = {
+			isa = PBXGroup;
+			children = (
+				ED00E79423223D6A00139A8C /* CCDefaultYAxis.h */,
+				ED00E79523223D6A00139A8C /* CCDefaultYAxis.m */,
+				ED00E79823223E6600139A8C /* CCDefaultXAxis.h */,
+				ED00E79923223E6600139A8C /* CCDefaultXAxis.m */,
+			);
+			path = Axis;
 			sourceTree = "<group>";
 		};
 		EDABB2422320E46D00C65D3F = {
@@ -230,10 +263,15 @@
 		EDFA74B02320F7AD00CDB6BC /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
-				ED00E79423223D6A00139A8C /* CCDefaultYAxis.h */,
-				ED00E79523223D6A00139A8C /* CCDefaultYAxis.m */,
-				ED00E79823223E6600139A8C /* CCDefaultXAxis.h */,
-				ED00E79923223E6600139A8C /* CCDefaultXAxis.m */,
+				EDA3E306232F7ECB00222E83 /* Axis */,
+				EDA3E2EE232F666700222E83 /* CCChartData.h */,
+				EDA3E2EF232F666700222E83 /* CCChartData.m */,
+				EDA3E2FE232F7BE000222E83 /* CCKLineChartData.h */,
+				EDA3E2FF232F7BE000222E83 /* CCKLineChartData.m */,
+				EDA3E2F2232F746200222E83 /* CCChartDataEntity.h */,
+				EDA3E2F3232F746200222E83 /* CCChartDataEntity.m */,
+				EDA3E302232F7E7600222E83 /* CCKLineChartDataSet.h */,
+				EDA3E303232F7E7600222E83 /* CCKLineChartDataSet.m */,
 				ED21EAC02325EAA10087AE67 /* Protocol */,
 			);
 			path = DataProvider;
@@ -301,15 +339,20 @@
 			files = (
 				EDABB25D2320E46E00C65D3F /* CCTrendCharts.h in Headers */,
 				ED1BFB5E232234FC00222820 /* CCProtocolChartViewBase.h in Headers */,
+				EDA3E2F8232F7B4700222E83 /* CCProtocolKLineChartDataSet.h in Headers */,
+				EDA3E2F4232F746200222E83 /* CCChartDataEntity.h in Headers */,
 				EDBEA2D02328EB87000F8852 /* CCProtocolTrendChartRenderer.h in Headers */,
 				ED00E79623223D6A00139A8C /* CCDefaultYAxis.h in Headers */,
 				ED1BFB5A232231A700222820 /* CCChartViewBase.h in Headers */,
+				EDA3E2F0232F666700222E83 /* CCChartData.h in Headers */,
 				ED00E79E2322419B00139A8C /* CCKLineChartView.h in Headers */,
 				EDD180B7232A3B0100B2B72A /* CCDefaultYAxisRenderer.h in Headers */,
 				EDD180BB232A3B0F00B2B72A /* CCDefaultXAxisRenderer.h in Headers */,
 				EDFA74BF2321079200CDB6BC /* UIColor+CCUtility.h in Headers */,
 				EDA3C4352328D0C500843C7A /* CCProtocolAxisBase.h in Headers */,
+				EDA3E2EC232F655F00222E83 /* CCProtocolChartDataSet.h in Headers */,
 				EDA3C43F2328E82C00843C7A /* CCProtocolRectangularCoordinateChartDataProvider.h in Headers */,
+				EDA3E300232F7BE000222E83 /* CCKLineChartData.h in Headers */,
 				ED21EACC232642740087AE67 /* CCChartViewPixelHandler.h in Headers */,
 				ED00E79A23223E6600139A8C /* CCDefaultXAxis.h in Headers */,
 				EDABB2682320E68700C65D3F /* CCMain.h in Headers */,
@@ -318,6 +361,7 @@
 				ED21EAC42325EE0D0087AE67 /* CCProtocolChartDataProvider.h in Headers */,
 				EDBEA2D42328ED6C000F8852 /* CCProtocolAnimatorBase.h in Headers */,
 				ED21EAC823263F920087AE67 /* CCProtocolChartRendererBase.h in Headers */,
+				EDA3E304232F7E7600222E83 /* CCKLineChartDataSet.h in Headers */,
 				ED00E79223223C7800139A8C /* CCProtocolBase.h in Headers */,
 				EDBEA2CC2328EAEB000F8852 /* CCProtocolAxisRenderer.h in Headers */,
 				EDD180B2232A394D00B2B72A /* CCChartViewHandler.h in Headers */,
@@ -422,16 +466,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDABB2692320E68700C65D3F /* CCMain.m in Sources */,
+				EDA3E305232F7E7600222E83 /* CCKLineChartDataSet.m in Sources */,
 				ED00E79B23223E6600139A8C /* CCDefaultXAxis.m in Sources */,
 				EDD180BC232A3B0F00B2B72A /* CCDefaultXAxisRenderer.m in Sources */,
 				ED00E79723223D6A00139A8C /* CCDefaultYAxis.m in Sources */,
+				EDA3E2F1232F666700222E83 /* CCChartData.m in Sources */,
 				EDFA74C02321079200CDB6BC /* UIColor+CCUtility.m in Sources */,
 				EDD180B8232A3B0100B2B72A /* CCDefaultYAxisRenderer.m in Sources */,
+				EDA3E2F5232F746200222E83 /* CCChartDataEntity.m in Sources */,
 				EDD180B3232A394D00B2B72A /* CCChartViewHandler.m in Sources */,
 				ED1BFB5B232231A700222820 /* CCChartViewBase.m in Sources */,
 				EDA3C4322328CCF700843C7A /* CCXAxisDefaultFormatter.m in Sources */,
 				ED00E79F2322419B00139A8C /* CCKLineChartView.m in Sources */,
 				EDFA74B92320FC8600CDB6BC /* README.md in Sources */,
+				EDA3E301232F7BE000222E83 /* CCKLineChartData.m in Sources */,
 				ED21EACD232642740087AE67 /* CCChartViewPixelHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

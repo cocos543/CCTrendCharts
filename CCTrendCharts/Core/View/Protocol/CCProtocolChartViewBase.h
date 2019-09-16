@@ -17,7 +17,9 @@
 @required
 
 // 提供Y轴上文案的信息
-@property (nonatomic, strong) CCDefaultYAxis *yAxis;
+@property (nonatomic, strong) CCDefaultYAxis *leftAxis;
+
+@property (nonatomic, strong) CCDefaultYAxis *rightAxis;
 
 
 // 提供X轴上文案信息

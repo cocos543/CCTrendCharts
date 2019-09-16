@@ -11,10 +11,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CCChartData.h"
 
 @protocol CCProtocolChartDataProvider <NSObject>
 
-// 数据集数组
+// 数据源
+@property (nonatomic, strong) CCChartData *data;
 
 // Y轴最大值
 
@@ -23,5 +25,6 @@
 // X轴最大值
 
 // X轴最小值
+
 
 @end

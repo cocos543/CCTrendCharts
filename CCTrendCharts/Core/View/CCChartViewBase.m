@@ -10,13 +10,15 @@
 
 @implementation CCChartViewBase
 @synthesize xAxis = _xAxis;
-@synthesize yAxis = _yAxis;
+@synthesize leftAxis = _leftAxis;
+@synthesize rightAxis = _rightAxis;
 
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        _yAxis = nil;
+        _leftAxis = nil;
+        _rightAxis = nil;
         _xAxis = nil;
     }
     return self;
@@ -28,7 +30,7 @@
 
 - (NSString *)description {
     NSString *desc = [super description];
-    return [NSString stringWithFormat:@"%@ --- %@", desc, [NSString stringWithFormat:@"%p", &_yAxis]];
+    return [NSString stringWithFormat:@"%@ --- %@", desc, [NSString stringWithFormat:@"%p", &_leftAxis]];
 }
 
 /*
