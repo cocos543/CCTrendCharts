@@ -15,16 +15,35 @@
 
 @protocol CCProtocolChartDataProvider <NSObject>
 
+//  getTransformer
+//
+
 // 数据源
 @property (nonatomic, strong) CCChartData *data;
 
 // Y轴最大值
+@property (nonatomic, assign, readonly) CGFloat maxY;
 
 // Y轴最小值
+@property (nonatomic, assign, readonly) CGFloat minY;
 
 // X轴最大值
+@property (nonatomic, assign, readonly) CGFloat maxX;
 
 // X轴最小值
+@property (nonatomic, assign, readonly) CGFloat minX;
 
+
+
+/**
+ 经过2D变换之后可见的最小索引
+ */
+@property (nonatomic, assign, readonly) NSInteger lowestVisibleXIndex;
+
+
+/**
+ 经过2D变换之后可见的最大索引
+ */
+@property (nonatomic, assign, readonly) NSInteger highestVisibleXIndex;
 
 @end

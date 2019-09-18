@@ -18,3 +18,5 @@ FOUNDATION_EXPORT const unsigned char CCTrendChartsVersionString[];
 
 #import "CCMain.h"
 #import "UIColor+CCUtility.h"
+
+#import "CCKLineChartView.h"

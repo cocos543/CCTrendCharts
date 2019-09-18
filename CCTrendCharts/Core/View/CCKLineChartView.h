@@ -12,24 +12,25 @@
 #import "CCDefaultXAxisRenderer.h"
 
 
-#import "CCProtocolRectangularCoordinateChartDataProvider.h"
+#import "CCProtocolChartDataProvider.h"
 #import "CCKLineChartData.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CCKLineChartView : CCChartViewBase <CCProtocolRectangularCoordinateChartDataProvider>
 
-// 这里视图类只需要关注渲染对象是否实现基础协议即可, 具体的渲染过程由渲染对象内部处理
-@property (nonatomic, strong) id<CCProtocolAxisRenderer> xAxisrenderer;
+/**
+ K线趋势图
+ */
+@interface CCKLineChartView : CCChartViewBase <CCProtocolChartDataProvider>
 
-@property (nonatomic, strong) id<CCProtocolAxisRenderer> yAxisrenderer;
+
 
 
 /**
  定义CCProtocolRectangularCoordinateChartDataProvider协议中的数据源, 这里可以换成其他合法子类
  */
-//@property (nonatomic, strong) CCKLineChartData *data;
+
 
 @end
 

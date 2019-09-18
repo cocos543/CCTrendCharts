@@ -11,13 +11,16 @@
 #import <UIKit/UIKit.h>
 
 #import "CCProtocolChartViewBase.h"
-#import "CCProtocolChartRendererBase.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+
+/**
+ 请不要直接使用基类视图!
+ */
 @interface CCChartViewBase : UIView <CCProtocolChartViewBase>
 
-@property (nonatomic, strong) id<CCProtocolChartRendererBase> renderer;
 
 @end
 

@@ -6,16 +6,20 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <UIKit/UIKit>
+#import <UIKit/UIKit.h>
 #import "CCProtocolChartRendererBase.h"
+#import "CCProtocolChartDataSet.h"
 
-@protocol CCProtocolTrendChartRenderer <NSObject>
+
+@protocol CCProtocolTrendChartRenderer <CCProtocolChartRendererBase>
 /**
  绘制趋势图数据
  
  @param contentLayer 将数据渲染到contentLayer上
  */
-- (void)renderValues:(CALayer *)contentLayer;
+- (void)renderData:(CALayer *)contentLayer;
+
+- (void)renderDataSet:(CALayer *)contentLayer dataSet:(id<CCProtocolChartDataSet>)dataSet;
 
 
 /**

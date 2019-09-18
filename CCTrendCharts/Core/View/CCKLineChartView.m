@@ -14,6 +14,11 @@
 @end
 
 @implementation CCKLineChartView
+@synthesize renderer = _renderer;
+@synthesize yAxisrenderer = _yAxisrenderer;
+@synthesize xAxisrenderer = _xAxisrenderer;
+
+@synthesize data = _data;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -31,6 +36,32 @@
 
 - (NSString *)description {
     return [super description];
+}
+
+#pragma mark - Protocol: CCProtocolChartDataProvider
+
+- (CGFloat)minX {
+    return 0;
+}
+
+- (CGFloat)maxX {
+    return 0;
+}
+
+- (CGFloat)minY {
+    return 0;
+}
+
+- (CGFloat)maxY {
+    return 0;
+}
+
+- (NSInteger)lowestVisibleXIndex {
+    return 0;
+}
+
+- (NSInteger)highestVisibleXIndex {
+    return 0;
 }
 
 /*
