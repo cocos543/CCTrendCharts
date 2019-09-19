@@ -14,7 +14,7 @@
 #import "CCChartData.h"
 
 @protocol CCProtocolChartDataProvider <NSObject>
-
+@required
 //  getTransformer
 //
 
@@ -22,16 +22,16 @@
 @property (nonatomic, strong) CCChartData *data;
 
 // Y轴最大值
-@property (nonatomic, assign, readonly) CGFloat maxY;
+@property (nonatomic, assign, readonly) CGFloat chartMaxY;
 
 // Y轴最小值
-@property (nonatomic, assign, readonly) CGFloat minY;
+@property (nonatomic, assign, readonly) CGFloat chartMinY;
 
 // X轴最大值
-@property (nonatomic, assign, readonly) CGFloat maxX;
+@property (nonatomic, assign, readonly) CGFloat chartMaxX;
 
 // X轴最小值
-@property (nonatomic, assign, readonly) CGFloat minX;
+@property (nonatomic, assign, readonly) CGFloat chartMinX;
 
 
 

@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, YAxisLabelPosition) {
 };
 
 @protocol CCProtocolAxisBase <CCProtocolBase>
-
+@required
 
 
 /**

@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, KLineChartDataSetType) {
 };
 
 @protocol CCProtocolKLineChartDataSet <CCProtocolChartDataSet>
-
+@required
 /**
  高亮信息
  */

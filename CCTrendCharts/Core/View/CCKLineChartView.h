@@ -12,7 +12,7 @@
 #import "CCDefaultXAxisRenderer.h"
 
 
-#import "CCProtocolChartDataProvider.h"
+#import "CCProtocolKLineChartDataProvider.h"
 #import "CCKLineChartData.h"
 
 
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  K线趋势图
  */
-@interface CCKLineChartView : CCChartViewBase <CCProtocolChartDataProvider>
+@interface CCKLineChartView : CCChartViewBase <CCProtocolKLineChartDataProvider>
 
 
 

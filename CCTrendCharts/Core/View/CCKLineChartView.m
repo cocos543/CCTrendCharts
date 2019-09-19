@@ -17,7 +17,6 @@
 @synthesize renderer = _renderer;
 @synthesize yAxisrenderer = _yAxisrenderer;
 @synthesize xAxisrenderer = _xAxisrenderer;
-
 @synthesize data = _data;
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -38,21 +37,25 @@
     return [super description];
 }
 
-#pragma mark - Protocol: CCProtocolChartDataProvider
+#pragma mark - Protocol: CCProtocolKLineChartDataProvider
 
-- (CGFloat)minX {
+- (CCKLineChartData *)klineChartData {
+    return (CCKLineChartData *)_data;
+}
+
+- (CGFloat)chartMinX {
     return 0;
 }
 
-- (CGFloat)maxX {
+- (CGFloat)chartMaxX {
     return 0;
 }
 
-- (CGFloat)minY {
+- (CGFloat)chartMinY {
     return 0;
 }
 
-- (CGFloat)maxY {
+- (CGFloat)chartMaxY {
     return 0;
 }
 
@@ -71,7 +74,6 @@
     // Drawing code
 }
 */
-
 
 
 @end

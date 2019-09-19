@@ -10,7 +10,7 @@
 
 @implementation CCDefaultYAxisRenderer
 
-@synthesize viewhandler = _viewhandler;
+@synthesize viewPixelHandler = _viewPixelHandler;
 
 - (void)renderAxisLine:(CALayer *)contentLayer {
     

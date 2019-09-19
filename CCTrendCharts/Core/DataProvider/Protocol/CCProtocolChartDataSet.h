@@ -10,7 +10,7 @@
 #import "CCChartDataEntity.h"
 
 @protocol CCProtocolChartDataSet <NSObject>
-
+@required
 - (instancetype)initWithVals:(NSArray<CCChartDataEntity *> *)yVals withName:(NSString *)name;
 
 /**

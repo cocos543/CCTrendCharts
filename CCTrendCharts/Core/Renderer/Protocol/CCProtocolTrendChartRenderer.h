@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CCProtocolChartRendererBase.h"
 #import "CCProtocolChartDataSet.h"
-
+#import "CCProtocolChartDataProvider.h"
 
 @protocol CCProtocolTrendChartRenderer <CCProtocolChartRendererBase>
 /**
@@ -17,9 +17,9 @@
  
  @param contentLayer 将数据渲染到contentLayer上
  */
-- (void)renderData:(CALayer *)contentLayer;
+- (void)renderData:(CAShapeLayer *)contentLayer;
 
-- (void)renderDataSet:(CALayer *)contentLayer dataSet:(id<CCProtocolChartDataSet>)dataSet;
+- (void)renderDataSet:(CAShapeLayer *)contentLayer dataSet:(id<CCProtocolChartDataSet>)dataSet;
 
 
 /**
@@ -27,6 +27,12 @@
 
  @param contentLayer 将数据渲染到contentLayer上
  */
-- (void)renderHighlighted:(CALayer *)contentLayer;
+- (void)renderHighlighted:(CAShapeLayer *)contentLayer;
+
+
+/**
+ 渲染的时候根据数据提供者(一般是视图本身而不是数据集, 这里其实是做了一个解偶)
+ */
+@property (nonatomic, weak) id<CCProtocolChartDataProvider> dataProvider;
 
 @end
