@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface CCChartViewBase : UIView <CCProtocolChartViewBase>
 
-
 @end
 
 NS_ASSUME_NONNULL_END

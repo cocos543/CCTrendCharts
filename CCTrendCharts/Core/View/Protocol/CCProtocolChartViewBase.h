@@ -18,20 +18,37 @@
 
 @protocol CCProtocolChartViewBase <CCProtocolBase>
 @required
-// 提供Y轴上文案的信息
+
+/**
+ 所有2D变换信息都存储在viewHandler里, 以及视图当前画布信息, 可直接由用户手势改变其信息.
+ */
+@property (nonatomic, readonly) CCChartViewPixelHandler *viewPixelHandler;
+
+/**
+ 记录和反射相关的信息, 结合CCChartViewPixelHandler对象可以运算出数据的真实坐标
+ */
+@property (nonatomic, readonly) CCChartTransformer *transformer;
+
+/**
+ 提供Y轴上文案的信息
+ */
 @property (nonatomic, strong) CCDefaultYAxis *leftAxis;
 
 @property (nonatomic, strong) CCDefaultYAxis *rightAxis;
 
-// 提供X轴上文案信息
+/**
+ 提供X轴上文案信息
+ */
 @property (nonatomic, strong) CCDefaultXAxis *xAxis;
 
-
-
-// 渲染组件
+/**
+ 渲染组件
+ */
 @property (nonatomic, strong) id<CCProtocolTrendChartRenderer> renderer;
 
-// 这里视图类只需要关注渲染对象是否实现基础协议即可, 具体的渲染过程由渲染对象内部处理
+/**
+ 这里视图类只需要关注渲染对象是否实现基础协议即可, 具体的渲染过程由渲染对象内部处理
+ */
 @property (nonatomic, strong) id<CCProtocolAxisRenderer> xAxisrenderer;
 
 @property (nonatomic, strong) id<CCProtocolAxisRenderer> yAxisrenderer;

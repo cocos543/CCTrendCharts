@@ -22,9 +22,14 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        // 这里使用父类提供的方法初始化
         self.leftAxis = [[CCDefaultYAxis alloc] init];
         self.xAxis = [[CCDefaultXAxis alloc] init];
+        
+        _yAxisrenderer = [[CCDefaultYAxisRenderer alloc] initWithAxis:self.leftAxis viewHandler:self.viewPixelHandler transform:self.transformer];
+        
+        _xAxisrenderer = [[CCDefaultXAxisRenderer alloc] initWithAxis:self.xAxis viewHandler:self.viewPixelHandler transform:self.transformer];
+        
+        
     }
     return self;
 }
@@ -35,6 +40,10 @@
 
 - (NSString *)description {
     return [super description];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
 }
 
 #pragma mark - Protocol: CCProtocolKLineChartDataProvider

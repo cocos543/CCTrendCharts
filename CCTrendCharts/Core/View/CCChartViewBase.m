@@ -47,6 +47,8 @@
 @synthesize xAxis     = _xAxis;
 @synthesize leftAxis  = _leftAxis;
 @synthesize rightAxis = _rightAxis;
+@synthesize viewPixelHandler = _viewPixelHandler;
+@synthesize transformer = _transformer;
 
 // 渲染组件变量由子类合成
 @dynamic renderer;
@@ -58,6 +60,9 @@
     if (self) {
         _dataPanelView = [[UIScrollView alloc] initWithFrame:frame];
         _dataPanelView.backgroundColor = UIColor.clearColor;
+        
+        _viewPixelHandler = [[CCChartViewPixelHandler alloc] init];
+        _transformer = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
     }
     return self;
 }
@@ -72,9 +77,11 @@
 }
 
 - (void)layoutSubviews {
+    NSLog(@"layoutSubviews");
+    
     CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.width);;
     self.dataPanelView.frame = frame;
-    self.dataPanelView.contentSize = CGSizeMake(1000, 300);
+    self.dataPanelView.contentSize = CGSizeMake(1000, frame.size.height);
     [self addSubview:_dataPanelView];
     
     UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
@@ -83,17 +90,19 @@
     
     self.yAxisLayer.frame = frame;
     self.xAxisLayer.frame = frame;
+    
+    self.viewPixelHandler.contentRect = frame;
 }
 
 #pragma mark - Getter & Setter
 - (CALayer *)yAxisLayer {
     if (!_yAxisLayer) {
         _yAxisLayer = CALayer.layer;
-        // 这里设置delegate会奔溃..明天再查查看...
-        //_yAxisLayer.delegate = self;
-        
+        _yAxisLayer.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:0.5].CGColor;
+
         // Y轴渲染层放到所有图层的底部
         [self.layer addSublayer:_yAxisLayer];
+        self.layer.zPosition = 1;
         _yAxisLayer.zPosition = -100;
     }
     
@@ -103,8 +112,7 @@
 - (CALayer *)xAxisLayer {
     if (!_xAxisLayer) {
         _xAxisLayer = CALayer.layer;
-        //_xAxisLayer.delegate = self;
-        
+        _xAxisLayer.backgroundColor = [UIColor.yellowColor colorWithAlphaComponent:0.5].CGColor;
         // X轴渲染层放到滚动视图的最下层, 这样做是方便x轴上元素的滚动
         [self.dataPanelView.layer addSublayer:_xAxisLayer];
         _xAxisLayer.zPosition = -100;
@@ -114,44 +122,27 @@
 }
 
 
-
 #pragma mark - CALayerDelegate
-//- (void)displayLayer:(CALayer *)layer {
-//    if (layer == self.layer) {
-//
-//        NSLog(@"根图层重绘, 全部子图层需要重新渲染");
-//        [self.yAxisrenderer renderAxisLine:self.yAxisLayer];
-//        [self.xAxisrenderer renderAxisLine:self.xAxisLayer];
-//    }
-//}
+- (void)displayLayer:(CALayer *)layer {
+    NSLog(@"displayLayer: 根图层重绘, 全部子图层需要重新渲染");
 
-- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx {
-    if (layer == self.layer) {
-        [super drawLayer:layer inContext:ctx];
-        return;
-    }
+    [self.yAxisrenderer renderAxisLine:self.yAxisLayer];
+    [self.xAxisrenderer renderAxisLine:self.xAxisLayer];
 }
+
 
 #pragma mark - Drawing
 
-//- (void)displayLayer:(CALayer *)layer {
-//    layer.backgroundColor = self.backgroundColor.CGColor;
-//    NSLog(@"displayLayer:%@", layer);
-//
-//    [self.renderer renderValues:nil];
-//    [self.renderer renderHighlighted:nil];
-//
-//    [self.yAxisrenderer renderLabels:nil];
-//    [self.yAxisrenderer renderAxisLine:nil];
-//    [self.yAxisrenderer renderGridLines:nil];
-//}
 
-// 3
+/**
+ 下面的代码都是测试用的, 不一定会被调用, 后期会删除
+
+ */
 - (void)drawRect:(CGRect)rect {
     NSLog(@"drawRect");
     
     // Core Graphics 测试代码.
-    //UIGraphicsBeginImageContextWithOptions(frame.size, NO, 0);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
     CGContextSaveGState(ctx);
@@ -215,21 +206,17 @@
         CGContextFillRect(ctx, CGRectMake(10, 200, 0.1, 200));
         
     }
-//
-//
-//
-//
-//    myDrawFlag(ctx, &frame);
-//
-//
-//
-//    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
-//
-//    UIGraphicsEndImageContext();
-//
-//    [[UIImage imageWithCGImage:cgimg scale:2 orientation:UIImageOrientationDownMirrored] drawAtPoint:CGPointMake(0,0)];
+    
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    printf("retain count = %ld\n",CFGetRetainCount(cgimg));
+    
+    UIGraphicsEndImageContext();
 
-    //self.layer.contents = (__bridge id)CGBitmapContextCreateImage(UIGraphicsGetCurrentContext());
+    self.layer.contents = (__bridge id)cgimg;
+    printf("retain count = %ld\n",CFGetRetainCount(cgimg));
+    
+    CGImageRelease(cgimg);
+    
 }
 
 @end

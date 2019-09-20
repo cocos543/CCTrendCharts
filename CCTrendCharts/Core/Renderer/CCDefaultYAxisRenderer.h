@@ -24,6 +24,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)processAxisEntities:(CGFloat)min :(CGFloat)max;
 
+
+- (instancetype)init NS_UNAVAILABLE;
+
+/**
+ 指定初始化方法, 用于创建Axis渲染实例
+
+ @param axis y轴数据提供者
+ @param viewPixelHandler 视图像素处理对象
+ @param transformer 反射对象
+ @return instancetype
+ */
+- (instancetype)initWithAxis:(CCDefaultYAxis *)axis viewHandler:(CCChartViewPixelHandler *)viewPixelHandler transform:(CCChartTransformer *)transformer NS_DESIGNATED_INITIALIZER;
+
 @end
 
 NS_ASSUME_NONNULL_END

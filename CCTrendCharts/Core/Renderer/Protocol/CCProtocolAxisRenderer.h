@@ -8,9 +8,15 @@
 #import <UIKit/UIKit.h>
 
 #import "CCProtocolChartRendererBase.h"
+#import "CCProtocolAxisBase.h"
 
 @protocol CCProtocolAxisRenderer <CCProtocolChartRendererBase>
 
+
+/**
+ 渲染层直接根据axis对象进行渲染
+ */
+@property (nonatomic, weak) id<CCProtocolAxisBase> axis;
 
 /**
  绘制轴上的Label

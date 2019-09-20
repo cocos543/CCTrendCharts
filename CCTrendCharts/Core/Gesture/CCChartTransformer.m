@@ -25,13 +25,28 @@
 
 @implementation CCChartTransformer
 
-- (instancetype)init {
+- (instancetype)initWithViewPixelHandler:(CCChartViewPixelHandler *)viewPixelHandler {
     self = [super init];
     if (self) {
         _matrixValueToPx = CGAffineTransformIdentity;
+        _viewPixelHandler = viewPixelHandler;
     }
-    
     return self;
 }
+
+
+- (CGPoint)pointToPixel:(CGPoint)point forAnimationPhaseY:(CGFloat)phaseY {
+    return CGPointApplyAffineTransform(point, self.valueToPixelMatrix);
+}
+
+- (CGRect)rectToPixel:(CGRect)rect forAnimationPhaseY:(CGFloat)phaseY {
+    return CGRectApplyAffineTransform(rect, self.valueToPixelMatrix);
+}
+
+#pragma mark - Getter & Setter
+- (CGAffineTransform)valueToPixelMatrix {
+    return CGAffineTransformConcat(self.matrixValueToPx, self.viewPixelHandler.gestureMatrix);
+}
+
 
 @end

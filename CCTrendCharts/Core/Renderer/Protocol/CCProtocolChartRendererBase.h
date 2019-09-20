@@ -14,16 +14,16 @@
 
 
 @protocol CCProtocolChartRendererBase <NSObject>
-
+@required
 // 持有一个视图操作者CCChartViewPixelHandler, 所有放大缩小平移等信息都存储在viewHandler里面的CGAffineTransform, 这样方便运算数据的最终座标
-@property (nonatomic, strong) CCChartViewPixelHandler *viewPixelHandler;
+@property (nonatomic, readonly) CCChartViewPixelHandler *viewPixelHandler;
 
 
 
 /**
  记录和反射相关的信息, 结合CCChartViewPixelHandler对象可以运算出数据的真实坐标
  */
-@property (nonatomic, strong) CCChartTransformer *transformer;
+@property (nonatomic, readonly) CCChartTransformer *transformer;
 
 // maxX, minX, 记录当前要渲染的区间
 

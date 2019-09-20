@@ -51,6 +51,8 @@
 		EDD180B8232A3B0100B2B72A /* CCDefaultYAxisRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD180B6232A3B0100B2B72A /* CCDefaultYAxisRenderer.m */; };
 		EDD180BB232A3B0F00B2B72A /* CCDefaultXAxisRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDD180B9232A3B0F00B2B72A /* CCDefaultXAxisRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDD180BC232A3B0F00B2B72A /* CCDefaultXAxisRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD180BA232A3B0F00B2B72A /* CCDefaultXAxisRenderer.m */; };
+		EDDCD4602334CDAE005E46EA /* CCMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = EDDCD45E2334CDAE005E46EA /* CCMacro.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDDCD4632334DAB5005E46EA /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = EDDCD4622334DAB5005E46EA /* PrefixHeader.pch */; };
 		EDFA74B72320FC6900CDB6BC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDFA74B62320FC6900CDB6BC /* LICENSE */; };
 		EDFA74B92320FC8600CDB6BC /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EDFA74B82320FC8600CDB6BC /* README.md */; };
 		EDFA74BF2321079200CDB6BC /* UIColor+CCUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EDFA74BD2321079200CDB6BC /* UIColor+CCUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -115,6 +117,8 @@
 		EDD180B6232A3B0100B2B72A /* CCDefaultYAxisRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCDefaultYAxisRenderer.m; sourceTree = "<group>"; };
 		EDD180B9232A3B0F00B2B72A /* CCDefaultXAxisRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCDefaultXAxisRenderer.h; sourceTree = "<group>"; };
 		EDD180BA232A3B0F00B2B72A /* CCDefaultXAxisRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCDefaultXAxisRenderer.m; sourceTree = "<group>"; };
+		EDDCD45E2334CDAE005E46EA /* CCMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCMacro.h; sourceTree = "<group>"; };
+		EDDCD4622334DAB5005E46EA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		EDFA74B62320FC6900CDB6BC /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		EDFA74B82320FC8600CDB6BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EDFA74BD2321079200CDB6BC /* UIColor+CCUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+CCUtility.h"; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 				EDABB2502320E46D00C65D3F /* Info.plist */,
 				EDABB2662320E68700C65D3F /* CCMain.h */,
 				EDABB2672320E68700C65D3F /* CCMain.m */,
+				EDDCD4622334DAB5005E46EA /* PrefixHeader.pch */,
 			);
 			path = CCTrendCharts;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				EDD180B4232A395600B2B72A /* Protocol */,
 				EDFA74BD2321079200CDB6BC /* UIColor+CCUtility.h */,
 				EDFA74BE2321079200CDB6BC /* UIColor+CCUtility.m */,
+				EDDCD45E2334CDAE005E46EA /* CCMacro.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 				EDA3E300232F7BE000222E83 /* CCKLineChartData.h in Headers */,
 				ED21EACC232642740087AE67 /* CCChartViewPixelHandler.h in Headers */,
 				ED00E79A23223E6600139A8C /* CCDefaultXAxis.h in Headers */,
+				EDDCD4632334DAB5005E46EA /* PrefixHeader.pch in Headers */,
 				EDA3C4312328CCF700843C7A /* CCXAxisDefaultFormatter.h in Headers */,
 				EDA3C4282328A11600843C7A /* CCProtocolXAxisFormatterBase.h in Headers */,
 				ED21EAC42325EE0D0087AE67 /* CCProtocolChartDataProvider.h in Headers */,
@@ -368,6 +375,7 @@
 				ED03A15123337B540065DDA4 /* CCProtocolKLineChartRenderer.h in Headers */,
 				ED03A15523337CF00065DDA4 /* CCProtocolKLineChartDataProvider.h in Headers */,
 				ED03A14D23332A9D0065DDA4 /* CCChartTransformer.h in Headers */,
+				EDDCD4602334CDAE005E46EA /* CCMacro.h in Headers */,
 				ED00E79223223C7800139A8C /* CCProtocolBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,6 +644,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/CCTrendCharts/PrefixHeader.pch";
 				INFOPLIST_FILE = CCTrendCharts/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -659,6 +669,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/CCTrendCharts/PrefixHeader.pch";
 				INFOPLIST_FILE = CCTrendCharts/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
