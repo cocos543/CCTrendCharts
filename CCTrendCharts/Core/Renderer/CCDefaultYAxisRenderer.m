@@ -36,16 +36,28 @@
 - (void)renderAxisLine:(CALayer *)contentLayer {
     NSLog(@"渲染层接到画y轴直线通知~");
     
-    UIGraphicsBeginImageContextWithOptions(_viewPixelHandler.contentRect.size, NO, 0);
+    UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
+
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
-    CGContextIndependent(ctx, {
-        CGContextSetStrokeColorWithColor(ctx, UIColor.redColor.CGColor);
-        CGContextSetLineWidth(ctx, 1);
-        CGContextMoveToPoint(ctx, 30, 30);
-        CGContextAddLineToPoint(ctx, 30, 200);
+    CGContextSaveGState(ctx);
+    {
+        CGContextSetStrokeColorWithColor(ctx, self.axis.axisColor.CGColor);
+        CGContextSetLineWidth(ctx, self.axis.axisLineWidth);
+        
+        // 这里根据不同配置绘制左右轴
+        if (self.axis.dependency == CCYAsixDependencyLeft) {
+            CGContextMoveToPoint(ctx, self.viewPixelHandler.contentLeft, self.viewPixelHandler.contentBottom);
+            CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentLeft, self.viewPixelHandler.contentTop);
+        }else if (self.axis.dependency == CCYAsixDependencyRight) {
+            CGContextMoveToPoint(ctx, self.viewPixelHandler.contentRight, self.viewPixelHandler.contentBottom);
+            CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentRight, self.viewPixelHandler.contentTop);
+        }
+        
         CGContextStrokePath(ctx);
-    })
+    }
+    
+    CGContextRestoreGState(ctx);
     
     CGImageRef img = CGBitmapContextCreateImage(ctx);
     

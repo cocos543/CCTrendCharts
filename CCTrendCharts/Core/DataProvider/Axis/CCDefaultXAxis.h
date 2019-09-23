@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) id<CCProtocolXAxisFormatterBase> formatter;
 
-@property (nonatomic, assign) XAxisLabelPosition labelPosition;
+@property (nonatomic, assign) CCXAxisLabelPosition labelPosition;
 
 
 /**

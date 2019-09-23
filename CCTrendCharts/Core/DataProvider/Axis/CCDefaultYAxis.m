@@ -17,6 +17,16 @@
 @synthesize axisLineWidth = _axisLineWidth;
 @synthesize labelMaxLine = _labelMaxLine;
 
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _axisColor = UIColor.redColor;
+        _axisLineWidth = 1.f;
+    }
+    return self;
+}
+
 - (void)setAxisMinValue:(CGFloat)axisMinValue {
     self.customValue = YES;
     _axisMinValue = axisMinValue;

@@ -7,7 +7,7 @@
 //
 
 #import "CCChartViewBase.h"
-@interface CCChartViewBase () <CALayerDelegate>
+@interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate>
 
 /**
  y轴图层
@@ -59,6 +59,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         _dataPanelView = [[UIScrollView alloc] initWithFrame:frame];
+        _dataPanelView.delegate = self;
         _dataPanelView.backgroundColor = UIColor.clearColor;
         
         _viewPixelHandler = [[CCChartViewPixelHandler alloc] init];
@@ -79,7 +80,7 @@
 - (void)layoutSubviews {
     NSLog(@"layoutSubviews");
     
-    CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.width);;
+    CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.dataPanelView.frame = frame;
     self.dataPanelView.contentSize = CGSizeMake(1000, frame.size.height);
     [self addSubview:_dataPanelView];
@@ -98,11 +99,9 @@
 - (CALayer *)yAxisLayer {
     if (!_yAxisLayer) {
         _yAxisLayer = CALayer.layer;
-        _yAxisLayer.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:0.5].CGColor;
 
         // Y轴渲染层放到所有图层的底部
-        [self.layer addSublayer:_yAxisLayer];
-        self.layer.zPosition = 1;
+        [self.dataPanelView.layer addSublayer:_yAxisLayer];
         _yAxisLayer.zPosition = -100;
     }
     
@@ -112,13 +111,26 @@
 - (CALayer *)xAxisLayer {
     if (!_xAxisLayer) {
         _xAxisLayer = CALayer.layer;
-        _xAxisLayer.backgroundColor = [UIColor.yellowColor colorWithAlphaComponent:0.5].CGColor;
         // X轴渲染层放到滚动视图的最下层, 这样做是方便x轴上元素的滚动
         [self.dataPanelView.layer addSublayer:_xAxisLayer];
         _xAxisLayer.zPosition = -100;
     }
     
     return _xAxisLayer;
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // 让scrollview上的图层始终位于CCChartViewBase的位置
+    // 这样做的好处就是渲染层可以只渲染和CCChartViewBase相同大小的尺寸, 提高性能
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    
+    CGRect frame = CGRectMake(scrollView.contentOffset.x, 0, self.frame.size.width, self.frame.size.height);
+    self.xAxisLayer.frame = frame;
+    self.yAxisLayer.frame = frame;
+    
+    [CATransaction commit];
 }
 
 
@@ -128,6 +140,8 @@
 
     [self.yAxisrenderer renderAxisLine:self.yAxisLayer];
     [self.xAxisrenderer renderAxisLine:self.xAxisLayer];
+    
+    self.layer.backgroundColor = self.backgroundColor.CGColor;
 }
 
 

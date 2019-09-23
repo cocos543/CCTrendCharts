@@ -17,6 +17,17 @@
 @synthesize labelCount = _labelCount;
 @synthesize labelMaxLine = _labelMaxLine;
 
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _axisColor = UIColor.blueColor;
+        _axisLineWidth = 1.f;
+    }
+    return self;
+}
+
+
 - (NSInteger)startIndexForDrawLabel {
     return 0;
 }

@@ -27,7 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat axisMaxValue;
 
-@property (nonatomic, assign) YAxisLabelPosition labelPosition;
+@property (nonatomic, assign) CCYAxisLabelPosition labelPosition;
+
+@property (nonatomic, assign) CCYAsixDependency dependency;
 
 
 /**

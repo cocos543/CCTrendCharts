@@ -9,14 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "CCProtocolBase.h"
 
-typedef NS_ENUM(NSUInteger, XAxisLabelPosition) {
-    XAxisLabelPositionTop, // X轴上方
-    XAxisLabelPositionBottom, // x轴下方
+typedef NS_ENUM(NSUInteger, CCXAxisLabelPosition) {
+    CCXAxisLabelPositionTop, // X轴上方
+    CCXAxisLabelPositionBottom, // x轴下方
 };
 
-typedef NS_ENUM(NSUInteger, YAxisLabelPosition) {
-    YAxisLabelPositionInside, // y轴里侧
-    YAxisLabelPositionOutside, // y轴外侧
+typedef NS_ENUM(NSUInteger, CCYAxisLabelPosition) {
+    CCYAxisLabelPositionInside, // y轴里侧
+    CCYAxisLabelPositionOutside, // y轴外侧
+};
+
+typedef NS_ENUM(NSUInteger, CCYAsixDependency) {
+    CCYAsixDependencyLeft = 0 << 0, // 左侧Y轴
+    CCYAsixDependencyRight = 1 << 1, // 右侧Y轴
 };
 
 @protocol CCProtocolAxisBase <CCProtocolBase>
@@ -54,7 +59,7 @@ typedef NS_ENUM(NSUInteger, YAxisLabelPosition) {
 /**
  轴线粗细程度
  */
-@property (nonatomic, strong) UIColor *axisLineWidth;
+@property (nonatomic, assign) CGFloat axisLineWidth;
 
 
 

@@ -29,6 +29,7 @@
         
         _xAxisrenderer = [[CCDefaultXAxisRenderer alloc] initWithAxis:self.xAxis viewHandler:self.viewPixelHandler transform:self.transformer];
         
+        _clipEdgeInsets = UIEdgeInsetsMake(30, 30, 30, 30);
         
     }
     return self;
@@ -44,7 +45,16 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
+    [self updateViewPixelHandler];
 }
+
+#pragma mark - Param update
+- (void)updateViewPixelHandler {
+    self.viewPixelHandler.viewFrame = self.bounds;
+    self.viewPixelHandler.contentRect = CGRectClipRectUsingEdge(self.bounds, self.clipEdgeInsets);
+}
+
 
 #pragma mark - Protocol: CCProtocolKLineChartDataProvider
 

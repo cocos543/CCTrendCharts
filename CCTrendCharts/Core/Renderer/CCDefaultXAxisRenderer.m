@@ -28,16 +28,17 @@
 - (void)renderAxisLine:(CALayer *)contentLayer {
     NSLog(@"渲染层接到画x轴直线通知~");
     
-    UIGraphicsBeginImageContextWithOptions(_viewPixelHandler.contentRect.size, NO, 0);
+    UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    
-    CGContextIndependent(ctx, {
-        CGContextSetStrokeColorWithColor(ctx, UIColor.blueColor.CGColor);
-        CGContextSetLineWidth(ctx, 1);
-        CGContextMoveToPoint(ctx, 30, 200);
-        CGContextAddLineToPoint(ctx, 250, 200);
+    CGContextSaveGState(ctx);
+    {
+        CGContextSetStrokeColorWithColor(ctx, self.axis.axisColor.CGColor);
+        CGContextSetLineWidth(ctx, self.axis.axisLineWidth);
+        CGContextMoveToPoint(ctx, self.viewPixelHandler.contentLeft, self.viewPixelHandler.contentBottom);
+        CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentRight, self.viewPixelHandler.contentBottom);
         CGContextStrokePath(ctx);
-    })
+    }
+    CGContextStrokePath(ctx);
     
     CGImageRef img = CGBitmapContextCreateImage(ctx);
     

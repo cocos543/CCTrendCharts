@@ -61,6 +61,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGAffineTransform gestureMatrix;
 
 
+
+/**
+ 视图的总大小(含两轴上的文字信息)
+ */
+@property (nonatomic, assign) CGRect viewFrame;
+
 /**
  趋势图的可绘制部分, 也可以理解为画图的大小
  */
@@ -108,6 +114,28 @@ NS_ASSUME_NONNULL_BEGIN
  X轴最小缩放比例, 默认为1
  */
 @property (nonatomic, assign, readonly) CGFloat minScaleX;
+
+
+
+/**
+ 第一象限区域左侧
+ */
+@property (nonatomic, assign, readonly) CGFloat contentLeft;
+
+/**
+ 第一象限区域右侧
+ */
+@property (nonatomic, assign, readonly) CGFloat contentRight;
+
+/**
+ 第一象限区域上侧
+ */
+@property (nonatomic, assign, readonly) CGFloat contentTop;
+
+/**
+ 第一象限区域下侧
+ */
+@property (nonatomic, assign, readonly) CGFloat contentBottom;
 
 @end
 

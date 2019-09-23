@@ -74,4 +74,20 @@
     return self.contentRect.size.height;
 }
 
+- (CGFloat)contentLeft {
+    return self.contentRect.origin.x;
+}
+
+- (CGFloat)contentRight {
+    return self.contentRect.origin.x + self.contentRect.size.width;
+}
+
+- (CGFloat)contentTop {
+    return self.contentRect.origin.y;
+}
+
+- (CGFloat)contentBottom {
+    return self.contentRect.origin.y + self.contentRect.size.height;
+}
+
 @end
