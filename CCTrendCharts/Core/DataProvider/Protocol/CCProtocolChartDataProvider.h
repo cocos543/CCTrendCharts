@@ -19,7 +19,7 @@
 //
 
 // 数据源
-@property (nonatomic, strong) CCChartData *data;
+@property (nonatomic, readonly) CCChartData *data;
 
 // Y轴最大值
 @property (nonatomic, assign, readonly) CGFloat chartMaxY;

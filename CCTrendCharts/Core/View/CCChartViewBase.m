@@ -7,7 +7,9 @@
 //
 
 #import "CCChartViewBase.h"
-@interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate>
+@interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate> {
+    BOOL _needsPrepare;
+}
 
 /**
  y轴图层
@@ -54,6 +56,12 @@
 @dynamic renderer;
 @dynamic yAxisrenderer;
 @dynamic xAxisrenderer;
+@dynamic chartMinX;
+@dynamic chartMaxX;
+@dynamic chartMinY;
+@dynamic chartMaxY;
+@dynamic lowestVisibleXIndex;
+@dynamic highestVisibleXIndex;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -93,6 +101,22 @@
     self.xAxisLayer.frame = frame;
     
     self.viewPixelHandler.contentRect = frame;
+}
+
+- (void)setNeedsDisplay {
+    [super setNeedsDisplay];
+}
+
+- (void)setNeedsDisplayInRect:(CGRect)rect {
+    [super setNeedsDisplayInRect:rect];
+}
+
+- (void)setNeedsPrepareChart {
+    _needsPrepare = YES;
+}
+
+- (void)prepareChart {
+    // Do nothing...
 }
 
 #pragma mark - Getter & Setter
@@ -136,10 +160,19 @@
 
 #pragma mark - CALayerDelegate
 - (void)displayLayer:(CALayer *)layer {
+    if (_needsPrepare) {
+        [self prepareChart];
+        _needsPrepare = NO;
+    }
+    
     NSLog(@"displayLayer: 根图层重绘, 全部子图层需要重新渲染");
 
     [self.yAxisrenderer renderAxisLine:self.yAxisLayer];
     [self.xAxisrenderer renderAxisLine:self.xAxisLayer];
+    
+    if (self.xAxis.entities) {
+        [self.xAxisrenderer renderLabels:self.xAxisLayer];
+    }
     
     self.layer.backgroundColor = self.backgroundColor.CGColor;
 }

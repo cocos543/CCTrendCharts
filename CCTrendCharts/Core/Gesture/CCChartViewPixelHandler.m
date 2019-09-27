@@ -8,7 +8,12 @@
 
 #import "CCChartViewPixelHandler.h"
 
-@interface CCChartViewPixelHandler()
+@interface CCChartViewPixelHandler() {
+    // 偏差矩阵
+    CGAffineTransform _offsetMatrix;
+    // 标准矩阵
+    CGAffineTransform _matrix;
+}
 
 @end
 

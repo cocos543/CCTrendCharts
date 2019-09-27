@@ -7,7 +7,6 @@
 //
 
 #import "CCKLineChartData.h"
-#import "CCKLineChartDataSet.h" //运行时的是数据集类应该是CCKLineChartDataSet
 
 @implementation CCKLineChartData
 

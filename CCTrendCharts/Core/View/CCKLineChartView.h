@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) UIEdgeInsets clipEdgeInsets;
 
 
+@property (nonatomic, readonly) CCKLineChartData *klineChartData;
+
 /**
  定义CCProtocolRectangularCoordinateChartDataProvider协议中的数据源, 这里可以换成其他合法子类
  */

@@ -7,6 +7,7 @@
 //
 
 #import "CCDefaultXAxis.h"
+#import "CCXAxisDefaultFormatter.h"
 
 @implementation CCDefaultXAxis
 
@@ -23,6 +24,9 @@
     if (self) {
         _axisColor = UIColor.blueColor;
         _axisLineWidth = 1.f;
+        
+        // 设置默认的formatter对象
+        _formatter = [[CCXAxisDefaultFormatter alloc] init];
     }
     return self;
 }

@@ -46,6 +46,7 @@
     
     // 这里使用__bridge_transfer关键字, img引用计数-1, 所以不需要再调用release方法了
     contentLayer.contents = (__bridge_transfer id)img;
+    
 }
 
 - (void)renderGridLines:(CALayer *)contentLayer {
@@ -53,6 +54,8 @@
 }
 
 - (void)renderLabels:(CALayer *)contentLayer {
+    NSLog(@"准备开始渲染x轴 label 信息");
+    
     
 }
 

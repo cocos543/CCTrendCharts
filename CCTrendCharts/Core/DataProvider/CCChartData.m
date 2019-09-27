@@ -10,8 +10,18 @@
 
 @implementation CCChartData
 
+- (instancetype)initWithXVals:(NSArray<NSString *> *)xVals dataSets:(NSArray<id<CCProtocolChartDataSet>> *)dataSets {
+    self = [super init];
+    if (self) {
+        _xVals = xVals;
+        _dataSets = dataSets;
+    }
+    return self;
+}
+
 - (void)calcMinMax {
     
 }
+
 
 @end

@@ -8,6 +8,9 @@
 
 #import "CCChartData.h"
 
+//运行时的是数据集类应该是CCKLineChartDataSet
+#import "CCKLineChartDataSet.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CCKLineChartData : CCChartData

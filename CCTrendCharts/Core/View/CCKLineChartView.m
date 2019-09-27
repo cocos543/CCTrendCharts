@@ -17,7 +17,6 @@
 @synthesize renderer = _renderer;
 @synthesize yAxisrenderer = _yAxisrenderer;
 @synthesize xAxisrenderer = _xAxisrenderer;
-@synthesize data = _data;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -49,6 +48,19 @@
     [self updateViewPixelHandler];
 }
 
+- (void)prepareChart {
+    [super prepareChart];
+    
+    // 将数据集的数据同步到X轴上
+    if (self.klineChartData.xVals) {
+        self.xAxis.entities = self.klineChartData.xVals;
+    }
+    
+}
+
+#pragma mark - Getter & Setter
+
+
 #pragma mark - Param update
 - (void)updateViewPixelHandler {
     self.viewPixelHandler.viewFrame = self.bounds;
@@ -59,7 +71,7 @@
 #pragma mark - Protocol: CCProtocolKLineChartDataProvider
 
 - (CCKLineChartData *)klineChartData {
-    return (CCKLineChartData *)_data;
+    return (CCKLineChartData *)self.data;
 }
 
 - (CGFloat)chartMinX {

@@ -17,6 +17,8 @@ FOUNDATION_EXPORT const unsigned char CCTrendChartsVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <CCTrendCharts/PublicHeader.h>
 
 #import "CCMain.h"
+
 #import "UIColor+CCUtility.h"
+#import "CCBaseUtility.h"
 
 #import "CCKLineChartView.h"

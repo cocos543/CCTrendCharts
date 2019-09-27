@@ -50,11 +50,41 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- 更新对象的矩阵变量为新值
+ 更新标准矩阵, 用于确定数据实体和实体之间的规则
+ 
+ 标准矩阵一般有如下用法:
+ 
+ 1. 绘制x轴的label
+ 
+ 绘制x轴文本信息时, 主要关心的是两个数据实体中心轴之间的距离.每一个数据实体的中心轴, 也是这个实体在x轴上的label的中心点,
+ 也称为label的锚点.
+ 只有提供中心轴距离信息, 才能确定绘制第n个实体时对应的label锚点在哪儿.
+ 
+ 2. 绘制数据实体
+ 
+ 这个是显而易见的, 绘制实体肯定是需要知道实体的中心轴.
+ 如果实体的形状是点(如折线图), 那么这个点就坐落在中心轴上.
+ 如果实体的形状是矩形(如K线图), 那么这个矩形的中心坐落在中心轴上.
 
  @param matrix 新矩阵
  */
-- (void)refreshWithMatrix:(CGAffineTransform)matrix;
+- (void)refreshMatrix:(CGAffineTransform)matrix;
+
+
+/**
+ 更新偏差矩阵, 用于调整标准矩阵的偏移量
+ 
+ 偏差矩阵一般有如下用法:
+ 
+ 1. 绘制数据实体时确定实体的具体位置
+ 
+ 比如绘制第一个实体, 默认中心轴是在左侧y轴上, 加上向右的偏移量, 这样第一个实体的中心轴就在y轴左边了.
+ 同理, 非第一实体配合偏移量, 和第一个实体同步偏移.
+ 
+ 
+ @param offsetMatrix 新矩阵
+ */
+- (void)refreshOffsetMatrix:(CGAffineTransform)offsetMatrix;
 
 
 // 定义一个CGAffineTransform结构体, 可以被CCChartTransformer调用, 用于把数据图表转换成屏幕上的真实位置.
