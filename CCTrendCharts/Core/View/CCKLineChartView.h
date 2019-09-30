@@ -24,8 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface CCKLineChartView : CCChartViewBase <CCProtocolKLineChartDataProvider>
 
-@property (nonatomic, assign) UIEdgeInsets clipEdgeInsets;
-
 
 @property (nonatomic, readonly) CCKLineChartData *klineChartData;
 

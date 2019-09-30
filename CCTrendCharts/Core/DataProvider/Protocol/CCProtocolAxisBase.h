@@ -10,8 +10,8 @@
 #import "CCProtocolBase.h"
 
 typedef NS_ENUM(NSUInteger, CCXAxisLabelPosition) {
-    CCXAxisLabelPositionTop, // X轴上方
-    CCXAxisLabelPositionBottom, // x轴下方
+    CCXAxisLabelPositionBottom, // X轴上方
+    CCXAxisLabelPositionTop, // x轴下方
 };
 
 typedef NS_ENUM(NSUInteger, CCYAxisLabelPosition) {

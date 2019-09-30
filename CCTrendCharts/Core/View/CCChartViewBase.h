@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) CCChartData *data;
 
+@property (nonatomic, assign) UIEdgeInsets clipEdgeInsets;
+
 @end
 
 NS_ASSUME_NONNULL_END

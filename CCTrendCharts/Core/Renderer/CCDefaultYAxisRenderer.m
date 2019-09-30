@@ -35,10 +35,10 @@
 
 - (void)renderAxisLine:(CALayer *)contentLayer {
     NSLog(@"渲染层接到画y轴直线通知~");
-    
-    UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
     
     CGContextSaveGState(ctx);
     {
@@ -60,8 +60,6 @@
     CGContextRestoreGState(ctx);
     
     CGImageRef img = CGBitmapContextCreateImage(ctx);
-    
-    UIGraphicsEndImageContext();
     
     // 这里使用__bridge_transfer关键字, img引用计数-1, 所以不需要再调用release方法了
     contentLayer.contents = (__bridge_transfer id)img;

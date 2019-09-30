@@ -9,10 +9,7 @@
 #import "CCChartViewPixelHandler.h"
 
 @interface CCChartViewPixelHandler() {
-    // 偏差矩阵
-    CGAffineTransform _offsetMatrix;
-    // 标准矩阵
-    CGAffineTransform _matrix;
+
 }
 
 @end
@@ -48,11 +45,6 @@
     return [self zoomScaleX:1.1 scaleY:1.1 aroundCenter:center];
 }
 
-- (void)refreshWithMatrix:(CGAffineTransform)matrix {
-    matrix = [self _checkMatrix:matrix];
-    self.gestureMatrix = matrix;
-}
-
 
 /**
  返回符合限制要求的矩形
@@ -60,7 +52,7 @@
  @param matrix 矩阵
  @return 符合要求的矩阵
  */
-- (CGAffineTransform)_checkMatrix:(CGAffineTransform)matrix {
+- (CGAffineTransform)_checkScale:(CGAffineTransform)matrix {
     _scaleX = MIN(matrix.a, self.minScaleX);
     _scaleY = MIN(matrix.b, self.minScaleY);
     
@@ -70,6 +62,18 @@
 }
 
 #pragma mark - Getter & Setter
+- (void)setGestureMatrix:(CGAffineTransform)gestureMatrix {
+    gestureMatrix = [self _checkScale:gestureMatrix];
+    _gestureMatrix = gestureMatrix;
+}
+
+- (CGFloat)viewWidth {
+    return self.viewFrame.size.width;
+}
+
+- (CGFloat)viewHeight {
+    return self.viewFrame.size.height;
+}
 
 - (CGFloat)contentWidth {
     return self.contentRect.size.width;
@@ -93,6 +97,22 @@
 
 - (CGFloat)contentBottom {
     return self.contentRect.origin.y + self.contentRect.size.height;
+}
+
+- (CGFloat)offsetLeft {
+    return self.contentRect.origin.x;
+}
+
+- (CGFloat)offsetRight {
+    return self.viewWidth - self.contentRect.origin.x - self.contentRect.size.width;
+}
+
+- (CGFloat)offsetTop {
+    return self.contentRect.origin.y;
+}
+
+- (CGFloat)offsetBottom {
+    return self.viewHeight - self.contentRect.origin.y - self.contentRect.size.height;
 }
 
 @end

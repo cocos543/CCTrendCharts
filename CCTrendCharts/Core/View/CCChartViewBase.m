@@ -72,6 +72,8 @@
         
         _viewPixelHandler = [[CCChartViewPixelHandler alloc] init];
         _transformer = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
+        
+        _clipEdgeInsets = UIEdgeInsetsMake(30, 30, 30, 30);
     }
     return self;
 }
@@ -100,7 +102,8 @@
     self.yAxisLayer.frame = frame;
     self.xAxisLayer.frame = frame;
     
-    self.viewPixelHandler.contentRect = frame;
+    [self updateViewPixelHandler];
+    [self setDefaultTransformer];
 }
 
 - (void)setNeedsDisplay {
@@ -109,6 +112,29 @@
 
 - (void)setNeedsDisplayInRect:(CGRect)rect {
     [super setNeedsDisplayInRect:rect];
+}
+
+
+
+#pragma mark - Non-SYS-func
+- (void)updateViewPixelHandler {
+    self.viewPixelHandler.viewFrame = self.bounds;
+    self.viewPixelHandler.contentRect = CGRectClipRectUsingEdge(self.bounds, self.clipEdgeInsets);
+}
+
+
+- (void)setDefaultTransformer {
+    // 相邻两个元素之间中心轴的距离, 默认是8个点 (暂不考虑y方向)
+    CGAffineTransform transform = CGAffineTransformMakeScale(8, 1);
+    
+    // 全部元素都向右平移0.5个单位 (暂不考虑y方向), 确保第一个数据实体的中心轴不会和y轴重叠
+    transform = CGAffineTransformTranslate(transform, 0.5, 0);
+    
+    [self.transformer refreshMatrix:transform];
+    
+    // 计算偏差矩阵
+    transform = CGAffineTransformMakeTranslation(self.viewPixelHandler.offsetLeft, self.viewPixelHandler.viewHeight - self.viewPixelHandler.offsetBottom);
+    [self.transformer refreshOffsetMatrix:transform];
 }
 
 - (void)setNeedsPrepareChart {
@@ -166,13 +192,17 @@
     }
     
     NSLog(@"displayLayer: 根图层重绘, 全部子图层需要重新渲染");
-
+    
+    UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
+    
     [self.yAxisrenderer renderAxisLine:self.yAxisLayer];
     [self.xAxisrenderer renderAxisLine:self.xAxisLayer];
     
     if (self.xAxis.entities) {
         [self.xAxisrenderer renderLabels:self.xAxisLayer];
     }
+    
+    UIGraphicsEndImageContext();
     
     self.layer.backgroundColor = self.backgroundColor.CGColor;
 }

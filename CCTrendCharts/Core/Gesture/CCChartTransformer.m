@@ -8,17 +8,17 @@
 
 #import "CCChartTransformer.h"
 
-@interface CCChartTransformer ()
+@interface CCChartTransformer () {
+    // 偏差矩阵
+    CGAffineTransform _offsetMatrix;
+    // 标准矩阵
+    CGAffineTransform _matrix;
+}
 
 /**
  视图放大缩小的所有信息都存放在CCChartViewHandler对象中, 结合matrixValueToPx可以计算出元素最终位置
  */
 @property (nonatomic, strong) CCChartViewPixelHandler *viewPixelHandler;
-
-/**
- 矩阵, 用于转换原始坐标 到 变换后的坐标, 这里将会用于做偏移量转换
- */
-@property (nonatomic, assign) CGAffineTransform matrixValueToPx;
 
 @end
 
@@ -28,10 +28,19 @@
 - (instancetype)initWithViewPixelHandler:(CCChartViewPixelHandler *)viewPixelHandler {
     self = [super init];
     if (self) {
-        _matrixValueToPx = CGAffineTransformIdentity;
+        _matrix = CGAffineTransformIdentity;
+        _offsetMatrix = CGAffineTransformIdentity;
         _viewPixelHandler = viewPixelHandler;
     }
     return self;
+}
+
+- (void)refreshMatrix:(CGAffineTransform)matrix {
+    _matrix = matrix;
+}
+
+- (void)refreshOffsetMatrix:(CGAffineTransform)offsetMatrix {
+    _offsetMatrix = offsetMatrix;
 }
 
 
@@ -45,7 +54,12 @@
 
 #pragma mark - Getter & Setter
 - (CGAffineTransform)valueToPixelMatrix {
-    return CGAffineTransformConcat(self.matrixValueToPx, self.viewPixelHandler.gestureMatrix);
+
+    // 这里手势矩阵暂时是CGAffineTransformIdentity
+    CGAffineTransform transform = CGAffineTransformConcat(_matrix, self.viewPixelHandler.gestureMatrix);
+    transform = CGAffineTransformConcat(transform, _offsetMatrix);
+    return transform;
+    
 }
 
 
