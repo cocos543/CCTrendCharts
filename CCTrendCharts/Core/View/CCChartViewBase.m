@@ -54,7 +54,8 @@
 
 // 渲染组件变量由子类合成
 @dynamic renderer;
-@dynamic yAxisrenderer;
+@dynamic leftAxisrenderer;
+@dynamic rightAxisrenderer;
 @dynamic xAxisrenderer;
 @dynamic chartMinX;
 @dynamic chartMaxX;
@@ -127,8 +128,8 @@
     // 相邻两个元素之间中心轴的距离, 默认是8个点 (暂不考虑y方向)
     CGAffineTransform transform = CGAffineTransformMakeScale(8, 1);
     
-    // 全部元素都向右平移0.5个单位 (暂不考虑y方向), 确保第一个数据实体的中心轴不会和y轴重叠
-    transform = CGAffineTransformTranslate(transform, 0.5, 0);
+    // 全部元素中心轴向右平移1个单位 (暂不考虑y方向), 确保第一个数据实体和左侧y轴有间隙
+    transform = CGAffineTransformTranslate(transform, 0, 0);
     
     [self.transformer refreshMatrix:transform];
     
@@ -195,12 +196,21 @@
     
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
     
-    [self.yAxisrenderer renderAxisLine:self.yAxisLayer];
+    [self.leftAxisrenderer renderAxisLine:self.yAxisLayer];
     [self.xAxisrenderer renderAxisLine:self.xAxisLayer];
     
     if (self.xAxis.entities) {
         [self.xAxisrenderer renderLabels:self.xAxisLayer];
     }
+    
+    if (self.leftAxis.entities) {
+        [self.leftAxisrenderer renderLabels:self.yAxisLayer];
+    }
+    
+    if (self.rightAxis.entities) {
+        [self.rightAxisrenderer renderLabels:self.yAxisLayer];
+    }
+    
     
     UIGraphicsEndImageContext();
     

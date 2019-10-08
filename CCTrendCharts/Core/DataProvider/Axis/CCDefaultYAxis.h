@@ -33,7 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- Y轴上需要绘制label的实体数量, 默认是6个, 最少2个, 由渲染层根据实际情况计算实体的具体数值
+ 绘制到y轴上的信息
+ 
+ 
+ 通常是有多少个元素就在y轴上绘制多少个文本
  */
 @property (nonatomic, strong) NSArray<NSNumber *> *entities;
 
@@ -42,12 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
  return entities.count
  */
 @property (nonatomic, assign, readonly) NSInteger entityCount;
-
-
-/**
- 用户可以通过设置labelCount来控制Y轴上的文案数量
- */
-@property (nonatomic, assign) NSInteger labelCount;
 
 
 // 可以再设计子类, 描述网格信息

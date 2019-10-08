@@ -51,6 +51,8 @@
  */
 @property (nonatomic, strong) id<CCProtocolAxisRenderer> xAxisrenderer;
 
-@property (nonatomic, strong) id<CCProtocolAxisRenderer> yAxisrenderer;
+@property (nonatomic, strong) id<CCProtocolAxisRenderer> leftAxisrenderer;
+
+@property (nonatomic, strong) id<CCProtocolAxisRenderer> rightAxisrenderer;
 
 @end

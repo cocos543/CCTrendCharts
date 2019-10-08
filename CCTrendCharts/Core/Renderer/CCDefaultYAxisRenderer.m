@@ -71,7 +71,7 @@
 }
 
 - (void)renderLabels:(CALayer *)contentLayer {
-    
+    NSLog(@"准备开始渲染y轴 label 信息");
 }
 
 - (void)processAxisEntities:(CGFloat)min :(CGFloat)max {

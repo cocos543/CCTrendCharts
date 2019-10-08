@@ -34,11 +34,6 @@ typedef NS_ENUM(NSUInteger, CCYAsixDependency) {
 @property (nonatomic, strong) UIFont *font;
 
 /**
- Label数量
- */
-@property (nonatomic, assign) NSInteger labelCount;
-
-/**
  label颜色
  */
 @property (nonatomic, strong) UIColor *labelColor;
@@ -47,7 +42,7 @@ typedef NS_ENUM(NSUInteger, CCYAsixDependency) {
 /**
  label最大行数, 支持文本多行摆放
  */
-@property (nonatomic, strong) UIColor *labelMaxLine;
+//@property (nonatomic, assign) NSInteger labelMaxLine;
 
 
 /**
@@ -62,8 +57,16 @@ typedef NS_ENUM(NSUInteger, CCYAsixDependency) {
 @property (nonatomic, assign) CGFloat axisLineWidth;
 
 
+/**
+ 轴上文案x方向偏移量
+ */
+@property (nonatomic, assign) CGFloat xLabelOffset;
 
 
+/**
+ 轴上文案y方向偏移量
+ */
+@property (nonatomic, assign) CGFloat yLabelOffset;
 
 
 @end

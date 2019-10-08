@@ -14,13 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CCDefaultXAxis : NSObject <CCProtocolAxisBase>
 
-/**
- 开始绘制label的位置, 结合labelCount, 可以确定要绘制的全部label, 框架会自动计算
- 
- @return 从第几个原始开始绘制label
- */
-- (NSInteger)startIndexForDrawLabel;
-
 @property (nonatomic, strong) id<CCProtocolXAxisFormatterBase> formatter;
 
 @property (nonatomic, assign) CCXAxisLabelPosition labelPosition;

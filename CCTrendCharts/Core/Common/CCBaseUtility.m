@@ -29,4 +29,8 @@
     return a + (arc4random() % (b - a));
 }
 
++ (CGFloat)currentScale {
+    return UIScreen.mainScreen.scale;
+}
+
 @end

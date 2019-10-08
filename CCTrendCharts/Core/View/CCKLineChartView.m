@@ -15,7 +15,8 @@
 
 @implementation CCKLineChartView
 @synthesize renderer = _renderer;
-@synthesize yAxisrenderer = _yAxisrenderer;
+@synthesize leftAxisrenderer = _leftAxisrenderer;
+@synthesize rightAxisrenderer = _rightAxisrenderer;
 @synthesize xAxisrenderer = _xAxisrenderer;
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -24,7 +25,7 @@
         self.leftAxis = [[CCDefaultYAxis alloc] init];
         self.xAxis = [[CCDefaultXAxis alloc] init];
         
-        _yAxisrenderer = [[CCDefaultYAxisRenderer alloc] initWithAxis:self.leftAxis viewHandler:self.viewPixelHandler transform:self.transformer];
+        _leftAxisrenderer = [[CCDefaultYAxisRenderer alloc] initWithAxis:self.leftAxis viewHandler:self.viewPixelHandler transform:self.transformer];
         
         _xAxisrenderer = [[CCDefaultXAxisRenderer alloc] initWithAxis:self.xAxis viewHandler:self.viewPixelHandler transform:self.transformer];
     }
@@ -50,6 +51,8 @@
     if (self.klineChartData.xVals) {
         self.xAxis.entities = self.klineChartData.xVals;
     }
+    
+    // 计算出y轴上需要绘制的信息
     
 }
 

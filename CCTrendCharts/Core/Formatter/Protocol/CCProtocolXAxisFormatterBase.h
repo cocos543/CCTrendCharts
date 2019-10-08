@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "CCProtocolAxisBase.h"
 
 // X轴上的文案信息不像Y轴, 应该理解成是用户是否自行定义文案样式, 而不一定是数值
 @protocol CCProtocolXAxisFormatterBase <NSObject>
@@ -16,11 +16,40 @@
 /**
  根据传入的x轴信息和原始字符串, 返回对应格式化后的字符串
  
- @param x x轴索引
+ @param index x轴索引
  @param origin 原始字符串
  @return 格式化后的字符串
  */
-- (NSString *)stringForIndex:(NSInteger)x origin:(NSString *)origin;
+- (NSString *)stringForIndex:(NSInteger)index origin:(NSString *)origin;
+
+
+/**
+ 是否需要绘制指定index的文案
+
+ @param index 数据实体的索引
+ @return 是否需要绘制文案
+ */
+- (BOOL)needToDrawLabelAt:(NSInteger)index;
+
+
+/**
+ 用于提供格式化辅助信息
+ */
+@property (nonatomic, weak) id<CCProtocolAxisBase> axisInfo;
+
+
+/**
+ modulus参数生效的起始位置
+ */
+@property (nonatomic, assign) NSInteger modulusStartIndex;
+
+
+/**
+ 模, 默认值6
+ 
+ 索引 % modulus == 0 时, 对应的文案才会被绘制
+ */
+@property (nonatomic, assign) NSUInteger modulus;
 
 @end
 

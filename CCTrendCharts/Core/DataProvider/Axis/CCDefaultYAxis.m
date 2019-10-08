@@ -12,10 +12,13 @@
 
 @synthesize font = _font;
 @synthesize labelColor = _labelColor;
-@synthesize labelCount = _labelCount;
+
 @synthesize axisColor = _axisColor;
 @synthesize axisLineWidth = _axisLineWidth;
-@synthesize labelMaxLine = _labelMaxLine;
+//@synthesize labelCount = _labelCount;
+//@synthesize labelMaxLine = _labelMaxLine;
+@synthesize xLabelOffset = _xLabelOffset;
+@synthesize yLabelOffset = _yLabelOffset;
 
 
 - (instancetype)init {
@@ -42,15 +45,15 @@
     return _entities.count;
 }
 
-- (void)setLabelCount:(NSInteger)labelCount {
-    if (labelCount > 25) {
-        _labelCount = 25;
-    }else if (labelCount < 2) {
-        _labelCount = 2;
-    }else {
-        _labelCount = labelCount;
-    }
-}
+//- (void)setLabelCount:(NSInteger)labelCount {
+//    if (labelCount > 25) {
+//        _labelCount = 25;
+//    }else if (labelCount < 2) {
+//        _labelCount = 2;
+//    }else {
+//        _labelCount = labelCount;
+//    }
+//}
 
 
 @end

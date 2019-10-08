@@ -15,5 +15,6 @@
 #import "UIColor+CCUtility.h"
 #import "CCCoordinateUtility.h"
 #import "CCBaseUtility.h"
+#import "NSString+CCUtility.h"
 
 #endif /* PrefixHeader_pch */
