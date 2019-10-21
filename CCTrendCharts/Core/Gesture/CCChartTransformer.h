@@ -84,6 +84,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+/// 传入y方向最大最小值, 计算标准矩阵的信息
+/// @param minY 最小Y
+/// @param maxY 最大Y
+- (CGAffineTransform)calcMatrixWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY;
+
+
+
 /**
  输出最终的变换矩阵, 可以直接作用转换元素的像素位置, 如有需要请直接使用该变量
  */

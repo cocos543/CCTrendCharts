@@ -74,7 +74,7 @@
         _viewPixelHandler = [[CCChartViewPixelHandler alloc] init];
         _transformer = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
         
-        _clipEdgeInsets = UIEdgeInsetsMake(30, 30, 30, 30);
+        _clipEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
     }
     return self;
 }
@@ -104,7 +104,6 @@
     self.xAxisLayer.frame = frame;
     
     [self updateViewPixelHandler];
-    [self setDefaultTransformer];
 }
 
 - (void)setNeedsDisplay {
@@ -124,12 +123,41 @@
 }
 
 
-- (void)setDefaultTransformer {
-    // 相邻两个元素之间中心轴的距离, 默认是8个点 (暂不考虑y方向)
-    CGAffineTransform transform = CGAffineTransformMakeScale(8, 1);
+/// 重新计算x,y轴的位置信息. 两个轴的位置和轴文案是紧密相关的.
+- (void)calcViewPixelOffset {
+    CGFloat offsetLeft = 0, offsetRight = 0, offsetTop = 0, offsetBottom = 0;
     
-    // 全部元素中心轴向右平移1个单位 (暂不考虑y方向), 确保第一个数据实体和左侧y轴有间隙
-    transform = CGAffineTransformTranslate(transform, 0, 0);
+    CGSize size;
+    if (self.leftAxis) {
+        size = self.leftAxis.requireSize;
+        // 取得左侧y轴文案的最长宽度, 作为绘制区域的左边的额外距离
+        if (self.leftAxis.labelPosition == CCYAxisLabelPositionOutside) {
+            offsetLeft = size.width;
+        }else if (self.leftAxis.labelPosition == CCYAxisLabelPositionInside) {
+            offsetLeft = 0.f;
+        }
+    }
+    
+    if (self.rightAxis) {
+        
+    }
+    
+    size = self.xAxis.requireSize;
+    offsetBottom = size.height;
+    
+    [self.viewPixelHandler updateContentRectOffsetLeft:offsetLeft offsetRight:offsetRight offsetTop:offsetTop offsetBottom:offsetBottom];
+}
+
+
+- (void)updateTransformer {
+    // 相邻两个元素之间中心轴的距离, 默认是8个点
+    // 暂时只处理左轴
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    if (self.leftAxis) {
+        transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue];
+    }else if (self.rightAxis) {
+        
+    }
     
     [self.transformer refreshMatrix:transform];
     
@@ -140,10 +168,40 @@
 
 - (void)setNeedsPrepareChart {
     _needsPrepare = YES;
+    [self setNeedsDisplay];
 }
 
 - (void)prepareChart {
-    // Do nothing...
+    // 基类只是简单设置数据状态
+    _needsPrepare = NO;
+    
+    [self.data calcMinMaxStart:self.lowestVisibleXIndex End:self.highestVisibleXIndex];
+    
+    
+    // 将数据集的数据同步到X轴上
+    if (self.data.xVals) {
+        self.xAxis.entities = self.data.xVals;
+    }
+    
+    // 计算出y轴上需要绘制的信息
+    if (self.leftAxis) {
+        if (!self.leftAxis.customValue) {
+            [self.leftAxis calculateMinMax:self.data];
+        }
+    }
+    
+    if (self.rightAxis) {
+        if (!self.rightAxis.customValue) {
+            [self.rightAxis calculateMinMax:self.data];
+        }
+    }
+    
+    
+    // 全部数据计算好之后, 重新调整一下绘制区域的大小
+    [self calcViewPixelOffset];
+    
+    // 根据新的绘制区域,重新计算反射参数
+    [self updateTransformer];
 }
 
 #pragma mark - Getter & Setter

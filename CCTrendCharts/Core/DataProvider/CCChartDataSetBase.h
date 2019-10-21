@@ -1,17 +1,17 @@
 //
-//  CCKLineChartDataSet.h
+//  CCChartDataSetBase.h
 //  CCTrendCharts
 //
-//  Created by Cocos on 2019/9/16.
+//  Created by Cocos on 2019/10/9.
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "CCProtocolChartDataSet.h"
 
-#import "CCChartDataSetBase.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CCKLineChartDataSet : CCChartDataSetBase
+@interface CCChartDataSetBase : NSObject <CCProtocolChartDataSet>
 
 @end
 

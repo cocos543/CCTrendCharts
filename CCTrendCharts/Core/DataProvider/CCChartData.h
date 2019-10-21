@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  根据当前数据集重新计算最大最小值
  */
-- (void)calcMinMax;
+- (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end;
 
 
 /**

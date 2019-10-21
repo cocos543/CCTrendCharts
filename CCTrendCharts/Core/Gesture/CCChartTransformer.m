@@ -52,10 +52,38 @@
     return CGRectApplyAffineTransform(rect, self.valueToPixelMatrix);
 }
 
+- (CGAffineTransform)calcMatrixWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY {
+    // 相邻两个元素之间中心轴的距离, 默认是8个点
+    CGAffineTransform transform = CGAffineTransformMakeScale(8, 1);
+        
+    // 这里还需要对y方向进行动态计算缩放值, 算法原理如下:
+    // 1. 先获取y方向的范围, y方向和绘制区域的高度
+    // 2. 缩放值 = 高度 / 范围
+    CGFloat range = fabs(maxY - minY);
+    CGFloat scaleY = self.viewPixelHandler.contentHeight / range;
+    // 这里传入负数, 因为iOS坐标系里, 越向上数值越小
+    transform = CGAffineTransformScale(transform, 1, -scaleY);
+    
+    
+    // 注意这里都是在做了缩放之后的平移, 所以n表示n个单位, 对应的真实数据如下:
+    // x方向对应的实际数值是n*transform.a
+    // y方向对应的实际数值是n*transform.d
+    //
+    // 全部元素中心轴向右平移1个单位, 确保第一个数据实体和左侧y轴有间隙, 所以设置x平移量为1
+    transform = CGAffineTransformTranslate(transform, 1, 0);
+    
+    // 根据y轴最小值, 处理y方向的平移量
+    // 算法原理如下:
+    // 平移量 = -minY*transform.d (这里对缩放后进行平移操作, 只需要传入最小值即可)
+    transform = CGAffineTransformTranslate(transform, 0, -minY);
+    
+    return transform;
+}
+
 #pragma mark - Getter & Setter
 - (CGAffineTransform)valueToPixelMatrix {
 
-    // 这里手势矩阵暂时是CGAffineTransformIdentity
+    // 这里手势gestureMatrix矩阵暂时是CGAffineTransformIdentity
     CGAffineTransform transform = CGAffineTransformConcat(_matrix, self.viewPixelHandler.gestureMatrix);
     transform = CGAffineTransformConcat(transform, _offsetMatrix);
     return transform;

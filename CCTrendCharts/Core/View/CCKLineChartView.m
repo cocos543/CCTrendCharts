@@ -45,15 +45,7 @@
 }
 
 - (void)prepareChart {
-    [super prepareChart];
-    
-    // 将数据集的数据同步到X轴上
-    if (self.klineChartData.xVals) {
-        self.xAxis.entities = self.klineChartData.xVals;
-    }
-    
-    // 计算出y轴上需要绘制的信息
-    
+    [super prepareChart];    
 }
 
 #pragma mark - Getter & Setter

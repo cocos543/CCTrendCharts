@@ -64,9 +64,12 @@ typedef NS_ENUM(NSUInteger, CCYAsixDependency) {
 
 
 /**
- 轴上文案y方向偏移量
+ 轴上文案y方向偏移量, 负值表示向上偏移
  */
 @property (nonatomic, assign) CGFloat yLabelOffset;
+
+/// 返回轴上文案区域最大需要的尺寸
+@property (nonatomic, assign, readonly) CGSize requireSize;
 
 
 @end

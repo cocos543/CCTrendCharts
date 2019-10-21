@@ -28,6 +28,21 @@
     return self;
 }
 
+- (void)updateContentRectOffsetLeft:(CGFloat)offsetLeft offsetRight:(CGFloat)offsetRight offsetTop:(CGFloat)offsetTop offsetBottom:(CGFloat)offsetBottom {
+    CGFloat x = self.contentRect.origin.x;
+    CGFloat y = self.contentRect.origin.y;
+    CGFloat width = self.contentRect.size.width;
+    CGFloat height = self.contentRect.size.height;
+    
+    x += offsetLeft;
+    y += offsetTop;
+    
+    width = width - offsetLeft - offsetRight;
+    height = height - offsetTop - offsetBottom;
+    
+    self.contentRect = CGRectMake(x, y, width, height);
+}
+
 - (CGAffineTransform)zoomScaleX:(CGFloat)scaleX scaleY:(CGFloat)scaleY {
     return CGAffineTransformScale(_gestureMatrix, scaleX, scaleY);
 }

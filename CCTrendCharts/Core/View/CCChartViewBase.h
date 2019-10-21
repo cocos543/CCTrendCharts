@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- 标记视图需要重新准备信息
+ 标记视图需要重新准备信息. 调用该方法并不会立即重新计算信息, 而是等到当前runloop周期结束之后(同setNeedsDisplay)
  */
 - (void)setNeedsPrepareChart;
 
@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) CCChartData *data;
 
+
+/// 用于确定xy轴距离整个视图边缘的大小. 两轴文案加上该属性的值即为最终距离
 @property (nonatomic, assign) UIEdgeInsets clipEdgeInsets;
 
 @end

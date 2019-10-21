@@ -72,6 +72,72 @@
 
 - (void)renderLabels:(CALayer *)contentLayer {
     NSLog(@"准备开始渲染y轴 label 信息");
+    NSLog(@"y轴label信息如下:");
+    for (NSNumber *n in self.axis.entities) {
+        NSLog(@"%@", [self.axis.formatter stringFromNumber:n]);
+    }
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
+    
+    // 先把当前图层的内容画上去, 在原来的基础上进行绘制
+    UIImage *oldImg = [UIImage imageWithCGImage:(__bridge CGImageRef)contentLayer.contents scale:CCBaseUtility.currentScale orientation:UIImageOrientationUp];
+    [oldImg drawAtPoint:CGPointZero];
+    
+    CGContextSaveGState(ctx);
+    {
+        
+        // 临时代码, 绘制地基
+        CGContextSetStrokeColorWithColor(ctx, self.axis.axisColor.CGColor);
+        CGContextSetLineWidth(ctx, self.axis.axisLineWidth);
+        
+        // 确定文案x位置
+        CGFloat xPos = 0;
+        CGPoint anchor = CGPointZero;
+        if (self.axis.labelPosition == CCYAxisLabelPositionOutside) {
+            
+            if (self.axis.dependency == CCYAsixDependencyLeft) {
+                
+                xPos = self.viewPixelHandler.contentLeft - self.axis.xLabelOffset;
+                anchor = CGPointMake(1, 0.5);
+            }else if (self.axis.dependency == CCYAsixDependencyRight) {
+                
+            }
+            
+        }else if (self.axis.labelPosition == CCYAxisLabelPositionInside) {
+            
+            if (self.axis.dependency == CCYAsixDependencyLeft) {
+                
+                xPos = self.viewPixelHandler.contentLeft + self.axis.xLabelOffset;
+                anchor = CGPointMake(0, 0.5);
+            }else if (self.axis.dependency == CCYAsixDependencyRight) {
+                
+            }
+            
+        }
+        
+        // 确定文案y位置
+        for (NSNumber *num in self.axis.entities) {
+            CGPoint position = CGPointMake(0, num.doubleValue);
+            position = [self.transformer pointToPixel:position forAnimationPhaseY:1];
+            position.x = xPos;
+            
+            // 临时代码, 绘制地基
+            CGContextMoveToPoint(ctx, self.viewPixelHandler.contentLeft, position.y);
+            CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentLeft + 5, position.y);
+            
+            NSString *text = [self.axis.formatter stringFromNumber:num];
+            [text drawTextIn:ctx x:position.x y:position.y anchor:anchor attributes:@{NSFontAttributeName: self.axis.font, NSForegroundColorAttributeName: self.axis.labelColor}];
+        }
+        CGContextStrokePath(ctx);
+    }
+    
+    CGContextRestoreGState(ctx);
+    
+    CGImageRef img = CGBitmapContextCreateImage(ctx);
+    contentLayer.contents = (__bridge_transfer id)img;
+    
 }
 
 - (void)processAxisEntities:(CGFloat)min :(CGFloat)max {

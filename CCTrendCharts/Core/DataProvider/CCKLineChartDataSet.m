@@ -9,18 +9,17 @@
 #import "CCKLineChartDataSet.h"
 
 @implementation CCKLineChartDataSet
-@synthesize yVals = _yVals;
-@synthesize name = _name;
-
 
 - (instancetype)initWithVals:(NSArray<CCChartDataEntity *> *)yVals withName:(NSString *)name {
-    self = [super init];
-    if (self) {
-        _yVals = yVals;
-        _name = name;
-    }
-    
-    return self;
+    return [super initWithVals:yVals withName:name];
+}
+
+
+/// K线数据集的最值计算方法, 是通过数据实体中的data字段计算出的, 所以需要重写父类方法
+/// @param start 起点
+/// @param end 终点
+- (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end {
+    [super calcMinMaxStart:start End:end];
 }
 
 @end

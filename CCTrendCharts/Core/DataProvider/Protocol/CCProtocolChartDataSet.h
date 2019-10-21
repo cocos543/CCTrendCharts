@@ -13,6 +13,12 @@
 @required
 - (instancetype)initWithVals:(NSArray<CCChartDataEntity *> *)yVals withName:(NSString *)name;
 
+
+/// 计算数据集在指定范围内的最值
+/// @param start 起点
+/// @param end 终点
+- (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end;
+
 /**
  具体的数据信息
  */
@@ -29,5 +35,23 @@
  绘制的颜色信息
  */
 @property (nonatomic, strong) UIColor *color;
+
+
+/**
+ 数据集中最小的y值
+ */
+@property (nonatomic, readonly, assign) CGFloat minY;
+
+
+/**
+ 数据集中最大的y值
+ */
+@property (nonatomic, readonly, assign) CGFloat maxY;
+
+
+@property (nonatomic, readonly, assign) NSInteger minX;
+
+
+@property (nonatomic, readonly, assign) NSInteger maxX;
 
 @end

@@ -8,10 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "CCProtocolAxisBase.h"
+#import "CCChartData.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CCDefaultYAxis : NSObject <CCProtocolAxisBase>
+
+
+/// 根据当前
+/// @param charData 数据源
+- (void)calculateMinMax:(CCChartData *)charData;
+
+
+/// 根据轴最值, labelCount等参数, 生成y轴实体数据, 有需要可以重写
+- (void)generateEntities;
 
 // 确定y轴数据格式
 @property (nonatomic, strong) NSNumberFormatter *formatter;
@@ -22,6 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
  当customValue为false时, 库会自动结合具体的数值确定大小值
  */
 @property (nonatomic, assign) BOOL customValue;
+
+
+/// 最少2个
+@property (nonatomic, assign) NSInteger labelCount;
 
 @property (nonatomic, assign) CGFloat axisMinValue;
 
@@ -44,7 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  return entities.count
  */
+
 @property (nonatomic, assign, readonly) NSInteger entityCount;
+
 
 
 // 可以再设计子类, 描述网格信息
