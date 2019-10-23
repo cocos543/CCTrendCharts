@@ -25,8 +25,8 @@
         _minY  = CGFLOAT_MAX;
         _maxY  = CGFLOAT_MIN;
 
-        _minX  = NSIntegerMin;
-        _maxX  = NSIntegerMax;
+        _minX  = NSIntegerMax;
+        _maxX  = NSIntegerMin;
 
         [self calcMinMaxStart:-1 End:-1];
     }
@@ -39,7 +39,7 @@
  */
 - (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end {
     for (CCChartDataEntity *val in self.yVals) {
-        if (val.xIndex < start && val.xIndex > end) {
+        if (val.xIndex < start || val.xIndex > end) {
             continue;
         }
 

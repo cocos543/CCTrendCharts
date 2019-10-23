@@ -56,6 +56,15 @@
 
 #pragma mark - Protocol: CCProtocolKLineChartDataProvider
 
+- (void)setData:(CCChartData *)data {
+    [super setData:data];
+    
+    // 变更数据集需要重置viewHandle里的初始矩阵
+    if (self.recentFirst) {
+        
+    }
+}
+
 - (CCKLineChartData *)klineChartData {
     return (CCKLineChartData *)self.data;
 }
@@ -73,14 +82,6 @@
 }
 
 - (CGFloat)chartMaxY {
-    return 0;
-}
-
-- (NSInteger)lowestVisibleXIndex {
-    return 0;
-}
-
-- (NSInteger)highestVisibleXIndex {
     return 0;
 }
 

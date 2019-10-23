@@ -83,11 +83,28 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGRect)rectToPixel:(CGRect)rect forAnimationPhaseY:(CGFloat)phaseY;
 
 
+/// 作用和pointToPixel:forAnimationPhaseY:相反
+- (CGPoint)pixelToPoint:(CGPoint)pixel forAnimationPhaseY:(CGFloat)phaseY;
 
-/// 传入y方向最大最小值, 计算标准矩阵的信息
+/// 作用和rectToPixel:forAnimationPhaseY:相反
+- (CGRect)pixelToRect:(CGRect)pixel forAnimationPhaseY:(CGFloat)phaseY;
+
+
+
+/// 传入y方向最大最小值, 计算标准矩阵x,y两个方向的信息
 /// @param minY 最小Y
 /// @param maxY 最大Y
-- (CGAffineTransform)calcMatrixWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY;
+- (CGAffineTransform)calcMatrixWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY xSpace:(CGFloat)xSpace;
+
+
+/// 单独计算x方向矩阵信息
+- (CGAffineTransform)calcMatrixOrientationX;
+
+
+/// 单独计算y方向矩阵信息
+/// @param minY 最小y
+/// @param maxY 最大y
+- (CGAffineTransform)calcMatrixOrientationYWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY;
 
 
 
@@ -95,6 +112,10 @@ NS_ASSUME_NONNULL_BEGIN
  输出最终的变换矩阵, 可以直接作用转换元素的像素位置, 如有需要请直接使用该变量
  */
 @property (nonatomic, readonly) CGAffineTransform valueToPixelMatrix;
+
+
+/// 用于从指定的像素中取得实际对应的数据实体索引, 如有需要请直接使用该变量
+@property (nonatomic, readonly) CGAffineTransform pixelToValueMatrix;
 
 @end
 

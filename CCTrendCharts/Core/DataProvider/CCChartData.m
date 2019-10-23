@@ -15,8 +15,11 @@
     if (self) {
         _xVals = xVals;
         _dataSets = dataSets;
-        _minX = CGFLOAT_MIN;
+        _xSpace = 8;
+        
+        _maxY = CGFLOAT_MIN;
         _minY = CGFLOAT_MAX;
+        
         _maxX = NSIntegerMin;
         _minX = NSIntegerMax;
         

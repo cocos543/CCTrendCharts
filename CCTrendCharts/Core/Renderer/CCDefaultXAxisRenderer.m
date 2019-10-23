@@ -82,7 +82,7 @@
                 
                 // 只绘制可视区域内的元素
                 if (position.x >= self.viewPixelHandler.contentLeft && position.x <= self.viewPixelHandler.contentRight) {
-                    CGContextMoveToPoint(ctx, position.x, position.y);
+                    CGContextMoveToPoint(ctx, position.x, position.y + 5);
                     CGContextAddLineToPoint(ctx, position.x, position.y - 10);
                     NSLog(@"x轴渲染层: 正在绘制第%@个中心轴地基, 坐标%@", @(i), NSStringFromCGPoint(position));
                     

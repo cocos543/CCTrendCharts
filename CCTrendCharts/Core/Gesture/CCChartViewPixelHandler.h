@@ -14,6 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CCChartViewPixelHandler : NSObject
 
+- (BOOL)isInBoundsTop:(CGFloat)y;
+
+
+/// 是否正处于平移或者缩放状态
+- (BOOL)isChangedContent;
+
 - (void)updateContentRectOffsetLeft:(CGFloat)offsetLeft offsetRight:(CGFloat)offsetRight offsetTop:(CGFloat)offsetTop offsetBottom:(CGFloat)offsetBottom;
 
 /**
@@ -57,6 +63,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGAffineTransform gestureMatrix;
 
 
+/// 初始矩阵, 用于确定当前整体缩放平移效果是否为原始效果
+@property (nonatomic, assign) CGAffineTransform anInitMatrix;
 
 /**
  视图的总大小(含两轴上的文字信息)

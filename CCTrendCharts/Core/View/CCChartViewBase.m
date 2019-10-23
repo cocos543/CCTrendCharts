@@ -9,6 +9,7 @@
 #import "CCChartViewBase.h"
 @interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate> {
     BOOL _needsPrepare;
+    BOOL _needUpdateForRecentFirst;
 }
 
 /**
@@ -39,9 +40,9 @@
 
 
 /**
- 承载数据绘制的视图
+ 提供横向滚动功能
  */
-@property (nonatomic, strong) UIScrollView *dataPanelView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
 @end
 
@@ -67,14 +68,17 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        _dataPanelView = [[UIScrollView alloc] initWithFrame:frame];
-        _dataPanelView.delegate = self;
-        _dataPanelView.backgroundColor = UIColor.clearColor;
+        _scrollView = [[UIScrollView alloc] initWithFrame:frame];
+        _scrollView.delegate = self;
+        _scrollView.backgroundColor = UIColor.clearColor;
         
         _viewPixelHandler = [[CCChartViewPixelHandler alloc] init];
         _transformer = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
         
         _clipEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
+        
+        _recentFirst = YES;
+        _needUpdateForRecentFirst = YES;
     }
     return self;
 }
@@ -82,6 +86,8 @@
 - (instancetype)init {
     return [self initWithFrame:CGRectZero];
 }
+
+
 
 - (NSString *)description {
     NSString *desc = [super description];
@@ -92,18 +98,15 @@
     NSLog(@"layoutSubviews");
     
     CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    self.dataPanelView.frame = frame;
-    self.dataPanelView.contentSize = CGSizeMake(1000, frame.size.height);
-    [self addSubview:_dataPanelView];
-    
+    self.scrollView.frame = frame;
+    [self addSubview:_scrollView];
+
     UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
     l.text = @"testtets";
-    [self.dataPanelView addSubview:l];
+    [self.scrollView addSubview:l];
     
     self.yAxisLayer.frame = frame;
     self.xAxisLayer.frame = frame;
-    
-    [self updateViewPixelHandler];
 }
 
 - (void)setNeedsDisplay {
@@ -117,14 +120,36 @@
 
 
 #pragma mark - Non-SYS-func
+- (void)updateScrollContent {
+    CGFloat width = self.data.xSpace * (self.data.maxX + 1 + CC_X_INIT_TRANSLATION);
+    self.scrollView.contentSize = CGSizeMake(width, 0);
+}
+
 - (void)updateViewPixelHandler {
     self.viewPixelHandler.viewFrame = self.bounds;
     self.viewPixelHandler.contentRect = CGRectClipRectUsingEdge(self.bounds, self.clipEdgeInsets);
 }
 
 
+///  计算view handle的初始矩阵
+- (void)calcViewPixelInitMatrix {
+    // 如果视图属于最近信息优先显示的话, 还需要调整初始矩阵, 让最后一个元素在绘制区间里
+    if (self.recentFirst) {
+        NSInteger low = self.lowestVisibleXIndex;
+        NSInteger hight = self.highestVisibleXIndex;
+        
+        // 1 - 2, 可见为2两个
+        NSInteger visiableCount = hight - low + 1;
+        self.viewPixelHandler.anInitMatrix = CGAffineTransformMakeTranslation(visiableCount, 0);
+    }
+}
+
+
 /// 重新计算x,y轴的位置信息. 两个轴的位置和轴文案是紧密相关的.
 - (void)calcViewPixelOffset {
+    // 先恢复ViewPixel的初始值
+    [self updateViewPixelHandler];
+    
     CGFloat offsetLeft = 0, offsetRight = 0, offsetTop = 0, offsetBottom = 0;
     
     CGSize size;
@@ -148,18 +173,20 @@
     [self.viewPixelHandler updateContentRectOffsetLeft:offsetLeft offsetRight:offsetRight offsetTop:offsetTop offsetBottom:offsetBottom];
 }
 
-
-- (void)updateTransformer {
-    // 相邻两个元素之间中心轴的距离, 默认是8个点
+- (void)updateStandardMatrix {
     // 暂时只处理左轴
     CGAffineTransform transform = CGAffineTransformIdentity;
     if (self.leftAxis) {
-        transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue];
+        transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue xSpace:self.data.xSpace];
     }else if (self.rightAxis) {
         
     }
     
     [self.transformer refreshMatrix:transform];
+}
+
+- (void)updateOffsetMatrix {
+    CGAffineTransform transform = CGAffineTransformIdentity;
     
     // 计算偏差矩阵
     transform = CGAffineTransformMakeTranslation(self.viewPixelHandler.offsetLeft, self.viewPixelHandler.viewHeight - self.viewPixelHandler.offsetBottom);
@@ -175,7 +202,7 @@
     // 基类只是简单设置数据状态
     _needsPrepare = NO;
     
-    [self.data calcMinMaxStart:self.lowestVisibleXIndex End:self.highestVisibleXIndex];
+    [self.data calcMinMaxStart:self.data.minX End:self.data.maxX];
     
     
     // 将数据集的数据同步到X轴上
@@ -201,7 +228,15 @@
     [self calcViewPixelOffset];
     
     // 根据新的绘制区域,重新计算反射参数
-    [self updateTransformer];
+    [self updateStandardMatrix];
+    [self updateOffsetMatrix];
+    
+    
+    // 根据当前数据集, 设置好滚动区域长度
+    [self updateScrollContent];
+    
+    [self calcViewPixelInitMatrix];
+    
 }
 
 #pragma mark - Getter & Setter
@@ -210,8 +245,7 @@
         _yAxisLayer = CALayer.layer;
 
         // Y轴渲染层放到所有图层的底部
-        [self.dataPanelView.layer addSublayer:_yAxisLayer];
-        _yAxisLayer.zPosition = -100;
+        [self.layer addSublayer:_yAxisLayer];
     }
     
     return _yAxisLayer;
@@ -220,27 +254,14 @@
 - (CALayer *)xAxisLayer {
     if (!_xAxisLayer) {
         _xAxisLayer = CALayer.layer;
+        
         // X轴渲染层放到滚动视图的最下层, 这样做是方便x轴上元素的滚动
-        [self.dataPanelView.layer addSublayer:_xAxisLayer];
-        _xAxisLayer.zPosition = -100;
+        [self.layer addSublayer:_xAxisLayer];
     }
     
     return _xAxisLayer;
 }
 
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // 让scrollview上的图层始终位于CCChartViewBase的位置
-    // 这样做的好处就是渲染层可以只渲染和CCChartViewBase相同大小的尺寸, 提高性能
-    [CATransaction begin];
-    [CATransaction setDisableActions:YES];
-    
-    CGRect frame = CGRectMake(scrollView.contentOffset.x, 0, self.frame.size.width, self.frame.size.height);
-    self.xAxisLayer.frame = frame;
-    self.yAxisLayer.frame = frame;
-    
-    [CATransaction commit];
-}
 
 
 #pragma mark - CALayerDelegate
@@ -264,7 +285,7 @@
     if (self.leftAxis.entities) {
         [self.leftAxisrenderer renderLabels:self.yAxisLayer];
     }
-    
+
     if (self.rightAxis.entities) {
         [self.rightAxisrenderer renderLabels:self.yAxisLayer];
     }
@@ -274,7 +295,6 @@
     
     self.layer.backgroundColor = self.backgroundColor.CGColor;
 }
-
 
 #pragma mark - Drawing
 
@@ -362,6 +382,34 @@
     
     CGImageRelease(cgimg);
     
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+}
+
+
+#pragma mark - CCProtocolChartDataProvider
+- (NSInteger)lowestVisibleXIndex {
+    CGPoint point = CGPointMake(self.viewPixelHandler.contentLeft, self.viewPixelHandler.contentBottom);
+    point = [self.transformer pixelToPoint:point forAnimationPhaseY:1];
+    
+    // 最小的索引是0
+    if (point.x <= 0) {
+        return 0;
+    }
+    return ceil(point.x);
+}
+
+- (NSInteger)highestVisibleXIndex {
+    CGPoint point = CGPointMake(self.viewPixelHandler.contentRight, self.viewPixelHandler.contentBottom);
+    point = [self.transformer pixelToPoint:point forAnimationPhaseY:1];
+    
+    // 最大可见的索引不会大于数据源最大索引
+    NSInteger index = floor(point.x);
+    
+    return MIN(self.data.maxX, index);
 }
 
 @end

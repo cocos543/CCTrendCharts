@@ -42,6 +42,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用于确定xy轴距离整个视图边缘的大小. 两轴文案加上该属性的值即为最终距离
 @property (nonatomic, assign) UIEdgeInsets clipEdgeInsets;
 
+
+/// 最近优先显示, 默认为YES, 适合趋势交易图的显示习惯
+@property (nonatomic, assign) BOOL recentFirst;
+
 @end
 
 NS_ASSUME_NONNULL_END

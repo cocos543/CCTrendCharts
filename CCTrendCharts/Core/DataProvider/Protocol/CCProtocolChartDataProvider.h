@@ -33,6 +33,9 @@
 // X轴最小值
 @property (nonatomic, assign, readonly) CGFloat chartMinX;
 
+/// 最近优先, 趋势图默认为YES, 适合趋势交易图的显示习惯
+@property (nonatomic, readonly) BOOL recentFirst;
+
 
 
 /**

@@ -15,6 +15,7 @@
 @end
 
 @implementation CCChartViewPixelHandler
+@synthesize gestureMatrix = _gestureMatrix;
 
 - (instancetype)init {
     self = [super init];
@@ -23,9 +24,20 @@
         _minScaleX = _minScaleY = 1;
         _maxScaleX = _maxScaleY = 2;
         
-        _gestureMatrix = CGAffineTransformIdentity;
+        _gestureMatrix = CGAffineTransformMakeTranslation(38, 0);
     }
     return self;
+}
+
+- (BOOL)isInBoundsTop:(CGFloat)y {
+    if (y < self.contentTop - 0.000001) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isChangedContent {
+    return !CGAffineTransformEqualToTransform(self.gestureMatrix, self.anInitMatrix);
 }
 
 - (void)updateContentRectOffsetLeft:(CGFloat)offsetLeft offsetRight:(CGFloat)offsetRight offsetTop:(CGFloat)offsetTop offsetBottom:(CGFloat)offsetBottom {
@@ -77,6 +89,11 @@
 }
 
 #pragma mark - Getter & Setter
+- (void)setAnInitMatrix:(CGAffineTransform)anInitMatrix {
+    _anInitMatrix = anInitMatrix;
+    //self.gestureMatrix = anInitMatrix;
+}
+
 - (void)setGestureMatrix:(CGAffineTransform)gestureMatrix {
     gestureMatrix = [self _checkScale:gestureMatrix];
     _gestureMatrix = gestureMatrix;

@@ -122,6 +122,9 @@
             CGPoint position = CGPointMake(0, num.doubleValue);
             position = [self.transformer pointToPixel:position forAnimationPhaseY:1];
             position.x = xPos;
+            if ([self.viewPixelHandler isInBoundsTop:position.y]) {
+                continue;
+            }
             
             // 临时代码, 绘制地基
             CGContextMoveToPoint(ctx, self.viewPixelHandler.contentLeft, position.y);
