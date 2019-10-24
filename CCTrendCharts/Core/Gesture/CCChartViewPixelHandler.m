@@ -24,7 +24,7 @@
         _minScaleX = _minScaleY = 1;
         _maxScaleX = _maxScaleY = 2;
         
-        _gestureMatrix = CGAffineTransformMakeTranslation(38, 0);
+        _gestureMatrix = CGAffineTransformMakeTranslation(0, 0);
     }
     return self;
 }
@@ -81,17 +81,17 @@
  */
 - (CGAffineTransform)_checkScale:(CGAffineTransform)matrix {
     _scaleX = MIN(matrix.a, self.minScaleX);
-    _scaleY = MIN(matrix.b, self.minScaleY);
+    _scaleY = MIN(matrix.d, self.minScaleY);
     
     matrix.a = _scaleX;
-    matrix.b = _scaleX;
+    matrix.d = _scaleY;
     return matrix;
 }
 
 #pragma mark - Getter & Setter
 - (void)setAnInitMatrix:(CGAffineTransform)anInitMatrix {
     _anInitMatrix = anInitMatrix;
-    //self.gestureMatrix = anInitMatrix;
+    self.gestureMatrix = anInitMatrix;
 }
 
 - (void)setGestureMatrix:(CGAffineTransform)gestureMatrix {

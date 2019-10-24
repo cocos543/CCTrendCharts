@@ -106,7 +106,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param maxY 最大y
 - (CGAffineTransform)calcMatrixOrientationYWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY;
 
-
+/// 返回指定数量的实体之间的距离
+/// @param indexCount 实体数量
+- (CGFloat)distanceBetweenSpace:(CGFloat)indexCount;
 
 /**
  输出最终的变换矩阵, 可以直接作用转换元素的像素位置, 如有需要请直接使用该变量

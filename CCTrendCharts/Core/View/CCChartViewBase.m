@@ -7,6 +7,8 @@
 //
 
 #import "CCChartViewBase.h"
+#import "CCGestureHandler.h"
+
 @interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate> {
     BOOL _needsPrepare;
     BOOL _needUpdateForRecentFirst;
@@ -44,6 +46,10 @@
  */
 @property (nonatomic, strong) UIScrollView *scrollView;
 
+
+/// 处理手势操作的具体功能
+@property (nonatomic, strong) id<CCGestureHandlerProtocol> gestureHandler;
+
 @end
 
 @implementation CCChartViewBase
@@ -74,6 +80,7 @@
         
         _viewPixelHandler = [[CCChartViewPixelHandler alloc] init];
         _transformer = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
+        _gestureHandler = [[CCGestureHandler alloc] initWithTransformer:_viewPixelHandler];
         
         _clipEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
         
@@ -117,12 +124,29 @@
     [super setNeedsDisplayInRect:rect];
 }
 
+#pragma mark - Scroll-func
+/// 返回 Chart view / Scroll view
+- (CGFloat)_scrollRatio {
+    return 1;
+}
+
+- (void)_setScrollViewXOffset:(CGFloat)chartTX {
+    self.scrollView.contentOffset = CGPointMake(chartTX, 0);
+}
+
+- (void)_setChartViewTX:(CGFloat)scrollX {
+    
+}
+
 
 
 #pragma mark - Non-SYS-func
 - (void)updateScrollContent {
-    CGFloat width = self.data.xSpace * (self.data.maxX + 1 + CC_X_INIT_TRANSLATION);
-    self.scrollView.contentSize = CGSizeMake(width, 0);
+    // 滚动区间大小计算公式:
+    // 滚动视图内容宽度 = 绘制总长度 - 绘制区间宽度 + 滚动视图宽度
+    CGFloat totalWidth = [self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION];
+    CGFloat needWidth = totalWidth - self.viewPixelHandler.contentWidth;
+    self.scrollView.contentSize = CGSizeMake(needWidth + self.bounds.size.width, 0);
 }
 
 - (void)updateViewPixelHandler {
@@ -135,12 +159,12 @@
 - (void)calcViewPixelInitMatrix {
     // 如果视图属于最近信息优先显示的话, 还需要调整初始矩阵, 让最后一个元素在绘制区间里
     if (self.recentFirst) {
-        NSInteger low = self.lowestVisibleXIndex;
-        NSInteger hight = self.highestVisibleXIndex;
+        CGFloat totalWidth = [self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION];
+        CGFloat needWidth = totalWidth - self.viewPixelHandler.contentWidth;
         
-        // 1 - 2, 可见为2两个
-        NSInteger visiableCount = hight - low + 1;
-        self.viewPixelHandler.anInitMatrix = CGAffineTransformMakeTranslation(visiableCount, 0);
+        [self _setScrollViewXOffset:needWidth];
+        
+        self.viewPixelHandler.anInitMatrix = CGAffineTransformMakeTranslation(-needWidth, 0);
     }
 }
 
@@ -386,7 +410,11 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"scroll offset:%@", NSStringFromCGPoint(scrollView.contentOffset));
     
+    [self.gestureHandler didScroll:scrollView.contentOffset];
+    
+    [self setNeedsDisplay];
 }
 
 

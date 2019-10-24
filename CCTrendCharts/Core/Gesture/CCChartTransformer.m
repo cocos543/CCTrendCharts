@@ -125,6 +125,10 @@
     return transform;
 }
 
+- (CGFloat)distanceBetweenSpace:(CGFloat)indexCount {
+    return [self pointToPixel:CGPointMake(indexCount, 0) forAnimationPhaseY:1].x - [self pointToPixel:CGPointMake(0, 0) forAnimationPhaseY:1].x;
+}
+
 #pragma mark - Getter & Setter
 - (CGAffineTransform)valueToPixelMatrix {
 
@@ -138,6 +142,7 @@
     // 直接返回标准矩阵的逆矩阵
     return CGAffineTransformInvert(self.valueToPixelMatrix);
 }
+
 
 
 @end
