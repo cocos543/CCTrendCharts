@@ -26,7 +26,7 @@
 
 
 - (void)renderAxisLine:(CALayer *)contentLayer {
-    NSLog(@"渲染层接到画x轴直线通知~");
+//    NSLog(@"渲染层接到画x轴直线通知~");
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
@@ -53,7 +53,7 @@
 }
 
 - (void)renderLabels:(CALayer *)contentLayer {
-    NSLog(@"准备开始渲染x轴 label 信息");
+//    NSLog(@"准备开始渲染x轴 label 信息");
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
@@ -84,7 +84,7 @@
                 if (position.x >= self.viewPixelHandler.contentLeft && position.x <= self.viewPixelHandler.contentRight) {
                     CGContextMoveToPoint(ctx, position.x, yPos);
                     CGContextAddLineToPoint(ctx, position.x, yPos - 10);
-                    NSLog(@"x轴渲染层: 正在绘制第%@个中心轴地基, 坐标(%@,%@)", @(i), @(position.x), @(yPos));
+                    //NSLog(@"x轴渲染层: 正在绘制第%@个中心轴地基, 坐标(%@,%@)", @(i), @(position.x), @(yPos));
                     
                     NSString *text = self.axis.entities[i];
                     text = [self.axis.formatter stringForIndex:i origin:text];
@@ -94,7 +94,7 @@
                     }
                     
                 }else {
-                    NSLog(@"x轴渲染层: 忽略绘制第%@个中心轴地基, 坐标(%@,%@)", @(i), @(position.x), @(yPos));
+                    //NSLog(@"x轴渲染层: 忽略绘制第%@个中心轴地基, 坐标(%@,%@)", @(i), @(position.x), @(yPos));
                 }
                 
             }

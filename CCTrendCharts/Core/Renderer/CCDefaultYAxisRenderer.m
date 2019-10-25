@@ -34,7 +34,7 @@
 }
 
 - (void)renderAxisLine:(CALayer *)contentLayer {
-    NSLog(@"渲染层接到画y轴直线通知~");
+//    NSLog(@"渲染层接到画y轴直线通知~");
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
@@ -71,11 +71,7 @@
 }
 
 - (void)renderLabels:(CALayer *)contentLayer {
-    NSLog(@"准备开始渲染y轴 label 信息");
-    NSLog(@"y轴label信息如下:");
-    for (NSNumber *n in self.axis.entities) {
-        NSLog(@"%@", [self.axis.formatter stringFromNumber:n]);
-    }
+//    NSLog(@"准备开始渲染y轴 label 信息");
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     

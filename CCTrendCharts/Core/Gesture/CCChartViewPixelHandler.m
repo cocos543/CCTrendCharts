@@ -21,10 +21,11 @@
     self = [super init];
     if (self) {
         _scaleX = _scaleY = 1;
-        _minScaleX = _minScaleY = 1;
-        _maxScaleX = _maxScaleY = 2;
+        _minScaleX = _minScaleY = 0.5;
+        _maxScaleX = _maxScaleY = 5;
         
-        _gestureMatrix = CGAffineTransformMakeTranslation(0, 0);
+        _gestureMatrix = CGAffineTransformIdentity;
+        _anInitMatrix = CGAffineTransformIdentity;
     }
     return self;
 }
@@ -36,7 +37,7 @@
     return NO;
 }
 
-- (BOOL)isChangedContent {
+- (BOOL)isGestureProcessing {
     return !CGAffineTransformEqualToTransform(self.gestureMatrix, self.anInitMatrix);
 }
 
@@ -60,8 +61,14 @@
 }
 
 - (CGAffineTransform)zoomScaleX:(CGFloat)scaleX scaleY:(CGFloat)scaleY aroundCenter:(CGPoint)center {
+    // 围绕缩放中心进行缩放的算法如下:
+    // 1. 平移到scaleCenter的x, y
+    // 2. 缩放n倍
+    // 3. 在缩放的基础上平移-x, -y
     CGAffineTransform newMatrix = CGAffineTransformMakeTranslation(center.x, center.y);
-    return CGAffineTransformTranslate(newMatrix, scaleX, scaleY);
+    newMatrix = CGAffineTransformTranslate(newMatrix, scaleX, scaleY);
+    newMatrix = CGAffineTransformTranslate(newMatrix, -center.x, -center.y);
+    return newMatrix;
 }
 
 - (CGAffineTransform)zoomInAroundCenter:(CGPoint)center {
@@ -80,8 +87,13 @@
  @return 符合要求的矩阵
  */
 - (CGAffineTransform)_checkScale:(CGAffineTransform)matrix {
-    _scaleX = MIN(matrix.a, self.minScaleX);
-    _scaleY = MIN(matrix.d, self.minScaleY);
+    if (matrix.a < self.minScaleX || matrix.a > self.maxScaleX) {
+        return self.gestureMatrix;
+    }
+    
+    _transX = matrix.tx;
+    _scaleY = matrix.d;
+    _scaleX = matrix.a;
     
     matrix.a = _scaleX;
     matrix.d = _scaleY;

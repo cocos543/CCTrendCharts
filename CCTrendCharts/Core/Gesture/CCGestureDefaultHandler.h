@@ -1,5 +1,5 @@
 //
-//  CCGestureHandler.h
+//  CCGestureDefaultHandler.h
 //  CCTrendCharts
 //
 //  Created by Cocos on 2019/10/24.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CCGestureHandler : NSObject <CCGestureHandlerProtocol>
+@interface CCGestureDefaultHandler : NSObject <CCGestureHandlerProtocol>
 
 /// 初始化方法
 - (instancetype)initWithTransformer:(CCChartViewPixelHandler *)viewPixelHandler;

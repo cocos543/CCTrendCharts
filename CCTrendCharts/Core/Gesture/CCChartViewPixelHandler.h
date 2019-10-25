@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isInBoundsTop:(CGFloat)y;
 
 /// 是否正处于平移或者缩放状态
-- (BOOL)isChangedContent;
+- (BOOL)isGestureProcessing;
 
 - (void)updateContentRectOffsetLeft:(CGFloat)offsetLeft offsetRight:(CGFloat)offsetRight offsetTop:(CGFloat)offsetTop offsetBottom:(CGFloat)offsetBottom;
 

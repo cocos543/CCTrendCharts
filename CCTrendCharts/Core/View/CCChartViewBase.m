@@ -7,11 +7,14 @@
 //
 
 #import "CCChartViewBase.h"
-#import "CCGestureHandler.h"
 
-@interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate> {
+
+@interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate, CCGestureHandlerDelegate> {
     BOOL _needsPrepare;
     BOOL _needUpdateForRecentFirst;
+    BOOL _needTriggerScrollGesture;
+    CGFloat _lastTx;
+    
 }
 
 /**
@@ -47,9 +50,6 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 
 
-/// 处理手势操作的具体功能
-@property (nonatomic, strong) id<CCGestureHandlerProtocol> gestureHandler;
-
 @end
 
 @implementation CCChartViewBase
@@ -78,14 +78,24 @@
         _scrollView.delegate = self;
         _scrollView.backgroundColor = UIColor.clearColor;
         
+        UIPanGestureRecognizer *twoFingerPan = [[UIPanGestureRecognizer alloc] init];
+        twoFingerPan.minimumNumberOfTouches = 2;
+        twoFingerPan.maximumNumberOfTouches = 2;
+        [_scrollView addGestureRecognizer:twoFingerPan];
+        
         _viewPixelHandler = [[CCChartViewPixelHandler alloc] init];
         _transformer = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
-        _gestureHandler = [[CCGestureHandler alloc] initWithTransformer:_viewPixelHandler];
+        _gestureHandler = [[CCGestureDefaultHandler alloc] initWithTransformer:_viewPixelHandler];
+        _gestureHandler.baseView = self;
+        _gestureHandler.delegate = self;
         
         _clipEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
         
         _recentFirst = YES;
         _needUpdateForRecentFirst = YES;
+        _needTriggerScrollGesture = YES;
+        _lastTx = 0.f;
+
     }
     return self;
 }
@@ -93,7 +103,6 @@
 - (instancetype)init {
     return [self initWithFrame:CGRectZero];
 }
-
 
 
 - (NSString *)description {
@@ -141,25 +150,28 @@
 
 
 #pragma mark - Non-SYS-func
-- (void)updateScrollContent {
+/// scroll view的滚动区间大小, 决定了渲染区域的横向大小
+- (void)_updateScrollContent {
     // 滚动区间大小计算公式:
     // 滚动视图内容宽度 = 绘制总长度 - 绘制区间宽度 + 滚动视图宽度
-    CGFloat totalWidth = [self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION];
+    // 这里CC_X_INIT_TRANSLATION*2是为了让绘制的时候数据不要和绘制区间左右两边重合
+    CGFloat totalWidth = [self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION * 2];
     CGFloat needWidth = totalWidth - self.viewPixelHandler.contentWidth;
     self.scrollView.contentSize = CGSizeMake(needWidth + self.bounds.size.width, 0);
 }
 
-- (void)updateViewPixelHandler {
+- (void)_updateViewPixelHandler {
     self.viewPixelHandler.viewFrame = self.bounds;
     self.viewPixelHandler.contentRect = CGRectClipRectUsingEdge(self.bounds, self.clipEdgeInsets);
 }
 
 
 ///  计算view handle的初始矩阵
-- (void)calcViewPixelInitMatrix {
+- (void)_calcViewPixelInitMatrix {
     // 如果视图属于最近信息优先显示的话, 还需要调整初始矩阵, 让最后一个元素在绘制区间里
-    if (self.recentFirst) {
-        CGFloat totalWidth = [self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION];
+    // 当前正在进行手势操作的, 表示正在浏览数据, 所以不应该重新计算手势矩阵了
+    if (self.recentFirst && ![self.viewPixelHandler isGestureProcessing]) {
+        CGFloat totalWidth = [self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION * 2];
         CGFloat needWidth = totalWidth - self.viewPixelHandler.contentWidth;
         
         [self _setScrollViewXOffset:needWidth];
@@ -170,9 +182,9 @@
 
 
 /// 重新计算x,y轴的位置信息. 两个轴的位置和轴文案是紧密相关的.
-- (void)calcViewPixelOffset {
+- (void)_calcViewPixelOffset {
     // 先恢复ViewPixel的初始值
-    [self updateViewPixelHandler];
+    [self _updateViewPixelHandler];
     
     CGFloat offsetLeft = 0, offsetRight = 0, offsetTop = 0, offsetBottom = 0;
     
@@ -197,7 +209,7 @@
     [self.viewPixelHandler updateContentRectOffsetLeft:offsetLeft offsetRight:offsetRight offsetTop:offsetTop offsetBottom:offsetBottom];
 }
 
-- (void)updateStandardMatrix {
+- (void)_updateStandardMatrix {
     // 暂时只处理左轴
     CGAffineTransform transform = CGAffineTransformIdentity;
     if (self.leftAxis) {
@@ -209,7 +221,7 @@
     [self.transformer refreshMatrix:transform];
 }
 
-- (void)updateOffsetMatrix {
+- (void)_updateOffsetMatrix {
     CGAffineTransform transform = CGAffineTransformIdentity;
     
     // 计算偏差矩阵
@@ -249,17 +261,17 @@
     
     
     // 全部数据计算好之后, 重新调整一下绘制区域的大小
-    [self calcViewPixelOffset];
+    [self _calcViewPixelOffset];
     
     // 根据新的绘制区域,重新计算反射参数
-    [self updateStandardMatrix];
-    [self updateOffsetMatrix];
+    [self _updateStandardMatrix];
+    [self _updateOffsetMatrix];
     
     
     // 根据当前数据集, 设置好滚动区域长度
-    [self updateScrollContent];
+    [self _updateScrollContent];
     
-    [self calcViewPixelInitMatrix];
+    [self _calcViewPixelInitMatrix];
     
 }
 
@@ -295,7 +307,7 @@
         _needsPrepare = NO;
     }
     
-    NSLog(@"displayLayer: 根图层重绘, 全部子图层需要重新渲染");
+//    NSLog(@"displayLayer: 根图层重绘, 全部子图层需要重新渲染");
     
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
     
@@ -410,11 +422,44 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!_needTriggerScrollGesture) {
+        return;
+    }
+    
     NSLog(@"scroll offset:%@", NSStringFromCGPoint(scrollView.contentOffset));
     
     [self.gestureHandler didScroll:scrollView.contentOffset];
     
+    _lastTx =  self.viewPixelHandler.gestureMatrix.tx;
+    
     [self setNeedsDisplay];
+}
+
+#pragma mark - Gesture-func
+- (void)addDefualtGesture {
+    [self addGestureRecognizer:self.gestureHandler.pinchGesture];
+}
+
+#pragma mark - CCGestureHandlerDelegate
+- (void)gestureDidPinchInLocation:(CGPoint)point matrix:(CGAffineTransform)matrix {
+     CGFloat totalWidth = [self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION * 2];
+    
+    [self _updateScrollContent];
+    
+    // 计算出缩放之后内容整体平移了多少, 同步scroll view的contentOffset
+    CGFloat tx = self.viewPixelHandler.gestureMatrix.tx - _lastTx;
+    
+    CGPoint offset = self.scrollView.contentOffset;
+    
+    // 这里tx为负数说明绘制内容往左移动, 意味着offset更大, 所以减去负数
+    offset.x -= tx;
+    
+    
+    _needTriggerScrollGesture = NO;
+    [self.scrollView setContentOffset:offset animated:NO];
+    _needTriggerScrollGesture = YES;
+    
+    _lastTx =  self.viewPixelHandler.gestureMatrix.tx;
 }
 
 

@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 
 #import "CCProtocolChartViewBase.h"
+#import "CCGestureDefaultHandler.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface CCChartViewBase : UIView <CCProtocolChartViewBase, CCProtocolChartDataProvider>
 
+
+/// 添加默认手势
+- (void)addDefualtGesture;
 
 /**
  标记视图需要重新准备信息. 调用该方法并不会立即重新计算信息, 而是等到当前runloop周期结束之后(同setNeedsDisplay)
@@ -45,6 +49,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 最近优先显示, 默认为YES, 适合趋势交易图的显示习惯
 @property (nonatomic, assign) BOOL recentFirst;
+
+/// 处理手势操作的具体功能
+@property (nonatomic, strong) id<CCGestureHandlerProtocol> gestureHandler;
 
 @end
 
