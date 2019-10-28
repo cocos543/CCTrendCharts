@@ -42,7 +42,7 @@
         return CGSizeZero;
     }
     
-    NSString *maxLabel = [self.formatter stringForIndex:0 origin:self.entities[0]];
+    NSString *maxLabel = [self.formatter stringForIndex:0 origin:self.entities[self.entities.count - 1]];
     
     CGSize size = [maxLabel sizeWithAttributes:@{NSFontAttributeName: self.font}];
     size.width += self.xLabelOffset;

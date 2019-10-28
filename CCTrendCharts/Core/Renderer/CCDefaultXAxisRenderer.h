@@ -17,14 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) CCDefaultXAxis *axis;
 
 
-/**
- 数据集x轴的值传给渲染层, 渲染层负责更新与之关联的axis中对应的值
- 
- @param entities 显示在x轴上的字符串数组
- */
-- (void)processAxisEntities:(NSArray<NSString *> *) entities;
-
-
 - (instancetype)init NS_UNAVAILABLE;
 
 - (instancetype)initWithAxis:(CCDefaultXAxis *)axis viewHandler:(CCChartViewPixelHandler *)viewPixelHandler transform:(CCChartTransformer *)transformer NS_DESIGNATED_INITIALIZER;

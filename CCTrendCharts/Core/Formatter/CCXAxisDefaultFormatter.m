@@ -8,10 +8,16 @@
 
 #import "CCXAxisDefaultFormatter.h"
 
+@interface CCXAxisDefaultFormatter ()
+
+@property (nonatomic, assign) NSUInteger modulus;
+
+@end
+
 @implementation CCXAxisDefaultFormatter
 @synthesize axisInfo = _axisInfo;
-@synthesize modulus  = _modulus;
 @synthesize modulusStartIndex = _modulusStartIndex;
+@synthesize minModulus = _minModulus;
 
 - (instancetype)initWithAxis:(id<CCProtocolAxisBase>)axisInfo {
     self = [super init];
@@ -41,6 +47,16 @@
     }
 
     return NO;
+}
+
+/// 更新当前的modules, 防止x轴文案重叠
+- (void)calcModulusWith:(CGFloat)contentWidth xSpace:(CGFloat)space labelSize:(CGSize)size {
+    // 计算出可见区域一共可以绘制多少个文案
+    NSInteger count = ceil(contentWidth / space);
+    
+    // 总宽度需要乘以放大系数
+    self.modulus = MAX(ceil(count * size.width / contentWidth), self.minModulus);
+    
 }
 
 @end

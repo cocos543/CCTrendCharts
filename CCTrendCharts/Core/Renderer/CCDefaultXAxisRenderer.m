@@ -54,6 +54,7 @@
 
 - (void)renderLabels:(CALayer *)contentLayer {
 //    NSLog(@"准备开始渲染x轴 label 信息");
+    [self.axis.formatter calcModulusWith:self.viewPixelHandler.contentWidth xSpace:[self.transformer distanceBetweenSpace:1] labelSize:self.axis.requireSize];
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
@@ -70,7 +71,7 @@
         // 临时代码, 画地基用.
         CGContextSetStrokeColorWithColor(ctx, self.axis.axisColor.CGColor);
         CGContextSetLineWidth(ctx, self.axis.axisLineWidth);
-
+        
         // 把文案绘制在x轴底部
         CGFloat yPos = 0.f;
         if (self.axis.labelPosition == CCXAxisLabelPositionBottom) {
@@ -86,10 +87,10 @@
                     CGContextAddLineToPoint(ctx, position.x, yPos - 10);
                     //NSLog(@"x轴渲染层: 正在绘制第%@个中心轴地基, 坐标(%@,%@)", @(i), @(position.x), @(yPos));
                     
-                    NSString *text = self.axis.entities[i];
-                    text = [self.axis.formatter stringForIndex:i origin:text];
-                    
                     if ([self.axis.formatter needToDrawLabelAt:i]) {
+                        NSString *text = self.axis.entities[i];
+                        text = [self.axis.formatter stringForIndex:i origin:text];
+                        
                         [text drawTextIn:ctx x:position.x y:yPos anchor:CGPointMake(0.5, 0) attributes:@{NSFontAttributeName: self.axis.font, NSForegroundColorAttributeName: self.axis.labelColor}];
                     }
                     
@@ -112,8 +113,5 @@
     
 }
 
-- (void)processAxisEntities:(NSArray<NSString *> *)entities {
-    
-}
 
 @end

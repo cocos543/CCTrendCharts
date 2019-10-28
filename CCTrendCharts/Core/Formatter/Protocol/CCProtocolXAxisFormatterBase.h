@@ -32,6 +32,10 @@
 - (BOOL)needToDrawLabelAt:(NSInteger)index;
 
 
+/// 更新当前的modulus
+- (void)calcModulusWith:(CGFloat)contentWidth xSpace:(CGFloat)space labelSize:(CGSize)size;
+
+
 /**
  用于提供格式化辅助信息
  */
@@ -45,11 +49,15 @@
 
 
 /**
- 模, 默认值6
+ 模, 自动计算
  
  索引 % modulus == 0 时, 对应的文案才会被绘制
  */
-@property (nonatomic, assign) NSUInteger modulus;
+@property (nonatomic, assign, readonly) NSUInteger modulus;
+
+
+/// 用户可以设置最小间隔, 防止缩小时太过密集
+@property (nonatomic, assign) NSUInteger minModulus;
 
 @end
 

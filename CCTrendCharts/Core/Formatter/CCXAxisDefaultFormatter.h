@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithAxis:(id<CCProtocolAxisBase>)axisInfo;
 
+
+
 @end
 
 NS_ASSUME_NONNULL_END
