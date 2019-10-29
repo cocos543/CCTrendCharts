@@ -94,11 +94,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 传入y方向最大最小值, 计算标准矩阵x,y两个方向的信息
 /// @param minY 最小Y
 /// @param maxY 最大Y
-- (CGAffineTransform)calcMatrixWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY xSpace:(CGFloat)xSpace;
+- (CGAffineTransform)calcMatrixWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY xSpace:(CGFloat)xSpace rentFirst:(BOOL)recentFirst;
 
-
-/// 单独计算x方向矩阵信息
-- (CGAffineTransform)calcMatrixOrientationX;
 
 
 /// 单独计算y方向矩阵信息

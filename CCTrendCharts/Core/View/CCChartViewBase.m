@@ -14,7 +14,11 @@
     
     BOOL _needUpdateForRecentFirst;
     BOOL _needTriggerScrollGesture;
+    
+    // 记录最后的手势平移值
     CGFloat _lastTx;
+    // 记录 scroll最后的偏移量
+    CGFloat _lastOffsetX;
     
 }
 
@@ -96,6 +100,7 @@
         _needUpdateForRecentFirst = YES;
         _needTriggerScrollGesture = YES;
         _lastTx = 0.f;
+        _lastOffsetX = 0.f;
 
     }
     return self;
@@ -152,7 +157,7 @@
     // 滚动区间大小计算公式:
     // 滚动视图内容宽度 = 绘制总长度 - 绘制区间宽度 + 滚动视图宽度
     // 这里CC_X_INIT_TRANSLATION*2是为了让绘制的时候数据不要和绘制区间左右两边重合
-    CGFloat totalWidth = [self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION * 2];
+    CGFloat totalWidth = fabs([self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION * 2]);
     CGFloat needWidth = totalWidth - self.viewPixelHandler.contentWidth;
     self.scrollView.contentSize = CGSizeMake(needWidth + self.bounds.size.width, 0);
 }
@@ -168,12 +173,14 @@
     // 如果视图属于最近信息优先显示的话, 还需要调整初始矩阵, 让最后一个元素在绘制区间里
     // 当前正在进行手势操作的, 表示正在浏览数据, 所以不应该重新计算手势矩阵了
     if (self.recentFirst && ![self.viewPixelHandler isGestureProcessing]) {
-        CGFloat totalWidth = [self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION * 2];
+        CGFloat totalWidth = fabs([self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION * 2]);
         CGFloat needWidth = totalWidth - self.viewPixelHandler.contentWidth;
         
         [self _setScrollViewXOffset:needWidth];
         
-        self.viewPixelHandler.anInitMatrix = CGAffineTransformMakeTranslation(-needWidth, 0);
+        // recentFirst模式下, 初始矩阵的偏移量和scrollview的偏移量是不同步的, 所以需要重新更新一下lastTx变量
+        self.viewPixelHandler.anInitMatrix = CGAffineTransformMakeTranslation(self.viewPixelHandler.contentWidth, 0);
+        _lastTx =  self.viewPixelHandler.gestureMatrix.tx;
     }
 }
 
@@ -210,7 +217,7 @@
     // 暂时只处理左轴
     CGAffineTransform transform = CGAffineTransformIdentity;
     if (self.leftAxis) {
-        transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue xSpace:self.data.xSpace];
+        transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue xSpace:self.data.xSpace rentFirst:self.recentFirst];
     }else if (self.rightAxis) {
         
     }
@@ -340,83 +347,6 @@
  */
 - (void)drawRect:(CGRect)rect {
     NSLog(@"drawRect");
-    
-    // Core Graphics 测试代码.
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-
-    CGContextSaveGState(ctx);
-    {
-
-        
-        // 三角形
-        CGContextTranslateCTM(ctx, 80, 25);
-        
-        CGContextSetFillColorWithColor(ctx, [[UIColor redColor] CGColor]);
-        CGContextMoveToPoint(ctx, 0, 0);
-        CGContextAddLineToPoint(ctx, 20, -25);
-        CGContextAddLineToPoint(ctx, 40, 0);
-        
-        CGContextFillPath(ctx);
-        CGContextRestoreGState(ctx); // 完成裁剪
-        
-        CGContextSaveGState(ctx);
-        
-        
-        //// 裁剪
-        CGContextSetLineWidth(ctx, 1);
-        
-        CGContextAddRect(ctx, CGContextGetClipBoundingBox(ctx));
-        
-        CGContextMoveToPoint(ctx, 90, 100);
-        CGContextAddLineToPoint(ctx, 100, 90);
-        CGContextAddLineToPoint(ctx, 110, 100);
-        CGContextClosePath(ctx);
-        
-        // 上面矩形内有一个三角形, 三角形就是被掏空的区域, 下面垂线不会填充挖空区域
-        CGContextEOClip(ctx);
-        
-        // 绘制垂线
-        CGContextMoveToPoint(ctx, 100, 100);
-        CGContextAddLineToPoint(ctx, 100, 19);
-        CGContextSetLineWidth(ctx, 20);
-        // 使用路径的描边版本替换图形上下文的路径
-        CGContextReplacePathWithStrokedPath(ctx);
-        
-        CGContextClip(ctx);
-        
-        // 绘制渐变
-        CGFloat locs[3]    = { 0.0, 0.5, 1.0 };
-        CGFloat colors[12] = {
-            0.3, 0.3, 0.3, 0.8, // 开始颜色，透明灰
-            0.0, 0.0, 0.0, 1.0, // 中间颜色，黑色
-            0.3, 0.3, 0.3, 0.8 // 末尾颜色，透明灰
-        };
-
-        CGColorSpaceRef sp = CGColorSpaceCreateDeviceGray();
-        CGGradientRef grad = CGGradientCreateWithColorComponents(sp, colors, locs, 3);
-        CGContextDrawLinearGradient(ctx, grad, CGPointMake(89, 0), CGPointMake(111, 0), 0);
-        CGColorSpaceRelease(sp);
-        CGGradientRelease(grad);
-        
-        CGContextRestoreGState(ctx); // 完成裁剪
-        
-        
-        CGContextSetFillColorWithColor(ctx, UIColor.redColor.CGColor);
-        CGContextFillRect(ctx, CGRectMake(10, 200, 0.1, 200));
-        
-    }
-    
-    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
-    printf("retain count = %ld\n",CFGetRetainCount(cgimg));
-    
-    UIGraphicsEndImageContext();
-
-    self.layer.contents = (__bridge id)cgimg;
-    printf("retain count = %ld\n",CFGetRetainCount(cgimg));
-    
-    CGImageRelease(cgimg);
-    
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -425,15 +355,13 @@
         return;
     }
     
-    NSLog(@"scroll offset:%@", NSStringFromCGPoint(scrollView.contentOffset));
     
-    [self.gestureHandler didScroll:scrollView.contentOffset];
+    [self.gestureHandler didScrollIncrementOffsetX:scrollView.contentOffset.x - _lastOffsetX];
     
+    _lastOffsetX = scrollView.contentOffset.x;
     _lastTx =  self.viewPixelHandler.gestureMatrix.tx;
     
     [self setNeedsDisplay];
-    
-    
 }
 
 #pragma mark - Gesture-func
@@ -450,42 +378,70 @@
     
     CGPoint offset = self.scrollView.contentOffset;
     
+    // 这里其实有一个参考系问题, 我们参考的是index=0的实体偏移值, 普通模式下, index=0的实体在最左侧, 放大时tx其实是负数(因为index向左移动了);
+    // 如果是recentFirst模式, index=0的实体是在最右边, 放大时tx其实变成正数了(index向右移动了);
     // 这里tx为负数说明绘制内容往左移动, 意味着offset更大, 所以减去负数
-    offset.x -= tx;
-    
+    if (self.recentFirst) {
+        offset.x += tx;
+    }else {
+        offset.x -= tx;
+    }
     
     _needTriggerScrollGesture = NO;
     [self.scrollView setContentOffset:offset animated:NO];
     _needTriggerScrollGesture = YES;
     
+    _lastOffsetX = offset.x;
     _lastTx =  self.viewPixelHandler.gestureMatrix.tx;
     
     [self setNeedsDisplay];
-    
-    NSLog(@"最小index:%@, 最大index:%@",@(self.lowestVisibleXIndex), @(self.highestVisibleXIndex));
 }
 
 
 #pragma mark - CCProtocolChartDataProvider
 - (NSInteger)lowestVisibleXIndex {
-    CGPoint point = CGPointMake(self.viewPixelHandler.contentLeft, self.viewPixelHandler.contentBottom);
-    point = [self.transformer pixelToPoint:point forAnimationPhaseY:1];
-    
-    // 最小的索引是0
-    if (point.x <= 0) {
-        return 0;
+    if (self.recentFirst) {
+        CGPoint point = CGPointMake(self.viewPixelHandler.contentRight, self.viewPixelHandler.contentBottom);
+        point = [self.transformer pixelToPoint:point forAnimationPhaseY:1];
+        
+        // 最小的索引是0
+        if (point.x <= 0) {
+            return 0;
+        }
+        return ceil(point.x);
+        
+    }else {
+        CGPoint point = CGPointMake(self.viewPixelHandler.contentLeft, self.viewPixelHandler.contentBottom);
+        point = [self.transformer pixelToPoint:point forAnimationPhaseY:1];
+        
+        // 最小的索引是0
+        if (point.x <= 0) {
+            return 0;
+        }
+        return ceil(point.x);
     }
-    return ceil(point.x);
+    
 }
 
 - (NSInteger)highestVisibleXIndex {
-    CGPoint point = CGPointMake(self.viewPixelHandler.contentRight, self.viewPixelHandler.contentBottom);
-    point = [self.transformer pixelToPoint:point forAnimationPhaseY:1];
+    if (self.recentFirst) {
+        CGPoint point = CGPointMake(self.viewPixelHandler.contentLeft, self.viewPixelHandler.contentBottom);
+        point = [self.transformer pixelToPoint:point forAnimationPhaseY:1];
+        
+        // 最大可见的索引不会大于数据源最大索引
+        NSInteger index = floor(point.x);
+        
+        return MIN(self.data.maxX, index);
+    }else {
+        CGPoint point = CGPointMake(self.viewPixelHandler.contentRight, self.viewPixelHandler.contentBottom);
+        point = [self.transformer pixelToPoint:point forAnimationPhaseY:1];
+        
+        // 最大可见的索引不会大于数据源最大索引
+        NSInteger index = floor(point.x);
+        
+        return MIN(self.data.maxX, index);
+    }
     
-    // 最大可见的索引不会大于数据源最大索引
-    NSInteger index = floor(point.x);
-    
-    return MIN(self.data.maxX, index);
 }
 
 @end

@@ -60,7 +60,7 @@
     return CGRectApplyAffineTransform(pixel, self.pixelToValueMatrix);
 }
 
-- (CGAffineTransform)calcMatrixWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY xSpace:(CGFloat)xSpace {
+- (CGAffineTransform)calcMatrixWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY xSpace:(CGFloat)xSpace rentFirst:(BOOL)recentFirst {
 //    // 相邻两个元素之间中心轴的距离, 默认是8个点
 //    CGAffineTransform transform = CGAffineTransformMakeScale(8, 1);
 //
@@ -84,25 +84,31 @@
 //    // 算法原理如下:
 //    // 平移量 = -minY*transform.d (这里对缩放后进行平移操作, 只需要传入最小值即可)
 //    transform = CGAffineTransformTranslate(transform, 0, -minY);
-    
-    CGAffineTransform transform = [self calcMatrixOrientationX:xSpace];
+    CGAffineTransform transform = [self _calcMatrixOrientationX:xSpace recentFirst:recentFirst];
     transform = CGAffineTransformConcat(transform, [self calcMatrixOrientationYWithMinValue:minY maxValue:maxY]);
     
     return transform;
 }
 
-- (CGAffineTransform)calcMatrixOrientationX:(CGFloat)space {
-    // 相邻两个元素之间中心轴的距离
-    CGAffineTransform transform = CGAffineTransformMakeScale(space, 1);
+- (CGAffineTransform)_calcMatrixOrientationX:(CGFloat)space recentFirst:(BOOL)recentFirst {
     
-    // 注意这里都是在做了缩放之后的平移, 所以n表示n个单位, 对应的真实数据如下:
-    // x方向对应的实际数值是n*transform.a
-    // y方向对应的实际数值是n*transform.d
-    //
-    // 全部元素中心轴向右平移0.5个单位, 确保第一个数据实体不会和y轴重叠
-    transform = CGAffineTransformTranslate(transform, CC_X_INIT_TRANSLATION, 0);
-    
-    return transform;
+    if (recentFirst) {
+        CGAffineTransform transform = CGAffineTransformMakeScale(-space, 1);
+        // 如果是recentFirst模式, 最右边的实体序号是1, 序号向左递增, 所以矩阵需要向左平移, 下面tx必须是负数
+        transform = CGAffineTransformTranslate(transform, CC_X_INIT_TRANSLATION, 0);
+        return transform;
+    }else {
+        // 相邻两个元素之间中心轴的距离
+        CGAffineTransform transform = CGAffineTransformMakeScale(space, 1);
+        
+        // 注意这里都是在做了缩放之后的平移, 所以n表示n个单位, 对应的真实数据如下:
+        // x方向对应的实际数值是n*transform.a
+        // y方向对应的实际数值是n*transform.d
+        
+        // 全部元素中心轴向右平移0.5个单位, 确保第一个数据实体不会和y轴重叠
+        transform = CGAffineTransformTranslate(transform, CC_X_INIT_TRANSLATION, 0);
+        return transform;
+    }
 }
 
 - (CGAffineTransform)calcMatrixOrientationYWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY {

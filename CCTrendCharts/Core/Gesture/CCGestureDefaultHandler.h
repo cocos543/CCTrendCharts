@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 初始化方法
 - (instancetype)initWithTransformer:(CCChartViewPixelHandler *)viewPixelHandler;
 
+
 @end
 
 NS_ASSUME_NONNULL_END

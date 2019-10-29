@@ -39,7 +39,7 @@
 - (void)pinchGestureStateChanging:(UIPinchGestureRecognizer *)gr;
 
 /// 滚动事件
-- (void)didScroll:(CGPoint)offset;
+- (void)didScrollIncrementOffsetX:(CGFloat)incrementOffsetX;
 
 
 

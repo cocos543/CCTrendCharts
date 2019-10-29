@@ -9,7 +9,7 @@
 #import "CCGestureDefaultHandler.h"
 
 @interface CCGestureDefaultHandler() {
-    
+
 }
 
 @end
@@ -26,6 +26,7 @@
 }
 
 
+
 - (void)longPressGestureStateChanging:(UILongPressGestureRecognizer *)gr {
 
 }
@@ -34,12 +35,14 @@
     
 }
 
-- (void)didScroll:(CGPoint)offset {
+- (void)didScrollIncrementOffsetX:(CGFloat)incrementOffsetX {
     CGAffineTransform matrix =  self.viewPixelHandler.gestureMatrix;
-    // offset是正数时说明视图正在显示右边内容, 所以数据绘制时需要左平移
-    matrix.tx = -offset.x;
+    
+    //offsetX是正数时, 说明视图正在显示左侧内容, 所以数据绘制时需要左平移, 所以需要 -= incrementOffsetX
+    matrix.tx -= incrementOffsetX;
     self.viewPixelHandler.gestureMatrix = matrix;
 }
+
 
 
 - (void)doubleTapGestureStateChanging:(UITapGestureRecognizer *)gr {
