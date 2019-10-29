@@ -8,9 +8,10 @@
 
 #import "CCChartViewBase.h"
 
-
 @interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate, CCGestureHandlerDelegate> {
     BOOL _needsPrepare;
+    NSInteger _willPreparePage;
+    
     BOOL _needUpdateForRecentFirst;
     BOOL _needTriggerScrollGesture;
     CGFloat _lastTx;
@@ -143,10 +144,6 @@
     self.scrollView.contentOffset = CGPointMake(chartTX, 0);
 }
 
-- (void)_setChartViewTX:(CGFloat)scrollX {
-    
-}
-
 
 
 #pragma mark - Non-SYS-func
@@ -229,14 +226,16 @@
     [self.transformer refreshOffsetMatrix:transform];
 }
 
-- (void)setNeedsPrepareChart {
+- (void)setNeedsPrepareChart:(NSInteger)page {
     _needsPrepare = YES;
+    _willPreparePage = page;
     [self setNeedsDisplay];
 }
 
 - (void)prepareChart {
     // 基类只是简单设置数据状态
     _needsPrepare = NO;
+    self.data = [self.dataSource chartDataForPage:_willPreparePage inView:self];
     
     [self.data calcMinMaxStart:self.data.minX End:self.data.maxX];
     
@@ -433,6 +432,8 @@
     _lastTx =  self.viewPixelHandler.gestureMatrix.tx;
     
     [self setNeedsDisplay];
+    
+    
 }
 
 #pragma mark - Gesture-func
@@ -442,8 +443,6 @@
 
 #pragma mark - CCGestureHandlerDelegate
 - (void)gestureDidPinchInLocation:(CGPoint)point matrix:(CGAffineTransform)matrix {
-     CGFloat totalWidth = [self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION * 2];
-    
     [self _updateScrollContent];
     
     // 计算出缩放之后内容整体平移了多少, 同步scroll view的contentOffset
@@ -460,6 +459,10 @@
     _needTriggerScrollGesture = YES;
     
     _lastTx =  self.viewPixelHandler.gestureMatrix.tx;
+    
+    [self setNeedsDisplay];
+    
+    NSLog(@"最小index:%@, 最大index:%@",@(self.lowestVisibleXIndex), @(self.highestVisibleXIndex));
 }
 
 

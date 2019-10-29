@@ -32,4 +32,8 @@
 @property (nonatomic, assign) NSInteger xIndex;
 
 
+/// 每一个实体都有各自的时间信息
+@property (nonatomic, assign) NSTimeInterval timeInt;
+
+
 @end

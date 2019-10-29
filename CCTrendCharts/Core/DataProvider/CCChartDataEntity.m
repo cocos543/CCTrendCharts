@@ -12,6 +12,7 @@
 @synthesize value = _value;
 @synthesize xIndex = _xIndex;
 @synthesize data = _data;
+@synthesize timeInt = _timeInt;
 
 - (instancetype)init {
     return [self initWithValue:0 xIndex:0 data:nil];

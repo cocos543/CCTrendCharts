@@ -28,7 +28,7 @@
         _minX  = NSIntegerMax;
         _maxX  = NSIntegerMin;
 
-        [self calcMinMaxStart:-1 End:-1];
+        [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
     }
 
     return self;

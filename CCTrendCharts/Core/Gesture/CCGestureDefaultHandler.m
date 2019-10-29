@@ -73,8 +73,6 @@
         matrix = CGAffineTransformTranslate(matrix, -scaleCenter.x, -scaleCenter.y);
         self.viewPixelHandler.gestureMatrix = CGAffineTransformConcat(self.viewPixelHandler.gestureMatrix, matrix);
         
-        [self.baseView setNeedsDisplay];
-        
         // 还原缩放值, 因为缩放的部分已经叠加到gestureMatrix矩阵里了.
         gr.scale = 1.0;
         
