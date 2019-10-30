@@ -52,7 +52,12 @@
 /// 更新当前的modules, 防止x轴文案重叠
 - (void)calcModulusWith:(CGFloat)contentWidth xSpace:(CGFloat)space labelSize:(CGSize)size {
     // 计算出可见区域一共可以绘制多少个文案
-    NSInteger count = ceil(contentWidth / space);
+    NSInteger count = ceil(contentWidth / fabs(space));
+    
+    
+    // 为了避免label太密集, 这里假设label的宽度更长一下
+    CGSize hhh = [@"hhh" sizeWithAttributes:nil];
+    size.width += hhh.width;
     
     // 总宽度需要乘以放大系数
     self.modulus = MAX(ceil(count * size.width / contentWidth), self.minModulus);
