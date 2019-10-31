@@ -17,19 +17,24 @@
         _dataSets = dataSets;
         _xSpace = 8;
         
-        _maxY = CGFLOAT_MIN;
-        _minY = CGFLOAT_MAX;
-        
-        _maxX = NSIntegerMin;
-        _minX = NSIntegerMax;
+        [self resetValue];
         
         [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
     }
     return self;
 }
 
-- (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end {
+- (void)resetValue {
+    _maxY = CGFLOAT_MIN;
+    _minY = CGFLOAT_MAX;
     
+    _maxX = NSIntegerMin;
+    _minX = NSIntegerMax;
+}
+
+- (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end {
+    // 重置最大最小值
+    [self resetValue];
     for (id<CCProtocolChartDataSet> dataSet in self.dataSets) {
         
         [dataSet calcMinMaxStart:start End:end];

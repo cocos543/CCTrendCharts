@@ -17,6 +17,10 @@
 /// @param matrix 缩放的内容
 - (void)gestureDidPinchInLocation:(CGPoint)point matrix:(CGAffineTransform)matrix;
 
+
+/// 进行滚动操作
+- (void)gestureDidPanIncrementOffset:(CGPoint)point matrix:(CGAffineTransform)matrix;
+
 @end
 
 

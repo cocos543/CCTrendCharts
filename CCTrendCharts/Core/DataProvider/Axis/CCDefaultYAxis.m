@@ -96,8 +96,8 @@
         return;
     }
     
-    self.axisMinValue = charData.minY;
-    self.axisMaxValue = charData.maxY;
+    _axisMinValue = charData.minY;
+    _axisMaxValue = charData.maxY;
     
     [self generateEntities];
 }

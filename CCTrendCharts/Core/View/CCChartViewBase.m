@@ -144,8 +144,7 @@
 - (void)_updateScrollContent {
     // 滚动区间大小计算公式:
     // 滚动视图内容宽度 = 绘制总长度 - 绘制区间宽度 + 滚动视图宽度
-    // 这里CC_X_INIT_TRANSLATION*2是为了让绘制的时候数据不要和绘制区间左右两边重合
-    CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION * 2]);
+    CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count]);
     CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
     self.scrollView.contentSize = CGSizeMake(needExtraWidth + self.bounds.size.width, 0);
 }
@@ -160,14 +159,18 @@
     // 如果视图属于最近信息优先显示的话, 还需要调整初始矩阵, 让最后一个元素在绘制区间里
     // 当前正在进行手势操作的, 表示正在浏览数据, 所以不应该重新计算手势矩阵了
     if (self.recentFirst && ![self.viewPixelHandler isGestureProcessing]) {
-        CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.maxX + CC_X_INIT_TRANSLATION * 2]);
+        CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count]);
         CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
 
-        [self _setScrollViewXOffset:needExtraWidth];
-
+        
         // recentFirst模式下, 初始矩阵的偏移量和scrollview的偏移量是不同步的, 所以需要重新更新一下lastTx
         self.viewPixelHandler.anInitMatrix = CGAffineTransformMakeTranslation(self.viewPixelHandler.contentWidth, 0);
         _lastTx =  self.viewPixelHandler.gestureMatrix.tx;
+        _lastOffsetX = needExtraWidth;
+        
+        _needTriggerScrollGesture = NO;
+        [self _setScrollViewXOffset:needExtraWidth];
+        _needTriggerScrollGesture = YES;
     }
 }
 
@@ -201,6 +204,7 @@
 - (void)_updateStandardMatrix {
     // 暂时只处理左轴
     CGAffineTransform transform = CGAffineTransformIdentity;
+    
     if (self.leftAxis) {
         transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue xSpace:self.data.xSpace rentFirst:self.recentFirst];
     } else if (self.rightAxis) {
@@ -217,25 +221,7 @@
     [self.transformer refreshOffsetMatrix:transform];
 }
 
-- (void)setNeedsPrepareChart:(NSInteger)page {
-    _needsPrepare    = YES;
-    _willPreparePage = page;
-    [self setNeedsDisplay];
-}
-
-- (void)prepareChart {
-    // 基类只是简单设置数据状态
-    _needsPrepare = NO;
-    self.data     = [self.dataSource chartDataForPage:_willPreparePage inView:self];
-
-    [self.data calcMinMaxStart:self.data.minX End:self.data.maxX];
-
-    // 将数据集的数据同步到X轴上
-    if (self.data.xVals) {
-        self.xAxis.entities = self.data.xVals;
-    }
-
-    // 计算出y轴上需要绘制的信息
+- (void)_calcYAxisMinMax {
     if (self.leftAxis) {
         if (!self.leftAxis.customValue) {
             [self.leftAxis calculateMinMax:self.data];
@@ -247,6 +233,32 @@
             [self.rightAxis calculateMinMax:self.data];
         }
     }
+}
+
+- (void)setNeedsPrepareChart:(NSInteger)page {
+    _needsPrepare    = YES;
+    _willPreparePage = page;
+    [self setNeedsDisplay];
+}
+
+- (void)prepareChart {
+    // 基类只是简单设置数据状态
+    _needsPrepare = NO;
+    self.data     = [self.dataSource chartDataForPage:_willPreparePage inView:self];
+
+    if (_willPreparePage == 0) {
+        [self.data calcMinMaxStart:self.data.minX End:self.data.maxX];
+    } else {
+        [self.data calcMinMaxStart:self.lowestVisibleXIndex End:self.highestVisibleXIndex];
+    }
+
+    // 将数据集的数据同步到X轴上
+    if (self.data.xVals) {
+        self.xAxis.entities = self.data.xVals;
+    }
+
+    // 计算出y轴上需要绘制的信息
+    [self _calcYAxisMinMax];
 
     // 全部数据计算好之后, 重新调整一下绘制区域的大小
     [self _calcViewPixelOffset];
@@ -258,6 +270,7 @@
     // 根据当前数据集, 设置好滚动区域长度
     [self _updateScrollContent];
 
+    // 确定好绘制的内容和滚动区域一起同步偏移的量, 完成同步滚动.
     [self _calcViewPixelInitMatrix];
 }
 
@@ -330,13 +343,7 @@
     if (!_needTriggerScrollGesture) {
         return;
     }
-
     [self.gestureHandler didScrollIncrementOffsetX:scrollView.contentOffset.x - _lastOffsetX];
-
-    _lastOffsetX = scrollView.contentOffset.x;
-    _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
-
-    [self setNeedsDisplay];
 }
 
 #pragma mark - Gesture-func
@@ -345,6 +352,18 @@
 }
 
 #pragma mark - CCGestureHandlerDelegate
+- (void)gestureDidPanIncrementOffset:(CGPoint)point matrix:(CGAffineTransform)matrix {
+    _lastOffsetX = self.scrollView.contentOffset.x;
+    _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
+
+
+    // 滚动之后, 重新计算y轴信息
+    [self.data calcMinMaxStart:self.lowestVisibleXIndex End:self.highestVisibleXIndex];
+    [self _calcYAxisMinMax];
+    [self _updateStandardMatrix];
+    [self setNeedsDisplay];
+}
+
 - (void)gestureDidPinchInLocation:(CGPoint)point matrix:(CGAffineTransform)matrix {
     CGPoint offset = self.scrollView.contentOffset;
     if (self.recentFirst) {
@@ -355,7 +374,6 @@
          实体左移值 = 滚动宽度变化值 - 实体右移值
          offsetX = offsetX + 实体左移值
          */
-
         static CGFloat widthChange;
         widthChange = self.scrollView.contentSize.width;
 
@@ -367,13 +385,12 @@
         // 得到总长度变化了多少
         widthChange = self.scrollView.contentSize.width - widthChange;
 
-        CGFloat txchange = self.viewPixelHandler.gestureMatrix.tx - _lastTx;
-        printf("txchange = %f\n", txchange);
+        CGFloat txchange   = self.viewPixelHandler.gestureMatrix.tx - _lastTx;
+
         // 左侧增量
         CGFloat leftChange = widthChange - txchange;
         offset.x += leftChange;
     } else {
-        
         _needTriggerScrollGesture = NO;
         [self _updateScrollContent];
         _needTriggerScrollGesture = YES;
@@ -426,7 +443,7 @@
         // 最大可见的索引不会大于数据源最大索引
         NSInteger index = floor(point.x);
 
-        return MIN(self.data.maxX, index);
+        return MIN(self.data.xVals.count, index);
     } else {
         CGPoint point   = CGPointMake(self.viewPixelHandler.contentRight, self.viewPixelHandler.contentBottom);
         point = [self.transformer pixelToPoint:point forAnimationPhaseY:1];
@@ -434,7 +451,7 @@
         // 最大可见的索引不会大于数据源最大索引
         NSInteger index = floor(point.x);
 
-        return MIN(self.data.maxX, index);
+        return MIN(self.data.xVals.count, index);
     }
 }
 

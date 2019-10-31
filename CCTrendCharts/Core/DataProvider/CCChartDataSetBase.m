@@ -22,11 +22,8 @@
     if (self) {
         _yVals = yVals;
         _name  = name;
-        _minY  = CGFLOAT_MAX;
-        _maxY  = CGFLOAT_MIN;
-
-        _minX  = NSIntegerMax;
-        _maxX  = NSIntegerMin;
+        
+        [self resetValue];
 
         [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
     }
@@ -34,10 +31,20 @@
     return self;
 }
 
+- (void)resetValue {
+    _maxY = CGFLOAT_MIN;
+    _minY = CGFLOAT_MAX;
+    
+    _maxX = NSIntegerMin;
+    _minX = NSIntegerMax;
+}
+
 /**
  重新计算数据集中的最值
  */
 - (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end {
+    [self resetValue];
+    
     for (CCChartDataEntity *val in self.yVals) {
         if (val.xIndex < start || val.xIndex > end) {
             continue;

@@ -41,6 +41,10 @@
     //offsetX是正数时, 说明视图正在显示左侧内容, 所以数据绘制时需要左平移, 所以需要 -= incrementOffsetX
     matrix.tx -= incrementOffsetX;
     self.viewPixelHandler.gestureMatrix = matrix;
+    
+    if ([self.delegate respondsToSelector:@selector(gestureDidPanIncrementOffset:matrix:)]) {
+        [self.delegate gestureDidPanIncrementOffset:CGPointMake(incrementOffsetX, 0) matrix:matrix];
+    }
 }
 
 
