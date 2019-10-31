@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCChartData *)chartDataForPage:(NSUInteger)page inView:(CCChartViewBase *)view;
 
 
-/// 提供实时更新最后一个节点的数据
+/// 提供实时更新最后一个节点的数据, 一般用于实时k线这类需求
 - (CCChartData *)chartDataForRealTimeInView:(CCChartViewBase *)view;
 
 
@@ -50,6 +50,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 添加默认手势
 - (void)addDefualtGesture;
+
+
+/// 标记视图需要更新, 提供的最新数据将会直接覆盖到当前数据上, 新增的数组则会直接追加到整体数据的末尾
+- (void)setNeedsPrepareChartForRealTime;
 
 /**
  标记视图需要重新准备信息. 调用该方法并不会立即重新计算信息, 而是等到当前runloop周期结束之后(同setNeedsDisplay)
