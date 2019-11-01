@@ -22,10 +22,14 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.leftAxis = [[CCDefaultYAxis alloc] init];
+        self.leftAxis = [[CCDefaultYAxis alloc] initWithDependency:CCYAsixDependencyLeft];
+        self.rightAxis = [[CCDefaultYAxis alloc] initWithDependency:CCYAsixDependencyRight];
+        
         self.xAxis = [[CCDefaultXAxis alloc] init];
         
         _leftAxisrenderer = [[CCDefaultYAxisRenderer alloc] initWithAxis:self.leftAxis viewHandler:self.viewPixelHandler transform:self.transformer];
+        
+        _rightAxisrenderer = [[CCDefaultYAxisRenderer alloc] initWithAxis:self.rightAxis viewHandler:self.viewPixelHandler transform:self.transformer];
         
         _xAxisrenderer = [[CCDefaultXAxisRenderer alloc] initWithAxis:self.xAxis viewHandler:self.viewPixelHandler transform:self.transformer];
         

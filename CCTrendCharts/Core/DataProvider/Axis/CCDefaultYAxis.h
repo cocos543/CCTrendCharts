@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 根据轴最值, labelCount等参数, 生成y轴实体数据, 有需要可以重写
 - (void)generateEntities;
 
+- (instancetype)initWithDependency:(CCYAsixDependency)dependency NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init NS_UNAVAILABLE;
+
 // 确定y轴数据格式
 @property (nonatomic, strong) NSNumberFormatter *formatter;
 

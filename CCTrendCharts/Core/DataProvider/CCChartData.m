@@ -17,8 +17,6 @@
         _dataSets = dataSets;
         _xSpace = 8;
         
-        [self resetValue];
-        
         [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
     }
     return self;
@@ -35,6 +33,7 @@
 - (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end {
     // 重置最大最小值
     [self resetValue];
+    
     for (id<CCProtocolChartDataSet> dataSet in self.dataSets) {
         
         [dataSet calcMinMaxStart:start End:end];
@@ -56,5 +55,11 @@
     }
 }
 
+#pragma mark - Getter & Setter
+- (void)setDataSets:(NSArray<id<CCProtocolChartDataSet>> *)dataSets {
+    _dataSets = dataSets;
+    
+    [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
+}
 
 @end

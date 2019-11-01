@@ -40,6 +40,13 @@
     
     CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
     
+    if (self.axis.dependency == CCYAsixDependencyRight) {
+        // 先把当前图层的内容画上去, 在原来的基础上进行绘制
+        UIImage *oldImg = [UIImage imageWithCGImage:(__bridge CGImageRef)contentLayer.contents scale:CCBaseUtility.currentScale orientation:UIImageOrientationUp];
+        [oldImg drawAtPoint:CGPointZero];
+    }
+    
+    
     CGContextSaveGState(ctx);
     {
         CGContextSetStrokeColorWithColor(ctx, self.axis.axisColor.CGColor);
@@ -91,26 +98,23 @@
         // 确定文案x位置
         CGFloat xPos = 0;
         CGPoint anchor = CGPointZero;
-        if (self.axis.labelPosition == CCYAxisLabelPositionOutside) {
-            
-            if (self.axis.dependency == CCYAsixDependencyLeft) {
-                
+        if (self.axis.dependency == CCYAsixDependencyLeft) {
+            if (self.axis.labelPosition == CCYAxisLabelPositionOutside) {
                 xPos = self.viewPixelHandler.contentLeft - self.axis.xLabelOffset;
                 anchor = CGPointMake(1, 0.5);
-            }else if (self.axis.dependency == CCYAsixDependencyRight) {
-                
-            }
-            
-        }else if (self.axis.labelPosition == CCYAxisLabelPositionInside) {
-            
-            if (self.axis.dependency == CCYAsixDependencyLeft) {
-                
+            }else if (self.axis.labelPosition == CCYAxisLabelPositionInside) {
                 xPos = self.viewPixelHandler.contentLeft + self.axis.xLabelOffset;
                 anchor = CGPointMake(0, 0.5);
-            }else if (self.axis.dependency == CCYAsixDependencyRight) {
-                
             }
             
+        }else if (self.axis.dependency == CCYAsixDependencyRight) {
+            if (self.axis.labelPosition == CCYAxisLabelPositionOutside) {
+                xPos = self.viewPixelHandler.contentRight + self.axis.xLabelOffset;
+                anchor = CGPointMake(0, 0.5);
+            }else if (self.axis.labelPosition == CCYAxisLabelPositionInside) {
+                xPos = self.viewPixelHandler.contentRight - self.axis.xLabelOffset;
+                anchor = CGPointMake(1, 0.5);
+            }
         }
         
         // 确定文案y位置
@@ -123,11 +127,17 @@
             }
             
             // 临时代码, 绘制地基
-            CGContextMoveToPoint(ctx, self.viewPixelHandler.contentLeft, position.y);
-            CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentLeft + 5, position.y);
+            if (self.axis.dependency == CCYAsixDependencyLeft) {
+                CGContextMoveToPoint(ctx, self.viewPixelHandler.contentLeft, position.y);
+                CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentLeft + 5, position.y);
+            }else {
+                CGContextMoveToPoint(ctx, self.viewPixelHandler.contentRight, position.y);
+                CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentRight - 5, position.y);
+            }
+            
             
             NSString *text = [self.axis.formatter stringFromNumber:num];
-            [text drawTextIn:ctx x:position.x y:position.y anchor:anchor attributes:@{NSFontAttributeName: self.axis.font, NSForegroundColorAttributeName: self.axis.labelColor}];
+            [text drawTextIn:ctx x:position.x y:position.y + self.axis.yLabelOffset anchor:anchor attributes:@{NSFontAttributeName: self.axis.font, NSForegroundColorAttributeName: self.axis.labelColor}];
         }
         CGContextStrokePath(ctx);
     }

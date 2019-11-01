@@ -29,6 +29,10 @@
  */
 @property (nonatomic, readonly) CCChartTransformer *transformer;
 
+
+/// 专供右轴使用的变形器
+@property (nonatomic, readonly) CCChartTransformer *rightTransformer;
+
 /**
  提供Y轴上文案的信息
  */

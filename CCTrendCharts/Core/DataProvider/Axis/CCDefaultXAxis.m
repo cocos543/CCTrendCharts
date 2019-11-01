@@ -9,6 +9,11 @@
 #import "CCDefaultXAxis.h"
 #import "CCXAxisDefaultFormatter.h"
 
+@interface CCDefaultXAxis() {
+    BOOL _customRequireSize;
+}
+@end
+
 @implementation CCDefaultXAxis
 
 @synthesize axisColor = _axisColor;
@@ -18,6 +23,7 @@
 //@synthesize labelMaxLine = _labelMaxLine;
 @synthesize xLabelOffset = _xLabelOffset;
 @synthesize yLabelOffset = _yLabelOffset;
+@synthesize requireSize = _requireSize;
 
 - (instancetype)init {
     self = [super init];
@@ -38,17 +44,26 @@
 }
 
 - (CGSize)requireSize {
+    if (_customRequireSize) {
+        return _requireSize;
+    }
+    
     if (self.entities.count <= 0) {
         return CGSizeZero;
     }
     
-    NSString *maxLabel = [self.formatter stringForIndex:0 origin:self.entities[self.entities.count - 1]];
+    NSString *maxLabel = [self.formatter stringForIndex:0 origin:self.entities[0]];
     
-    CGSize size = [maxLabel sizeWithAttributes:@{NSFontAttributeName: self.font}];
+    CGSize size = [maxLabel sizeWithAttributes:@{NSFontAttributeName:self.font}];
     size.width += self.xLabelOffset;
     size.height += self.yLabelOffset;
     
     return size;
+}
+
+- (void)setRequireSize:(CGSize)requireSize {
+    _customRequireSize = YES;
+    _requireSize = requireSize;
 }
 
 

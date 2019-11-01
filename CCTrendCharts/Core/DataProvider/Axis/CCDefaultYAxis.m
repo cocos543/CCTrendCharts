@@ -8,33 +8,41 @@
 
 #import "CCDefaultYAxis.h"
 
+@interface CCDefaultYAxis () {
+    BOOL _customRequireSize;
+}
+
+@end
+
 @implementation CCDefaultYAxis
 
-@synthesize font = _font;
-@synthesize labelColor = _labelColor;
+@synthesize font          = _font;
+@synthesize labelColor    = _labelColor;
 
-@synthesize axisColor = _axisColor;
+@synthesize axisColor     = _axisColor;
 @synthesize axisLineWidth = _axisLineWidth;
 //@synthesize labelMaxLine = _labelMaxLine;
-@synthesize xLabelOffset = _xLabelOffset;
-@synthesize yLabelOffset = _yLabelOffset;
+@synthesize xLabelOffset  = _xLabelOffset;
+@synthesize yLabelOffset  = _yLabelOffset;
 
-@synthesize labelCount = _labelCount;
+@synthesize labelCount    = _labelCount;
+@synthesize requireSize   = _requireSize;
 
-
-- (instancetype)init {
+- (instancetype)initWithDependency:(CCYAsixDependency)dependency {
     self = [super init];
     if (self) {
-        _formatter = [[NSNumberFormatter alloc] init];
+        _formatter     = [[NSNumberFormatter alloc] init];
         _formatter.minimumFractionDigits = 2;
-        
-        _axisColor = UIColor.redColor;
+
+        _axisColor     = UIColor.redColor;
         _axisLineWidth = 1.f;
-        _labelColor = UIColor.grayColor;
+        _labelColor    = UIColor.grayColor;
         _font = [UIFont systemFontOfSize:10];
+
+        _xLabelOffset  = 5;
+        _yLabelOffset  = 0;
         
-        _xLabelOffset = 5;
-        _yLabelOffset = 0;
+        _dependency = dependency;
     }
     return self;
 }
@@ -42,21 +50,19 @@
 - (NSString *)description {
     if (self.dependency == CCYAsixDependencyLeft) {
         return [NSString stringWithFormat:@"left axis, min: %@, max: %@", @(self.axisMinValue), @(self.axisMaxValue)];
-    }else {
+    } else {
         return [NSString stringWithFormat:@"right axis, min: %@, max: %@", @(self.axisMinValue), @(self.axisMaxValue)];
     }
-    
 }
 
 - (void)setAxisMinValue:(CGFloat)axisMinValue {
     self.customValue = YES;
-    _axisMinValue = axisMinValue;
+    _axisMinValue    = axisMinValue;
 }
-
 
 - (void)setAxisMaxValue:(CGFloat)axisMaxValue {
     self.customValue = YES;
-    _axisMaxValue = axisMaxValue;
+    _axisMaxValue    = axisMaxValue;
 }
 
 - (NSInteger)entityCount {
@@ -64,14 +70,23 @@
 }
 
 - (CGSize)requireSize {
+    if (_customRequireSize) {
+        return _requireSize;
+    }
+
     NSString *maxLabel = [self.formatter stringFromNumber:@(self.axisMaxValue)];
-    
-    CGSize size = [maxLabel sizeWithAttributes:@{NSFontAttributeName: self.font}];
+
+    CGSize size        = [maxLabel sizeWithAttributes:@{ NSFontAttributeName: self.font }];
     //实际需要的尺寸应该是 字体宽度+移量
-    size.width += self.xLabelOffset;
+    size.width  += self.xLabelOffset;
     size.height += self.yLabelOffset;
-    
+
     return size;
+}
+
+- (void)setRequireSize:(CGSize)requireSize {
+    _customRequireSize = YES;
+    _requireSize       = requireSize;
 }
 
 - (NSInteger)labelCount {
@@ -95,35 +110,33 @@
     if (self.customValue) {
         return;
     }
-    
+
     _axisMinValue = charData.minY;
     _axisMaxValue = charData.maxY;
-    
+
     [self generateEntities];
 }
 
 - (void)generateEntities {
-    
     CGFloat range = fabs(self.axisMaxValue - self.axisMinValue);
     if (range == 0) {
         self.entities = @[];
         return;
     }
-    
+
     NSMutableArray *arr = @[@(self.axisMinValue)].mutableCopy;
-    
-    NSInteger count = self.labelCount - 2;
+
+    NSInteger count     = self.labelCount - 2;
     // 将range平均拆分成 count+1 份, 这样就可以均匀地插入count个实体了
-    CGFloat stepVal = range / (count + 1);
-    
+    CGFloat stepVal     = range / (count + 1);
+
     for (int i = 1; i <= count; i++) {
         [arr addObject:@(self.axisMinValue + (stepVal) * i)];
     }
-    
+
     [arr addObject:@(self.axisMaxValue)];
-    
+
     self.entities = arr;
 }
-
 
 @end

@@ -2,6 +2,8 @@
 //  CCChartViewBase.m
 //  CCTrendCharts
 //
+//  核心基类, 提供坐标系, 参考系, 基本轴绘制, 基本手势等功能
+//
 //  Created by Cocos on 2019/9/6.
 //  Copyright © 2019 Cocos. All rights reserved.
 //
@@ -10,7 +12,6 @@
 
 @interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate, CCGestureHandlerDelegate> {
     BOOL _needsPrepare;
-    NSInteger _willPreparePage;
 
     BOOL _needUpdateForRecentFirst;
     BOOL _needTriggerScrollGesture;
@@ -19,6 +20,8 @@
     CGFloat _lastTx;
     // 记录 scroll最后的偏移量
     CGFloat _lastOffsetX;
+    // 记录 最后一次更新数据源之前的数据总数
+    NSInteger _lastXValsCount;
 }
 
 /**
@@ -59,6 +62,7 @@
 @synthesize rightAxis        = _rightAxis;
 @synthesize viewPixelHandler = _viewPixelHandler;
 @synthesize transformer      = _transformer;
+@synthesize rightTransformer = _rightTransformer;
 
 // 渲染组件变量由子类合成
 @dynamic renderer;
@@ -85,7 +89,10 @@
         [_scrollView addGestureRecognizer:twoFingerPan];
 
         _viewPixelHandler         = [[CCChartViewPixelHandler alloc] init];
+        
         _transformer              = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
+        _rightTransformer         = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
+        
         _gestureHandler           = [[CCGestureDefaultHandler alloc] initWithTransformer:_viewPixelHandler];
         _gestureHandler.baseView  = self;
         _gestureHandler.delegate  = self;
@@ -158,19 +165,31 @@
 - (void)_calcViewPixelInitMatrix {
     // 如果视图属于最近信息优先显示的话, 还需要调整初始矩阵, 让最后一个元素在绘制区间里
     // 当前正在进行手势操作的, 表示正在浏览数据, 所以不应该重新计算手势矩阵了
-    if (self.recentFirst && ![self.viewPixelHandler isGestureProcessing]) {
-        CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count]);
-        CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
+    if (self.recentFirst) {
+        if (![self.viewPixelHandler isGestureProcessing]) {
+            CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count]);
+            CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
 
-        
-        // recentFirst模式下, 初始矩阵的偏移量和scrollview的偏移量是不同步的, 所以需要重新更新一下lastTx
-        self.viewPixelHandler.anInitMatrix = CGAffineTransformMakeTranslation(self.viewPixelHandler.contentWidth, 0);
-        _lastTx =  self.viewPixelHandler.gestureMatrix.tx;
-        _lastOffsetX = needExtraWidth;
-        
-        _needTriggerScrollGesture = NO;
-        [self _setScrollViewXOffset:needExtraWidth];
-        _needTriggerScrollGesture = YES;
+            // recentFirst模式下, 初始矩阵的偏移量和scrollview的偏移量是不同步的, 所以需要重新更新一下lastTx
+            self.viewPixelHandler.anInitMatrix = CGAffineTransformMakeTranslation(self.viewPixelHandler.contentWidth, 0);
+            _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
+            _lastOffsetX = needExtraWidth;
+
+            _needTriggerScrollGesture = NO;
+            [self _setScrollViewXOffset:needExtraWidth];
+            _needTriggerScrollGesture = YES;
+        } else {
+            // 处于手势操作中的视图, 数据源变动之后, 需要动态调整scrollview 的 offset
+            CGFloat incrementWidth = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count - _lastXValsCount]);
+
+            _needTriggerScrollGesture = NO;
+            [self _setScrollViewXOffset:self.scrollView.contentOffset.x + incrementWidth];
+            _needTriggerScrollGesture = YES;
+            _lastOffsetX = self.scrollView.contentOffset.x;
+        }
+    } else {
+        // 触发一次滚动代理事件, 计算出正确的y轴信息
+        [self scrollViewDidScroll:self.scrollView];
     }
 }
 
@@ -188,11 +207,18 @@
         if (self.leftAxis.labelPosition == CCYAxisLabelPositionOutside) {
             offsetLeft = size.width;
         } else if (self.leftAxis.labelPosition == CCYAxisLabelPositionInside) {
-            offsetLeft = 0.f;
+            offsetLeft = 0;
         }
     }
 
     if (self.rightAxis) {
+        size = self.rightAxis.requireSize;
+        
+        if (self.rightAxis.labelPosition == CCYAxisLabelPositionOutside) {
+            offsetRight = size.width;
+        } else if (self.rightAxis.labelPosition == CCYAxisLabelPositionInside) {
+            offsetRight = 0;
+        }
     }
 
     size         = self.xAxis.requireSize;
@@ -204,13 +230,16 @@
 - (void)_updateStandardMatrix {
     // 暂时只处理左轴
     CGAffineTransform transform = CGAffineTransformIdentity;
-    
+
     if (self.leftAxis) {
         transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue xSpace:self.data.xSpace rentFirst:self.recentFirst];
-    } else if (self.rightAxis) {
+        [self.transformer refreshMatrix:transform];
     }
-
-    [self.transformer refreshMatrix:transform];
+    
+    if (self.rightAxis) {
+        transform = [self.transformer calcMatrixWithMinValue:self.rightAxis.axisMinValue maxValue:self.rightAxis.axisMaxValue xSpace:self.data.xSpace rentFirst:self.recentFirst];
+        [self.rightTransformer refreshMatrix:transform];
+    }
 }
 
 - (void)_updateOffsetMatrix {
@@ -219,6 +248,7 @@
     // 计算偏差矩阵
     transform = CGAffineTransformMakeTranslation(self.viewPixelHandler.offsetLeft, self.viewPixelHandler.viewHeight - self.viewPixelHandler.offsetBottom);
     [self.transformer refreshOffsetMatrix:transform];
+    [self.rightTransformer refreshOffsetMatrix:transform];
 }
 
 - (void)_calcYAxisMinMax {
@@ -235,22 +265,20 @@
     }
 }
 
-- (void)setNeedsPrepareChart:(NSInteger)page {
-    _needsPrepare    = YES;
-    _willPreparePage = page;
+- (void)setNeedsPrepareChart {
+    _needsPrepare = YES;
     [self setNeedsDisplay];
 }
 
 - (void)prepareChart {
-    // 基类只是简单设置数据状态
-    _needsPrepare = NO;
-    self.data     = [self.dataSource chartDataForPage:_willPreparePage inView:self];
+    _lastXValsCount = self.data.xVals.count;
 
-    if (_willPreparePage == 0) {
-        [self.data calcMinMaxStart:self.data.minX End:self.data.maxX];
-    } else {
-        [self.data calcMinMaxStart:self.lowestVisibleXIndex End:self.highestVisibleXIndex];
-    }
+    // 基类只是简单设置数据状态
+    _needsPrepare   = NO;
+    self.data       = [self.dataSource chartDataInView:self];
+
+    // 这里是为了让后面y轴文案能得到全部数据的最大最小值, 方便_calcViewPixelOffset一次性计算出一个合适值
+    [self.data calcMinMaxStart:self.data.minX End:self.data.maxX];
 
     // 将数据集的数据同步到X轴上
     if (self.data.xVals) {
@@ -309,6 +337,8 @@
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
 
     [self.leftAxisrenderer renderAxisLine:self.yAxisLayer];
+    [self.rightAxisrenderer renderAxisLine:self.yAxisLayer];
+    
     [self.xAxisrenderer renderAxisLine:self.xAxisLayer];
 
     if (self.xAxis.entities) {
@@ -329,11 +359,6 @@
 }
 
 #pragma mark - Drawing
-
-/**
- 下面的代码都是测试用的, 不一定会被调用, 后期会删除
-
- */
 - (void)drawRect:(CGRect)rect {
     NSLog(@"drawRect");
 }
@@ -355,7 +380,6 @@
 - (void)gestureDidPanIncrementOffset:(CGPoint)point matrix:(CGAffineTransform)matrix {
     _lastOffsetX = self.scrollView.contentOffset.x;
     _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
-
 
     // 滚动之后, 重新计算y轴信息
     [self.data calcMinMaxStart:self.lowestVisibleXIndex End:self.highestVisibleXIndex];

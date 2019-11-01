@@ -66,4 +66,11 @@
     }
 }
 
+#pragma mark - Setter & Getter
+- (void)setYVals:(NSArray<CCChartDataEntity *> *)yVals {
+    _yVals = yVals;
+
+    [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
+}
+
 @end

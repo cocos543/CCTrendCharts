@@ -20,8 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CCChartViewDataSource <NSObject>
 
 /// 分页提供数据
-/// @param page 页码
-- (CCChartData *)chartDataForPage:(NSUInteger)page inView:(CCChartViewBase *)view;
+- (CCChartData *)chartDataInView:(CCChartViewBase *)view;
 
 
 /// 提供实时更新最后一个节点的数据
@@ -54,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  标记视图需要重新准备信息. 调用该方法并不会立即重新计算信息, 而是等到当前runloop周期结束之后(同setNeedsDisplay)
  */
-- (void)setNeedsPrepareChart:(NSInteger)page;
+- (void)setNeedsPrepareChart;
 
 /**
  子类需要实现该方法, 为整个视图做好数据准备.

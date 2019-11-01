@@ -61,7 +61,6 @@
     
     // 总宽度需要乘以放大系数
     self.modulus = MAX(ceil(count * size.width / contentWidth), self.minModulus);
-    
 }
 
 @end

@@ -69,7 +69,8 @@ typedef NS_ENUM(NSUInteger, CCYAsixDependency) {
 @property (nonatomic, assign) CGFloat yLabelOffset;
 
 /// 返回轴上文案区域最大需要的尺寸
-@property (nonatomic, assign, readonly) CGSize requireSize;
+@property (nonatomic, assign, readwrite) CGSize requireSize;
+
 
 
 @end
