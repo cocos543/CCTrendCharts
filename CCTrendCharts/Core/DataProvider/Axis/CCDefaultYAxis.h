@@ -63,7 +63,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  return entities.count
  */
-
 @property (nonatomic, assign, readonly) NSInteger entityCount;
 
 

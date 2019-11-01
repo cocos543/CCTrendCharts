@@ -40,4 +40,10 @@
  */
 - (void)renderAxisLine:(CALayer *)contentLayer;
 
+
+
+/// 便捷渲染方法
+/// @param contentLayer 目标层
+- (void)beginRenderingInLayer:(CALayer *)contentLayer;
+
 @end

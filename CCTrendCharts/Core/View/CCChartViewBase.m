@@ -89,10 +89,10 @@
         [_scrollView addGestureRecognizer:twoFingerPan];
 
         _viewPixelHandler         = [[CCChartViewPixelHandler alloc] init];
-        
+
         _transformer              = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
         _rightTransformer         = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
-        
+
         _gestureHandler           = [[CCGestureDefaultHandler alloc] initWithTransformer:_viewPixelHandler];
         _gestureHandler.baseView  = self;
         _gestureHandler.delegate  = self;
@@ -213,7 +213,7 @@
 
     if (self.rightAxis) {
         size = self.rightAxis.requireSize;
-        
+
         if (self.rightAxis.labelPosition == CCYAxisLabelPositionOutside) {
             offsetRight = size.width;
         } else if (self.rightAxis.labelPosition == CCYAxisLabelPositionInside) {
@@ -235,7 +235,7 @@
         transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue xSpace:self.data.xSpace rentFirst:self.recentFirst];
         [self.transformer refreshMatrix:transform];
     }
-    
+
     if (self.rightAxis) {
         transform = [self.transformer calcMatrixWithMinValue:self.rightAxis.axisMinValue maxValue:self.rightAxis.axisMaxValue xSpace:self.data.xSpace rentFirst:self.recentFirst];
         [self.rightTransformer refreshMatrix:transform];
@@ -336,22 +336,13 @@
 
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
 
-    [self.leftAxisrenderer renderAxisLine:self.yAxisLayer];
-    [self.rightAxisrenderer renderAxisLine:self.yAxisLayer];
+    [self.leftAxisrenderer beginRenderingInLayer:self.yAxisLayer];
+    [self.rightAxisrenderer beginRenderingInLayer:self.yAxisLayer];
+
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
     
-    [self.xAxisrenderer renderAxisLine:self.xAxisLayer];
-
-    if (self.xAxis.entities) {
-        [self.xAxisrenderer renderLabels:self.xAxisLayer];
-    }
-
-    if (self.leftAxis.entities) {
-        [self.leftAxisrenderer renderLabels:self.yAxisLayer];
-    }
-
-    if (self.rightAxis.entities) {
-        [self.rightAxisrenderer renderLabels:self.yAxisLayer];
-    }
+    [self.xAxisrenderer beginRenderingInLayer:self.xAxisLayer];
 
     UIGraphicsEndImageContext();
 

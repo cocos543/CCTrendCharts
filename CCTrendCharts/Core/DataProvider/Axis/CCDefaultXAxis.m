@@ -9,36 +9,44 @@
 #import "CCDefaultXAxis.h"
 #import "CCXAxisDefaultFormatter.h"
 
-@interface CCDefaultXAxis() {
+@interface CCDefaultXAxis () {
     BOOL _customRequireSize;
 }
 @end
 
 @implementation CCDefaultXAxis
 
-@synthesize axisColor = _axisColor;
-@synthesize axisLineWidth = _axisLineWidth;
+@synthesize axisColor       = _axisColor;
+@synthesize axisLineWidth   = _axisLineWidth;
 @synthesize font = _font;
-@synthesize labelColor = _labelColor;
+@synthesize labelColor      = _labelColor;
 //@synthesize labelMaxLine = _labelMaxLine;
-@synthesize xLabelOffset = _xLabelOffset;
-@synthesize yLabelOffset = _yLabelOffset;
-@synthesize requireSize = _requireSize;
+@synthesize xLabelOffset    = _xLabelOffset;
+@synthesize yLabelOffset    = _yLabelOffset;
+@synthesize requireSize     = _requireSize;
+
+@synthesize gridColor       = _gridColor;
+@synthesize gridLineWidth   = _gridLineWidth;
+@synthesize gridLineEnabled = _gridLineEnabled;
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _axisColor = UIColor.blueColor;
-        _axisLineWidth = 1.f;
-        
+        _axisColor       = UIColor.blueColor;
+        _axisLineWidth   = 1.f;
+
+        _gridLineWidth   = 1.f;
+        _gridColor       = UIColor.lightGrayColor;
+        _gridLineEnabled = YES;
+
         _font = [UIFont systemFontOfSize:10];
-        _labelColor = UIColor.grayColor;
-        
-        _xLabelOffset = 0;
-        _yLabelOffset = 5;
-        
+        _labelColor      = UIColor.grayColor;
+
+        _xLabelOffset    = 0;
+        _yLabelOffset    = 5;
+
         // 设置默认的formatter对象
-        _formatter = [[CCXAxisDefaultFormatter alloc] initWithAxis:self];
+        _formatter       = [[CCXAxisDefaultFormatter alloc] initWithAxis:self];
     }
     return self;
 }
@@ -47,24 +55,23 @@
     if (_customRequireSize) {
         return _requireSize;
     }
-    
+
     if (self.entities.count <= 0) {
         return CGSizeZero;
     }
-    
+
     NSString *maxLabel = [self.formatter stringForIndex:0 origin:self.entities[0]];
-    
-    CGSize size = [maxLabel sizeWithAttributes:@{NSFontAttributeName:self.font}];
-    size.width += self.xLabelOffset;
+
+    CGSize size        = [maxLabel sizeWithAttributes:@{ NSFontAttributeName: self.font }];
+    size.width  += self.xLabelOffset;
     size.height += self.yLabelOffset;
-    
+
     return size;
 }
 
 - (void)setRequireSize:(CGSize)requireSize {
     _customRequireSize = YES;
-    _requireSize = requireSize;
+    _requireSize       = requireSize;
 }
-
 
 @end

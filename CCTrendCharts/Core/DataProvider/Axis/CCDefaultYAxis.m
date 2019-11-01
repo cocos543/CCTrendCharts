@@ -16,33 +16,41 @@
 
 @implementation CCDefaultYAxis
 
-@synthesize font          = _font;
-@synthesize labelColor    = _labelColor;
+@synthesize font            = _font;
+@synthesize labelColor      = _labelColor;
 
-@synthesize axisColor     = _axisColor;
-@synthesize axisLineWidth = _axisLineWidth;
+@synthesize axisColor       = _axisColor;
+@synthesize axisLineWidth   = _axisLineWidth;
 //@synthesize labelMaxLine = _labelMaxLine;
-@synthesize xLabelOffset  = _xLabelOffset;
-@synthesize yLabelOffset  = _yLabelOffset;
+@synthesize xLabelOffset    = _xLabelOffset;
+@synthesize yLabelOffset    = _yLabelOffset;
 
-@synthesize labelCount    = _labelCount;
-@synthesize requireSize   = _requireSize;
+@synthesize labelCount      = _labelCount;
+@synthesize requireSize     = _requireSize;
+
+@synthesize gridColor       = _gridColor;
+@synthesize gridLineWidth   = _gridLineWidth;
+@synthesize gridLineEnabled = _gridLineEnabled;
 
 - (instancetype)initWithDependency:(CCYAsixDependency)dependency {
     self = [super init];
     if (self) {
-        _formatter     = [[NSNumberFormatter alloc] init];
+        _formatter       = [[NSNumberFormatter alloc] init];
         _formatter.minimumFractionDigits = 2;
 
-        _axisColor     = UIColor.redColor;
-        _axisLineWidth = 1.f;
-        _labelColor    = UIColor.grayColor;
+        _axisColor       = UIColor.redColor;
+        _axisLineWidth   = 1.f;
+        _labelColor      = UIColor.grayColor;
         _font = [UIFont systemFontOfSize:10];
 
-        _xLabelOffset  = 5;
-        _yLabelOffset  = 0;
-        
-        _dependency = dependency;
+        _gridLineWidth   = 1.f;
+        _gridColor       = UIColor.lightGrayColor;
+        _gridLineEnabled = YES;
+
+        _xLabelOffset    = 5;
+        _yLabelOffset    = 0;
+
+        _dependency      = dependency;
     }
     return self;
 }
