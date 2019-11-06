@@ -16,7 +16,6 @@
 @protocol CCProtocolChartDataProvider <NSObject>
 @required
 //  getTransformer
-//
 
 // 数据源
 @property (nonatomic, readonly) CCChartData *data;

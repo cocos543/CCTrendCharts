@@ -54,11 +54,6 @@
         CGContextStrokePath(ctx);
     }
     CGContextRestoreGState(ctx);
-
-    CGImageRef img = CGBitmapContextCreateImage(ctx);
-
-    // 这里使用__bridge_transfer关键字, img引用计数-1, 所以不需要再调用release方法了
-    contentLayer.contents = (__bridge_transfer id)img;
 }
 
 - (void)renderGridLines:(CALayer *)contentLayer {
@@ -115,7 +110,7 @@
                 // 只绘制可视区域内的元素
                 if (position.x >= self.viewPixelHandler.contentLeft && position.x <= self.viewPixelHandler.contentRight) {
                     CGContextMoveToPoint(ctx, position.x, yPos);
-                    CGContextAddLineToPoint(ctx, position.x, yPos - 10);
+                    CGContextAddLineToPoint(ctx, position.x, yPos - 5);
                     //NSLog(@"x轴渲染层: 正在绘制第%@个中心轴地基, 坐标(%@,%@)", @(i), @(position.x), @(yPos));
 
                     if ([self.axis.formatter needToDrawLabelAt:i]) {

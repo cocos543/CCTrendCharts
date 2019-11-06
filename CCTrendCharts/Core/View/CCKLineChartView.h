@@ -8,9 +8,11 @@
 
 #import "CCChartViewBase.h"
 
+#import "CCDefaultCursor.h"
+
 #import "CCDefaultYAxisRenderer.h"
 #import "CCDefaultXAxisRenderer.h"
-
+#import "CCDefaultCursorRenderer.h"
 
 #import "CCProtocolKLineChartDataProvider.h"
 #import "CCKLineChartData.h"

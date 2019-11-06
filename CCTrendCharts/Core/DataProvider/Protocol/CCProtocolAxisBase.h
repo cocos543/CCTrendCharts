@@ -53,12 +53,12 @@ typedef NS_ENUM (NSUInteger, CCYAsixDependency) {
 @property (nonatomic, assign) CGFloat axisLineWidth;
 
 /**
- 轴上文案x方向偏移量
+ 轴上文案x方向偏移量. x轴默认是0, y轴默认是5.
  */
 @property (nonatomic, assign) CGFloat xLabelOffset;
 
 /**
- 轴上文案y方向偏移量, 负值表示向上偏移
+ 轴上文案y方向偏移量, 负值表示向上偏移. x轴默认是5, y轴默认是0.
  */
 @property (nonatomic, assign) CGFloat yLabelOffset;
 

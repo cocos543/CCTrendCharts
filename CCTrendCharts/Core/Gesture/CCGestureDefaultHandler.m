@@ -25,10 +25,30 @@
     return self;
 }
 
-
+- (CGPoint)_centerPoint:(UIGestureRecognizer *)gr {
+    CGPoint scaleCenter = [gr locationInView:self.baseView];
+    
+    scaleCenter.x = scaleCenter.x - self.viewPixelHandler.contentLeft;
+    scaleCenter.y = scaleCenter.y - self.viewPixelHandler.contentTop;
+    return scaleCenter;
+}
 
 - (void)longPressGestureStateChanging:(UILongPressGestureRecognizer *)gr {
-
+    // 缩放中心
+    CGPoint center = [self _centerPoint:gr];
+    if (gr.state == UIGestureRecognizerStateBegan) {
+        if ([self.delegate respondsToSelector:@selector(gestureDidLongPressInLocation:)]) {
+            [self.delegate gestureDidLongPressInLocation:center];
+        }
+    }else if (gr.state == UIGestureRecognizerStateChanged) {
+        if ([self.delegate respondsToSelector:@selector(gestureDidLongPressInLocation:)]) {
+            [self.delegate gestureDidLongPressInLocation:center];
+        }
+    }else if (gr.state == UIGestureRecognizerStateEnded) {
+        if ([self.delegate respondsToSelector:@selector(gestureDidEndLongPressInLocation:)]) {
+            [self.delegate gestureDidEndLongPressInLocation:center];
+        }
+    }
 }
 
 - (void)panGestureChange:(UIPanGestureRecognizer *)gr {
@@ -63,10 +83,7 @@
         
     }else if (gr.state == UIGestureRecognizerStateChanged) {
         // 缩放中心
-        CGPoint scaleCenter = [gr locationInView:self.baseView];
-        
-        scaleCenter.x = scaleCenter.x - self.viewPixelHandler.contentLeft;
-        scaleCenter.y = scaleCenter.y - self.viewPixelHandler.contentTop;
+        CGPoint scaleCenter = [self _centerPoint:gr];
         
         // 这里只关心x位置, 不关心y, 因为不打算支持y轴缩放
         // 围绕缩放中心进行缩放的算法如下:
@@ -98,5 +115,10 @@
     return pinchGR;
 }
 
+- (UILongPressGestureRecognizer *)longPressGesture {
+    UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureStateChanging:)];
+
+    return gr;
+}
 
 @end

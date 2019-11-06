@@ -15,14 +15,12 @@
 @end
 
 @implementation CCXAxisDefaultFormatter
-@synthesize axisInfo = _axisInfo;
 @synthesize modulusStartIndex = _modulusStartIndex;
 @synthesize minModulus = _minModulus;
 
-- (instancetype)initWithAxis:(id<CCProtocolAxisBase>)axisInfo {
+- (instancetype)init {
     self = [super init];
     if (self) {
-        _axisInfo = axisInfo;
         _modulusStartIndex = 0;
         _modulus  = 6;
     }
@@ -37,9 +35,6 @@
 }
 
 - (BOOL)needToDrawLabelAt:(NSInteger)index {
-    if (_axisInfo == nil) {
-        return YES;
-    }
 
     if (index >= self.modulusStartIndex &&
         (index - self.modulusStartIndex) % self.modulus == 0) {

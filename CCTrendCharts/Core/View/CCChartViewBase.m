@@ -45,9 +45,9 @@
 @property (nonatomic, strong) CAShapeLayer *highlightLayer;
 
 /**
- 网格图层
+ 指示器图层
  */
-@property (nonatomic, strong) CAShapeLayer *gridLinesLayer;
+@property (nonatomic, strong) CALayer *cursorLayer;
 
 /**
  提供横向滚动功能
@@ -60,15 +60,19 @@
 @synthesize xAxis            = _xAxis;
 @synthesize leftAxis         = _leftAxis;
 @synthesize rightAxis        = _rightAxis;
+@synthesize cursor           = _cursor;
 @synthesize viewPixelHandler = _viewPixelHandler;
 @synthesize transformer      = _transformer;
 @synthesize rightTransformer = _rightTransformer;
 
 // 渲染组件变量由子类合成
 @dynamic renderer;
-@dynamic leftAxisrenderer;
-@dynamic rightAxisrenderer;
-@dynamic xAxisrenderer;
+@dynamic leftAxisRenderer;
+@dynamic rightAxisRenderer;
+@dynamic xAxisRenderer;
+@dynamic markerRenderer;
+@dynamic cursorRenderer;
+
 @dynamic chartMinX;
 @dynamic chartMaxX;
 @dynamic chartMinY;
@@ -128,8 +132,9 @@
     l.text = @"testtets";
     [self.scrollView addSubview:l];
 
-    self.yAxisLayer.frame = frame;
-    self.xAxisLayer.frame = frame;
+    self.yAxisLayer.frame  = frame;
+    self.xAxisLayer.frame  = frame;
+    self.cursorLayer.frame = frame;
 }
 
 - (void)setNeedsDisplay {
@@ -325,6 +330,16 @@
     return _xAxisLayer;
 }
 
+- (CALayer *)cursorLayer {
+    if (!_cursorLayer) {
+        _cursorLayer = CALayer.layer;
+        _cursorLayer.zPosition = 888;
+        [self.layer addSublayer:_cursorLayer];
+    }
+
+    return _cursorLayer;
+}
+
 #pragma mark - CALayerDelegate
 - (void)displayLayer:(CALayer *)layer {
     if (_needsPrepare) {
@@ -336,13 +351,13 @@
 
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
 
-    [self.leftAxisrenderer beginRenderingInLayer:self.yAxisLayer];
-    [self.rightAxisrenderer beginRenderingInLayer:self.yAxisLayer];
+    [self.leftAxisRenderer beginRenderingInLayer:self.yAxisLayer];
+    [self.rightAxisRenderer beginRenderingInLayer:self.yAxisLayer];
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
-    
-    [self.xAxisrenderer beginRenderingInLayer:self.xAxisLayer];
+
+    [self.xAxisRenderer beginRenderingInLayer:self.xAxisLayer];
 
     UIGraphicsEndImageContext();
 
@@ -365,6 +380,7 @@
 #pragma mark - Gesture-func
 - (void)addDefualtGesture {
     [self addGestureRecognizer:self.gestureHandler.pinchGesture];
+    [self addGestureRecognizer:self.gestureHandler.longPressGesture];
 }
 
 #pragma mark - CCGestureHandlerDelegate
@@ -425,6 +441,16 @@
     _lastOffsetX = offset.x;
     _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
     [self setNeedsDisplay];
+}
+
+- (void)gestureDidLongPressInLocation:(CGPoint)point {
+    UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
+    [self.cursorRenderer beginRenderingInLayer:self.cursorLayer center:point];
+    UIGraphicsEndImageContext();
+}
+
+- (void)gestureDidEndLongPressInLocation:(CGPoint)point {
+    NSLog(@"结束长按");
 }
 
 #pragma mark - CCProtocolChartDataProvider

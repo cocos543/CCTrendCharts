@@ -15,9 +15,10 @@
 
 @implementation CCKLineChartView
 @synthesize renderer = _renderer;
-@synthesize leftAxisrenderer = _leftAxisrenderer;
-@synthesize rightAxisrenderer = _rightAxisrenderer;
-@synthesize xAxisrenderer = _xAxisrenderer;
+@synthesize leftAxisRenderer = _leftAxisRenderer;
+@synthesize rightAxisRenderer = _rightAxisRenderer;
+@synthesize xAxisRenderer = _xAxisRenderer;
+@synthesize cursorRenderer = _cursorRenderer;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -26,12 +27,21 @@
         self.rightAxis = [[CCDefaultYAxis alloc] initWithDependency:CCYAsixDependencyRight];
         
         self.xAxis = [[CCDefaultXAxis alloc] init];
+        self.cursor = [[CCDefaultCursor alloc] init];
         
-        _leftAxisrenderer = [[CCDefaultYAxisRenderer alloc] initWithAxis:self.leftAxis viewHandler:self.viewPixelHandler transform:self.transformer];
         
-        _rightAxisrenderer = [[CCDefaultYAxisRenderer alloc] initWithAxis:self.rightAxis viewHandler:self.viewPixelHandler transform:self.transformer];
         
-        _xAxisrenderer = [[CCDefaultXAxisRenderer alloc] initWithAxis:self.xAxis viewHandler:self.viewPixelHandler transform:self.transformer];
+        _leftAxisRenderer = [[CCDefaultYAxisRenderer alloc] initWithAxis:self.leftAxis viewHandler:self.viewPixelHandler transform:self.transformer];
+        
+        _rightAxisRenderer = [[CCDefaultYAxisRenderer alloc] initWithAxis:self.rightAxis viewHandler:self.viewPixelHandler transform:self.transformer];
+        
+        _xAxisRenderer = [[CCDefaultXAxisRenderer alloc] initWithAxis:self.xAxis viewHandler:self.viewPixelHandler transform:self.transformer];
+        
+        _cursorRenderer = [[CCDefaultCursorRenderer alloc] initWithCursor:self.cursor viewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
+        _cursorRenderer.leftAxis = self.leftAxis;
+        _cursorRenderer.rightAxis = self.rightAxis;
+        _cursorRenderer.xAxis = self.xAxis;
+        
         
         [self addDefualtGesture];
     }

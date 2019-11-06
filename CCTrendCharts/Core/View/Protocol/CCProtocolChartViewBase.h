@@ -12,9 +12,12 @@
 
 #import "CCProtocolTrendChartRenderer.h"
 #import "CCProtocolAxisRenderer.h"
+#import "CCProtocolCursorRenderer.h"
+#import "CCProtocolMarkerRenderer.h"
 
 #import "CCDefaultYAxis.h"
 #import "CCDefaultXAxis.h"
+#import "CCProtocolCursorBase.h"
 
 @protocol CCProtocolChartViewBase <CCProtocolBase>
 @required
@@ -45,6 +48,8 @@
  */
 @property (nonatomic, strong) CCDefaultXAxis *xAxis;
 
+@property (nonatomic, strong) id<CCProtocolCursorBase> cursor;
+
 /**
  渲染组件
  */
@@ -53,10 +58,14 @@
 /**
  这里视图类只需要关注渲染对象是否实现基础协议即可, 具体的渲染过程由渲染对象内部处理
  */
-@property (nonatomic, strong) id<CCProtocolAxisRenderer> xAxisrenderer;
+@property (nonatomic, strong) id<CCProtocolAxisRenderer> xAxisRenderer;
 
-@property (nonatomic, strong) id<CCProtocolAxisRenderer> leftAxisrenderer;
+@property (nonatomic, strong) id<CCProtocolAxisRenderer> leftAxisRenderer;
 
-@property (nonatomic, strong) id<CCProtocolAxisRenderer> rightAxisrenderer;
+@property (nonatomic, strong) id<CCProtocolAxisRenderer> rightAxisRenderer;
+
+@property (nonatomic, strong) id<CCProtocolMarkerRenderer> markerRenderer;
+
+@property (nonatomic, strong) id<CCProtocolCursorRenderer> cursorRenderer;
 
 @end

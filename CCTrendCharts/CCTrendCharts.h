@@ -22,3 +22,4 @@ FOUNDATION_EXPORT const unsigned char CCTrendChartsVersionString[];
 #import "CCBaseUtility.h"
 
 #import "CCKLineChartView.h"
+#import "CCXAxisFixedFormatter.h"

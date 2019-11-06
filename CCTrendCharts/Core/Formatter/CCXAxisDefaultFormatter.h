@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CCXAxisDefaultFormatter : NSObject <CCProtocolXAxisFormatterBase>
 
-- (instancetype)initWithAxis:(id<CCProtocolAxisBase>)axisInfo;
+- (instancetype)init;
 
 
 

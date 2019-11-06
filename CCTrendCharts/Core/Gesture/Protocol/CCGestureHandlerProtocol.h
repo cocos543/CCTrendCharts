@@ -21,6 +21,14 @@
 /// 进行滚动操作
 - (void)gestureDidPanIncrementOffset:(CGPoint)point matrix:(CGAffineTransform)matrix;
 
+
+/// 正在进行长按+滚动操作
+/// @param point 长按中心
+- (void)gestureDidLongPressInLocation:(CGPoint)point;
+
+/// 结束长按操作
+- (void)gestureDidEndLongPressInLocation:(CGPoint)point;
+
 @end
 
 
@@ -53,6 +61,9 @@
 
 /// 提供一个用于缩放的手势
 @property (nonatomic, readonly) UIPinchGestureRecognizer *pinchGesture;
+
+/// 提供一个长按的手势
+@property (nonatomic, readonly) UILongPressGestureRecognizer *longPressGesture;
 
 @property (nonatomic, weak) id<CCGestureHandlerDelegate>delegate;
 

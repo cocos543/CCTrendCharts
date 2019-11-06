@@ -36,7 +36,7 @@
         _axisLineWidth   = 1.f;
 
         _gridLineWidth   = 1.f;
-        _gridColor       = UIColor.lightGrayColor;
+        _gridColor       = [UIColor.lightGrayColor colorWithAlphaComponent:0.2];
         _gridLineEnabled = YES;
 
         _font = [UIFont systemFontOfSize:10];
@@ -46,7 +46,7 @@
         _yLabelOffset    = 5;
 
         // 设置默认的formatter对象
-        _formatter       = [[CCXAxisDefaultFormatter alloc] initWithAxis:self];
+        _formatter       = [[CCXAxisDefaultFormatter alloc] init];
     }
     return self;
 }

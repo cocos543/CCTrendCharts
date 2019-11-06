@@ -27,7 +27,7 @@
 
 
 /// 提供给渲染层一些数据信息, 这里没有直接提供数据源是为了解偶
-@property (weak, nonatomic, readonly) id<CCProtocolChartDataProvider> dataProvider;
+@property (nonatomic, weak, readonly) id<CCProtocolChartDataProvider> dataProvider;
 
 // 渲染层可以拆分成多个子类, x轴类, 左y轴类, 右y轴类, 数据渲染类, Marker渲染类(就是手指长按浮出来的标记块)
 // 其中每个子类由负责各种渲染, 比如x轴的负责画一条横线, 横线上的文字等

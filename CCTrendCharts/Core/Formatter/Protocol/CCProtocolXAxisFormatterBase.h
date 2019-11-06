@@ -37,12 +37,6 @@
 
 
 /**
- 用于提供格式化辅助信息
- */
-@property (nonatomic, weak) id<CCProtocolAxisBase> axisInfo;
-
-
-/**
  modulus参数生效的起始位置
  */
 @property (nonatomic, assign) NSInteger modulusStartIndex;

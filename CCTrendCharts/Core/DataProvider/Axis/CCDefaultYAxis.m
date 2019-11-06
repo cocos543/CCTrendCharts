@@ -44,7 +44,7 @@
         _font = [UIFont systemFontOfSize:10];
 
         _gridLineWidth   = 1.f;
-        _gridColor       = UIColor.lightGrayColor;
+        _gridColor       = [UIColor.lightGrayColor colorWithAlphaComponent:0.2];
         _gridLineEnabled = YES;
 
         _xLabelOffset    = 5;
