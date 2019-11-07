@@ -39,6 +39,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end;
 
 
+/// 获取数据源中的全部匹配的index实体
+/// @param index 索引
+- (NSArray<id<CCProtocolChartDataEntityBase>> *)entitiesForIndex:(NSInteger)index;
+
+
+/// 从名为dataSetName的数据集中, 获取指定索引的实体.
+/// @param index 索引
+/// @param dataSetName 数据集名字
+- (id<CCProtocolChartDataEntityBase>)entityForIndex:(NSInteger)index inDataSet:(NSString *)dataSetName;
+
 /**
  集合数组
  */

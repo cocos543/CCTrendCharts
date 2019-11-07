@@ -31,8 +31,12 @@
 @property (nonatomic, assign) CGLineCap lineCap;
 
 
-/// 提供y方向的数据格式
-@property (nonatomic, strong) NSNumberFormatter *yFormatter;
+/// 提供震动反馈, 默认是UIImpactFeedbackStyleLight类型
+@property (nonatomic, strong) UIImpactFeedbackGenerator *impactFeedback;
+
+
+/// 震动强度, 取值0.0 ~ 1.0
+@property (nonatomic, assign) CGFloat intensity API_AVAILABLE(ios(13.0));
 
 
 

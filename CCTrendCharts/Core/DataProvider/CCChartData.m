@@ -55,6 +55,31 @@
     }
 }
 
+- (NSArray<id<CCProtocolChartDataEntityBase>> *)entitiesForIndex:(NSInteger)index {
+    NSMutableArray *arr = nil;
+    for (id<CCProtocolChartDataSet> dataSet in self.dataSets) {
+        id entity = [dataSet entityForIndex:index];
+        if (entity) {
+            if (!arr) {
+                arr = @[].mutableCopy;
+            }
+            [arr addObject:entity];
+        }
+    }
+    return arr;
+}
+
+- (id<CCProtocolChartDataEntityBase>)entityForIndex:(NSInteger)index inDataSet:(NSString *)dataSetName {
+    for (id<CCProtocolChartDataSet> dataSet in self.dataSets) {
+        if (![dataSet.name isEqualToString:dataSetName]) {
+            continue;
+        }
+        
+        return [dataSet entityForIndex:index];
+    }
+    return nil;
+}
+
 #pragma mark - Getter & Setter
 - (void)setDataSets:(NSArray<id<CCProtocolChartDataSet>> *)dataSets {
     _dataSets = dataSets;

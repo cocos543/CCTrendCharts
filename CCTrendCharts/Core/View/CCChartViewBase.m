@@ -22,6 +22,8 @@
     CGFloat _lastOffsetX;
     // 记录 最后一次更新数据源之前的数据总数
     NSInteger _lastXValsCount;
+    
+    NSInteger _longPressLastSelcIndex;
 }
 
 /**
@@ -48,6 +50,10 @@
  指示器图层
  */
 @property (nonatomic, strong) CALayer *cursorLayer;
+
+
+/// 标记图层
+@property (nonatomic, strong) CALayer *markerLayer;
 
 /**
  提供横向滚动功能
@@ -135,6 +141,7 @@
     self.yAxisLayer.frame  = frame;
     self.xAxisLayer.frame  = frame;
     self.cursorLayer.frame = frame;
+    self.markerLayer.frame = frame;
 }
 
 - (void)setNeedsDisplay {
@@ -340,6 +347,15 @@
     return _cursorLayer;
 }
 
+- (CALayer *)markerLayer {
+    if (!_markerLayer) {
+        _markerLayer = CALayer.layer;
+        _markerLayer.zPosition = 999;
+        [self.layer addSublayer:_markerLayer];
+    }
+    return _markerLayer;
+}
+
 #pragma mark - CALayerDelegate
 - (void)displayLayer:(CALayer *)layer {
     if (_needsPrepare) {
@@ -379,6 +395,7 @@
 
 #pragma mark - Gesture-func
 - (void)addDefualtGesture {
+    // 指示器反馈
     [self addGestureRecognizer:self.gestureHandler.pinchGesture];
     [self addGestureRecognizer:self.gestureHandler.longPressGesture];
 }
@@ -446,6 +463,30 @@
 - (void)gestureDidLongPressInLocation:(CGPoint)point {
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
     [self.cursorRenderer beginRenderingInLayer:self.cursorLayer center:point];
+    
+    
+    CGPoint valuePoint = [self.transformer pixelToPoint:CGPointMake(point.x, 0) forAnimationPhaseY:1];
+
+    // 某个对应的实体只连续触发最多1次
+    if ((NSInteger)valuePoint.x != _longPressLastSelcIndex) {
+        _longPressLastSelcIndex = (NSInteger)valuePoint.x;
+        
+        // 添加了震动效果
+        if (self.cursor.impactFeedback) {
+            if (@available(iOS 13.0, *)) {
+                [self.cursor.impactFeedback impactOccurredWithIntensity:self.cursor.intensity];
+            } else {
+                // Fallback on earlier versions
+                [self.cursor.impactFeedback impactOccurred];
+            }
+        }
+        
+        // 绘制标记
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
+        [self.markerRenderer beginRenderingInLayer:self.markerLayer atIndex:valuePoint.x];
+    }
+    
     UIGraphicsEndImageContext();
 }
 

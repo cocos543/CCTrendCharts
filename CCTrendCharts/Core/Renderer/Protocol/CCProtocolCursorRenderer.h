@@ -12,7 +12,6 @@
 #import "CCProtocolCursorBase.h"
 #import "CCProtocolAxisBase.h"
 
-
 @protocol CCProtocolCursorRenderer <CCProtocolChartRendererBase>
 
 - (void)beginRenderingInLayer:(CALayer *)layer center:(CGPoint)center;

@@ -9,7 +9,7 @@
 #import "CCKLineChartView.h"
 
 
-@interface CCKLineChartView ()
+@interface CCKLineChartView () 
 
 @end
 
@@ -19,6 +19,7 @@
 @synthesize rightAxisRenderer = _rightAxisRenderer;
 @synthesize xAxisRenderer = _xAxisRenderer;
 @synthesize cursorRenderer = _cursorRenderer;
+@synthesize markerRenderer = _markerRenderer;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -41,6 +42,8 @@
         _cursorRenderer.leftAxis = self.leftAxis;
         _cursorRenderer.rightAxis = self.rightAxis;
         _cursorRenderer.xAxis = self.xAxis;
+        
+        _markerRenderer = [[CCDefaultMarkerRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
         
         
         [self addDefualtGesture];
@@ -68,6 +71,7 @@
 
 
 #pragma mark - Param update
+
 
 
 #pragma mark - Protocol: CCProtocolKLineChartDataProvider

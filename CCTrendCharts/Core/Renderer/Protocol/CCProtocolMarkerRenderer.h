@@ -12,7 +12,7 @@
 
 @protocol CCProtocolMarkerRenderer <CCProtocolChartRendererBase>
 
-- (void)rendererInView:(UIView *)panelView;
+- (void)beginRenderingInLayer:(CALayer *)contentLayer atIndex:(NSInteger)index;
 
 @end
 

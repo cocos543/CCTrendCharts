@@ -12,6 +12,8 @@
 
 - (void)drawTextIn:(CGContextRef)ctx x:(CGFloat)x y:(CGFloat)y anchor:(CGPoint)anchor attributes:(NSDictionary<NSAttributedStringKey,id> *)attr {
     
+    UIGraphicsPushContext(ctx);
+    
     CGPoint drawPoint = CGPointMake(x, y);
     // 获取文本尺寸
     CGSize labelSize = [self sizeWithAttributes:attr];
@@ -22,6 +24,8 @@
     CGContextIndependent(ctx, {
         [self drawAtPoint:drawPoint withAttributes:attr];
     })
+    
+    UIGraphicsPopContext();
 }
 
 @end

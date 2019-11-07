@@ -18,6 +18,7 @@
 #import "CCDefaultYAxis.h"
 #import "CCDefaultXAxis.h"
 #import "CCProtocolCursorBase.h"
+#import "CCProtocolMarkerRenderer.h"
 
 @protocol CCProtocolChartViewBase <CCProtocolBase>
 @required

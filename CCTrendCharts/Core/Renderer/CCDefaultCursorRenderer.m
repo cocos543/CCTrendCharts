@@ -33,7 +33,7 @@
 
     // 将center的x坐标强制绑定到匹配的index上.
     center.x = [self.transformer pointToPixel:CGPointMake((NSInteger)point.x, 0) forAnimationPhaseY:1].x;
-
+    
     [self rendererCursor:layer center:center];
 
     [self rendererLeftLabel:layer center:center];

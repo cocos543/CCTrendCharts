@@ -31,6 +31,8 @@
 		ED54969B2361889300BDBC37 /* CCGestureDefaultHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = ED5496992361889300BDBC37 /* CCGestureDefaultHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED54969C2361889300BDBC37 /* CCGestureDefaultHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = ED54969A2361889300BDBC37 /* CCGestureDefaultHandler.m */; };
 		ED5496A023618A1C00BDBC37 /* CCGestureHandlerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = ED54969E23618A1C00BDBC37 /* CCGestureHandlerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED54A1C52373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED54A1C32373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED54A1C62373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED54A1C42373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m */; };
 		ED8004E423700267005647C2 /* CCXAxisFixedFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8004E523700267005647C2 /* CCXAxisFixedFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */; };
 		ED8004E823701B61005647C2 /* CCProtocolCursorRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -115,6 +117,8 @@
 		ED5496992361889300BDBC37 /* CCGestureDefaultHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCGestureDefaultHandler.h; sourceTree = "<group>"; };
 		ED54969A2361889300BDBC37 /* CCGestureDefaultHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCGestureDefaultHandler.m; sourceTree = "<group>"; };
 		ED54969E23618A1C00BDBC37 /* CCGestureHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCGestureHandlerProtocol.h; sourceTree = "<group>"; };
+		ED54A1C32373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCDefaultMarkerRenderer.h; sourceTree = "<group>"; };
+		ED54A1C42373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCDefaultMarkerRenderer.m; sourceTree = "<group>"; };
 		ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCXAxisFixedFormatter.h; sourceTree = "<group>"; };
 		ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCXAxisFixedFormatter.m; sourceTree = "<group>"; };
 		ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolCursorRenderer.h; sourceTree = "<group>"; };
@@ -370,6 +374,8 @@
 				EDD180BA232A3B0F00B2B72A /* CCDefaultXAxisRenderer.m */,
 				EDDA14512370356500756207 /* CCDefaultCursorRenderer.h */,
 				EDDA14522370356500756207 /* CCDefaultCursorRenderer.m */,
+				ED54A1C32373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h */,
+				ED54A1C42373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m */,
 				EDD180AF232A35F800B2B72A /* Protocol */,
 			);
 			path = Renderer;
@@ -475,6 +481,7 @@
 				EDDA14532370356500756207 /* CCDefaultCursorRenderer.h in Headers */,
 				EDA66820237111D00046E469 /* CCProtocolCursorBase.h in Headers */,
 				EDA66825237129E10046E469 /* CCDefaultCursor.h in Headers */,
+				ED54A1C52373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h in Headers */,
 				EDDCD4602334CDAE005E46EA /* CCMacro.h in Headers */,
 				ED00E79223223C7800139A8C /* CCProtocolBase.h in Headers */,
 			);
@@ -583,6 +590,7 @@
 				EDD180BC232A3B0F00B2B72A /* CCDefaultXAxisRenderer.m in Sources */,
 				ED052EA22338CF85000CED6C /* CCCoordinateUtility.m in Sources */,
 				EDA66826237129E10046E469 /* CCDefaultCursor.m in Sources */,
+				ED54A1C62373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m in Sources */,
 				ED00E79723223D6A00139A8C /* CCDefaultYAxis.m in Sources */,
 				EDA3E2F1232F666700222E83 /* CCChartData.m in Sources */,
 				EDD901E1233DED6F009AB34F /* CCBaseUtility.m in Sources */,
@@ -675,7 +683,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -732,7 +740,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

@@ -17,7 +17,7 @@
 @synthesize maxX  = _maxX;
 @synthesize minX  = _minX;
 
-- (instancetype)initWithVals:(NSArray<CCChartDataEntity *> *)yVals withName:(NSString *)name {
+- (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)yVals withName:(NSString *)name {
     self = [super init];
     if (self) {
         _yVals = yVals;
@@ -45,7 +45,7 @@
 - (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end {
     [self resetValue];
     
-    for (CCChartDataEntity *val in self.yVals) {
+    for (id<CCProtocolChartDataEntityBase> val in self.yVals) {
         if (val.xIndex < start || val.xIndex > end) {
             continue;
         }
@@ -66,8 +66,17 @@
     }
 }
 
+- (id<CCProtocolChartDataEntityBase>)entityForIndex:(NSInteger)index {
+    for (id<CCProtocolChartDataEntityBase> val in self.yVals) {
+        if (val.xIndex == index) {
+            return val;
+        }
+    }
+    return nil;
+}
+
 #pragma mark - Setter & Getter
-- (void)setYVals:(NSArray<CCChartDataEntity *> *)yVals {
+- (void)setYVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)yVals {
     _yVals = yVals;
 
     [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
