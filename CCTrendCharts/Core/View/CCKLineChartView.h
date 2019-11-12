@@ -2,6 +2,8 @@
 //  CCKLineChartView.h
 //  CCTrendCharts
 //
+//  用于绘制Candlestick, 交易趋势图, 以下名字统一称为K线图(K Line Diagram).
+//
 //  Created by Cocos on 2019/9/6.
 //  Copyright © 2019 Cocos. All rights reserved.
 //
@@ -17,6 +19,7 @@
 
 #import "CCProtocolKLineChartDataProvider.h"
 #import "CCKLineChartData.h"
+
 
 
 NS_ASSUME_NONNULL_BEGIN

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSInteger)intRandomBetween:(NSInteger)a and:(NSInteger)b;
 
 + (CGFloat)currentScale;
+
 @end
 
 NS_ASSUME_NONNULL_END

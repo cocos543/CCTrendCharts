@@ -10,6 +10,10 @@
 
 
 @interface CCKLineChartView () 
+/**
+ 值图层
+ */
+@property (nonatomic, strong) CAShapeLayer *valuesLayer;
 
 @end
 
@@ -67,6 +71,14 @@
     [super prepareChart];    
 }
 
+
+/// 数据渲染
+- (void)dataRendering {
+    // 首先渲染蜡烛图部分, 这部分全部是形状和颜色填充, 所以可以直接用CAShapeLayers类分开绘制红色和绿色
+    // 蜡烛图可以是填充类型的, 也可以是描边类型, 这个具体需要在蜡烛图的数据层提供绘制样式
+    CAShapeLayer *sl;
+}
+
 #pragma mark - Getter & Setter
 
 
@@ -78,11 +90,6 @@
 
 - (void)setData:(CCChartData *)data {
     [super setData:data];
-    
-    // 变更数据集需要重置viewHandle里的初始矩阵
-    if (self.recentFirst) {
-        
-    }
 }
 
 - (CCKLineChartData *)klineChartData {

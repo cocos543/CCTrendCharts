@@ -16,5 +16,6 @@
 #import "CCCoordinateUtility.h"
 #import "CCBaseUtility.h"
 #import "NSString+CCUtility.h"
+#import "CALayer+CCUtility.h"
 
 #endif /* PrefixHeader_pch */

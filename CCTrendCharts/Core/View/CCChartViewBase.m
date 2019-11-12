@@ -37,11 +37,6 @@
 @property (nonatomic, strong) CALayer *xAxisLayer;
 
 /**
- 值图层
- */
-@property (nonatomic, strong) CAShapeLayer *valuesLayer;
-
-/**
  高亮图层
  */
 @property (nonatomic, strong) CAShapeLayer *highlightLayer;
@@ -314,11 +309,15 @@
     [self _calcViewPixelInitMatrix];
 }
 
+- (void)dataRendering {
+    // 不做任何事
+}
+
 #pragma mark - Getter & Setter
 - (CALayer *)yAxisLayer {
     if (!_yAxisLayer) {
         _yAxisLayer = CALayer.layer;
-
+        
         // Y轴渲染层放到所有图层的底部
         [self.layer addSublayer:_yAxisLayer];
     }
@@ -363,8 +362,6 @@
         _needsPrepare = NO;
     }
 
-//    NSLog(@"displayLayer: 根图层重绘, 全部子图层需要重新渲染");
-
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
 
     [self.leftAxisRenderer beginRenderingInLayer:self.yAxisLayer];
@@ -374,8 +371,11 @@
     CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
 
     [self.xAxisRenderer beginRenderingInLayer:self.xAxisLayer];
-
+    
     UIGraphicsEndImageContext();
+    
+    // 单独渲染数据层
+    [self dataRendering];
 
     self.layer.backgroundColor = self.backgroundColor.CGColor;
 }
@@ -461,6 +461,8 @@
 }
 
 - (void)gestureDidLongPressInLocation:(CGPoint)point {
+    
+    
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
     [self.cursorRenderer beginRenderingInLayer:self.cursorLayer center:point];
     
@@ -488,10 +490,19 @@
     }
     
     UIGraphicsEndImageContext();
+    
+    
 }
 
 - (void)gestureDidEndLongPressInLocation:(CGPoint)point {
     NSLog(@"结束长按");
+    // 简单演示, 几秒后移除图层即可
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self->_cursorLayer removeFromSuperlayer];
+        self->_cursorLayer = nil;
+        [self->_markerLayer removeFromSuperlayer];
+        self->_markerLayer = nil;
+    });
 }
 
 #pragma mark - CCProtocolChartDataProvider

@@ -37,7 +37,9 @@
     CGImageRef img   = CGBitmapContextCreateImage(ctx);
 
     // 这里使用__bridge_transfer关键字, img引用计数-1, 所以不需要再调用release方法了
-    contentLayer.contents = (__bridge_transfer id)img;
+    [CALayer quickUpdateLayer:^{
+        contentLayer.contents = (__bridge_transfer id)img;
+    }];
 }
 
 - (void)renderAxisLine:(CALayer *)contentLayer {

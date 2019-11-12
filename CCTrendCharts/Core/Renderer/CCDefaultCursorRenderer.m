@@ -45,7 +45,9 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGImageRef img   = CGBitmapContextCreateImage(ctx);
 
-    layer.contents = (__bridge_transfer id)img;
+    [CALayer quickUpdateLayer:^{
+        layer.contents = (__bridge_transfer id)img;
+    }];
 }
 
 - (void)rendererCursor:(CALayer *)layer center:(CGPoint)center {

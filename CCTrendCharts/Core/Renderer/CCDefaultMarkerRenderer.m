@@ -83,7 +83,10 @@
     CGContextRestoreGState(ctx);
 
     CGImageRef img = CGBitmapContextCreateImage(ctx);
-    contentLayer.contents = (__bridge_transfer id)img;
+    
+    [CALayer quickUpdateLayer:^{
+        contentLayer.contents = (__bridge_transfer id)img;
+    }];
 }
 
 @end

@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "CCChartDataSetBase.h"
+#import "CCKLineDataEntity.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CCKLineChartDataSet : CCChartDataSetBase
+
+- (instancetype)initWithVals:(NSArray<CCKLineDataEntity *> *)yVals withName:(NSString *)name;
 
 @end
 

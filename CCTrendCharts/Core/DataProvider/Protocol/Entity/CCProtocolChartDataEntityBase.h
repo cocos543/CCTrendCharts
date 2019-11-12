@@ -15,7 +15,7 @@
 @protocol CCProtocolChartDataEntityBase <NSObject>
 
 /**
- 实体附加信息, 一般用于扩展信息, 比如K线节点需要额外提供high,low,open,close
+ 实体附加信息, 一般用于扩展信息
  */
 @property (nonatomic, strong) id data;
 
@@ -25,7 +25,7 @@
  */
 @property (nonatomic, assign) CGFloat value;
 
-
+ 
 /**
  实体对应的x坐标
  */

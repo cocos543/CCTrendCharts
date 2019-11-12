@@ -10,7 +10,7 @@
 
 @implementation CCKLineChartDataSet
 
-- (instancetype)initWithVals:(NSArray<CCChartDataEntity *> *)yVals withName:(NSString *)name {
+- (instancetype)initWithVals:(NSArray<CCKLineDataEntity *> *)yVals withName:(NSString *)name {
     return [super initWithVals:yVals withName:name];
 }
 

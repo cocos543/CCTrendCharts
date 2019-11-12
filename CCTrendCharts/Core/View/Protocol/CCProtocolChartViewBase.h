@@ -23,6 +23,10 @@
 @protocol CCProtocolChartViewBase <CCProtocolBase>
 @required
 
+
+/// 用于支持数据渲染, 基类方法默认不做任何事情, 子类可自行实现.
+- (void)dataRendering;
+
 /**
  所有2D变换信息都存储在viewHandler里, 以及视图当前画布信息, 可直接由用户手势改变其信息.
  */
