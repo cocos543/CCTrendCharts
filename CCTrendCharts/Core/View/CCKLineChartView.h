@@ -16,6 +16,8 @@
 #import "CCDefaultXAxisRenderer.h"
 #import "CCDefaultCursorRenderer.h"
 #import "CCDefaultMarkerRenderer.h"
+#import "CCKLineDataChartRenderer.h"
+
 
 #import "CCProtocolKLineChartDataProvider.h"
 #import "CCKLineChartData.h"

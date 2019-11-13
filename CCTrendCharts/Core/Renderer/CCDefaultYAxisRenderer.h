@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CCRendererBase.h"
 #import "CCProtocolAxisRenderer.h"
 #import "CCDefaultYAxis.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CCDefaultYAxisRenderer : NSObject <CCProtocolAxisRenderer>
+@interface CCDefaultYAxisRenderer : CCRendererBase <CCProtocolAxisRenderer>
 
 @property (nonatomic, weak) CCDefaultYAxis *axis;
 

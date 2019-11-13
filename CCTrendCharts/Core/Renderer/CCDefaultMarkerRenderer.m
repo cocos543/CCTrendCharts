@@ -16,16 +16,10 @@
 @end
 
 @implementation CCDefaultMarkerRenderer
-@synthesize dataProvider     = _dataProvider;
-@synthesize viewPixelHandler = _viewPixelHandler;
-@synthesize transformer      = _transformer;
 
 - (instancetype)initWithViewHandler:(CCChartViewPixelHandler *)viewPixelHandler transform:(CCChartTransformer *)transformer DataProvider:(id<CCProtocolChartDataProvider>)dataProvider {
-    self = [super init];
+    self = [super initWithViewHandler:viewPixelHandler transform:transformer DataProvider:dataProvider];
     if (self) {
-        _dataProvider      = dataProvider;
-        _viewPixelHandler  = viewPixelHandler;
-        _transformer       = transformer;
         _currentMarkerSied = 1;
     }
 

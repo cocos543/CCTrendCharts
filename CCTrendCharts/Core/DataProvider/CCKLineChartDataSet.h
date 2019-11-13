@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CCKLineChartDataSet : CCChartDataSetBase
 
-- (instancetype)initWithVals:(NSArray<CCKLineDataEntity *> *)yVals withName:(NSString *)name;
+- (instancetype)initWithVals:(NSArray<CCKLineDataEntity *> *)entities withName:(NSString *)name;
+
+@property (nonatomic, strong) NSArray<CCKLineDataEntity *> *entities;
 
 @end
 

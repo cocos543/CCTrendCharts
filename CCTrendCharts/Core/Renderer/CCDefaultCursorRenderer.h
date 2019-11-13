@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CCRendererBase.h"
 #import "CCProtocolCursorRenderer.h"
 #import "CCDefaultYAxis.h"
 #import "CCDefaultXAxis.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CCDefaultCursorRenderer : NSObject <CCProtocolCursorRenderer>
+@interface CCDefaultCursorRenderer : CCRendererBase <CCProtocolCursorRenderer>
 
 - (instancetype)init NS_UNAVAILABLE;
 

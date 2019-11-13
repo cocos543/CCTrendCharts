@@ -18,15 +18,10 @@
 
 @implementation CCDefaultYAxisRenderer
 
-@synthesize viewPixelHandler = _viewPixelHandler;
-@synthesize transformer      = _transformer;
-
 - (instancetype)initWithAxis:(nonnull CCDefaultYAxis *)axis viewHandler:(nonnull CCChartViewPixelHandler *)viewPixelHandler transform:(nonnull CCChartTransformer *)transformer {
-    self = [super init];
+    self = [super initWithViewHandler:viewPixelHandler transform:transformer DataProvider:nil];
     if (self) {
-        _axis             = axis;
-        _viewPixelHandler = viewPixelHandler;
-        _transformer      = transformer;
+        _axis = axis;
     }
 
     return self;
@@ -49,7 +44,7 @@
     //        [oldImg drawAtPoint:CGPointZero];
     //    }
 
-    CGImageRef img   = CGBitmapContextCreateImage(ctx);
+    CGImageRef img = CGBitmapContextCreateImage(ctx);
 
     // 这里使用__bridge_transfer关键字, img引用计数-1, 所以不需要再调用release方法了
     [CALayer quickUpdateLayer:^{
@@ -86,9 +81,9 @@
     if (!self.axis.gridLineEnabled) {
         return;
     }
-    
+
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    
+
     CGContextSaveGState(ctx);
     {
         CGContextSetStrokeColorWithColor(ctx, self.axis.gridColor.CGColor);
@@ -97,19 +92,19 @@
         for (NSNumber *num in self.axis.entities) {
             CGPoint position = CGPointMake(0, num.doubleValue);
             position = [self.transformer pointToPixel:position forAnimationPhaseY:1];
-            xPos = self.viewPixelHandler.contentLeft;
-            
+            xPos     = self.viewPixelHandler.contentLeft;
+
             if ([self.viewPixelHandler isInBoundsTop:position.y]) {
                 continue;
             }
-            
+
             CGContextMoveToPoint(ctx, xPos, position.y);
             CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentRight, position.y);
         }
     }
-    
+
     CGContextStrokePath(ctx);
-    
+
     CGContextRestoreGState(ctx);
 }
 

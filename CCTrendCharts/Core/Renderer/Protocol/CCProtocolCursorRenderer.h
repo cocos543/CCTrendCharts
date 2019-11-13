@@ -16,13 +16,13 @@
 
 - (void)beginRenderingInLayer:(CALayer *)layer center:(CGPoint)center;
 
-- (void)rendererCursor:(CALayer *)layer center:(CGPoint)center;
+- (void)renderCursor:(CALayer *)layer center:(CGPoint)center;
 
-- (void)rendererXLabel:(CALayer *)layer center:(CGPoint)center;
+- (void)renderXLabel:(CALayer *)layer center:(CGPoint)center;
 
-- (void)rendererLeftLabel:(CALayer *)layer center:(CGPoint)center;
+- (void)renderLeftLabel:(CALayer *)layer center:(CGPoint)center;
 
-- (void)rendererRightLabel:(CALayer *)layer center:(CGPoint)center;
+- (void)renderRightLabel:(CALayer *)layer center:(CGPoint)center;
 
 
 /// 渲染层直接根据cursor对象进行渲染

@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "CCProtocolTrendChartRenderer.h"
+#import "CCProtocolDataChartRenderer.h"
 #import "CCProtocolAxisRenderer.h"
 #import "CCProtocolCursorRenderer.h"
 #import "CCProtocolMarkerRenderer.h"
@@ -58,7 +58,7 @@
 /**
  渲染组件
  */
-@property (nonatomic, strong) id<CCProtocolTrendChartRenderer> renderer;
+@property (nonatomic, strong) id<CCProtocolDataChartRenderer> dataRenderer;
 
 /**
  这里视图类只需要关注渲染对象是否实现基础协议即可, 具体的渲染过程由渲染对象内部处理

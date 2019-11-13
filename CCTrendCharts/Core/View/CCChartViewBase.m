@@ -36,10 +36,6 @@
  */
 @property (nonatomic, strong) CALayer *xAxisLayer;
 
-/**
- 高亮图层
- */
-@property (nonatomic, strong) CAShapeLayer *highlightLayer;
 
 /**
  指示器图层
@@ -67,7 +63,7 @@
 @synthesize rightTransformer = _rightTransformer;
 
 // 渲染组件变量由子类合成
-@dynamic renderer;
+@dynamic dataRenderer;
 @dynamic leftAxisRenderer;
 @dynamic rightAxisRenderer;
 @dynamic xAxisRenderer;

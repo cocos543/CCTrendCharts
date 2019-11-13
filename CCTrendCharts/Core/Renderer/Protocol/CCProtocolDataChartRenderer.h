@@ -1,5 +1,5 @@
 //
-//  CCProtocolTrendChartRenderer.h
+//  CCProtocolDataChartRenderer.h
 //  CCTrendCharts
 //
 //  Created by Cocos on 2019/9/11.
@@ -11,15 +11,15 @@
 #import "CCProtocolChartDataSet.h"
 #import "CCProtocolChartDataProvider.h"
 
-@protocol CCProtocolTrendChartRenderer <CCProtocolChartRendererBase>
+@protocol CCProtocolDataChartRenderer <CCProtocolChartRendererBase>
 /**
  绘制趋势图数据
  
  @param contentLayer 将数据渲染到contentLayer上
  */
-- (void)renderData:(CAShapeLayer *)contentLayer;
+- (void)renderData:(CALayer *)contentLayer;
 
-- (void)renderDataSet:(CAShapeLayer *)contentLayer dataSet:(id<CCProtocolChartDataSet>)dataSet;
+- (void)renderDataSet:(CALayer *)contentLayer dataSet:(id<CCProtocolChartDataSet>)dataSet;
 
 
 /**

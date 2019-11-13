@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CCChartDataSetBase : NSObject <CCProtocolChartDataSet>
 
+
+- (void)resetValue;
+
+
 @end
+
 
 NS_ASSUME_NONNULL_END

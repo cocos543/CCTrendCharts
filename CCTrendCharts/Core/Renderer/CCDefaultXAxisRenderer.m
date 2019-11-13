@@ -10,29 +10,23 @@
 
 @implementation CCDefaultXAxisRenderer
 
-@synthesize viewPixelHandler = _viewPixelHandler;
-@synthesize transformer      = _transformer;
-
 - (instancetype)initWithAxis:(nonnull CCDefaultXAxis *)axis viewHandler:(nonnull CCChartViewPixelHandler *)viewPixelHandler transform:(nonnull CCChartTransformer *)transformer {
-    self = [super init];
+    self = [super initWithViewHandler:viewPixelHandler transform:transformer DataProvider:nil];
     if (self) {
-        _axis             = axis;
-        _viewPixelHandler = viewPixelHandler;
-        _transformer      = transformer;
+        _axis = axis;
     }
 
     return self;
 }
 
 - (void)beginRenderingInLayer:(CALayer *)contentLayer {
-
     [self renderAxisLine:contentLayer];
     [self renderGridLines:contentLayer];
 
     if (self.axis.entities) {
         [self renderLabels:contentLayer];
     }
-    
+
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGImageRef img   = CGBitmapContextCreateImage(ctx);
 
@@ -62,9 +56,9 @@
     if (!self.axis.gridLineEnabled) {
         return;
     }
-    
+
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    
+
     CGContextSaveGState(ctx);
     {
         CGContextSetStrokeColorWithColor(ctx, self.axis.gridColor.CGColor);
@@ -73,7 +67,7 @@
         for (int i = 0; i < self.axis.entities.count; i++) {
             CGPoint position = CGPointMake(i, 0);
             position = [self.transformer pointToPixel:position forAnimationPhaseY:1];
-            yPos = self.viewPixelHandler.contentBottom;
+            yPos     = self.viewPixelHandler.contentBottom;
             if (position.x > self.viewPixelHandler.contentLeft && position.x < self.viewPixelHandler.contentRight) {
                 if ([self.axis.formatter needToDrawLabelAt:i]) {
                     CGContextMoveToPoint(ctx, position.x, yPos);
@@ -82,9 +76,9 @@
             }
         }
     }
-    
+
     CGContextStrokePath(ctx);
-    
+
     CGContextRestoreGState(ctx);
 }
 

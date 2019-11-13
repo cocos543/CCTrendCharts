@@ -29,11 +29,6 @@
 /// 结束长按操作
 - (void)gestureDidEndLongPressInLocation:(CGPoint)point;
 
-
-/// 长按滚动,滚动到实体中心时触发该方法
-/// @param index 实体索引
-- (void)grstureLongPressTiggerMovedAtIndex:(NSInteger)index;
-
 @end
 
 

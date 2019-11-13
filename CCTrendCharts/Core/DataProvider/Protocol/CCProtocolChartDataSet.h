@@ -11,7 +11,7 @@
 
 @protocol CCProtocolChartDataSet <NSObject>
 @required
-- (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)yVals withName:(NSString *)name;
+- (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(NSString *)name;
 
 
 /// 计算数据集在指定范围内的最值
@@ -27,7 +27,7 @@
 /**
  具体的数据信息
  */
-@property (nonatomic, strong) NSArray<id<CCProtocolChartDataEntityBase>> *yVals;
+@property (nonatomic, strong) NSArray<id<CCProtocolChartDataEntityBase>> *entities;
 
 
 /**

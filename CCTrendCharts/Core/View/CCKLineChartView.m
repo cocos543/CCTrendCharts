@@ -9,16 +9,21 @@
 #import "CCKLineChartView.h"
 
 
-@interface CCKLineChartView () 
+@interface CCKLineChartView ()
 /**
- 值图层
+ 高亮图层
  */
-@property (nonatomic, strong) CAShapeLayer *valuesLayer;
+@property (nonatomic, strong) CAShapeLayer *highlightLayer;
+
+/**
+ 数据图层
+ */
+@property (nonatomic, strong) CALayer *dataLayer;
 
 @end
 
 @implementation CCKLineChartView
-@synthesize renderer = _renderer;
+@synthesize dataRenderer = _dataRenderer;
 @synthesize leftAxisRenderer = _leftAxisRenderer;
 @synthesize rightAxisRenderer = _rightAxisRenderer;
 @synthesize xAxisRenderer = _xAxisRenderer;
@@ -49,6 +54,8 @@
         
         _markerRenderer = [[CCDefaultMarkerRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
         
+        _dataRenderer = [[CCKLineDataChartRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
+        
         
         [self addDefualtGesture];
     }
@@ -76,7 +83,7 @@
 - (void)dataRendering {
     // 首先渲染蜡烛图部分, 这部分全部是形状和颜色填充, 所以可以直接用CAShapeLayers类分开绘制红色和绿色
     // 蜡烛图可以是填充类型的, 也可以是描边类型, 这个具体需要在蜡烛图的数据层提供绘制样式
-    CAShapeLayer *sl;
+    [self.dataRenderer renderData:self.dataLayer];
 }
 
 #pragma mark - Getter & Setter
