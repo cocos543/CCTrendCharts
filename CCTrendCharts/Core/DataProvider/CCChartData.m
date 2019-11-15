@@ -56,28 +56,39 @@
 }
 
 - (NSArray<id<CCProtocolChartDataEntityBase>> *)entitiesForIndex:(NSInteger)index {
-    NSMutableArray *arr = nil;
     for (id<CCProtocolChartDataSet> dataSet in self.dataSets) {
-        id entity = [dataSet entityForIndex:index];
-        if (entity) {
+        return [dataSet entityForIndex:index];
+
+    }
+    return nil;
+}
+
+- (NSArray<id<CCProtocolChartDataEntityBase>> *)entityForIndex:(NSInteger)index inDataSet:(NSString *)dataSetName {
+
+    NSArray<id<CCProtocolChartDataSet>> *dataSets = [self dataSetWithName:dataSetName];
+    NSMutableArray *arr;
+    for (id<CCProtocolChartDataSet> dataSet in dataSets) {
+        if ([dataSet entityForIndex:index]) {
             if (!arr) {
                 arr = @[].mutableCopy;
             }
-            [arr addObject:entity];
+            [arr addObject:[dataSet entityForIndex:index]];
         }
     }
     return arr;
 }
 
-- (id<CCProtocolChartDataEntityBase>)entityForIndex:(NSInteger)index inDataSet:(NSString *)dataSetName {
-    for (id<CCProtocolChartDataSet> dataSet in self.dataSets) {
-        if (![dataSet.name isEqualToString:dataSetName]) {
-            continue;
+- (NSArray<id<CCProtocolChartDataSet>> *)dataSetWithName:(CCDataSetName)name {
+    NSMutableArray *arr;
+    for (id<CCProtocolChartDataSet> set in self.dataSets) {
+        if ([set.name isEqualToString:name]) {
+            if (!arr) {
+                arr = @[].mutableCopy;
+            }
+            [arr addObject:set];
         }
-        
-        return [dataSet entityForIndex:index];
     }
-    return nil;
+    return arr;
 }
 
 #pragma mark - Getter & Setter

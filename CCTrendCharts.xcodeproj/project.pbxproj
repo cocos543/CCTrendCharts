@@ -53,7 +53,6 @@
 		EDA3E2F1232F666700222E83 /* CCChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA3E2EF232F666700222E83 /* CCChartData.m */; };
 		EDA3E2F4232F746200222E83 /* CCChartDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3E2F2232F746200222E83 /* CCChartDataEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDA3E2F5232F746200222E83 /* CCChartDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA3E2F3232F746200222E83 /* CCChartDataEntity.m */; };
-		EDA3E2F8232F7B4700222E83 /* CCProtocolKLineChartDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3E2F6232F7B4700222E83 /* CCProtocolKLineChartDataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDA3E300232F7BE000222E83 /* CCKLineChartData.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3E2FE232F7BE000222E83 /* CCKLineChartData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDA3E301232F7BE000222E83 /* CCKLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA3E2FF232F7BE000222E83 /* CCKLineChartData.m */; };
 		EDA3E304232F7E7600222E83 /* CCKLineChartDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3E302232F7E7600222E83 /* CCKLineChartDataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -151,7 +150,6 @@
 		EDA3E2EF232F666700222E83 /* CCChartData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCChartData.m; sourceTree = "<group>"; };
 		EDA3E2F2232F746200222E83 /* CCChartDataEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChartDataEntity.h; sourceTree = "<group>"; };
 		EDA3E2F3232F746200222E83 /* CCChartDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCChartDataEntity.m; sourceTree = "<group>"; };
-		EDA3E2F6232F7B4700222E83 /* CCProtocolKLineChartDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolKLineChartDataSet.h; sourceTree = "<group>"; };
 		EDA3E2FE232F7BE000222E83 /* CCKLineChartData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKLineChartData.h; sourceTree = "<group>"; };
 		EDA3E2FF232F7BE000222E83 /* CCKLineChartData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKLineChartData.m; sourceTree = "<group>"; };
 		EDA3E302232F7E7600222E83 /* CCKLineChartDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKLineChartDataSet.h; sourceTree = "<group>"; };
@@ -221,7 +219,6 @@
 				EDA3C4332328D0C500843C7A /* CCProtocolAxisBase.h */,
 				EDA6681E237111D00046E469 /* CCProtocolCursorBase.h */,
 				EDA3E2EA232F655F00222E83 /* CCProtocolChartDataSet.h */,
-				EDA3E2F6232F7B4700222E83 /* CCProtocolKLineChartDataSet.h */,
 				ED21EAC22325EE0D0087AE67 /* CCProtocolChartDataProvider.h */,
 				ED03A15323337CF00065DDA4 /* CCProtocolKLineChartDataProvider.h */,
 			);
@@ -487,7 +484,6 @@
 				EDABB25D2320E46E00C65D3F /* CCTrendCharts.h in Headers */,
 				ED1BFB5E232234FC00222820 /* CCProtocolChartViewBase.h in Headers */,
 				ED00E79E2322419B00139A8C /* CCKLineChartView.h in Headers */,
-				EDA3E2F8232F7B4700222E83 /* CCProtocolKLineChartDataSet.h in Headers */,
 				EDA3E2F4232F746200222E83 /* CCChartDataEntity.h in Headers */,
 				EDD3F03F234DCC1A0025D51D /* CCChartDataSetBase.h in Headers */,
 				EDBEA2D02328EB87000F8852 /* CCProtocolDataChartRenderer.h in Headers */,

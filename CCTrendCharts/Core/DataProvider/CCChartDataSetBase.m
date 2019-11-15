@@ -9,15 +9,16 @@
 #import "CCChartDataSetBase.h"
 
 @implementation CCChartDataSetBase
+@synthesize entities = _entities;
+
 @synthesize color = _color;
 @synthesize maxY  = _maxY;
 @synthesize minY  = _minY;
-@synthesize entities = _entities;
 @synthesize name  = _name;
 @synthesize maxX  = _maxX;
 @synthesize minX  = _minX;
 
-- (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(NSString *)name {
+- (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name {
     self = [super init];
     if (self) {
         _entities = entities;
@@ -66,13 +67,17 @@
     }
 }
 
-- (id<CCProtocolChartDataEntityBase>)entityForIndex:(NSInteger)index {
+- (NSArray<id<CCProtocolChartDataEntityBase>> *)entityForIndex:(NSInteger)index {
+    NSMutableArray *arr;
     for (id<CCProtocolChartDataEntityBase> val in self.entities) {
         if (val.xIndex == index) {
-            return val;
+            if (!arr) {
+                arr = @[].mutableCopy;
+            }
+            [arr addObject:val];
         }
     }
-    return nil;
+    return arr;
 }
 
 #pragma mark - Setter & Getter

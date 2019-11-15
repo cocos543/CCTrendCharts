@@ -18,10 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) CCDefaultXAxis *axis;
 
+- (instancetype)initWithAxis:(CCDefaultXAxis *)axis viewHandler:(CCChartViewPixelHandler *)viewPixelHandler transform:(CCChartTransformer *)transformer;
 
-- (instancetype)init NS_UNAVAILABLE;
-
-- (instancetype)initWithAxis:(CCDefaultXAxis *)axis viewHandler:(CCChartViewPixelHandler *)viewPixelHandler transform:(CCChartTransformer *)transformer NS_DESIGNATED_INITIALIZER;
 @end
 
 NS_ASSUME_NONNULL_END

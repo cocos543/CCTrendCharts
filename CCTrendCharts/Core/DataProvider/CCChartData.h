@@ -47,7 +47,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 从名为dataSetName的数据集中, 获取指定索引的实体.
 /// @param index 索引
 /// @param dataSetName 数据集名字
-- (id<CCProtocolChartDataEntityBase>)entityForIndex:(NSInteger)index inDataSet:(NSString *)dataSetName;
+- (NSArray<id<CCProtocolChartDataEntityBase>> *)entityForIndex:(NSInteger)index inDataSet:(CCDataSetName)dataSetName;
+
+
+/// 获取指定名字的dataSet, 这里可能有多个同名dataSet, 所以返回数组 (后期将可能支持数据组绘制)
+/// @param name dataSet名字
+- (NSArray<id<CCProtocolChartDataSet>> *)dataSetWithName:(CCDataSetName)name;
 
 /**
  集合数组

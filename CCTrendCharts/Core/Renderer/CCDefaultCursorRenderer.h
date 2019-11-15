@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (instancetype)initWithCursor:(id<CCProtocolCursorBase>)cursor viewHandler:(CCChartViewPixelHandler *)viewPixelHandler transform:(CCChartTransformer *)transformer DataProvider:(id<CCProtocolChartDataProvider>)dataProvider NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCursor:(id<CCProtocolCursorBase>)cursor viewHandler:(CCChartViewPixelHandler *)viewPixelHandler transform:(CCChartTransformer *)transformer DataProvider:(id<CCProtocolChartDataProvider>)dataProvider;
 
 
 @property (nonatomic, weak) CCDefaultYAxis *leftAxis;

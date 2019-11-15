@@ -10,4 +10,5 @@
 
 @implementation CCKLineChartData
 
+
 @end

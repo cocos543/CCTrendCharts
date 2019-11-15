@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "CCChartDataEntity.h"
 
+typedef NSString * CCDataSetName;
+
 @protocol CCProtocolChartDataSet <NSObject>
 @required
-- (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(NSString *)name;
+- (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name;
 
 
 /// 计算数据集在指定范围内的最值
@@ -22,7 +24,7 @@
 
 /// 获取指定index的实体, 这里index就是对应的x-index
 /// @param index x轴上的索引
-- (id<CCProtocolChartDataEntityBase>)entityForIndex:(NSInteger)index;
+- (NSArray<id<CCProtocolChartDataEntityBase>> *)entityForIndex:(NSInteger)index;
 
 /**
  具体的数据信息
@@ -33,7 +35,7 @@
 /**
  数据集名字, 用户可以自定义, 方便通过名字获取集合, 名字必须唯一的.
  */
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) CCDataSetName name;
 
 
 /**

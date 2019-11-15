@@ -72,6 +72,9 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
+    CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    self.dataLayer.frame  = frame;
 }
 
 - (void)prepareChart {
@@ -87,7 +90,15 @@
 }
 
 #pragma mark - Getter & Setter
+- (CALayer *)dataLayer {
+    if (!_dataLayer) {
+        _dataLayer = CALayer.layer;
+        
+        [self.layer addSublayer:_dataLayer];
+    }
 
+    return _dataLayer;
+}
 
 #pragma mark - Param update
 

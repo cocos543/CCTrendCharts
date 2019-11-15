@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param transformer 反射对象
  @return instancetype
  */
-- (instancetype)initWithAxis:(CCDefaultYAxis *)axis viewHandler:(CCChartViewPixelHandler *)viewPixelHandler transform:(CCChartTransformer *)transformer NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithAxis:(CCDefaultYAxis *)axis viewHandler:(CCChartViewPixelHandler *)viewPixelHandler transform:(CCChartTransformer *)transformer;
 
 @end
 
