@@ -35,22 +35,24 @@
 - (instancetype)initWithDependency:(CCYAsixDependency)dependency {
     self = [super init];
     if (self) {
-        _formatter       = [[NSNumberFormatter alloc] init];
+        _formatter                       = [[NSNumberFormatter alloc] init];
         _formatter.minimumFractionDigits = 2;
 
-        _axisColor       = UIColor.redColor;
-        _axisLineWidth   = 1.f;
-        _labelColor      = UIColor.grayColor;
+        _axisColor                       = UIColor.redColor;
+        _axisLineWidth                   = 1.f;
+        _labelColor                      = UIColor.grayColor;
         _font = [UIFont systemFontOfSize:10];
 
-        _gridLineWidth   = 1.f;
-        _gridColor       = [UIColor.lightGrayColor colorWithAlphaComponent:0.2];
-        _gridLineEnabled = YES;
+        _gridLineWidth                   = 1.f;
+        _gridColor                       = [UIColor.lightGrayColor colorWithAlphaComponent:0.2];
+        _gridLineEnabled                 = YES;
 
-        _xLabelOffset    = 5;
-        _yLabelOffset    = 0;
+        _xLabelOffset                    = 5;
+        _yLabelOffset                    = 0;
 
-        _dependency      = dependency;
+        _minMaxRangeExtraPrecent         = 0.05;
+
+        _dependency                      = dependency;
     }
     return self;
 }
@@ -112,6 +114,10 @@
     [self generateEntities];
 }
 
+- (CGFloat)rangeValue {
+    return _axisMaxValue = _axisMinValue;
+}
+
 #pragma mark - Func
 
 - (void)calculateMinMax:(CCChartData *)charData {
@@ -119,8 +125,11 @@
         return;
     }
 
-    _axisMinValue = charData.minY;
-    _axisMaxValue = charData.maxY;
+    CGFloat range = charData.maxY - charData.minY;
+
+    _axisMinValue = charData.minY - _minMaxRangeExtraPrecent * range;
+    
+    _axisMaxValue = charData.maxY + _minMaxRangeExtraPrecent * range;
 
     [self generateEntities];
 }

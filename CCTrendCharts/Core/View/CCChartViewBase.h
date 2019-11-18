@@ -34,6 +34,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol CCChartViewDelegate <NSObject>
 
+/// 图库希望得到下一页的数据, 用于渲染
+///
+/// 目前有两种情况触发这个方法
+///
+/// 1. 普通趋势图(非recentFirst), 视图向左滚动到出现右边界之后会触发.
+/// 
+/// 2. recentFirst趋势图, 视图向右滚动到出现左边界之后会触发.
+///
+/// 注意, 该方法只是通知用户"期待获取下一页数据", 但实际有没有新数据要提供, 由用户自行决定.
+/// 如果有新数据提供, 请调用[charview setNeedsPrepareChart]通知图库, 之后提供相应数据源即可.
+- (void)chartViewExpectLoadNextPage:(CCChartViewBase *)view;
+
 // 点击事件
 
 // 双击事件

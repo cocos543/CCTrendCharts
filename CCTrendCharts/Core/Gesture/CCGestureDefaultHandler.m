@@ -73,36 +73,34 @@
 }
 
 - (void)pinchGestureStateChanging:(UIPinchGestureRecognizer *)gr {
+    // 缩放中心
+    CGPoint scaleCenter = [gr locationInView:self.baseView];
+    
+    // 这里只关心x位置, 不关心y, 因为不打算支持y轴缩放
+    // 围绕缩放中心进行缩放的算法如下:
+    // 1. 平移到scaleCenter的x, y
+    // 2. 缩放n倍
+    // 3. 在缩放的基础上平移-x, -y
+    CGAffineTransform matrix = CGAffineTransformIdentity;
+    
+    matrix = CGAffineTransformTranslate(matrix, scaleCenter.x, scaleCenter.y);
+    matrix = CGAffineTransformScale(matrix, gr.scale, 1);
+    matrix = CGAffineTransformTranslate(matrix, -scaleCenter.x, -scaleCenter.y);
+    self.viewPixelHandler.gestureMatrix = CGAffineTransformConcat(self.viewPixelHandler.gestureMatrix, matrix);
+    
+    // 还原缩放值, 因为缩放的部分已经叠加到gestureMatrix矩阵里了.
+    gr.scale = 1.0;
+    
     if (gr.state == UIGestureRecognizerStateBegan) {
         
     }else if (gr.state == UIGestureRecognizerStateChanged) {
-        // 缩放中心
-        CGPoint scaleCenter = [gr locationInView:self.baseView];
-        
-        //scaleCenter.x = scaleCenter.x - self.viewPixelHandler.contentLeft;
-        //scaleCenter.y = scaleCenter.y - self.viewPixelHandler.contentTop;
-        
-        
-        // 这里只关心x位置, 不关心y, 因为不打算支持y轴缩放
-        // 围绕缩放中心进行缩放的算法如下:
-        // 1. 平移到scaleCenter的x, y
-        // 2. 缩放n倍
-        // 3. 在缩放的基础上平移-x, -y
-        CGAffineTransform matrix = CGAffineTransformIdentity;
-        
-        matrix = CGAffineTransformTranslate(matrix, scaleCenter.x, scaleCenter.y);
-        matrix = CGAffineTransformScale(matrix, gr.scale, 1);
-        matrix = CGAffineTransformTranslate(matrix, -scaleCenter.x, -scaleCenter.y);
-        self.viewPixelHandler.gestureMatrix = CGAffineTransformConcat(self.viewPixelHandler.gestureMatrix, matrix);
-        
-        // 还原缩放值, 因为缩放的部分已经叠加到gestureMatrix矩阵里了.
-        gr.scale = 1.0;
-        
         if ([self.delegate respondsToSelector:@selector(gestureDidPinchInLocation:matrix:)]) {
             [self.delegate gestureDidPinchInLocation:scaleCenter matrix:matrix];
         }
     }else if (gr.state == UIGestureRecognizerStateEnded) {
-        
+        if ([self.delegate respondsToSelector:@selector(gestureDidEndPinchInLocation:matrix:)]) {
+            [self.delegate gestureDidEndPinchInLocation:scaleCenter matrix:matrix];
+        }
     }
 }
 

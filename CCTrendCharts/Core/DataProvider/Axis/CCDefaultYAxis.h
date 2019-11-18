@@ -46,6 +46,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat axisMaxValue;
 
+
+/// 额外给最大最小值的范围值追加一个百分比, 避免实体贴近上下边缘绘制, 这样渲染出来的效果好看一些.
+///
+/// 该值默认是0.05(5%)
+@property (nonatomic, assign) CGFloat minMaxRangeExtraPrecent;
+
 @property (nonatomic, assign) CCYAxisLabelPosition labelPosition;
 
 @property (nonatomic, assign) CCYAsixDependency dependency;

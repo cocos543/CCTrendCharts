@@ -154,7 +154,8 @@
 - (void)_updateScrollContent {
     // 滚动区间大小计算公式:
     // 滚动视图内容宽度 = 绘制总长度 - 绘制区间宽度 + 滚动视图宽度
-    CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count]);
+    // 这里额外加上CC_X_INIT_TRANSLATION, 这样可滚动的区域会比实体大一些, 让第一个和最后一个实体和y轴保持一定距离
+    CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count + CC_X_INIT_TRANSLATION]);
     CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
     self.scrollView.contentSize = CGSizeMake(needExtraWidth + self.bounds.size.width, 0);
 }
@@ -170,7 +171,7 @@
     // 当前正在进行手势操作的, 表示正在浏览数据, 所以不应该重新计算手势矩阵了
     if (self.recentFirst) {
         if (![self.viewPixelHandler isGestureProcessing]) {
-            CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count]);
+            CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count + CC_X_INIT_TRANSLATION]);
             CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
 
             // recentFirst模式下, 初始矩阵的偏移量和scrollview的偏移量是不同步的, 所以需要重新更新一下lastTx
@@ -181,6 +182,12 @@
             _needTriggerScrollGesture = NO;
             [self _setScrollViewXOffset:needExtraWidth];
             _needTriggerScrollGesture = YES;
+            
+            // 当数据源太少时, 总宽度比可绘制的内容宽度都小, 这里会得到一个负数
+            // 为了让视图实体靠左显示, 这里需要另外把scrollview的offset调整为0
+            if (needExtraWidth < 0) {
+                [self.scrollView setContentOffset:CGPointZero animated:NO];
+            }
         } else {
             // 处于手势操作中的视图, 数据源变动之后, 需要动态调整scrollview 的 offset
             CGFloat incrementWidth = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count - _lastXValsCount]);
@@ -268,6 +275,14 @@
     }
 }
 
+
+/// 根据当前可见区域, 更新y轴上的内容
+- (void)_updateViewYAxisContent {
+    [self.data calcMinMaxStart:self.lowestVisibleXIndex End:self.highestVisibleXIndex];
+    [self _calcYAxisMinMax];
+    [self _updateStandardMatrix];
+}
+
 - (void)setNeedsPrepareChart {
     _needsPrepare = YES;
     [self setNeedsDisplay];
@@ -303,6 +318,8 @@
 
     // 确定好绘制的内容和滚动区域一起同步偏移的量, 完成同步滚动.
     [self _calcViewPixelInitMatrix];
+    
+    [self _updateViewYAxisContent];
 }
 
 - (void)dataRendering {
@@ -401,10 +418,14 @@
     _lastOffsetX = self.scrollView.contentOffset.x;
     _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
 
-    // 滚动之后, 重新计算y轴信息
-    [self.data calcMinMaxStart:self.lowestVisibleXIndex End:self.highestVisibleXIndex];
-    [self _calcYAxisMinMax];
-    [self _updateStandardMatrix];
+    [self _updateViewYAxisContent];
+    
+    // 检查到边缘时, 通知代理期望获取下一页数据.
+    if (self.recentFirst) {
+        
+    }else {
+        
+    }
     [self setNeedsDisplay];
 }
 
@@ -453,11 +474,32 @@
 
     _lastOffsetX = offset.x;
     _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
+    
+    [self _updateViewYAxisContent];
     [self setNeedsDisplay];
 }
 
+- (void)gestureDidEndPinchInLocation:(CGPoint)point matrix:(CGAffineTransform)matrix {
+    // 检查缩放之后scrollview的状态, 如果contentOffset出现过度设置的话, 需要纠正
+    if (self.scrollView.contentOffset.x < 0) {
+        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    } else {
+        // 有一种情况, 当数据源太少时, 进行放大操作, 会出现左侧超过左边界, 右侧还没到右边界
+        // 这时候, 如果直接让右侧靠近右边界的话, 则左侧远离左边界, 这是不符合要求的.
+        // 这里需要特殊处理(注意这里self.scrollView.contentSize就是实体的实际宽度)
+        if (self.scrollView.contentSize.width < self.scrollView.frame.size.width) {
+            [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+            NSLog(@"分支1");
+        }else {
+            if (self.scrollView.contentSize.width < (self.scrollView.contentOffset.x + self.scrollView.frame.size.width)) {
+                [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSize.width - self.scrollView.frame.size.width, 0) animated:YES];
+                NSLog(@"分支2");
+            }
+        }
+    }
+}
+
 - (void)gestureDidLongPressInLocation:(CGPoint)point {
-    
     
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
     [self.cursorRenderer beginRenderingInLayer:self.cursorLayer center:point];
@@ -491,7 +533,6 @@
 }
 
 - (void)gestureDidEndLongPressInLocation:(CGPoint)point {
-    NSLog(@"结束长按");
     // 简单演示, 几秒后移除图层即可
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self->_cursorLayer removeFromSuperlayer];

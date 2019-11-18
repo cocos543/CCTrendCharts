@@ -105,7 +105,7 @@
         // x方向对应的实际数值是n*transform.a
         // y方向对应的实际数值是n*transform.d
         
-        // 全部元素中心轴向右平移0.5个单位, 确保第一个数据实体不会和y轴重叠
+        // 全部元素中心轴向右平移CC_X_INIT_TRANSLATION个单位, 确保第一个数据实体不会和y轴重叠
         transform = CGAffineTransformTranslate(transform, CC_X_INIT_TRANSLATION, 0);
         return transform;
     }

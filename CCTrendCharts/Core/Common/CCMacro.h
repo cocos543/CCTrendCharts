@@ -19,4 +19,4 @@ CGContextRestoreGState(ctx); \
 #define NSLog(format, ...)
 #endif
 
-#define CC_X_INIT_TRANSLATION 0.5
+#define CC_X_INIT_TRANSLATION 1

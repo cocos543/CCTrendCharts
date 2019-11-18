@@ -18,6 +18,12 @@
 - (void)gestureDidPinchInLocation:(CGPoint)point matrix:(CGAffineTransform)matrix;
 
 
+/// 缩放操作结束
+/// @param point 缩放的中心点
+/// @param matrix 缩放的内容
+- (void)gestureDidEndPinchInLocation:(CGPoint)point matrix:(CGAffineTransform)matrix;
+
+
 /// 进行滚动操作
 - (void)gestureDidPanIncrementOffset:(CGPoint)point matrix:(CGAffineTransform)matrix;
 
