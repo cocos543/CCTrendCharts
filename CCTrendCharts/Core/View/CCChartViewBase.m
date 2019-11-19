@@ -10,6 +10,7 @@
 
 #import "CCChartViewBase.h"
 
+
 @interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate, CCGestureHandlerDelegate> {
     BOOL _needsPrepare;
 
@@ -24,6 +25,8 @@
     NSInteger _lastXValsCount;
     
     NSInteger _longPressLastSelcIndex;
+    
+    CCSingleEventManager *_eventManager;
 }
 
 /**
@@ -80,6 +83,8 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        _eventManager = [[CCSingleEventManager alloc] init];
+        
         _scrollView = [[UIScrollView alloc] initWithFrame:frame];
         _scrollView.delegate                = self;
         _scrollView.backgroundColor         = UIColor.clearColor;
@@ -422,10 +427,23 @@
     
     // 检查到边缘时, 通知代理期望获取下一页数据.
     if (self.recentFirst) {
-        
+        if (self.scrollView.contentOffset.x <= 0) {
+            if ([self.delegate respondsToSelector:@selector(chartViewExpectLoadNextPage:eventManager:)]) {
+                [_eventManager newEventWithBlock:^{
+                    [self->_delegate chartViewExpectLoadNextPage:self eventManager:self->_eventManager];
+                }];
+            }
+        }
     }else {
-        
+        if (self.scrollView.contentOffset.x + self.scrollView.bounds.size.width > self.scrollView.contentSize.width) {
+            if ([self.delegate respondsToSelector:@selector(chartViewExpectLoadNextPage:eventManager:)]) {
+                [_eventManager newEventWithBlock:^{
+                    [self->_delegate chartViewExpectLoadNextPage:self eventManager:self->_eventManager];
+                }];
+            }
+        }
     }
+    
     [self setNeedsDisplay];
 }
 
@@ -487,12 +505,12 @@
         // 有一种情况, 当数据源太少时, 进行放大操作, 会出现左侧超过左边界, 右侧还没到右边界
         // 这时候, 如果直接让右侧靠近右边界的话, 则左侧远离左边界, 这是不符合要求的.
         // 这里需要特殊处理(注意这里self.scrollView.contentSize就是实体的实际宽度)
-        if (self.scrollView.contentSize.width < self.scrollView.frame.size.width) {
+        if (self.scrollView.contentSize.width < self.scrollView.bounds.size.width) {
             [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
             NSLog(@"分支1");
         }else {
-            if (self.scrollView.contentSize.width < (self.scrollView.contentOffset.x + self.scrollView.frame.size.width)) {
-                [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSize.width - self.scrollView.frame.size.width, 0) animated:YES];
+            if (self.scrollView.contentSize.width < (self.scrollView.contentOffset.x + self.scrollView.bounds.size.width)) {
+                [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSize.width - self.scrollView.bounds.size.width, 0) animated:YES];
                 NSLog(@"分支2");
             }
         }

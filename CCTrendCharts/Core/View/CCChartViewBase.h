@@ -13,6 +13,8 @@
 #import "CCProtocolChartViewBase.h"
 #import "CCGestureDefaultHandler.h"
 
+#import "CCSingleEventManager.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class CCChartViewBase;
@@ -44,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///
 /// 注意, 该方法只是通知用户"期待获取下一页数据", 但实际有没有新数据要提供, 由用户自行决定.
 /// 如果有新数据提供, 请调用[charview setNeedsPrepareChart]通知图库, 之后提供相应数据源即可.
-- (void)chartViewExpectLoadNextPage:(CCChartViewBase *)view;
+- (void)chartViewExpectLoadNextPage:(CCChartViewBase *)view eventManager:(CCSingleEventManager *)eventManager;
 
 // 点击事件
 

@@ -38,6 +38,8 @@
 		ED8004E823701B61005647C2 /* CCProtocolCursorRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8A5A35237AC60400913416 /* CALayer+CCUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8A5A33237AC60400913416 /* CALayer+CCUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8A5A36237AC60400913416 /* CALayer+CCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8A5A34237AC60400913416 /* CALayer+CCUtility.m */; };
+		ED92FE92238398CC00627725 /* CCSingleEventManager.h in Headers */ = {isa = PBXBuildFile; fileRef = ED92FE90238398CC00627725 /* CCSingleEventManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED92FE93238398CC00627725 /* CCSingleEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED92FE91238398CC00627725 /* CCSingleEventManager.m */; };
 		ED99B484237BF2C400388345 /* CCDataChartRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED99B482237BF2C400388345 /* CCDataChartRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED99B485237BF2C400388345 /* CCDataChartRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED99B483237BF2C400388345 /* CCDataChartRenderer.m */; };
 		ED99B488237BF7AF00388345 /* CCKLineDataChartRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED99B486237BF7AF00388345 /* CCKLineDataChartRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -135,6 +137,8 @@
 		ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolCursorRenderer.h; sourceTree = "<group>"; };
 		ED8A5A33237AC60400913416 /* CALayer+CCUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+CCUtility.h"; sourceTree = "<group>"; };
 		ED8A5A34237AC60400913416 /* CALayer+CCUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+CCUtility.m"; sourceTree = "<group>"; };
+		ED92FE90238398CC00627725 /* CCSingleEventManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCSingleEventManager.h; sourceTree = "<group>"; };
+		ED92FE91238398CC00627725 /* CCSingleEventManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCSingleEventManager.m; sourceTree = "<group>"; };
 		ED99B482237BF2C400388345 /* CCDataChartRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCDataChartRenderer.h; sourceTree = "<group>"; };
 		ED99B483237BF2C400388345 /* CCDataChartRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCDataChartRenderer.m; sourceTree = "<group>"; };
 		ED99B486237BF7AF00388345 /* CCKLineDataChartRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKLineDataChartRenderer.h; sourceTree = "<group>"; };
@@ -449,6 +453,8 @@
 				EDD0F257234C7370005ED4DD /* NSString+CCUtility.m */,
 				ED8A5A33237AC60400913416 /* CALayer+CCUtility.h */,
 				ED8A5A34237AC60400913416 /* CALayer+CCUtility.m */,
+				ED92FE90238398CC00627725 /* CCSingleEventManager.h */,
+				ED92FE91238398CC00627725 /* CCSingleEventManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -527,6 +533,7 @@
 				ED99B484237BF2C400388345 /* CCDataChartRenderer.h in Headers */,
 				ED99B488237BF7AF00388345 /* CCKLineDataChartRenderer.h in Headers */,
 				ED99B490237C078700388345 /* CCRendererBase.h in Headers */,
+				ED92FE92238398CC00627725 /* CCSingleEventManager.h in Headers */,
 				EDDCD4602334CDAE005E46EA /* CCMacro.h in Headers */,
 				ED00E79223223C7800139A8C /* CCProtocolBase.h in Headers */,
 			);
@@ -632,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDABB2692320E68700C65D3F /* CCMain.m in Sources */,
+				ED92FE93238398CC00627725 /* CCSingleEventManager.m in Sources */,
 				EDA3E305232F7E7600222E83 /* CCKLineChartDataSet.m in Sources */,
 				ED00E79B23223E6600139A8C /* CCDefaultXAxis.m in Sources */,
 				EDD180BC232A3B0F00B2B72A /* CCDefaultXAxisRenderer.m in Sources */,
