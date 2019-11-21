@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "CCProtocolChartDataSet.h"
 
+
+extern CCDataSetName const _Nonnull kCCNameBaseDataSet;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CCChartDataSetBase : NSObject <CCProtocolChartDataSet>

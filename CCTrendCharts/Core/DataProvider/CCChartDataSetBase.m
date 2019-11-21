@@ -8,6 +8,8 @@
 
 #import "CCChartDataSetBase.h"
 
+CCDataSetName const kCCNameBaseDataSet = @"BaseDataSet";
+
 @implementation CCChartDataSetBase
 @synthesize entities = _entities;
 

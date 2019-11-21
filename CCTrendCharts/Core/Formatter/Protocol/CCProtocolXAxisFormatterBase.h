@@ -10,7 +10,7 @@
 #import "CCProtocolAxisBase.h"
 
 // X轴上的文案信息不像Y轴, 应该理解成是用户是否自行定义文案样式, 而不一定是数值
-@protocol CCProtocolXAxisFormatterBase <NSObject>
+@protocol CCProtocolXAxisFormatterBase <NSObject, NSCopying>
 
 
 /**

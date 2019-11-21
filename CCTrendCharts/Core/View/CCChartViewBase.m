@@ -124,8 +124,6 @@
 }
 
 - (void)layoutSubviews {
-    NSLog(@"layoutSubviews");
-
     CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.scrollView.frame = frame;
     [self addSubview:_scrollView];
@@ -160,6 +158,7 @@
     // 滚动区间大小计算公式:
     // 滚动视图内容宽度 = 绘制总长度 - 绘制区间宽度 + 滚动视图宽度
     // 这里额外加上CC_X_INIT_TRANSLATION, 这样可滚动的区域会比实体大一些, 让第一个和最后一个实体和y轴保持一定距离
+
     CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count + CC_X_INIT_TRANSLATION]);
     CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
     self.scrollView.contentSize = CGSizeMake(needExtraWidth + self.bounds.size.width, 0);
@@ -209,7 +208,7 @@
 }
 
 /// 重新计算x,y轴的位置信息. 两个轴的位置和轴文案是紧密相关的.
-- (void)_calcViewPixelOffset {
+- (void)_calcviewPixelHandlerOffset {
     // 先恢复ViewPixel的初始值
     [self _updateViewPixelHandler];
 
@@ -298,6 +297,10 @@
 
     // 基类只是简单设置数据状态
     _needsPrepare   = NO;
+    if (self.dataSource == nil) {
+        @throw [NSException exceptionWithName:@"DataSource is nil" reason:@"CCChartViewDataSource can't no be nil" userInfo:nil];
+    }
+    
     self.data       = [self.dataSource chartDataInView:self];
 
     // 这里是为了让后面y轴文案能得到全部数据的最大最小值, 方便_calcViewPixelOffset一次性计算出一个合适值
@@ -312,7 +315,7 @@
     [self _calcYAxisMinMax];
 
     // 全部数据计算好之后, 重新调整一下绘制区域的大小
-    [self _calcViewPixelOffset];
+    [self _calcviewPixelHandlerOffset];
 
     // 根据新的绘制区域,重新计算反射参数
     [self _updateStandardMatrix];
@@ -379,7 +382,12 @@
         [self prepareChart];
         _needsPrepare = NO;
     }
+    self.layer.backgroundColor = self.backgroundColor.CGColor;
 
+    if (CGSizeEqualToSize(self.viewPixelHandler.viewFrame.size, CGSizeZero)) {
+        return;
+    }
+    
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
 
     [self.leftAxisRenderer beginRenderingInLayer:self.yAxisLayer];
@@ -394,8 +402,6 @@
     
     // 单独渲染数据层
     [self dataRendering];
-
-    self.layer.backgroundColor = self.backgroundColor.CGColor;
 }
 
 #pragma mark - Drawing
@@ -507,11 +513,9 @@
         // 这里需要特殊处理(注意这里self.scrollView.contentSize就是实体的实际宽度)
         if (self.scrollView.contentSize.width < self.scrollView.bounds.size.width) {
             [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-            NSLog(@"分支1");
         }else {
             if (self.scrollView.contentSize.width < (self.scrollView.contentOffset.x + self.scrollView.bounds.size.width)) {
                 [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSize.width - self.scrollView.bounds.size.width, 0) animated:YES];
-                NSLog(@"分支2");
             }
         }
     }

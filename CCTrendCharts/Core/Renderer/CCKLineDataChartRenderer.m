@@ -10,14 +10,11 @@
 
 @interface CCKLineDataChartRenderer ()
 
-@property (nonatomic, strong) CAShapeLayer *risingLayer;
-@property (nonatomic, strong) CAShapeLayer *fallingLayer;
-@property (nonatomic, strong) CAShapeLayer *flatLayer;
-
 @end
 
 @implementation CCKLineDataChartRenderer
 
+#pragma mark - Setter & Getter
 - (CAShapeLayer *)risingLayer {
     if (!_risingLayer) {
         _risingLayer = CAShapeLayer.layer;
@@ -38,32 +35,81 @@
     if (!_flatLayer) {
         _flatLayer = CAShapeLayer.layer;
     }
-    
+
     return _flatLayer;
 }
 
+#pragma mark - Public
+- (void)renderDataWithRising:(UIBezierPath *)risingPath fallingPath:(UIBezierPath *)fallingPath flatPath:(UIBezierPath *)flatPath usingDataSetName:(CCDataSetName)name inContentLayer:(CALayer *)contentLayer {
+    CCKLineChartData *data       = self.dataProvider.klineChartData;
+    CCKLineChartDataSet *dataSet = [[data dataSetWithName:name] lastObject];
 
+    // 上升图层
+    CAShapeLayer *risingLayer    = self.risingLayer;
+    risingLayer.frame       = contentLayer.frame;
+    if (dataSet.isRisingFill) {
+        risingLayer.fillColor = dataSet.risingColor.CGColor;
+    } else {
+        risingLayer.fillColor = UIColor.clearColor.CGColor;
+    }
+    risingLayer.lineWidth   = 1;
+    risingLayer.strokeColor = dataSet.risingColor.CGColor;
+
+    [contentLayer addSublayer:risingLayer];
+    [CALayer quickUpdateLayer:^{
+        risingLayer.path = risingPath.CGPath;
+    }];
+
+    // 下降图层
+    CAShapeLayer *fallingLayer = self.fallingLayer;
+    fallingLayer.frame = contentLayer.frame;
+    if (dataSet.isFallingFill) {
+        fallingLayer.fillColor = dataSet.fallingColor.CGColor;
+    } else {
+        fallingLayer.fillColor = UIColor.clearColor.CGColor;
+    }
+
+    fallingLayer.lineWidth   = 1;
+    fallingLayer.strokeColor = dataSet.fallingColor.CGColor;
+    [contentLayer addSublayer:fallingLayer];
+
+    [CALayer quickUpdateLayer:^{
+        fallingLayer.path = fallingPath.CGPath;
+    }];
+
+    // 平价图层
+    if (flatPath) {
+        CAShapeLayer *flatLayer = self.flatLayer;
+        flatLayer.frame       = contentLayer.frame;
+        flatLayer.lineWidth   = 1;
+        flatLayer.strokeColor = dataSet.flatColor.CGColor;
+        [contentLayer addSublayer:flatLayer];
+        [CALayer quickUpdateLayer:^{
+            flatLayer.path = flatPath.CGPath;
+        }];
+    } else {
+        [self.flatLayer removeFromSuperlayer];
+    }
+}
 
 - (void)renderData:(CALayer *)contentLayer {
-    CCKLineChartData *data = self.dataProvider.klineChartData;
+    CCKLineChartData *data       = self.dataProvider.klineChartData;
+    CCKLineChartDataSet *dataSet = [[data dataSetWithName:kCCNameKLineDataSet] lastObject];
 
     // 把两个实体中心轴分成3份, 分别占35%, 30%, 35%. 其中30%就是两个蜡烛图的距离, 35%是蜡烛图一半的大小.
     // 三部分共计100%
-
     // 一半宽的大小
-    CGFloat halfWidth = fabs([self.transformer distanceBetweenSpace:0.35]);
-
-    CCKLineChartDataSet *dataSet = [[data dataSetWithName:kCCNameKLineDataSet] lastObject];
+    CGFloat halfWidth         = fabs([self.transformer distanceBetweenSpace:CC_KLINE_ENTITY_DISTANCE_PERCENT / 2]);
 
     // 绘制上升路径
-    UIBezierPath *risingPath     = UIBezierPath.bezierPath;
+    UIBezierPath *risingPath  = UIBezierPath.bezierPath;
     // 绘制下降路径
-    UIBezierPath *fallingPath    = UIBezierPath.bezierPath;
+    UIBezierPath *fallingPath = UIBezierPath.bezierPath;
     // 用于绘制K线十字星, 这种情况比较少见, 出现了才需要绘制.
-    UIBezierPath *flatPath       = nil;
+    UIBezierPath *flatPath    = nil;
 
     // 临时路径
-    UIBezierPath *path = UIBezierPath.bezierPath;
+    UIBezierPath *path        = UIBezierPath.bezierPath;
     for (CCKLineDataEntity *val in dataSet.entities) {
         // 先确定位置
         CGFloat xPos = [self.transformer pointToPixel:CGPointMake(val.xIndex, 0) forAnimationPhaseY:1].x;
@@ -100,7 +146,7 @@
         // 开始绘制内容
         [path moveToPoint:CGPointMake(xPos, yMax)];
         [path addLineToPoint:CGPointMake(xPos, candleTop)];
-        
+
         [path moveToPoint:CGPointMake(xPos, yMin)];
         [path addLineToPoint:CGPointMake(xPos, candleBottom)];
 
@@ -120,52 +166,7 @@
         }
     }
 
-    // 上升图层
-    CAShapeLayer *risingLayer = self.risingLayer;
-    risingLayer.frame       = contentLayer.frame;
-    if (dataSet.isRisingFill) {
-        risingLayer.fillColor = dataSet.risingColor.CGColor;
-    }else {
-        risingLayer.fillColor = UIColor.clearColor.CGColor;
-    }
-    risingLayer.lineWidth   = 1;
-    risingLayer.strokeColor = dataSet.risingColor.CGColor;
-
-    [contentLayer addSublayer:risingLayer];
-    [CALayer quickUpdateLayer:^{
-        risingLayer.path = risingPath.CGPath;
-    }];
-
-    // 下降图层
-    CAShapeLayer *fallingLayer = self.fallingLayer;
-    fallingLayer.frame       = contentLayer.frame;
-    if (dataSet.isFallingFill) {
-        fallingLayer.fillColor = dataSet.fallingColor.CGColor;
-    } else {
-        fallingLayer.fillColor = UIColor.clearColor.CGColor;
-    }
-    
-    fallingLayer.lineWidth   = 1;
-    fallingLayer.strokeColor = dataSet.fallingColor.CGColor;
-    [contentLayer addSublayer:fallingLayer];
-
-    [CALayer quickUpdateLayer:^{
-        fallingLayer.path = fallingPath.CGPath;
-    }];
-    
-    // 平价图层
-    if (flatPath) {
-        CAShapeLayer *flatLayer = self.flatLayer;
-        flatLayer.frame = contentLayer.frame;
-        flatLayer.lineWidth = 1;
-        flatLayer.strokeColor = dataSet.flatColor.CGColor;
-        [contentLayer addSublayer:flatLayer];
-        [CALayer quickUpdateLayer:^{
-            flatLayer.path = flatPath.CGPath;
-        }];
-    }else {
-        [self.flatLayer removeFromSuperlayer];
-    }
+    [self renderDataWithRising:risingPath fallingPath:fallingPath flatPath:flatPath usingDataSetName:kCCNameKLineDataSet inContentLayer:contentLayer];
 }
 
 - (void)renderHighlighted:(CAShapeLayer *)contentLayer {

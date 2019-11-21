@@ -90,7 +90,9 @@
     return transform;
 }
 
+
 - (CGAffineTransform)_calcMatrixOrientationX:(CGFloat)space recentFirst:(BOOL)recentFirst {
+    // 注意, 这里space不能为0, 否则缩放为0意味着全部数据都画到0的位置去了.
     
     if (recentFirst) {
         CGAffineTransform transform = CGAffineTransformMakeScale(-space, 1);
@@ -119,6 +121,9 @@
     // 1. 先获取y方向的范围, y方向和绘制区域的高度
     // 2. 缩放值 = 高度 / 范围
     CGFloat range = fabs(maxY - minY);
+    if (range < 0.00000000001) {
+        range = 1;
+    }
     CGFloat scaleY = self.viewPixelHandler.contentHeight / range;
     // 这里传入负数, 因为iOS坐标系里, 越向上数值越小
     transform = CGAffineTransformScale(transform, 1, -scaleY);

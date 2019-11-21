@@ -22,15 +22,15 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CCChartViewDataSource <NSObject>
 
 /// 分页提供数据
-- (CCChartData *)chartDataInView:(CCChartViewBase *)view;
+- (CCChartData *)chartDataInView:(CCChartViewBase *)chartView;
 
 
 /// 提供实时更新最后一个节点的数据
-- (CCChartData *)chartDataForRealTimeInView:(CCChartViewBase *)view;
+- (CCChartData *)chartDataForRealTimeInView:(CCChartViewBase *)chartView;
 
 
 /// 切换数据数据类型时, 提供全部新数据
-- (CCChartData *)chartDataForSwitchTypeInView:(CCChartViewBase *)view;
+- (CCChartData *)chartDataForSwitchTypeInView:(CCChartViewBase *)chartView;
 
 @end
 

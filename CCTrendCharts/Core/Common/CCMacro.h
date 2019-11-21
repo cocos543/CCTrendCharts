@@ -20,3 +20,6 @@ CGContextRestoreGState(ctx); \
 #endif
 
 #define CC_X_INIT_TRANSLATION 1
+
+// K线图实体绘制部分 占 轴距离的百分比
+#define CC_KLINE_ENTITY_DISTANCE_PERCENT 0.7

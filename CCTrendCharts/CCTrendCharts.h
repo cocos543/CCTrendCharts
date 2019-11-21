@@ -20,5 +20,13 @@ FOUNDATION_EXPORT const unsigned char CCTrendChartsVersionString[];
 
 #import <CCTrendCharts/UIColor+CCUtility.h>
 #import <CCTrendCharts/CCBaseUtility.h>
-#import <CCTrendCharts/CCKLineChartView.h>
 #import <CCTrendCharts/CCXAxisFixedFormatter.h>
+
+
+// 全部内置视图
+#import <CCTrendCharts/CCBarChartView.h>
+#import <CCTrendCharts/CCVolumeChartView.h>
+#import <CCTrendCharts/CCKLineChartView.h>
+
+
+

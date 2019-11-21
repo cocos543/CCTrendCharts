@@ -11,15 +11,15 @@
 @implementation CCDataChartRenderer
 
 - (void)renderData:(CALayer *)contentLayer {
-    
+    // 什么都不做
 }
 
 - (void)renderDataSet:(CALayer *)contentLayer dataSet:(id<CCProtocolChartDataSet>)dataSet {
-    
+    // 什么都不做
 }
 
 - (void)renderHighlighted:(CAShapeLayer *)contentLayer {
-    
+    // 什么都不做
 }
 
 @end

@@ -20,7 +20,7 @@
 @synthesize axisLineWidth   = _axisLineWidth;
 @synthesize font = _font;
 @synthesize labelColor      = _labelColor;
-//@synthesize labelMaxLine = _labelMaxLine;
+
 @synthesize xLabelOffset    = _xLabelOffset;
 @synthesize yLabelOffset    = _yLabelOffset;
 @synthesize requireSize     = _requireSize;
@@ -72,6 +72,31 @@
 - (void)setRequireSize:(CGSize)requireSize {
     _customRequireSize = YES;
     _requireSize       = requireSize;
+}
+
+#pragma mark - NSCopying
+- (nonnull id)copyWithZone:(nullable NSZone *)zone {
+    typeof(self) axis  = [[self.class allocWithZone:zone] init];
+
+    axis.axisColor     = [self.axisColor copy];
+    axis.axisLineWidth = self.axisLineWidth;
+    axis.font = [self.font copy];
+    axis.labelColor    = [self.labelColor copy];
+    axis.xLabelOffset  = self.xLabelOffset;
+    axis.yLabelOffset  = self.yLabelOffset;
+
+    if (_customRequireSize) {
+        axis.requireSize = self.requireSize;
+    }
+
+    axis.gridColor       = [self.gridColor copy];
+    axis.gridLineWidth   = self.gridLineWidth;
+    axis.gridLineEnabled = self.gridLineEnabled;
+
+    axis.formatter       = [(NSObject *)self.formatter copy];
+    axis.labelPosition   = self.labelPosition;
+
+    return axis;
 }
 
 @end

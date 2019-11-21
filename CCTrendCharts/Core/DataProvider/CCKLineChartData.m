@@ -10,5 +10,13 @@
 
 @implementation CCKLineChartData
 
+- (NSArray<CCKLineChartDataSet *> *)dataSets {
+    return [super dataSets];
+}
+
+- (NSArray<CCKLineChartDataSet *> *)dataSetWithName:(CCDataSetName)name {
+    return [super dataSetWithName:name];
+}
+
 
 @end

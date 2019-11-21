@@ -58,4 +58,13 @@
     self.modulus = MAX(ceil(count * size.width / contentWidth), self.minModulus);
 }
 
+#pragma mark NSCopying
+- (id)copyWithZone:(NSZone *)zone {
+    typeof(self) fat = [[self.class allocWithZone:zone] init];
+    fat.modulus = self.modulus;
+    fat.modulusStartIndex = self.modulusStartIndex;
+    fat.minModulus = self.minModulus;
+    
+    return fat;
+}
 @end

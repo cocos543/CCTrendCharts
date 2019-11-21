@@ -128,7 +128,7 @@
     CGFloat range = charData.maxY - charData.minY;
 
     _axisMinValue = charData.minY - _minMaxRangeExtraPrecent * range;
-    
+
     _axisMaxValue = charData.maxY + _minMaxRangeExtraPrecent * range;
 
     [self generateEntities];
@@ -154,6 +154,33 @@
     [arr addObject:@(self.axisMaxValue)];
 
     self.entities = arr;
+}
+
+#pragma mark - NSCopying
+- (nonnull id)copyWithZone:(nullable NSZone *)zone {
+    typeof(self) axis            = [[self.class allocWithZone:zone] init];
+
+    axis.axisColor               = [self.axisColor copy];
+    axis.axisLineWidth           = self.axisLineWidth;
+    axis.font = [self.font copy];
+    axis.labelColor              = [self.labelColor copy];
+    axis.xLabelOffset            = self.xLabelOffset;
+    axis.yLabelOffset            = self.yLabelOffset;
+    axis.requireSize             = self.requireSize;
+    axis.gridColor               = [self.gridColor copy];
+    axis.gridLineWidth           = self.gridLineWidth;
+    axis.gridLineEnabled         = self.gridLineEnabled;
+
+    // Y轴自带
+    axis.formatter               = [self.formatter copy];
+    axis.customValue             = self.customValue;
+    axis.labelCount              = self.labelCount;
+    axis.minMaxRangeExtraPrecent = self.minMaxRangeExtraPrecent;
+    axis.labelPosition           = self.labelPosition;
+    axis.dependency              = self.dependency;
+    
+    // 最大最小值实时计算的, 无需copy;
+    return axis;
 }
 
 @end

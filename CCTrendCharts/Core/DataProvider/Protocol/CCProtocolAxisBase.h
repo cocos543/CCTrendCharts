@@ -24,7 +24,11 @@ typedef NS_ENUM (NSUInteger, CCYAsixDependency) {
     CCYAsixDependencyRight = 1 << 1, // 右侧Y轴
 };
 
-@protocol CCProtocolAxisBase <CCProtocolBase>
+
+@protocol CCProtocolAxisBase <
+    CCProtocolBase,
+    NSCopying // 所有的Axis数据提供者都需要支持NSCopying协议, 这是为了方便其他视图复制样式
+    >
 @required
 
 /**

@@ -28,11 +28,21 @@
 		ED21EACC232642740087AE67 /* CCChartViewPixelHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = ED21EACA232642740087AE67 /* CCChartViewPixelHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED21EACD232642740087AE67 /* CCChartViewPixelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = ED21EACB232642740087AE67 /* CCChartViewPixelHandler.m */; };
 		ED35B7522339C79B0080FF5A /* CCProtocolChartDataEntityBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED41C2D323853F5A004B640E /* CCVolumeChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED41C2D123853F5A004B640E /* CCVolumeChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED41C2D423853F5A004B640E /* CCVolumeChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED41C2D223853F5A004B640E /* CCVolumeChartView.m */; };
+		ED41C2D723853F9F004B640E /* CCVolumeDataChartRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED41C2D523853F9F004B640E /* CCVolumeDataChartRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED41C2D823853F9F004B640E /* CCVolumeDataChartRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED41C2D623853F9F004B640E /* CCVolumeDataChartRenderer.m */; };
+		ED47DA7C2386253C0073CB48 /* CCVolumeChartDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = ED47DA7A2386253C0073CB48 /* CCVolumeChartDataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED47DA7D2386253C0073CB48 /* CCVolumeChartDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = ED47DA7B2386253C0073CB48 /* CCVolumeChartDataSet.m */; };
 		ED54969B2361889300BDBC37 /* CCGestureDefaultHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = ED5496992361889300BDBC37 /* CCGestureDefaultHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED54969C2361889300BDBC37 /* CCGestureDefaultHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = ED54969A2361889300BDBC37 /* CCGestureDefaultHandler.m */; };
 		ED5496A023618A1C00BDBC37 /* CCGestureHandlerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = ED54969E23618A1C00BDBC37 /* CCGestureHandlerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED54A1C52373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED54A1C32373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED54A1C62373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED54A1C42373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m */; };
+		ED7E69482384DBF2006246F0 /* CCBarChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7E69462384DBF2006246F0 /* CCBarChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED7E69492384DBF2006246F0 /* CCBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E69472384DBF2006246F0 /* CCBarChartView.m */; };
+		ED7E69502384E389006246F0 /* CCBarDataChartRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7E694E2384E389006246F0 /* CCBarDataChartRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED7E69512384E389006246F0 /* CCBarDataChartRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E694F2384E389006246F0 /* CCBarDataChartRenderer.m */; };
 		ED8004E423700267005647C2 /* CCXAxisFixedFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8004E523700267005647C2 /* CCXAxisFixedFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */; };
 		ED8004E823701B61005647C2 /* CCProtocolCursorRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -127,11 +137,21 @@
 		ED21EACA232642740087AE67 /* CCChartViewPixelHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChartViewPixelHandler.h; sourceTree = "<group>"; };
 		ED21EACB232642740087AE67 /* CCChartViewPixelHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCChartViewPixelHandler.m; sourceTree = "<group>"; };
 		ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolChartDataEntityBase.h; sourceTree = "<group>"; };
+		ED41C2D123853F5A004B640E /* CCVolumeChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeChartView.h; sourceTree = "<group>"; };
+		ED41C2D223853F5A004B640E /* CCVolumeChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeChartView.m; sourceTree = "<group>"; };
+		ED41C2D523853F9F004B640E /* CCVolumeDataChartRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeDataChartRenderer.h; sourceTree = "<group>"; };
+		ED41C2D623853F9F004B640E /* CCVolumeDataChartRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeDataChartRenderer.m; sourceTree = "<group>"; };
+		ED47DA7A2386253C0073CB48 /* CCVolumeChartDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeChartDataSet.h; sourceTree = "<group>"; };
+		ED47DA7B2386253C0073CB48 /* CCVolumeChartDataSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeChartDataSet.m; sourceTree = "<group>"; };
 		ED5496992361889300BDBC37 /* CCGestureDefaultHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCGestureDefaultHandler.h; sourceTree = "<group>"; };
 		ED54969A2361889300BDBC37 /* CCGestureDefaultHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCGestureDefaultHandler.m; sourceTree = "<group>"; };
 		ED54969E23618A1C00BDBC37 /* CCGestureHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCGestureHandlerProtocol.h; sourceTree = "<group>"; };
 		ED54A1C32373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCDefaultMarkerRenderer.h; sourceTree = "<group>"; };
 		ED54A1C42373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCDefaultMarkerRenderer.m; sourceTree = "<group>"; };
+		ED7E69462384DBF2006246F0 /* CCBarChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCBarChartView.h; sourceTree = "<group>"; };
+		ED7E69472384DBF2006246F0 /* CCBarChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCBarChartView.m; sourceTree = "<group>"; };
+		ED7E694E2384E389006246F0 /* CCBarDataChartRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCBarDataChartRenderer.h; sourceTree = "<group>"; };
+		ED7E694F2384E389006246F0 /* CCBarDataChartRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCBarDataChartRenderer.m; sourceTree = "<group>"; };
 		ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCXAxisFixedFormatter.h; sourceTree = "<group>"; };
 		ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCXAxisFixedFormatter.m; sourceTree = "<group>"; };
 		ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolCursorRenderer.h; sourceTree = "<group>"; };
@@ -393,6 +413,8 @@
 				EDD3F03E234DCC1A0025D51D /* CCChartDataSetBase.m */,
 				EDA3E302232F7E7600222E83 /* CCKLineChartDataSet.h */,
 				EDA3E303232F7E7600222E83 /* CCKLineChartDataSet.m */,
+				ED47DA7A2386253C0073CB48 /* CCVolumeChartDataSet.h */,
+				ED47DA7B2386253C0073CB48 /* CCVolumeChartDataSet.m */,
 				EDA3E2EE232F666700222E83 /* CCChartData.h */,
 				EDA3E2EF232F666700222E83 /* CCChartData.m */,
 				EDA3E2FE232F7BE000222E83 /* CCKLineChartData.h */,
@@ -419,6 +441,10 @@
 				ED99B483237BF2C400388345 /* CCDataChartRenderer.m */,
 				ED99B486237BF7AF00388345 /* CCKLineDataChartRenderer.h */,
 				ED99B487237BF7AF00388345 /* CCKLineDataChartRenderer.m */,
+				ED7E694E2384E389006246F0 /* CCBarDataChartRenderer.h */,
+				ED7E694F2384E389006246F0 /* CCBarDataChartRenderer.m */,
+				ED41C2D523853F9F004B640E /* CCVolumeDataChartRenderer.h */,
+				ED41C2D623853F9F004B640E /* CCVolumeDataChartRenderer.m */,
 				EDD180AF232A35F800B2B72A /* Protocol */,
 			);
 			path = Renderer;
@@ -474,6 +500,10 @@
 				ED1BFB59232231A700222820 /* CCChartViewBase.m */,
 				ED00E79C2322419B00139A8C /* CCKLineChartView.h */,
 				ED00E79D2322419B00139A8C /* CCKLineChartView.m */,
+				ED7E69462384DBF2006246F0 /* CCBarChartView.h */,
+				ED7E69472384DBF2006246F0 /* CCBarChartView.m */,
+				ED41C2D123853F5A004B640E /* CCVolumeChartView.h */,
+				ED41C2D223853F5A004B640E /* CCVolumeChartView.m */,
 				ED21EAC12325EAB00087AE67 /* Protocol */,
 			);
 			path = View;
@@ -534,6 +564,11 @@
 				ED99B488237BF7AF00388345 /* CCKLineDataChartRenderer.h in Headers */,
 				ED99B490237C078700388345 /* CCRendererBase.h in Headers */,
 				ED92FE92238398CC00627725 /* CCSingleEventManager.h in Headers */,
+				ED7E69482384DBF2006246F0 /* CCBarChartView.h in Headers */,
+				ED41C2D723853F9F004B640E /* CCVolumeDataChartRenderer.h in Headers */,
+				ED7E69502384E389006246F0 /* CCBarDataChartRenderer.h in Headers */,
+				ED41C2D323853F5A004B640E /* CCVolumeChartView.h in Headers */,
+				ED47DA7C2386253C0073CB48 /* CCVolumeChartDataSet.h in Headers */,
 				EDDCD4602334CDAE005E46EA /* CCMacro.h in Headers */,
 				ED00E79223223C7800139A8C /* CCProtocolBase.h in Headers */,
 			);
@@ -643,20 +678,25 @@
 				EDA3E305232F7E7600222E83 /* CCKLineChartDataSet.m in Sources */,
 				ED00E79B23223E6600139A8C /* CCDefaultXAxis.m in Sources */,
 				EDD180BC232A3B0F00B2B72A /* CCDefaultXAxisRenderer.m in Sources */,
+				ED7E69512384E389006246F0 /* CCBarDataChartRenderer.m in Sources */,
 				ED052EA22338CF85000CED6C /* CCCoordinateUtility.m in Sources */,
 				EDA66826237129E10046E469 /* CCDefaultCursor.m in Sources */,
 				ED54A1C62373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m in Sources */,
+				ED41C2D423853F5A004B640E /* CCVolumeChartView.m in Sources */,
 				ED00E79723223D6A00139A8C /* CCDefaultYAxis.m in Sources */,
 				ED8A5A36237AC60400913416 /* CALayer+CCUtility.m in Sources */,
 				EDA3E2F1232F666700222E83 /* CCChartData.m in Sources */,
 				EDD901E1233DED6F009AB34F /* CCBaseUtility.m in Sources */,
 				EDD3F040234DCC1A0025D51D /* CCChartDataSetBase.m in Sources */,
+				ED47DA7D2386253C0073CB48 /* CCVolumeChartDataSet.m in Sources */,
 				EDFA74C02321079200CDB6BC /* UIColor+CCUtility.m in Sources */,
 				EDD180B8232A3B0100B2B72A /* CCDefaultYAxisRenderer.m in Sources */,
 				EDA3E2F5232F746200222E83 /* CCChartDataEntity.m in Sources */,
 				ED99B491237C078700388345 /* CCRendererBase.m in Sources */,
 				ED1BFB5B232231A700222820 /* CCChartViewBase.m in Sources */,
+				ED41C2D823853F9F004B640E /* CCVolumeDataChartRenderer.m in Sources */,
 				ED03A14E23332A9D0065DDA4 /* CCChartTransformer.m in Sources */,
+				ED7E69492384DBF2006246F0 /* CCBarChartView.m in Sources */,
 				EDD0F259234C7370005ED4DD /* NSString+CCUtility.m in Sources */,
 				ED99B489237BF7AF00388345 /* CCKLineDataChartRenderer.m in Sources */,
 				EDA3C4322328CCF700843C7A /* CCXAxisDefaultFormatter.m in Sources */,

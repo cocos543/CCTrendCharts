@@ -159,4 +159,17 @@
     return self.viewHeight - self.contentRect.origin.y - self.contentRect.size.height;
 }
 
+- (NSString *)description {
+    NSMutableString *str = NSMutableString.string;
+    [str appendFormat:@"[%p] %@\n\n", self, NSStringFromClass(self.class)];
+    [str appendFormat:@"viewFrame:%@\n", NSStringFromCGRect(self.viewFrame)];
+    [str appendFormat:@"contentRect:%@\n", NSStringFromCGRect(self.contentRect)];
+    [str appendFormat:@"offsetLeft:%f\n", self.offsetLeft];
+    [str appendFormat:@"offsetRight:%f\n", self.offsetRight];
+    [str appendFormat:@"offsetTop:%f\n", self.offsetTop];
+    [str appendFormat:@"offsetBottom:%f\n", self.offsetBottom];
+    
+    return str;
+}
+
 @end
