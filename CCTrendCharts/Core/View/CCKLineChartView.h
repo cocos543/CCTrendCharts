@@ -23,13 +23,11 @@
 #import "CCKLineChartData.h"
 
 
-
 NS_ASSUME_NONNULL_BEGIN
 
-
-/**
- K线趋势图
- */
+/// K线趋势图
+///
+/// 根据数据集中的类型, 提供蜡烛图(candlestick), 折线图(line)
 @interface CCKLineChartView : CCChartViewBase <CCProtocolKLineChartDataProvider>
 
 /**

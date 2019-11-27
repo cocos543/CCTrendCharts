@@ -6,8 +6,6 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "CCRendererBase.h"
 #import "CCProtocolDataChartRenderer.h"
 

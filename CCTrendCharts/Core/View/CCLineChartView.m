@@ -1,31 +1,22 @@
 //
-//  CCKLineChartView.m
+//  CCLineChartView.m
 //  CCTrendCharts
 //
-//  Created by Cocos on 2019/9/6.
+//  Created by Cocos on 2019/11/22.
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import "CCKLineChartView.h"
-#import "CCLineDataChartRenderer.h"
+#import "CCLineChartView.h"
 
-@interface CCKLineChartView ()
-/**
- 高亮图层
- */
-@property (nonatomic, strong) CAShapeLayer *highlightLayer;
-
+@interface CCLineChartView()
 /**
  数据图层
  */
 @property (nonatomic, strong) CALayer *dataLayer;
 
-// 折线图渲染器, 用于渲染K线图中的指标信息
-@property (nonatomic, strong) CCLineDataChartRenderer *lineRenderer;
-
 @end
 
-@implementation CCKLineChartView
+@implementation CCLineChartView
 @synthesize dataRenderer = _dataRenderer;
 @synthesize leftAxisRenderer = _leftAxisRenderer;
 @synthesize rightAxisRenderer = _rightAxisRenderer;
@@ -57,9 +48,7 @@
         
         _markerRenderer = [[CCDefaultMarkerRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
         
-        _dataRenderer = [[CCKLineDataChartRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
-        
-        _lineRenderer = [[CCLineDataChartRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
+        _dataRenderer = [[CCLineDataChartRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
         
         
         [self addDefualtGesture];
@@ -68,10 +57,6 @@
 }
 
 
-- (NSString *)description {
-    return [super description];
-}
-
 - (void)layoutSubviews {
     [super layoutSubviews];
     
@@ -79,19 +64,9 @@
     self.dataLayer.frame  = frame;
 }
 
-- (void)prepareChart {
-    [super prepareChart];    
-}
-
-
 /// 数据渲染
 - (void)dataRendering {
-    // 首先渲染蜡烛图部分, 这部分全部是形状和颜色填充, 所以可以直接用CAShapeLayers类分开绘制红色和绿色
-    // 蜡烛图可以是填充类型的, 也可以是描边类型, 这个具体需要在蜡烛图的数据层提供绘制样式
     [self.dataRenderer renderData:self.dataLayer];
-    
-    // 渲染指标折线图
-    [self.lineRenderer renderData:self.dataLayer];
 }
 
 #pragma mark - Getter & Setter
@@ -104,44 +79,5 @@
 
     return _dataLayer;
 }
-
-#pragma mark - Param update
-
-
-
-#pragma mark - Protocol: CCProtocolKLineChartDataProvider
-
-- (void)setData:(CCChartData *)data {
-    [super setData:data];
-}
-
-- (CCKLineChartData *)klineChartData {
-    return (CCKLineChartData *)self.data;
-}
-
-- (CGFloat)chartMinX {
-    return 0;
-}
-
-- (CGFloat)chartMaxX {
-    return 0;
-}
-
-- (CGFloat)chartMinY {
-    return [super chartMinY];
-}
-
-- (CGFloat)chartMaxY {
-    return [super chartMaxY];
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 
 @end

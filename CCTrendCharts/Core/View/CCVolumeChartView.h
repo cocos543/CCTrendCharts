@@ -6,14 +6,14 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import "CCBarChartView.h"
-#import "CCVolumeDataChartRenderer.h"
-#import "CCProtocolKLineChartDataProvider.h"
+#import "CCKLineChartView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-// 交易量图
-@interface CCVolumeChartView : CCBarChartView <CCProtocolKLineChartDataProvider>
+/// 交易量图
+///
+/// 根据数据集中的类型, 提供交易量图, 折线图(line)
+@interface CCVolumeChartView : CCKLineChartView
 
 
 @end

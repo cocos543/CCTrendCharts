@@ -12,6 +12,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+/// K线渲染器, 用于渲染蜡烛图
 @interface CCKLineDataChartRenderer : CCDataChartRenderer <CCProtocolKLineDataChartRenderer>
 
 
@@ -19,9 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param risingPath 上升路径
 /// @param fallingPath 下降路径
 /// @param flatPath 平价路径
-/// @param usingDataSetName 数据集名字
+/// @param name 数据集名字
 /// @param contentLayer 内容图层
 - (void)renderDataWithRising:(UIBezierPath *)risingPath fallingPath:(UIBezierPath *)fallingPath flatPath:(UIBezierPath *)flatPath usingDataSetName:(CCDataSetName)name inContentLayer:(CALayer *)contentLayer;
+
 
 
 // 这里的访问权限本应该是"模块内"可见(internal), 不过OC并没有这种特性.

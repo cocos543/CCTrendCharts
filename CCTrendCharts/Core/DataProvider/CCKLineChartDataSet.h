@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) UIColor *highlightColor;
 
+@property (nonatomic, assign) CGFloat lineWidth;
+
 @end
 
 NS_ASSUME_NONNULL_END

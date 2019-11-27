@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "CCProtocolChartDataSet.h"
 
+#import "CCLineChartDataSet.h"
+#import "CCKLineChartDataSet.h"
+#import "CCVolumeChartDataSet.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 

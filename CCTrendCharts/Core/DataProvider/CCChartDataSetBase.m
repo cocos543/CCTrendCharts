@@ -25,6 +25,7 @@ CCDataSetName const kCCNameBaseDataSet = @"BaseDataSet";
     if (self) {
         _entities = entities;
         _name  = name;
+        _color = [UIColor whiteColor];
         
         [self resetValue];
 

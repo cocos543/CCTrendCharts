@@ -11,6 +11,8 @@
 #import <UIKit/UIKit.h>
 
 #import "CCProtocolChartViewBase.h"
+#import "CCProtocolChartDataProvider.h"
+
 #import "CCGestureDefaultHandler.h"
 
 #import "CCSingleEventManager.h"

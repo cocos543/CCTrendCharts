@@ -114,10 +114,6 @@
     return self;
 }
 
-- (instancetype)init {
-    return [self initWithFrame:CGRectZero];
-}
-
 - (NSString *)description {
     NSString *desc = [super description];
     return [NSString stringWithFormat:@"%@ --- %@", desc, [NSString stringWithFormat:@"%p", &_leftAxis]];
@@ -565,6 +561,16 @@
 }
 
 #pragma mark - CCProtocolChartDataProvider
+
+- (CGFloat)chartMinY {
+    return self.leftAxis.axisMinValue;
+}
+
+- (CGFloat)chartMaxY {
+    return self.leftAxis.axisMaxValue;
+}
+
+
 - (NSInteger)lowestVisibleXIndex {
     if (self.recentFirst) {
         CGPoint point = CGPointMake(self.viewPixelHandler.contentRight, self.viewPixelHandler.contentBottom);

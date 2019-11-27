@@ -28,6 +28,8 @@ typedef NSString * CCDataSetName;
 
 /**
  具体的数据信息
+ 
+ 注意: 为了简化运算, 线形图等实体之间有前后关系的, 要求xIndex和实体在数组中的索引一一匹配.
  */
 @property (nonatomic, strong) NSArray<id<CCProtocolChartDataEntityBase>> *entities;
 
@@ -39,10 +41,9 @@ typedef NSString * CCDataSetName;
 
 
 /**
- 绘制的颜色信息
+ 绘制的颜色信息, 默认白色
  */
 @property (nonatomic, strong) UIColor *color;
-
 
 /**
  数据集中最小的y值

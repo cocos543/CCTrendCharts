@@ -35,6 +35,7 @@ CCDataSetName const kCCNameKLineDataSet = @"KLineDataSet";
         _flatColor     = UIColor.lightGrayColor;
         _isRisingFill  = YES;
         _isFallingFill = YES;
+        _lineWidth     = 1.f;
     }
     [self resetValue];
 

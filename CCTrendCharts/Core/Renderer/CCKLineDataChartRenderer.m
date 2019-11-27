@@ -10,11 +10,16 @@
 
 @interface CCKLineDataChartRenderer ()
 
+/// 图层池, 可以动态添加新的图层
+@property (nonatomic, strong) NSMutableArray<CAShapeLayer *> *layersCache;
+
 @end
 
 @implementation CCKLineDataChartRenderer
 
+
 #pragma mark - Setter & Getter
+
 - (CAShapeLayer *)risingLayer {
     if (!_risingLayer) {
         _risingLayer = CAShapeLayer.layer;
@@ -52,7 +57,7 @@
     } else {
         risingLayer.fillColor = UIColor.clearColor.CGColor;
     }
-    risingLayer.lineWidth   = 1;
+    risingLayer.lineWidth   = dataSet.lineWidth;
     risingLayer.strokeColor = dataSet.risingColor.CGColor;
 
     [contentLayer addSublayer:risingLayer];
@@ -69,7 +74,7 @@
         fallingLayer.fillColor = UIColor.clearColor.CGColor;
     }
 
-    fallingLayer.lineWidth   = 1;
+    fallingLayer.lineWidth   = dataSet.lineWidth;
     fallingLayer.strokeColor = dataSet.fallingColor.CGColor;
     [contentLayer addSublayer:fallingLayer];
 
@@ -81,7 +86,7 @@
     if (flatPath) {
         CAShapeLayer *flatLayer = self.flatLayer;
         flatLayer.frame       = contentLayer.frame;
-        flatLayer.lineWidth   = 1;
+        flatLayer.lineWidth   = dataSet.lineWidth;
         flatLayer.strokeColor = dataSet.flatColor.CGColor;
         [contentLayer addSublayer:flatLayer];
         [CALayer quickUpdateLayer:^{

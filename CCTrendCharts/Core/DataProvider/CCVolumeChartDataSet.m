@@ -18,9 +18,8 @@ CCDataSetName const kCCVolumeChartDataSet = @"VolumeChartDataSet";
 @synthesize minX = _minX;
 
 - (instancetype)initWithKLineChartDataSet:(CCKLineChartDataSet *)dataSet {
-    self = [super init];
+    self = [super initWithVals:dataSet.entities withName:kCCVolumeChartDataSet];
     if (self) {
-        self.entities = dataSet.entities;
         
         self.risingColor = [dataSet.risingColor copy];
         self.fallingColor = [dataSet.fallingColor copy];

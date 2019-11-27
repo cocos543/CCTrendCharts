@@ -7,6 +7,7 @@
 //
 
 #import "CCVolumeChartView.h"
+#import "CCVolumeDataChartRenderer.h"
 
 @implementation CCVolumeChartView
 
@@ -17,10 +18,6 @@
         self.dataRenderer = [[CCVolumeDataChartRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
     }
     return self;
-}
-
-- (CCKLineChartData *)klineChartData {
-    return (CCKLineChartData *)self.data;
 }
 
 @end
