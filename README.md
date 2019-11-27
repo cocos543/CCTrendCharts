@@ -56,4 +56,4 @@ Coding...
 
 ## 开发中的界面预览
 
-![image](https://raw.githubusercontent.com/cocos543/CCTrendCharts/master/CCTrendCharts/IMG_7755.jpg)
+![image](https://github.com/cocos543/CCTrendCharts/blob/dev/IMG_7755.jpg)
