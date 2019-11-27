@@ -68,7 +68,7 @@
 		ED99B489237BF7AF00388345 /* CCKLineDataChartRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED99B487237BF7AF00388345 /* CCKLineDataChartRenderer.m */; };
 		ED99B490237C078700388345 /* CCRendererBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED99B48E237C078700388345 /* CCRendererBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED99B491237C078700388345 /* CCRendererBase.m in Sources */ = {isa = PBXBuildFile; fileRef = ED99B48F237C078700388345 /* CCRendererBase.m */; };
-		ED9FDAAE238E578E00B116EC /* IMG_7755.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED9FDAAD238E578E00B116EC /* IMG_7755.jpg */; };
+		ED9FDAB0238E58BE00B116EC /* IMG_7755.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED9FDAAF238E58BD00B116EC /* IMG_7755.jpg */; };
 		EDA3C4282328A11600843C7A /* CCProtocolXAxisFormatterBase.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3C4262328A11600843C7A /* CCProtocolXAxisFormatterBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDA3C4312328CCF700843C7A /* CCXAxisDefaultFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3C42F2328CCF700843C7A /* CCXAxisDefaultFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDA3C4322328CCF700843C7A /* CCXAxisDefaultFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA3C4302328CCF700843C7A /* CCXAxisDefaultFormatter.m */; };
@@ -188,7 +188,7 @@
 		ED99B487237BF7AF00388345 /* CCKLineDataChartRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKLineDataChartRenderer.m; sourceTree = "<group>"; };
 		ED99B48E237C078700388345 /* CCRendererBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCRendererBase.h; sourceTree = "<group>"; };
 		ED99B48F237C078700388345 /* CCRendererBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCRendererBase.m; sourceTree = "<group>"; };
-		ED9FDAAD238E578E00B116EC /* IMG_7755.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_7755.jpg; sourceTree = "<group>"; };
+		ED9FDAAF238E58BD00B116EC /* IMG_7755.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_7755.jpg; sourceTree = "<group>"; };
 		EDA3C4262328A11600843C7A /* CCProtocolXAxisFormatterBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolXAxisFormatterBase.h; sourceTree = "<group>"; };
 		EDA3C42F2328CCF700843C7A /* CCXAxisDefaultFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCXAxisDefaultFormatter.h; sourceTree = "<group>"; };
 		EDA3C4302328CCF700843C7A /* CCXAxisDefaultFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCXAxisDefaultFormatter.m; sourceTree = "<group>"; };
@@ -338,8 +338,8 @@
 		EDABB2422320E46D00C65D3F = {
 			isa = PBXGroup;
 			children = (
+				ED9FDAAF238E58BD00B116EC /* IMG_7755.jpg */,
 				EDAFF46F237A8E2B00E8BA2B /* Doc.md */,
-				ED9FDAAD238E578E00B116EC /* IMG_7755.jpg */,
 				EDFA74B82320FC8600CDB6BC /* README.md */,
 				EDFA74B62320FC6900CDB6BC /* LICENSE */,
 				EDABB24E2320E46D00C65D3F /* CCTrendCharts */,
@@ -694,7 +694,7 @@
 				EDFA74B72320FC6900CDB6BC /* LICENSE in Resources */,
 				EDAFF474237AB5D800E8BA2B /* 1daykline.json in Resources */,
 				EDAFF470237A8E2B00E8BA2B /* Doc.md in Resources */,
-				ED9FDAAE238E578E00B116EC /* IMG_7755.jpg in Resources */,
+				ED9FDAB0238E58BE00B116EC /* IMG_7755.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
