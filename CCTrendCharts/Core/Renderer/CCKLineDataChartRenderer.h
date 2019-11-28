@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) CAShapeLayer *flatLayer;
 
+/// 存放内容图层, 主要是为了实现遮罩效果(只显示渲染区域的内容)
+@property (nonatomic, strong) CALayer *subContentLayer;
+
 @end
 
 NS_ASSUME_NONNULL_END

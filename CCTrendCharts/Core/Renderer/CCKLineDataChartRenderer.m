@@ -44,6 +44,14 @@
     return _flatLayer;
 }
 
+- (CALayer *)subContentLayer {
+    if (!_subContentLayer) {
+        _subContentLayer = CALayer.layer;
+    }
+
+    return _subContentLayer;
+}
+
 #pragma mark - Public
 - (void)renderDataWithRising:(UIBezierPath *)risingPath fallingPath:(UIBezierPath *)fallingPath flatPath:(UIBezierPath *)flatPath usingDataSetName:(CCDataSetName)name inContentLayer:(CALayer *)contentLayer {
     CCKLineChartData *data       = self.dataProvider.klineChartData;
@@ -51,7 +59,7 @@
 
     // 上升图层
     CAShapeLayer *risingLayer    = self.risingLayer;
-    risingLayer.frame       = contentLayer.frame;
+    risingLayer.frame       = CGRectMake(0, 0, contentLayer.frame.size.width, contentLayer.frame.size.height);
     if (dataSet.isRisingFill) {
         risingLayer.fillColor = dataSet.risingColor.CGColor;
     } else {
@@ -67,7 +75,7 @@
 
     // 下降图层
     CAShapeLayer *fallingLayer = self.fallingLayer;
-    fallingLayer.frame = contentLayer.frame;
+    fallingLayer.frame = CGRectMake(0, 0, contentLayer.frame.size.width, contentLayer.frame.size.height);
     if (dataSet.isFallingFill) {
         fallingLayer.fillColor = dataSet.fallingColor.CGColor;
     } else {
@@ -85,7 +93,7 @@
     // 平价图层
     if (flatPath) {
         CAShapeLayer *flatLayer = self.flatLayer;
-        flatLayer.frame       = contentLayer.frame;
+        flatLayer.frame       = CGRectMake(0, 0, contentLayer.frame.size.width, contentLayer.frame.size.height);
         flatLayer.lineWidth   = dataSet.lineWidth;
         flatLayer.strokeColor = dataSet.flatColor.CGColor;
         [contentLayer addSublayer:flatLayer];
@@ -100,7 +108,16 @@
 - (void)renderData:(CALayer *)contentLayer {
     CCKLineChartData *data       = self.dataProvider.klineChartData;
     CCKLineChartDataSet *dataSet = [[data dataSetWithName:kCCNameKLineDataSet] lastObject];
+    
+    // 创建一个临时图层, 用于转换坐标系(因为图层的frame和contentLayer.frame不同)
+    CALayer *subContentLayer = self.subContentLayer;
+    subContentLayer.masksToBounds = YES;
 
+    [CALayer quickUpdateLayer:^{
+        subContentLayer.frame = self.viewPixelHandler.contentRect;
+        [contentLayer addSublayer:subContentLayer];
+    }];
+    
     // 把两个实体中心轴分成3份, 分别占35%, 30%, 35%. 其中30%就是两个蜡烛图的距离, 35%是蜡烛图一半的大小.
     // 三部分共计100%
     // 一半宽的大小
@@ -118,7 +135,7 @@
     for (CCKLineDataEntity *val in dataSet.entities) {
         // 先确定位置
         CGFloat xPos = [self.transformer pointToPixel:CGPointMake(val.xIndex, 0) forAnimationPhaseY:1].x;
-        if (xPos < self.viewPixelHandler.contentLeft || xPos > self.viewPixelHandler.contentRight) {
+        if (xPos + halfWidth < self.viewPixelHandler.contentLeft || xPos - halfWidth > self.viewPixelHandler.contentRight) {
             continue;
         }
         [path removeAllPoints];
@@ -149,17 +166,17 @@
         candleBottom = [self.transformer pointToPixel:CGPointMake(0, candleBottom) forAnimationPhaseY:1].y;
 
         // 开始绘制内容
-        [path moveToPoint:CGPointMake(xPos, yMax)];
-        [path addLineToPoint:CGPointMake(xPos, candleTop)];
+        [path moveToPoint:[subContentLayer convertPoint:CGPointMake(xPos, yMax) fromLayer:contentLayer]];
+        [path addLineToPoint:[subContentLayer convertPoint:CGPointMake(xPos, candleTop) fromLayer:contentLayer]];
 
-        [path moveToPoint:CGPointMake(xPos, yMin)];
-        [path addLineToPoint:CGPointMake(xPos, candleBottom)];
+        [path moveToPoint:[subContentLayer convertPoint:CGPointMake(xPos, yMin) fromLayer:contentLayer]];
+        [path addLineToPoint:[subContentLayer convertPoint:CGPointMake(xPos, candleBottom) fromLayer:contentLayer]];
 
         // 绘制蜡烛部分
-        [path moveToPoint:CGPointMake(xPos - halfWidth, candleTop)];
-        [path addLineToPoint:CGPointMake(xPos + halfWidth, candleTop)];
-        [path addLineToPoint:CGPointMake(xPos + halfWidth, candleBottom)];
-        [path addLineToPoint:CGPointMake(xPos - halfWidth, candleBottom)];
+        [path moveToPoint:[subContentLayer convertPoint:CGPointMake(xPos - halfWidth, candleTop) fromLayer:contentLayer]];
+        [path addLineToPoint:[subContentLayer convertPoint:CGPointMake(xPos + halfWidth, candleTop) fromLayer:contentLayer]];
+        [path addLineToPoint:[subContentLayer convertPoint:CGPointMake(xPos + halfWidth, candleBottom) fromLayer:contentLayer]];
+        [path addLineToPoint:[subContentLayer convertPoint:CGPointMake(xPos - halfWidth, candleBottom) fromLayer:contentLayer]];
         [path closePath];
 
         if (val.entityState == CCKLineDataEntityStateFalling) {
@@ -171,7 +188,8 @@
         }
     }
 
-    [self renderDataWithRising:risingPath fallingPath:fallingPath flatPath:flatPath usingDataSetName:kCCNameKLineDataSet inContentLayer:contentLayer];
+    [self renderDataWithRising:risingPath fallingPath:fallingPath flatPath:flatPath usingDataSetName:kCCNameKLineDataSet inContentLayer:subContentLayer];
+    
 }
 
 - (void)renderHighlighted:(CAShapeLayer *)contentLayer {

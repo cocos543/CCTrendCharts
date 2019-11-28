@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- 当前Y轴缩放比例, 默认为1
+ 当前Y轴缩放比例, 默认为1, 暂时不支持y轴缩放
  */
 @property (nonatomic, assign, readonly) CGFloat scaleY;
 

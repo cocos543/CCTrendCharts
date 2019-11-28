@@ -89,11 +89,6 @@
         _scrollView.delegate                = self;
         _scrollView.backgroundColor         = UIColor.clearColor;
 
-        UIPanGestureRecognizer *twoFingerPan = [[UIPanGestureRecognizer alloc] init];
-        twoFingerPan.minimumNumberOfTouches = 2;
-        twoFingerPan.maximumNumberOfTouches = 2;
-        [_scrollView addGestureRecognizer:twoFingerPan];
-
         _viewPixelHandler         = [[CCChartViewPixelHandler alloc] init];
 
         _transformer              = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
@@ -122,6 +117,7 @@
 - (void)layoutSubviews {
     CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.scrollView.frame = frame;
+
     [self addSubview:_scrollView];
 
     UILabel *l   = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
@@ -156,6 +152,8 @@
     // 这里额外加上CC_X_INIT_TRANSLATION, 这样可滚动的区域会比实体大一些, 让第一个和最后一个实体和y轴保持一定距离
 
     CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count + CC_X_INIT_TRANSLATION]);
+    //NSLog(@"全部数据需要的空间大小:%@", @(totalWidth));
+    
     CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
     self.scrollView.contentSize = CGSizeMake(needExtraWidth + self.bounds.size.width, 0);
 }
@@ -411,6 +409,7 @@
         return;
     }
     [self.gestureHandler didScrollIncrementOffsetX:scrollView.contentOffset.x - _lastOffsetX];
+
 }
 
 #pragma mark - Gesture-func

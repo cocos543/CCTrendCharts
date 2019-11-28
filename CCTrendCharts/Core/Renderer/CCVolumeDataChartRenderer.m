@@ -20,6 +20,14 @@
     CCKLineChartData *data        = self.dataProvider.klineChartData;
     CCVolumeChartDataSet *dataSet = (CCVolumeChartDataSet *)[[data dataSetWithName:kCCVolumeChartDataSet] lastObject];
 
+    CALayer *subContentLayer = self.subContentLayer;
+    subContentLayer.masksToBounds = YES;
+
+    [CALayer quickUpdateLayer:^{
+        subContentLayer.frame = self.viewPixelHandler.contentRect;
+        [contentLayer addSublayer:subContentLayer];
+    }];
+    
     // 一半宽的大小
     CGFloat halfWidth         = fabs([self.transformer distanceBetweenSpace:CC_KLINE_ENTITY_DISTANCE_PERCENT / 2]);
 
@@ -35,7 +43,7 @@
     for (CCKLineDataEntity *val in dataSet.entities) {
         // 先确定位置
         CGFloat xPos = [self.transformer pointToPixel:CGPointMake(val.xIndex, 0) forAnimationPhaseY:1].x;
-        if (xPos < self.viewPixelHandler.contentLeft || xPos > self.viewPixelHandler.contentRight) {
+        if (xPos + halfWidth < self.viewPixelHandler.contentLeft || xPos - halfWidth > self.viewPixelHandler.contentRight) {
             continue;
         }
         [path removeAllPoints];
@@ -44,11 +52,11 @@
         CGFloat yVal = val.volume;
 
         yVal = [self.transformer pointToPixel:CGPointMake(0, yVal) forAnimationPhaseY:1].y;
-
-        [path moveToPoint:CGPointMake(xPos - halfWidth, yVal)];
-        [path addLineToPoint:CGPointMake(xPos + halfWidth, yVal)];
-        [path addLineToPoint:CGPointMake(xPos + halfWidth, self.viewPixelHandler.contentBottom)];
-        [path addLineToPoint:CGPointMake(xPos - halfWidth, self.viewPixelHandler.contentBottom)];
+        
+        [path moveToPoint:[subContentLayer convertPoint:CGPointMake(xPos - halfWidth, yVal) fromLayer:contentLayer]];
+        [path addLineToPoint:[subContentLayer convertPoint:CGPointMake(xPos + halfWidth, yVal) fromLayer:contentLayer]];
+        [path addLineToPoint:[subContentLayer convertPoint:CGPointMake(xPos + halfWidth, self.viewPixelHandler.contentBottom) fromLayer:contentLayer]];
+        [path addLineToPoint:[subContentLayer convertPoint:CGPointMake(xPos - halfWidth, self.viewPixelHandler.contentBottom) fromLayer:contentLayer]];
         [path closePath];
 
         if (val.entityState == CCKLineDataEntityStateFalling) {
@@ -60,7 +68,7 @@
         }
     }
 
-    [self renderDataWithRising:risingPath fallingPath:fallingPath flatPath:flatPath usingDataSetName:kCCVolumeChartDataSet inContentLayer:contentLayer];
+    [self renderDataWithRising:risingPath fallingPath:fallingPath flatPath:flatPath usingDataSetName:kCCVolumeChartDataSet inContentLayer:subContentLayer];
 }
 
 @end

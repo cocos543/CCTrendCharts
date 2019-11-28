@@ -8,7 +8,7 @@
 
 #import "CCGestureDefaultHandler.h"
 
-@interface CCGestureDefaultHandler() {
+@interface CCGestureDefaultHandler() <UIGestureRecognizerDelegate> {
 
 }
 
@@ -18,6 +18,8 @@
 @synthesize viewPixelHandler = _viewPixelHandler;
 @synthesize baseView = _baseView;
 @synthesize delegate = _delegate;
+@synthesize pinchGesture = _pinchGesture;
+@synthesize longPressGesture = _longPressGesture;
 
 - (instancetype)initWithTransformer:(CCChartViewPixelHandler *)viewPixelHandler {
     self = [super init];
@@ -73,6 +75,7 @@
 }
 
 - (void)pinchGestureStateChanging:(UIPinchGestureRecognizer *)gr {
+    
     // 缩放中心
     CGPoint scaleCenter = [gr locationInView:self.baseView];
     
@@ -81,11 +84,12 @@
     // 1. 平移到scaleCenter的x, y
     // 2. 缩放n倍
     // 3. 在缩放的基础上平移-x, -y
-    CGAffineTransform matrix = CGAffineTransformIdentity;
+    CGAffineTransform matrix = [self.viewPixelHandler zoomScaleX:gr.scale scaleY:1 aroundCenter:scaleCenter];
     
-    matrix = CGAffineTransformTranslate(matrix, scaleCenter.x, scaleCenter.y);
-    matrix = CGAffineTransformScale(matrix, gr.scale, 1);
-    matrix = CGAffineTransformTranslate(matrix, -scaleCenter.x, -scaleCenter.y);
+//    matrix = CGAffineTransformTranslate(matrix, scaleCenter.x, scaleCenter.y);
+//    matrix = CGAffineTransformScale(matrix, gr.scale, 1);
+//    matrix = CGAffineTransformTranslate(matrix, -scaleCenter.x, -scaleCenter.y);
+    
     self.viewPixelHandler.gestureMatrix = CGAffineTransformConcat(self.viewPixelHandler.gestureMatrix, matrix);
     
     // 还原缩放值, 因为缩放的部分已经叠加到gestureMatrix矩阵里了.
@@ -106,15 +110,35 @@
 
 #pragma mark Setter & Getter
 - (UIPinchGestureRecognizer *)pinchGesture {
-    UIPinchGestureRecognizer *pinchGR = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchGestureStateChanging:)];
-    pinchGR.scale = 1.0;
-    return pinchGR;
+    if (!_pinchGesture) {
+        _pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchGestureStateChanging:)];
+        _pinchGesture.scale = 1.0;
+        _pinchGesture.delegate = self;
+    }
+    
+    return _pinchGesture;
 }
 
 - (UILongPressGestureRecognizer *)longPressGesture {
-    UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureStateChanging:)];
+    if (!_longPressGesture) {
+        _longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureStateChanging:)];
+    }
 
-    return gr;
+    return _longPressGesture;
 }
+
+
+#pragma mark - UIGestureRecognizerDelegate
+// 开启滚动缩放同时响应之后会有BUG, 当前代码的滚动利用ScrollView实现,缩放时会暂时禁用滚动带来的影响.
+// 若允许缩放的同时操作滚动, 会导致计算出的结果不准确, 后续可以重写滚动的实现方式来解决该问题.
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//    if (gestureRecognizer == self.pinchGesture) {
+//        // 允许缩放手势和滚动手势同时响应
+//        if ([otherGestureRecognizer isKindOfClass:UIPanGestureRecognizer.class]) {
+//            return YES;
+//        }
+//    }
+//    return NO;
+//}
 
 @end

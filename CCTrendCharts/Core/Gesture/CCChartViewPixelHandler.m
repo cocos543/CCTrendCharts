@@ -8,8 +8,7 @@
 
 #import "CCChartViewPixelHandler.h"
 
-@interface CCChartViewPixelHandler() {
-
+@interface CCChartViewPixelHandler () {
 }
 
 @end
@@ -20,12 +19,12 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _scaleX = _scaleY = 1;
-        _minScaleX = _minScaleY = 0.5;
-        _maxScaleX = _maxScaleY = 5;
-        
+        _scaleX        = _scaleY = 1;
+        _minScaleX     = _minScaleY = 0.3;
+        _maxScaleX     = _maxScaleY = 5;
+
         _gestureMatrix = CGAffineTransformIdentity;
-        _anInitMatrix = CGAffineTransformIdentity;
+        _anInitMatrix  = CGAffineTransformIdentity;
     }
     return self;
 }
@@ -42,17 +41,17 @@
 }
 
 - (void)updateContentRectOffsetLeft:(CGFloat)offsetLeft offsetRight:(CGFloat)offsetRight offsetTop:(CGFloat)offsetTop offsetBottom:(CGFloat)offsetBottom {
-    CGFloat x = self.contentRect.origin.x;
-    CGFloat y = self.contentRect.origin.y;
-    CGFloat width = self.contentRect.size.width;
+    CGFloat x      = self.contentRect.origin.x;
+    CGFloat y      = self.contentRect.origin.y;
+    CGFloat width  = self.contentRect.size.width;
     CGFloat height = self.contentRect.size.height;
-    
-    x += offsetLeft;
-    y += offsetTop;
-    
-    width = width - offsetLeft - offsetRight;
+
+    x     += offsetLeft;
+    y     += offsetTop;
+
+    width  = width - offsetLeft - offsetRight;
     height = height - offsetTop - offsetBottom;
-    
+
     self.contentRect = CGRectMake(x, y, width, height);
 }
 
@@ -61,13 +60,29 @@
 }
 
 - (CGAffineTransform)zoomScaleX:(CGFloat)scaleX scaleY:(CGFloat)scaleY aroundCenter:(CGPoint)center {
+    // 如果应用了本次缩放操作之后, 超出最大缩放比例时, _checkScale方法默认做大是返回原先的值, 这就可能导致一个问题, 即每次得到的
+    // 最大值都不一样, 因此导致实体在放大最大比例时, 渲染的位置有偏差. (缩小操作同理)
+    // 为了解决这个问题, 这里事先将首次超过最大值的操作, 直接调整到最接近最大值, 这样每次得到的最大值矩阵都是非常接近了
+
+    // 这里缩放比例不可能为0, 为0的都显示不出来了..
+    assert(self.gestureMatrix.a != 0);
+
+    if (scaleX * self.gestureMatrix.a > self.maxScaleX) {
+        scaleX = self.maxScaleX / self.gestureMatrix.a;
+    } else if (scaleX * self.gestureMatrix.a < self.minScaleX) {
+        scaleX = self.minScaleX / self.gestureMatrix.a;
+    }
+
+    // 暂时不支持y轴缩放, 所以不处理
+
     // 围绕缩放中心进行缩放的算法如下:
     // 1. 平移到scaleCenter的x, y
     // 2. 缩放n倍
     // 3. 在缩放的基础上平移-x, -y
     CGAffineTransform newMatrix = CGAffineTransformMakeTranslation(center.x, center.y);
-    newMatrix = CGAffineTransformTranslate(newMatrix, scaleX, scaleY);
+    newMatrix = CGAffineTransformScale(newMatrix, scaleX, scaleY);
     newMatrix = CGAffineTransformTranslate(newMatrix, -center.x, -center.y);
+
     return newMatrix;
 }
 
@@ -79,7 +94,6 @@
     return [self zoomScaleX:1.1 scaleY:1.1 aroundCenter:center];
 }
 
-
 /**
  返回符合限制要求的矩形
 
@@ -87,14 +101,14 @@
  @return 符合要求的矩阵
  */
 - (CGAffineTransform)_checkScale:(CGAffineTransform)matrix {
-    if (matrix.a < self.minScaleX || matrix.a > self.maxScaleX) {
+    if (matrix.a <= self.minScaleX || matrix.a >= self.maxScaleX) {
         return self.gestureMatrix;
     }
-    
-    _transX = matrix.tx;
-    _scaleY = matrix.d;
-    _scaleX = matrix.a;
-    
+
+    _transX  = matrix.tx;
+    _scaleY  = matrix.d;
+    _scaleX  = matrix.a;
+
     matrix.a = _scaleX;
     matrix.d = _scaleY;
     return matrix;
@@ -102,12 +116,12 @@
 
 #pragma mark - Getter & Setter
 - (void)setAnInitMatrix:(CGAffineTransform)anInitMatrix {
-    _anInitMatrix = anInitMatrix;
+    _anInitMatrix      = anInitMatrix;
     self.gestureMatrix = anInitMatrix;
 }
 
 - (void)setGestureMatrix:(CGAffineTransform)gestureMatrix {
-    gestureMatrix = [self _checkScale:gestureMatrix];
+    gestureMatrix  = [self _checkScale:gestureMatrix];
     _gestureMatrix = gestureMatrix;
 }
 
@@ -168,7 +182,7 @@
     [str appendFormat:@"offsetRight:%f\n", self.offsetRight];
     [str appendFormat:@"offsetTop:%f\n", self.offsetTop];
     [str appendFormat:@"offsetBottom:%f\n", self.offsetBottom];
-    
+
     return str;
 }
 
