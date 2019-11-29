@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "CCProtocolChartDataProvider.h"
 #import "CCKLineChartData.h"
+#import "CCTAIConfig.h"
 
 @protocol CCProtocolKLineChartDataProvider <CCProtocolChartDataProvider>
 @required
 
 @property (nonatomic, strong, readonly) CCKLineChartData *klineChartData;
+
+@property (nonatomic, strong, readonly) CCTAIConfig *TAIConfig;
 
 @end

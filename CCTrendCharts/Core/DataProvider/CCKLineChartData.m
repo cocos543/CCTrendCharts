@@ -10,12 +10,16 @@
 
 @implementation CCKLineChartData
 
-- (NSArray<CCKLineChartDataSet *> *)dataSets {
-    return [super dataSets];
-}
-
-- (NSArray<CCKLineChartDataSet *> *)dataSetWithName:(CCDataSetName)name {
-    return [super dataSetWithName:name];
+- (void)notifyTAIConfigChange:(CCTAIConfig *)config {
+    for (NSString *clsStr in config.conf.allKeys) {
+        Class cls = NSClassFromString(clsStr);
+        if ([cls conformsToProtocol:@protocol(CCProtocolTAIDataSet)]) {
+            
+            id<CCProtocolTAIDataSet> dataSet = [[cls alloc] initWithRawEntities:[[self dataSetWithName:kCCNameKLineDataSet] lastObject].entities N:0];
+            
+            [self.dataSets addObject:dataSet];
+        }
+    }
 }
 
 

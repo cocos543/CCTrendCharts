@@ -20,6 +20,7 @@ CCDataSetName const kCCNameBaseDataSet = @"BaseDataSet";
 @synthesize maxX  = _maxX;
 @synthesize minX  = _minX;
 
+
 - (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name {
     self = [super init];
     if (self) {

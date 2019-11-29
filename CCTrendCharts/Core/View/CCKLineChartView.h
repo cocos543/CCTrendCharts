@@ -20,7 +20,6 @@
 
 
 #import "CCProtocolKLineChartDataProvider.h"
-#import "CCKLineChartData.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -30,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 根据数据集中的类型, 提供蜡烛图(candlestick), 折线图(line)
 @interface CCKLineChartView : CCChartViewBase <CCProtocolKLineChartDataProvider>
 
+
+/// 技术指标配置
+@property (nonatomic, strong) CCTAIConfig *TAIConfig;
 /**
  定义CCProtocolRectangularCoordinateChartDataProvider协议中的数据源, 这里可以换成其他合法子类
  */

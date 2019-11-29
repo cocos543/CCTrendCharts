@@ -7,6 +7,7 @@
 //
 
 #import "CCDefaultMarkerRenderer.h"
+#import "CCChartDataEntity.h"
 
 @interface CCDefaultMarkerRenderer () {
     // 0 左, 1 右

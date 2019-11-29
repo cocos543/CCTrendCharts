@@ -8,8 +8,6 @@
 
 #import "CCLineDataChartRenderer.h"
 
-#import "CCLineSegment.h"
-
 @interface CCLineDataChartRenderer ()
 
 /// 图层池, 可以动态添加新的图层

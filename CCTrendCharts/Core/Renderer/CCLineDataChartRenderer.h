@@ -8,6 +8,7 @@
 
 #import "CCDataChartRenderer.h"
 #import "CCLineChartDataSet.h"
+#import "CCLineMADataSet.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

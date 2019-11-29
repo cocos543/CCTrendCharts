@@ -8,13 +8,14 @@
 
 #import "CCChartData.h"
 
+
 @implementation CCChartData
 
 - (instancetype)initWithXVals:(NSArray<NSString *> *)xVals dataSets:(NSArray<id<CCProtocolChartDataSet>> *)dataSets {
     self = [super init];
     if (self) {
         _xVals = xVals;
-        _dataSets = dataSets;
+        _dataSets = dataSets.mutableCopy;
         _xSpace = 8;
         
         [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
@@ -78,7 +79,7 @@
     return arr;
 }
 
-- (NSArray<id<CCProtocolChartDataSet>> *)dataSetWithName:(CCDataSetName)name {
+- (NSMutableArray<id<CCProtocolChartDataSet>> *)dataSetWithName:(CCDataSetName)name {
     NSMutableArray *arr;
     for (id<CCProtocolChartDataSet> set in self.dataSets) {
         if ([set.name isEqualToString:name]) {
@@ -88,12 +89,12 @@
             [arr addObject:set];
         }
     }
-    return arr;
+    return arr.mutableCopy;
 }
 
 #pragma mark - Getter & Setter
 - (void)setDataSets:(NSArray<id<CCProtocolChartDataSet>> *)dataSets {
-    _dataSets = dataSets;
+    _dataSets = dataSets.mutableCopy;
     
     [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
 }

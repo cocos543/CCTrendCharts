@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "CCProtocolChartDataSet.h"
 
-#import "CCLineChartDataSet.h"
-#import "CCKLineChartDataSet.h"
-#import "CCVolumeChartDataSet.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 
@@ -56,12 +52,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获取指定名字的dataSet, 这里可能有多个同名dataSet, 所以返回数组 (后期将可能支持数据组绘制)
 /// @param name dataSet名字
-- (NSArray<id<CCProtocolChartDataSet>> *)dataSetWithName:(CCDataSetName)name;
+- (NSMutableArray<id<CCProtocolChartDataSet>> *)dataSetWithName:(CCDataSetName)name;
 
 /**
  集合数组
  */
-@property (nonatomic, strong) NSArray<id<CCProtocolChartDataSet>> *dataSets;
+@property (nonatomic, strong) NSMutableArray<id<CCProtocolChartDataSet>> *dataSets;
 
 
 /**

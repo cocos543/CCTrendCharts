@@ -37,13 +37,18 @@ Coding...
 8. 提供了折线图数据提供者和渲染器
 9. 支持贝塞尔曲线
 
-## 正在开发
+四. 趋势图技术指标 (Technical Analysis Indicators)
 
-* 组合图数据提供者和渲染器
-* 各项交易趋势图的指标计算
+
+## 正在开发
+ 
+各项趋势图的指标计算 
+
+* 移动平均线MA
 
 ## 未完成功能
 
+* 组合图数据提供者和渲染器
 * 选中高亮
 * 数据渲染器支持渐变
 * 数据渲染器支持定制动画
@@ -57,10 +62,8 @@ Coding...
 
 ## 开发中的界面预览
 
-<img src="https://github.com/cocos543/CCTrendCharts/blob/dev/IMG_7766.jpg"  width=300/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/IMG_7766.jpg"  width=400/>
 
 滚动缩放画面稳定在60 FPS左右
 
-<img src="https://github.com/cocos543/CCTrendCharts/blob/dev/3091574998318_.pic_hd.jpg" width=300/>
-
-
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/3091574998318_.pic_hd.jpg" width=400/>
