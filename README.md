@@ -61,6 +61,6 @@ Coding...
 
 滚动缩放画面稳定在60 FPS左右
 
-<img src="https://github.com/cocos543/CCTrendCharts/blob/dev/3091574998318_.pic_hd" width=300/>
+<img src="https://github.com/cocos543/CCTrendCharts/blob/dev/3091574998318_.pic_hd.jpg" width=300/>
 
 
