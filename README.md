@@ -35,10 +35,10 @@ Coding...
 6. 提供了K线(candlestick)数据提供者和渲染器
 7. 提供了交易量条状图渲染器
 8. 提供了折线图数据提供者和渲染器
+9. 支持贝塞尔曲线
 
 ## 正在开发
 
-* 贝塞尔曲线图渲染器
 * 组合图数据提供者和渲染器
 * 各项交易趋势图的指标计算
 
@@ -57,4 +57,10 @@ Coding...
 
 ## 开发中的界面预览
 
-![image](https://github.com/cocos543/CCTrendCharts/blob/dev/IMG_7755.jpg)
+<img src="https://github.com/cocos543/CCTrendCharts/blob/dev/IMG_7766.jpg"  width=300/>
+
+滚动缩放画面稳定在60 FPS左右
+
+<img src="https://github.com/cocos543/CCTrendCharts/blob/dev/3091574998318_.pic_hd" width=300/>
+
+

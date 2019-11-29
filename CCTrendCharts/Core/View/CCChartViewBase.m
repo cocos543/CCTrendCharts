@@ -149,10 +149,14 @@
 - (void)_updateScrollContent {
     // 滚动区间大小计算公式:
     // 滚动视图内容宽度 = 绘制总长度 - 绘制区间宽度 + 滚动视图宽度
-    // 这里额外加上CC_X_INIT_TRANSLATION, 这样可滚动的区域会比实体大一些, 让第一个和最后一个实体和y轴保持一定距离
-
-    CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count + CC_X_INIT_TRANSLATION]);
-    //NSLog(@"全部数据需要的空间大小:%@", @(totalWidth));
+    // 这里需要特别说明totalWidth变量的由来, 假设边缘值都是0
+    //
+    //      | -- | -- | -- |
+    //
+    // 如上图, "|"表示一个轴, count=4, 它的总长度其实就是3个线段的大小相加, 所以distanceBetweenSpace函数的参数值是(count-1)
+    // 此时左右边缘两个实体的轴分别贴到左右Y轴上.
+    
+    CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count - 1 + self.xAxis.startMargin + self.xAxis.endMargin]);
     
     CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
     self.scrollView.contentSize = CGSizeMake(needExtraWidth + self.bounds.size.width, 0);
@@ -169,7 +173,7 @@
     // 当前正在进行手势操作的, 表示正在浏览数据, 所以不应该重新计算手势矩阵了
     if (self.recentFirst) {
         if (![self.viewPixelHandler isGestureProcessing]) {
-            CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count + CC_X_INIT_TRANSLATION]);
+            CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count - 1 + self.xAxis.startMargin + self.xAxis.endMargin]);
             CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
 
             // recentFirst模式下, 初始矩阵的偏移量和scrollview的偏移量是不同步的, 所以需要重新更新一下lastTx
@@ -188,6 +192,7 @@
             }
         } else {
             // 处于手势操作中的视图, 数据源变动之后, 需要动态调整scrollview 的 offset
+            // 这里只需要知道实体的增量即可
             CGFloat incrementWidth = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count - _lastXValsCount]);
 
             _needTriggerScrollGesture = NO;
@@ -236,16 +241,17 @@
 }
 
 - (void)_updateStandardMatrix {
-    // 暂时只处理左轴
+
     CGAffineTransform transform = CGAffineTransformIdentity;
 
     if (self.leftAxis) {
-        transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue xSpace:self.data.xSpace rentFirst:self.recentFirst];
+        
+        transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue startMargin:self.xAxis.startMargin xSpace:self.data.xSpace rentFirst:self.recentFirst];
         [self.transformer refreshMatrix:transform];
     }
 
     if (self.rightAxis) {
-        transform = [self.transformer calcMatrixWithMinValue:self.rightAxis.axisMinValue maxValue:self.rightAxis.axisMaxValue xSpace:self.data.xSpace rentFirst:self.recentFirst];
+        transform = [self.transformer calcMatrixWithMinValue:self.rightAxis.axisMinValue maxValue:self.rightAxis.axisMaxValue startMargin:self.xAxis.startMargin xSpace:self.data.xSpace rentFirst:self.recentFirst];
         [self.rightTransformer refreshMatrix:transform];
     }
 }

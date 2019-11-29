@@ -90,11 +90,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGRect)pixelToRect:(CGRect)pixel forAnimationPhaseY:(CGFloat)phaseY;
 
 
-
 /// 传入y方向最大最小值, 计算标准矩阵x,y两个方向的信息
-/// @param minY 最小Y
-/// @param maxY 最大Y
-- (CGAffineTransform)calcMatrixWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY xSpace:(CGFloat)xSpace rentFirst:(BOOL)recentFirst;
+/// @param minY 最大y值
+/// @param maxY 最小y值
+/// @param startMargin 起点边缘
+/// @param xSpace 轴间距
+/// @param recentFirst 数据展示模式
+- (CGAffineTransform)calcMatrixWithMinValue:(CGFloat)minY maxValue:(CGFloat)maxY startMargin:(CGFloat)startMargin xSpace:(CGFloat)xSpace rentFirst:(BOOL)recentFirst;
 
 
 

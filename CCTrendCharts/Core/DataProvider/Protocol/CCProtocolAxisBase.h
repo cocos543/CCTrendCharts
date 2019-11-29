@@ -79,4 +79,5 @@ typedef NS_ENUM (NSUInteger, CCYAsixDependency) {
 
 @property (nonatomic, assign) BOOL gridLineEnabled;
 
+
 @end

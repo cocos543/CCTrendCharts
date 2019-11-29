@@ -49,6 +49,7 @@
 		ED5496A023618A1C00BDBC37 /* CCGestureHandlerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = ED54969E23618A1C00BDBC37 /* CCGestureHandlerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED54A1C52373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED54A1C32373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED54A1C62373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED54A1C42373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m */; };
+		ED7460632390C90F0011D1BE /* 3091574998318_.pic_hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED7460622390C90F0011D1BE /* 3091574998318_.pic_hd.jpg */; };
 		ED7B2C35238BBB5800F80C6C /* CCLineSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7B2C33238BBB5800F80C6C /* CCLineSegment.h */; };
 		ED7B2C36238BBB5800F80C6C /* CCLineSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7B2C34238BBB5800F80C6C /* CCLineSegment.m */; };
 		ED7E69482384DBF2006246F0 /* CCBarChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7E69462384DBF2006246F0 /* CCBarChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -58,6 +59,7 @@
 		ED8004E423700267005647C2 /* CCXAxisFixedFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8004E523700267005647C2 /* CCXAxisFixedFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */; };
 		ED8004E823701B61005647C2 /* CCProtocolCursorRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED81F959238FC99700C6EF9C /* IMG_7766.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED81F958238FC99700C6EF9C /* IMG_7766.jpg */; };
 		ED8A5A35237AC60400913416 /* CALayer+CCUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8A5A33237AC60400913416 /* CALayer+CCUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8A5A36237AC60400913416 /* CALayer+CCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8A5A34237AC60400913416 /* CALayer+CCUtility.m */; };
 		ED92FE92238398CC00627725 /* CCSingleEventManager.h in Headers */ = {isa = PBXBuildFile; fileRef = ED92FE90238398CC00627725 /* CCSingleEventManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -68,7 +70,6 @@
 		ED99B489237BF7AF00388345 /* CCKLineDataChartRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED99B487237BF7AF00388345 /* CCKLineDataChartRenderer.m */; };
 		ED99B490237C078700388345 /* CCRendererBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED99B48E237C078700388345 /* CCRendererBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED99B491237C078700388345 /* CCRendererBase.m in Sources */ = {isa = PBXBuildFile; fileRef = ED99B48F237C078700388345 /* CCRendererBase.m */; };
-		ED9FDAB0238E58BE00B116EC /* IMG_7755.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED9FDAAF238E58BD00B116EC /* IMG_7755.jpg */; };
 		EDA3C4282328A11600843C7A /* CCProtocolXAxisFormatterBase.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3C4262328A11600843C7A /* CCProtocolXAxisFormatterBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDA3C4312328CCF700843C7A /* CCXAxisDefaultFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA3C42F2328CCF700843C7A /* CCXAxisDefaultFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDA3C4322328CCF700843C7A /* CCXAxisDefaultFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA3C4302328CCF700843C7A /* CCXAxisDefaultFormatter.m */; };
@@ -169,6 +170,7 @@
 		ED54969E23618A1C00BDBC37 /* CCGestureHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCGestureHandlerProtocol.h; sourceTree = "<group>"; };
 		ED54A1C32373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCDefaultMarkerRenderer.h; sourceTree = "<group>"; };
 		ED54A1C42373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCDefaultMarkerRenderer.m; sourceTree = "<group>"; };
+		ED7460622390C90F0011D1BE /* 3091574998318_.pic_hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3091574998318_.pic_hd.jpg; sourceTree = "<group>"; };
 		ED7B2C33238BBB5800F80C6C /* CCLineSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCLineSegment.h; sourceTree = "<group>"; };
 		ED7B2C34238BBB5800F80C6C /* CCLineSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCLineSegment.m; sourceTree = "<group>"; };
 		ED7E69462384DBF2006246F0 /* CCBarChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCBarChartView.h; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCXAxisFixedFormatter.h; sourceTree = "<group>"; };
 		ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCXAxisFixedFormatter.m; sourceTree = "<group>"; };
 		ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolCursorRenderer.h; sourceTree = "<group>"; };
+		ED81F958238FC99700C6EF9C /* IMG_7766.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_7766.jpg; sourceTree = "<group>"; };
 		ED8A5A33237AC60400913416 /* CALayer+CCUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+CCUtility.h"; sourceTree = "<group>"; };
 		ED8A5A34237AC60400913416 /* CALayer+CCUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+CCUtility.m"; sourceTree = "<group>"; };
 		ED92FE90238398CC00627725 /* CCSingleEventManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCSingleEventManager.h; sourceTree = "<group>"; };
@@ -188,7 +191,6 @@
 		ED99B487237BF7AF00388345 /* CCKLineDataChartRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKLineDataChartRenderer.m; sourceTree = "<group>"; };
 		ED99B48E237C078700388345 /* CCRendererBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCRendererBase.h; sourceTree = "<group>"; };
 		ED99B48F237C078700388345 /* CCRendererBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCRendererBase.m; sourceTree = "<group>"; };
-		ED9FDAAF238E58BD00B116EC /* IMG_7755.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_7755.jpg; sourceTree = "<group>"; };
 		EDA3C4262328A11600843C7A /* CCProtocolXAxisFormatterBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolXAxisFormatterBase.h; sourceTree = "<group>"; };
 		EDA3C42F2328CCF700843C7A /* CCXAxisDefaultFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCXAxisDefaultFormatter.h; sourceTree = "<group>"; };
 		EDA3C4302328CCF700843C7A /* CCXAxisDefaultFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCXAxisDefaultFormatter.m; sourceTree = "<group>"; };
@@ -338,7 +340,8 @@
 		EDABB2422320E46D00C65D3F = {
 			isa = PBXGroup;
 			children = (
-				ED9FDAAF238E58BD00B116EC /* IMG_7755.jpg */,
+				ED7460622390C90F0011D1BE /* 3091574998318_.pic_hd.jpg */,
+				ED81F958238FC99700C6EF9C /* IMG_7766.jpg */,
 				EDAFF46F237A8E2B00E8BA2B /* Doc.md */,
 				EDFA74B82320FC8600CDB6BC /* README.md */,
 				EDFA74B62320FC6900CDB6BC /* LICENSE */,
@@ -692,9 +695,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDFA74B72320FC6900CDB6BC /* LICENSE in Resources */,
+				ED7460632390C90F0011D1BE /* 3091574998318_.pic_hd.jpg in Resources */,
 				EDAFF474237AB5D800E8BA2B /* 1daykline.json in Resources */,
 				EDAFF470237A8E2B00E8BA2B /* Doc.md in Resources */,
-				ED9FDAB0238E58BE00B116EC /* IMG_7755.jpg in Resources */,
+				ED81F959238FC99700C6EF9C /* IMG_7766.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

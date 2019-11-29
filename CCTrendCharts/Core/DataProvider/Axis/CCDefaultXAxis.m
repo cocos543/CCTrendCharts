@@ -45,6 +45,9 @@
         _xLabelOffset    = 0;
         _yLabelOffset    = 5;
 
+        _startMargin     = 0.5;
+        _endMargin       = 0.5;
+
         // 设置默认的formatter对象
         _formatter       = [[CCXAxisDefaultFormatter alloc] init];
     }
@@ -95,6 +98,9 @@
 
     axis.formatter       = [(NSObject *)self.formatter copy];
     axis.labelPosition   = self.labelPosition;
+
+    axis.startMargin     = self.startMargin;
+    axis.endMargin       = self.endMargin;
 
     return axis;
 }

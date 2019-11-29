@@ -24,6 +24,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSArray<NSString *> *entities;
 
+
+/// 起点实体轴, 和Y轴的距离.
+///
+/// 默认值0.5
+@property (nonatomic, assign) CGFloat startMargin;
+
+/// 终点实体轴, 和Y轴的距离.
+///
+/// 默认值0.5
+@property (nonatomic, assign) CGFloat endMargin;
+
 // x轴暂时不支持定义最大小值, 先根据具体可以显示的x轴上索引, 自动显示x轴上的信息
 
 @end

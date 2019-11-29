@@ -25,13 +25,19 @@
     }
 }
 
-#pragma mark - Setter & Getter
-- (NSMutableArray<CAShapeLayer *> *)layersCache {
-    if (!_layersCache) {
-        _layersCache = @[].mutableCopy;
+/// 根据传入的类型, 绘制直线或者贝塞尔线
+/// @param path 贝塞尔对象
+/// @param start 起点
+/// @param end 终点
+/// @param type 绘制类型
+- (void)_addLineInPath:(UIBezierPath *)path start:(CGPoint)start end:(CGPoint)end using:(CCLineChartDrawType)type {
+    // 绘制直线(折现)
+    if (type == CCLineChartDrawTypeLine) {
+        [path addLineToPoint:end];
+    } else if (type == CCLineChartDrawTypeCurve) {
+        // 绘制贝塞尔曲线
+        [path addCurveToPoint:end controlPoint1:CGPointMake((start.x + end.x) / 2, start.y) controlPoint2:CGPointMake((start.x + end.x) / 2, end.y)];
     }
-
-    return _layersCache;
 }
 
 
@@ -107,31 +113,36 @@
             if (fillRequire) {
                 if (!flag) {
                     // 确保起始位置从y轴原点位置开始
-                    [path moveToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(perEntity.xIndex, self.dataProvider.chartMinY) forAnimationPhaseY:1] fromLayer:contentLayer]];
+                    [path moveToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(perEntity.xIndex, self.dataProvider.chartMinY - dataSet.lineWidth) forAnimationPhaseY:1] fromLayer:contentLayer]];
                     [path addLineToPoint:start];
 
                     flag = YES;
                 }
-                [path addLineToPoint:end];
+                
+                [self _addLineInPath:path start:start end:end using:dataSet.drawType];
                 lastX = i;
             } else {
                 // 非填充的, 只需要把每个线段都作为子线段单独绘制即可
                 [path moveToPoint:start];
-                [path addLineToPoint:end];
+                [self _addLineInPath:path start:start end:end using:dataSet.drawType];
             }
         }
 
         if (fillRequire) {
-            [path addLineToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(lastX, self.dataProvider.chartMinY) forAnimationPhaseY:1] fromLayer:contentLayer]];
+            [path addLineToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(lastX, self.dataProvider.chartMinY - dataSet.lineWidth) forAnimationPhaseY:1] fromLayer:contentLayer]];
             [path closePath];
-        }
-
-        if (dataSet.drawType == CCLineChartDrawTypeLine) {
-        } else if (dataSet.drawType == CCLineChartDrawTypeCurve) {
         }
 
         layer.path = path.CGPath;
     }
 }
 
+#pragma mark - Setter & Getter
+- (NSMutableArray<CAShapeLayer *> *)layersCache {
+    if (!_layersCache) {
+        _layersCache = @[].mutableCopy;
+    }
+
+    return _layersCache;
+}
 @end
