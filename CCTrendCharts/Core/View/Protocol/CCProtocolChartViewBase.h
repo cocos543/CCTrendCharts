@@ -19,6 +19,7 @@
 #import "CCDefaultXAxis.h"
 #import "CCProtocolCursorBase.h"
 #import "CCProtocolMarkerRenderer.h"
+#import "CCProtocolLegendRenderer.h"
 
 @protocol CCProtocolChartViewBase <CCProtocolBase>
 @required
@@ -72,5 +73,7 @@
 @property (nonatomic, strong) id<CCProtocolMarkerRenderer> markerRenderer;
 
 @property (nonatomic, strong) id<CCProtocolCursorRenderer> cursorRenderer;
+
+@property (nonatomic, strong) id<CCProtocolLegendRenderer> legendRenderer;
 
 @end

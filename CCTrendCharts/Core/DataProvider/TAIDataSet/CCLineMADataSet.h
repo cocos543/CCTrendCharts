@@ -16,12 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// MA指标 (Moving average)
 @interface CCLineMADataSet : CCLineChartDataSet <CCProtocolTAIDataSet>
 
-- (instancetype)initWithRawEntities:(NSArray<CCKLineDataEntity *> *)rawEntities N:(NSUInteger)N NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithRawEntities:(NSArray<CCKLineDataEntity *> *)rawEntities N:(id)N NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name NS_UNAVAILABLE;
+- (instancetype)initWithVals:(NSArray<CCKLineDataEntity *> *)entities withName:(CCDataSetName)name NS_UNAVAILABLE;
+
++ (nullable NSArray<id<CCProtocolChartDataEntityBase>> *)rawEntitiesToEntities:(NSArray<CCKLineDataEntity *> *)rawEntities N:(id)N;
 
 /// N日平均值
-@property (nonatomic, assign) NSUInteger N;
+@property (nonatomic, strong) id N;
 
 @end
 

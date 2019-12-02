@@ -11,7 +11,7 @@
 #import "CCChartViewBase.h"
 
 
-@interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate, CCGestureHandlerDelegate> {
+@interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate> {
     BOOL _needsPrepare;
 
     BOOL _needUpdateForRecentFirst;
@@ -45,9 +45,11 @@
  */
 @property (nonatomic, strong) CALayer *cursorLayer;
 
-
 /// 标记图层
 @property (nonatomic, strong) CALayer *markerLayer;
+
+/// 图例图层
+@property (nonatomic, strong) CALayer *legendLayer;
 
 /**
  提供横向滚动功能
@@ -65,6 +67,7 @@
 @synthesize transformer      = _transformer;
 @synthesize rightTransformer = _rightTransformer;
 
+
 // 渲染组件变量由子类合成
 @dynamic dataRenderer;
 @dynamic leftAxisRenderer;
@@ -72,6 +75,7 @@
 @dynamic xAxisRenderer;
 @dynamic markerRenderer;
 @dynamic cursorRenderer;
+@dynamic legendRenderer;
 
 @dynamic chartMinX;
 @dynamic chartMaxX;
@@ -376,6 +380,15 @@
     return _markerLayer;
 }
 
+- (CALayer *)legendLayer {
+    if (!_legendLayer) {
+        _legendLayer = CALayer.layer;
+        _legendLayer.zPosition = 999;
+        [self.layer addSublayer:_legendLayer];
+    }
+    return _legendLayer;
+}
+
 #pragma mark - CALayerDelegate
 - (void)displayLayer:(CALayer *)layer {
     if (_needsPrepare) {
@@ -390,18 +403,29 @@
     
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
 
-    [self.leftAxisRenderer beginRenderingInLayer:self.yAxisLayer];
-    [self.rightAxisRenderer beginRenderingInLayer:self.yAxisLayer];
+    if (self.leftAxisRenderer) {
+        [self.leftAxisRenderer beginRenderingInLayer:self.yAxisLayer];
+    }
+    if (self.rightAxisRenderer) {
+        [self.rightAxisRenderer beginRenderingInLayer:self.yAxisLayer];
+    }
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
 
-    [self.xAxisRenderer beginRenderingInLayer:self.xAxisLayer];
+    if (self.xAxisRenderer) {
+        [self.xAxisRenderer beginRenderingInLayer:self.xAxisLayer];
+    }
     
     UIGraphicsEndImageContext();
     
     // 单独渲染数据层
     [self dataRendering];
+    
+    // 渲染图例
+    if (self.legendRenderer) {
+        [self.legendRenderer beginRenderingInLayer:self.legendLayer atIndex:0];
+    }
 }
 
 #pragma mark - Drawing

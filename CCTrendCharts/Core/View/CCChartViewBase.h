@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  请不要直接使用基类视图!
  */
-@interface CCChartViewBase : UIView <CCProtocolChartViewBase, CCProtocolChartDataProvider>
+@interface CCChartViewBase : UIView <CCGestureHandlerDelegate, CCProtocolChartViewBase, CCProtocolChartDataProvider>
 
 
 /// 添加默认手势

@@ -32,6 +32,8 @@
 @synthesize xAxisRenderer     = _xAxisRenderer;
 @synthesize cursorRenderer    = _cursorRenderer;
 @synthesize markerRenderer    = _markerRenderer;
+@synthesize legendRenderer    = _legendRenderer;
+
 @synthesize TAIConfig         = _TAIConfig;
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -56,6 +58,8 @@
 
         _markerRenderer           = [[CCDefaultMarkerRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
 
+        _legendRenderer           = [[CCTAILegendRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
+
         _dataRenderer             = [[CCKLineDataChartRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
 
         _lineRenderer             = [[CCLineDataChartRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
@@ -78,7 +82,7 @@
 
 - (void)prepareChart {
     [super prepareChart];
-    
+
     // 生成指标数据集
     [self.klineChartData notifyTAIConfigChange:self.TAIConfig];
 }
@@ -91,6 +95,7 @@
 
     // 渲染指标折线图
     [self.lineRenderer renderData:self.dataLayer];
+    
 }
 
 #pragma mark - Getter & Setter
@@ -105,6 +110,15 @@
 }
 
 #pragma mark - Param update
+
+#pragma mark - CCGestureHandlerDelegate
+- (void)gestureDidLongPressInLocation:(CGPoint)point {
+    [super gestureDidLongPressInLocation:point];
+}
+
+- (void)gestureDidEndLongPressInLocation:(CGPoint)point {
+    [super gestureDidEndLongPressInLocation:point];
+}
 
 #pragma mark - Protocol: CCProtocolKLineChartDataProvider
 - (void)setTAIConfig:(CCTAIConfig *)TAIConfig {

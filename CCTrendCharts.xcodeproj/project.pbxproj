@@ -62,7 +62,6 @@
 		ED8004E423700267005647C2 /* CCXAxisFixedFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8004E523700267005647C2 /* CCXAxisFixedFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */; };
 		ED8004E823701B61005647C2 /* CCProtocolCursorRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED81F959238FC99700C6EF9C /* IMG_7766.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED81F958238FC99700C6EF9C /* IMG_7766.jpg */; };
 		ED8A5A35237AC60400913416 /* CALayer+CCUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8A5A33237AC60400913416 /* CALayer+CCUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8A5A36237AC60400913416 /* CALayer+CCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8A5A34237AC60400913416 /* CALayer+CCUtility.m */; };
 		ED92FE92238398CC00627725 /* CCSingleEventManager.h in Headers */ = {isa = PBXBuildFile; fileRef = ED92FE90238398CC00627725 /* CCSingleEventManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -97,6 +96,10 @@
 		EDBEA2CC2328EAEB000F8852 /* CCProtocolAxisRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDBEA2CA2328EAEB000F8852 /* CCProtocolAxisRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDBEA2D02328EB87000F8852 /* CCProtocolDataChartRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDBEA2CE2328EB87000F8852 /* CCProtocolDataChartRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDBEA2D42328ED6C000F8852 /* CCProtocolAnimatorBase.h in Headers */ = {isa = PBXBuildFile; fileRef = EDBEA2D22328ED6C000F8852 /* CCProtocolAnimatorBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDC02E5A2395160E00DA02B1 /* CCProtocolLegendRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC02E582395160E00DA02B1 /* CCProtocolLegendRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDC02E5E2395192E00DA02B1 /* CCTAILegendRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC02E5C2395192E00DA02B1 /* CCTAILegendRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDC02E5F2395192E00DA02B1 /* CCTAILegendRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC02E5D2395192E00DA02B1 /* CCTAILegendRenderer.m */; };
+		EDC02E612395234600DA02B1 /* IMG_7817.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDC02E602395234600DA02B1 /* IMG_7817.jpg */; };
 		EDCCDB9E2379584000BDD823 /* CCKLineDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EDCCDB9C2379584000BDD823 /* CCKLineDataEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDCCDB9F2379584000BDD823 /* CCKLineDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCCDB9D2379584000BDD823 /* CCKLineDataEntity.m */; };
 		EDD0F258234C7370005ED4DD /* NSString+CCUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EDD0F256234C7370005ED4DD /* NSString+CCUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -186,7 +189,6 @@
 		ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCXAxisFixedFormatter.h; sourceTree = "<group>"; };
 		ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCXAxisFixedFormatter.m; sourceTree = "<group>"; };
 		ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolCursorRenderer.h; sourceTree = "<group>"; };
-		ED81F958238FC99700C6EF9C /* IMG_7766.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_7766.jpg; sourceTree = "<group>"; };
 		ED8A5A33237AC60400913416 /* CALayer+CCUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+CCUtility.h"; sourceTree = "<group>"; };
 		ED8A5A34237AC60400913416 /* CALayer+CCUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+CCUtility.m"; sourceTree = "<group>"; };
 		ED92FE90238398CC00627725 /* CCSingleEventManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCSingleEventManager.h; sourceTree = "<group>"; };
@@ -224,6 +226,10 @@
 		EDBEA2CA2328EAEB000F8852 /* CCProtocolAxisRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolAxisRenderer.h; sourceTree = "<group>"; };
 		EDBEA2CE2328EB87000F8852 /* CCProtocolDataChartRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolDataChartRenderer.h; sourceTree = "<group>"; };
 		EDBEA2D22328ED6C000F8852 /* CCProtocolAnimatorBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolAnimatorBase.h; sourceTree = "<group>"; };
+		EDC02E582395160E00DA02B1 /* CCProtocolLegendRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolLegendRenderer.h; sourceTree = "<group>"; };
+		EDC02E5C2395192E00DA02B1 /* CCTAILegendRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTAILegendRenderer.h; sourceTree = "<group>"; };
+		EDC02E5D2395192E00DA02B1 /* CCTAILegendRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTAILegendRenderer.m; sourceTree = "<group>"; };
+		EDC02E602395234600DA02B1 /* IMG_7817.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_7817.jpg; sourceTree = "<group>"; };
 		EDCCDB9C2379584000BDD823 /* CCKLineDataEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKLineDataEntity.h; sourceTree = "<group>"; };
 		EDCCDB9D2379584000BDD823 /* CCKLineDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKLineDataEntity.m; sourceTree = "<group>"; };
 		EDD0F256234C7370005ED4DD /* NSString+CCUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CCUtility.h"; sourceTree = "<group>"; };
@@ -357,7 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				ED7460622390C90F0011D1BE /* 3091574998318_.pic_hd.jpg */,
-				ED81F958238FC99700C6EF9C /* IMG_7766.jpg */,
+				EDC02E602395234600DA02B1 /* IMG_7817.jpg */,
 				EDAFF46F237A8E2B00E8BA2B /* Doc.md */,
 				EDFA74B82320FC8600CDB6BC /* README.md */,
 				EDFA74B62320FC6900CDB6BC /* LICENSE */,
@@ -419,6 +425,7 @@
 				EDDA144D23702AA700756207 /* CCProtocolMarkerRenderer.h */,
 				EDBEA2CE2328EB87000F8852 /* CCProtocolDataChartRenderer.h */,
 				ED03A14F23337B540065DDA4 /* CCProtocolKLineDataChartRenderer.h */,
+				EDC02E582395160E00DA02B1 /* CCProtocolLegendRenderer.h */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -492,6 +499,8 @@
 				ED7E694F2384E389006246F0 /* CCBarDataChartRenderer.m */,
 				ED41C2D523853F9F004B640E /* CCVolumeDataChartRenderer.h */,
 				ED41C2D623853F9F004B640E /* CCVolumeDataChartRenderer.m */,
+				EDC02E5C2395192E00DA02B1 /* CCTAILegendRenderer.h */,
+				EDC02E5D2395192E00DA02B1 /* CCTAILegendRenderer.m */,
 				EDD180AF232A35F800B2B72A /* Protocol */,
 			);
 			path = Renderer;
@@ -580,6 +589,7 @@
 				EDA3E2F0232F666700222E83 /* CCChartData.h in Headers */,
 				EDD180B7232A3B0100B2B72A /* CCDefaultYAxisRenderer.h in Headers */,
 				EDD180BB232A3B0F00B2B72A /* CCDefaultXAxisRenderer.h in Headers */,
+				EDC02E5A2395160E00DA02B1 /* CCProtocolLegendRenderer.h in Headers */,
 				EDA3C4352328D0C500843C7A /* CCProtocolAxisBase.h in Headers */,
 				EDA3E2EC232F655F00222E83 /* CCProtocolChartDataSet.h in Headers */,
 				ED21EACC232642740087AE67 /* CCChartViewPixelHandler.h in Headers */,
@@ -629,6 +639,7 @@
 				ED7460662391040F0011D1BE /* CCProtocolTAIDataSet.h in Headers */,
 				ED74606F239113AC0011D1BE /* CCTAIConfig.h in Headers */,
 				ED74606A2391081A0011D1BE /* CCLineMADataSet.h in Headers */,
+				EDC02E5E2395192E00DA02B1 /* CCTAILegendRenderer.h in Headers */,
 				EDDCD4602334CDAE005E46EA /* CCMacro.h in Headers */,
 				ED00E79223223C7800139A8C /* CCProtocolBase.h in Headers */,
 			);
@@ -715,9 +726,9 @@
 			files = (
 				EDFA74B72320FC6900CDB6BC /* LICENSE in Resources */,
 				ED7460632390C90F0011D1BE /* 3091574998318_.pic_hd.jpg in Resources */,
+				EDC02E612395234600DA02B1 /* IMG_7817.jpg in Resources */,
 				EDAFF474237AB5D800E8BA2B /* 1daykline.json in Resources */,
 				EDAFF470237A8E2B00E8BA2B /* Doc.md in Resources */,
-				ED81F959238FC99700C6EF9C /* IMG_7766.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +749,7 @@
 				EDABB2692320E68700C65D3F /* CCMain.m in Sources */,
 				ED92FE93238398CC00627725 /* CCSingleEventManager.m in Sources */,
 				ED1F17A12387879100E26247 /* CCAssembledChartView.m in Sources */,
+				EDC02E5F2395192E00DA02B1 /* CCTAILegendRenderer.m in Sources */,
 				EDA3E305232F7E7600222E83 /* CCKLineChartDataSet.m in Sources */,
 				ED00E79B23223E6600139A8C /* CCDefaultXAxis.m in Sources */,
 				EDD180BC232A3B0F00B2B72A /* CCDefaultXAxisRenderer.m in Sources */,

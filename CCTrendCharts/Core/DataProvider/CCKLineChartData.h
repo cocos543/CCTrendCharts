@@ -24,8 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param config 配置
 - (void)notifyTAIConfigChange:(CCTAIConfig *)config;
 
-
-
 @end
 
 NS_ASSUME_NONNULL_END

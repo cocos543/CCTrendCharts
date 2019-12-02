@@ -29,7 +29,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[%p] xIndex: %@, value: %@, data: %@", self, @(self.xIndex), @(self.value), self.data];
+    return [NSString stringWithFormat:@"[%p] xIndex: %@, value: %@, time: %@, data: %@", self, @(self.xIndex), @(self.value), @(self.timeInt), self.data];
 }
 
 

@@ -23,6 +23,7 @@
 @synthesize xAxisRenderer = _xAxisRenderer;
 @synthesize cursorRenderer = _cursorRenderer;
 @synthesize markerRenderer = _markerRenderer;
+@synthesize legendRenderer = _legendRenderer;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];

@@ -8,9 +8,13 @@
 
 #import "CCTAIConfig.h"
 
+@implementation CCTAIConfigItem
+@end
+
+
 @implementation CCTAIConfig
 
-- (instancetype)initWithConfig:(NSDictionary<NSString *,NSArray *> *)config {
+- (instancetype)initWithConfig:(NSArray<CCTAIConfigItem *> *)config {
     self = [super init];
     if (self) {
         _conf = config;
@@ -18,7 +22,5 @@
     
     return self;
 }
-
-
 
 @end

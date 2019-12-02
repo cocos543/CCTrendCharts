@@ -11,16 +11,20 @@
 @implementation CCKLineChartData
 
 - (void)notifyTAIConfigChange:(CCTAIConfig *)config {
-    for (NSString *clsStr in config.conf.allKeys) {
-        Class cls = NSClassFromString(clsStr);
-        if ([cls conformsToProtocol:@protocol(CCProtocolTAIDataSet)]) {
+    for (CCTAIConfigItem *item in config.conf) {
+        if ([item.dataSetClass conformsToProtocol:@protocol(CCProtocolTAIDataSet)]) {
             
-            id<CCProtocolTAIDataSet> dataSet = [[cls alloc] initWithRawEntities:[[self dataSetWithName:kCCNameKLineDataSet] lastObject].entities N:0];
+            id<CCProtocolTAIDataSet> dataSet = [[item.dataSetClass alloc] initWithRawEntities:[[self dataSetWithName:kCCNameKLineDataSet] lastObject].entities N:item.N];
+            if (!dataSet) {
+                continue;
+            }
+            
+            dataSet.label = item.label;
+            dataSet.color = item.color;
             
             [self.dataSets addObject:dataSet];
         }
     }
 }
-
 
 @end
