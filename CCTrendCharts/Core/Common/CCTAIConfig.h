@@ -19,8 +19,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// 指标文案
 @property (nonatomic, strong) NSString *label;
 
+/// 字体
+@property (nonatomic, strong) UIFont *font;
+
 /// 指标的颜色
 @property (nonatomic, strong) UIColor *color;
+
+/// 指标右间距
+@property (nonatomic, assign) CGFloat rightInterval;
+
+/// 数值格式化
+@property (nonatomic, strong) NSNumberFormatter *formatter;
 
 
 /// 数据集的名字, 用于动态创建对应的数据集

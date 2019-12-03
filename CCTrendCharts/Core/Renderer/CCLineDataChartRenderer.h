@@ -10,14 +10,12 @@
 #import "CCLineChartDataSet.h"
 #import "CCLineMADataSet.h"
 
+#import "CCRendererBase+LayerCache.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// 线形图渲染器
 @interface CCLineDataChartRenderer : CCDataChartRenderer
-
-/// 请求获取指定索引下的图层
-/// @param index 索引
-- (CAShapeLayer *)requestLayersCacheByIndex:(NSInteger)index;
 
 @end
 

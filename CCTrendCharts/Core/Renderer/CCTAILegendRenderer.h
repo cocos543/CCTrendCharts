@@ -10,6 +10,9 @@
 
 #import "CCRendererBase.h"
 #import "CCProtocolLegendRenderer.h"
+#import "CCProtocolTAIDataSet.h"
+
+#import "CCRendererBase+LayerCache.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

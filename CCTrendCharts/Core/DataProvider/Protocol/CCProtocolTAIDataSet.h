@@ -27,4 +27,15 @@
 /// 指标用于展示的名字
 @property (nonatomic, strong) NSString *label;
 
+@property (nonatomic, strong) UIFont *font;
+
+/// 数值格式化
+@property (nonatomic, strong) NSNumberFormatter *formatter;
+
+/// 指标右间距
+@property (nonatomic, assign) CGFloat rightInterval;
+
+/// 具体指标 (如: MA5, MA10)
+@property (nonatomic, strong) id N;
+
 @end

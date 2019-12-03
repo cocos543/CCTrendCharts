@@ -22,9 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable NSArray<id<CCProtocolChartDataEntityBase>> *)rawEntitiesToEntities:(NSArray<CCKLineDataEntity *> *)rawEntities N:(id)N;
 
-/// N日平均值
-@property (nonatomic, strong) id N;
-
 @end
 
 NS_ASSUME_NONNULL_END

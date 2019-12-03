@@ -10,12 +10,13 @@
 
 #import "CCChartViewBase.h"
 
-
 @interface CCChartViewBase () <CALayerDelegate, UIScrollViewDelegate> {
     BOOL _needsPrepare;
 
     BOOL _needUpdateForRecentFirst;
     BOOL _needTriggerScrollGesture;
+    // 标记是否首次显示
+    BOOL _isFirstDisplay;
 
     // 记录 最后的手势平移值
     CGFloat _lastTx;
@@ -23,9 +24,9 @@
     CGFloat _lastOffsetX;
     // 记录 最后一次更新数据源之前的数据总数
     NSInteger _lastXValsCount;
-    
+
     NSInteger _longPressLastSelcIndex;
-    
+
     CCSingleEventManager *_eventManager;
 }
 
@@ -38,7 +39,6 @@
  x轴图层
  */
 @property (nonatomic, strong) CALayer *xAxisLayer;
-
 
 /**
  指示器图层
@@ -67,7 +67,6 @@
 @synthesize transformer      = _transformer;
 @synthesize rightTransformer = _rightTransformer;
 
-
 // 渲染组件变量由子类合成
 @dynamic dataRenderer;
 @dynamic leftAxisRenderer;
@@ -87,28 +86,30 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        _eventManager = [[CCSingleEventManager alloc] init];
-        
-        _scrollView = [[UIScrollView alloc] initWithFrame:frame];
-        _scrollView.delegate                = self;
-        _scrollView.backgroundColor         = UIColor.clearColor;
+        _eventManager               = [[CCSingleEventManager alloc] init];
 
-        _viewPixelHandler         = [[CCChartViewPixelHandler alloc] init];
+        _scrollView                 = [[UIScrollView alloc] initWithFrame:frame];
+        _scrollView.delegate        = self;
+        _scrollView.backgroundColor = UIColor.clearColor;
 
-        _transformer              = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
-        _rightTransformer         = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
+        _viewPixelHandler           = [[CCChartViewPixelHandler alloc] init];
 
-        _gestureHandler           = [[CCGestureDefaultHandler alloc] initWithTransformer:_viewPixelHandler];
-        _gestureHandler.baseView  = self;
-        _gestureHandler.delegate  = self;
+        _transformer                = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
+        _rightTransformer           = [[CCChartTransformer alloc] initWithViewPixelHandler:_viewPixelHandler];
 
-        _clipEdgeInsets           = UIEdgeInsetsMake(8, 8, 8, 8);
+        _gestureHandler             = [[CCGestureDefaultHandler alloc] initWithTransformer:_viewPixelHandler];
+        _gestureHandler.baseView    = self;
+        _gestureHandler.delegate    = self;
 
-        _recentFirst              = YES;
-        _needUpdateForRecentFirst = YES;
-        _needTriggerScrollGesture = YES;
+        _clipEdgeInsets             = UIEdgeInsetsMake(8, 8, 8, 8);
+
+        _recentFirst                = YES;
+        _needUpdateForRecentFirst   = YES;
+        _needTriggerScrollGesture   = YES;
         _lastTx = 0.f;
-        _lastOffsetX              = 0.f;
+        _lastOffsetX                = 0.f;
+
+        _isFirstDisplay             = YES;
     }
     return self;
 }
@@ -124,7 +125,7 @@
 
     [self addSubview:_scrollView];
 
-    UILabel *l   = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
+    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
     l.text = @"testtets";
     [self.scrollView addSubview:l];
 
@@ -159,9 +160,9 @@
     //
     // 如上图, "|"表示一个轴, count=4, 它的总长度其实就是3个线段的大小相加, 所以distanceBetweenSpace函数的参数值是(count-1)
     // 此时左右边缘两个实体的轴分别贴到左右Y轴上.
-    
+
     CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count - 1 + self.xAxis.startMargin + self.xAxis.endMargin]);
-    
+
     CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
     self.scrollView.contentSize = CGSizeMake(needExtraWidth + self.bounds.size.width, 0);
 }
@@ -188,7 +189,7 @@
             _needTriggerScrollGesture = NO;
             [self _setScrollViewXOffset:needExtraWidth];
             _needTriggerScrollGesture = YES;
-            
+
             // 当数据源太少时, 总宽度比可绘制的内容宽度都小, 这里会得到一个负数
             // 为了让视图实体靠左显示, 这里需要另外把scrollview的offset调整为0
             if (needExtraWidth < 0) {
@@ -245,11 +246,9 @@
 }
 
 - (void)_updateStandardMatrix {
-
     CGAffineTransform transform = CGAffineTransformIdentity;
 
     if (self.leftAxis) {
-        
         transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue startMargin:self.xAxis.startMargin xSpace:self.data.xSpace rentFirst:self.recentFirst];
         [self.transformer refreshMatrix:transform];
     }
@@ -283,7 +282,6 @@
     }
 }
 
-
 /// 根据当前可见区域, 更新y轴上的内容
 - (void)_updateViewYAxisContent {
     [self.data calcMinMaxStart:self.lowestVisibleXIndex End:self.highestVisibleXIndex];
@@ -304,7 +302,7 @@
     if (self.dataSource == nil) {
         @throw [NSException exceptionWithName:@"DataSource is nil" reason:@"CCChartViewDataSource can't no be nil" userInfo:nil];
     }
-    
+
     self.data       = [self.dataSource chartDataInView:self];
 
     // 这里是为了让后面y轴文案能得到全部数据的最大最小值, 方便_calcViewPixelOffset一次性计算出一个合适值
@@ -330,7 +328,7 @@
 
     // 确定好绘制的内容和滚动区域一起同步偏移的量, 完成同步滚动.
     [self _calcViewPixelInitMatrix];
-    
+
     [self _updateViewYAxisContent];
 }
 
@@ -342,7 +340,7 @@
 - (CALayer *)yAxisLayer {
     if (!_yAxisLayer) {
         _yAxisLayer = CALayer.layer;
-        
+
         // Y轴渲染层放到所有图层的底部
         [self.layer addSublayer:_yAxisLayer];
     }
@@ -395,37 +393,32 @@
         [self prepareChart];
         _needsPrepare = NO;
     }
+
     self.layer.backgroundColor = self.backgroundColor.CGColor;
 
     if (CGSizeEqualToSize(self.viewPixelHandler.viewFrame.size, CGSizeZero)) {
         return;
     }
-    
+
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
 
-    if (self.leftAxisRenderer) {
-        [self.leftAxisRenderer beginRenderingInLayer:self.yAxisLayer];
-    }
-    if (self.rightAxisRenderer) {
-        [self.rightAxisRenderer beginRenderingInLayer:self.yAxisLayer];
-    }
+    [self.leftAxisRenderer beginRenderingInLayer:self.yAxisLayer];
+    [self.rightAxisRenderer beginRenderingInLayer:self.yAxisLayer];
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
 
-    if (self.xAxisRenderer) {
-        [self.xAxisRenderer beginRenderingInLayer:self.xAxisLayer];
-    }
-    
+    [self.xAxisRenderer beginRenderingInLayer:self.xAxisLayer];
+
     UIGraphicsEndImageContext();
-    
+
     // 单独渲染数据层
     [self dataRendering];
-    
-    // 渲染图例
-    if (self.legendRenderer) {
+
+    if (_isFirstDisplay) {
         [self.legendRenderer beginRenderingInLayer:self.legendLayer atIndex:0];
     }
+    _isFirstDisplay = NO;
 }
 
 #pragma mark - Drawing
@@ -439,7 +432,6 @@
         return;
     }
     [self.gestureHandler didScrollIncrementOffsetX:scrollView.contentOffset.x - _lastOffsetX];
-
 }
 
 #pragma mark - Gesture-func
@@ -455,7 +447,7 @@
     _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
 
     [self _updateViewYAxisContent];
-    
+
     // 检查到边缘时, 通知代理期望获取下一页数据.
     if (self.recentFirst) {
         if (self.scrollView.contentOffset.x <= 0) {
@@ -465,7 +457,7 @@
                 }];
             }
         }
-    }else {
+    } else {
         if (self.scrollView.contentOffset.x + self.scrollView.bounds.size.width > self.scrollView.contentSize.width) {
             if ([self.delegate respondsToSelector:@selector(chartViewExpectLoadNextPage:eventManager:)]) {
                 [_eventManager newEventWithBlock:^{
@@ -474,7 +466,7 @@
             }
         }
     }
-    
+
     [self setNeedsDisplay];
 }
 
@@ -523,7 +515,7 @@
 
     _lastOffsetX = offset.x;
     _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
-    
+
     [self _updateViewYAxisContent];
     [self setNeedsDisplay];
 }
@@ -538,7 +530,7 @@
         // 这里需要特殊处理(注意这里self.scrollView.contentSize就是实体的实际宽度)
         if (self.scrollView.contentSize.width < self.scrollView.bounds.size.width) {
             [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-        }else {
+        } else {
             if (self.scrollView.contentSize.width < (self.scrollView.contentOffset.x + self.scrollView.bounds.size.width)) {
                 [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSize.width - self.scrollView.bounds.size.width, 0) animated:YES];
             }
@@ -547,17 +539,15 @@
 }
 
 - (void)gestureDidLongPressInLocation:(CGPoint)point {
-    
     UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
     [self.cursorRenderer beginRenderingInLayer:self.cursorLayer center:point];
-    
-    
+
     CGPoint valuePoint = [self.transformer pixelToPoint:CGPointMake(point.x, 0) forAnimationPhaseY:1];
 
     // 某个对应的实体只连续触发最多1次
     if ((NSInteger)valuePoint.x != _longPressLastSelcIndex) {
         _longPressLastSelcIndex = (NSInteger)valuePoint.x;
-        
+
         // 添加了震动效果
         if (self.cursor.impactFeedback) {
             if (@available(iOS 13.0, *)) {
@@ -567,25 +557,27 @@
                 [self.cursor.impactFeedback impactOccurred];
             }
         }
-        
+
         // 绘制标记
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
         [self.markerRenderer beginRenderingInLayer:self.markerLayer atIndex:valuePoint.x];
+
+        [self.legendRenderer beginRenderingInLayer:self.legendLayer atIndex:valuePoint.x];
     }
-    
+
     UIGraphicsEndImageContext();
-    
-    
 }
 
 - (void)gestureDidEndLongPressInLocation:(CGPoint)point {
     // 简单演示, 几秒后移除图层即可
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self->_cursorLayer removeFromSuperlayer];
-        self->_cursorLayer = nil;
-        [self->_markerLayer removeFromSuperlayer];
-        self->_markerLayer = nil;
+        [self.cursorLayer removeFromSuperlayer];
+        self.cursorLayer = nil;
+        [self.markerLayer removeFromSuperlayer];
+        self.markerLayer = nil;
+
+        [self.legendRenderer beginRenderingInLayer:self.legendLayer atIndex:0];
     });
 }
 
@@ -598,7 +590,6 @@
 - (CGFloat)chartMaxY {
     return self.leftAxis.axisMaxValue;
 }
-
 
 - (NSInteger)lowestVisibleXIndex {
     if (self.recentFirst) {

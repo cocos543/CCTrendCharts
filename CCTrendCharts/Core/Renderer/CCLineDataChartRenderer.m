@@ -10,18 +10,9 @@
 
 @interface CCLineDataChartRenderer ()
 
-/// 图层池, 可以动态添加新的图层
-@property (nonatomic, strong) NSMutableArray<CAShapeLayer *> *layersCache;
-
 @end
 
 @implementation CCLineDataChartRenderer
-
-- (void)_removeAllLayers {
-    for (CALayer *layer in self.layersCache) {
-        [layer removeFromSuperlayer];
-    }
-}
 
 /// 根据传入的类型, 绘制直线或者贝塞尔线
 /// @param path 贝塞尔对象
@@ -38,22 +29,11 @@
     }
 }
 
-
-#pragma mark - Public
-
-- (CAShapeLayer *)requestLayersCacheByIndex:(NSInteger)index {
-    if (index >= self.layersCache.count) {
-        [self.layersCache addObject:CAShapeLayer.layer];
-    }
-    return self.layersCache[index];
-}
-
-
 #pragma mark - CCProtocolDataChartRenderer
 
 - (void)renderData:(CALayer *)contentLayer {
-    [self _removeAllLayers];
-    
+    [self removeAllLayersFromSuperLayer];
+
     NSArray <CCLineChartDataSet *> *array = [self.dataProvider.data dataSetWithName:kCCNameLineDataSet];
 
     // 每一个dataSet都对应一条完整的线型, 这里直接遍历dataSet数组进行渲染
@@ -62,7 +42,10 @@
 
         UIBezierPath *path = UIBezierPath.bezierPath;
 
-        CAShapeLayer *layer         = [self requestLayersCacheByIndex:i];
+        CAShapeLayer *layer         = [self requestLayersCacheByIndex:i layerClass:^CALayer *{
+            return CAShapeLayer.layer;
+        }];
+
         layer.masksToBounds = YES;
         layer.frame         = self.viewPixelHandler.contentRect;
         [contentLayer addSublayer:layer];
@@ -116,7 +99,7 @@
 
                     flag = YES;
                 }
-                
+
                 [self _addLineInPath:path start:start end:end using:dataSet.drawType];
                 lastX = i;
             } else {
@@ -135,12 +118,4 @@
     }
 }
 
-#pragma mark - Setter & Getter
-- (NSMutableArray<CAShapeLayer *> *)layersCache {
-    if (!_layersCache) {
-        _layersCache = @[].mutableCopy;
-    }
-
-    return _layersCache;
-}
 @end

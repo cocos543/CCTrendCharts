@@ -109,16 +109,6 @@
     return _dataLayer;
 }
 
-#pragma mark - Param update
-
-#pragma mark - CCGestureHandlerDelegate
-- (void)gestureDidLongPressInLocation:(CGPoint)point {
-    [super gestureDidLongPressInLocation:point];
-}
-
-- (void)gestureDidEndLongPressInLocation:(CGPoint)point {
-    [super gestureDidEndLongPressInLocation:point];
-}
 
 #pragma mark - Protocol: CCProtocolKLineChartDataProvider
 - (void)setTAIConfig:(CCTAIConfig *)TAIConfig {

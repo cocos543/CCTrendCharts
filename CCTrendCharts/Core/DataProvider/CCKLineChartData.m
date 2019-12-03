@@ -21,6 +21,7 @@
             
             dataSet.label = item.label;
             dataSet.color = item.color;
+            dataSet.font  = item.font;
             
             [self.dataSets addObject:dataSet];
         }
