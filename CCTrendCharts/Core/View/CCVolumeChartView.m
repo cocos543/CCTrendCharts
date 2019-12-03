@@ -16,8 +16,6 @@
     if (self) {
         // 交易量柱型图渲染器
         self.dataRenderer = [[CCVolumeDataChartRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
-        
-        self.legendRenderer = nil;
     }
     return self;
 }

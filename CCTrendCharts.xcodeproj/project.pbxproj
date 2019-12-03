@@ -40,6 +40,8 @@
 		ED23F20423960640005D672D /* CCRendererBase+LayerCache.h in Headers */ = {isa = PBXBuildFile; fileRef = ED23F20223960640005D672D /* CCRendererBase+LayerCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED23F20523960640005D672D /* CCRendererBase+LayerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23F20323960640005D672D /* CCRendererBase+LayerCache.m */; };
 		ED23F20723965513005D672D /* IMG_7829.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED23F20623965513005D672D /* IMG_7829.jpg */; };
+		ED23F20A23966BAC005D672D /* CCVolumeDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED23F20B23966BAC005D672D /* CCVolumeDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */; };
 		ED35B7522339C79B0080FF5A /* CCProtocolChartDataEntityBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED41C2D323853F5A004B640E /* CCVolumeChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED41C2D123853F5A004B640E /* CCVolumeChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED41C2D423853F5A004B640E /* CCVolumeChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED41C2D223853F5A004B640E /* CCVolumeChartView.m */; };
@@ -169,6 +171,8 @@
 		ED23F20223960640005D672D /* CCRendererBase+LayerCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCRendererBase+LayerCache.h"; sourceTree = "<group>"; };
 		ED23F20323960640005D672D /* CCRendererBase+LayerCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCRendererBase+LayerCache.m"; sourceTree = "<group>"; };
 		ED23F20623965513005D672D /* IMG_7829.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_7829.jpg; sourceTree = "<group>"; };
+		ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeDataEntity.h; sourceTree = "<group>"; };
+		ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeDataEntity.m; sourceTree = "<group>"; };
 		ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolChartDataEntityBase.h; sourceTree = "<group>"; };
 		ED41C2D123853F5A004B640E /* CCVolumeChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeChartView.h; sourceTree = "<group>"; };
 		ED41C2D223853F5A004B640E /* CCVolumeChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeChartView.m; sourceTree = "<group>"; };
@@ -416,6 +420,8 @@
 				EDA3E2F3232F746200222E83 /* CCChartDataEntity.m */,
 				EDCCDB9C2379584000BDD823 /* CCKLineDataEntity.h */,
 				EDCCDB9D2379584000BDD823 /* CCKLineDataEntity.m */,
+				ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */,
+				ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -646,6 +652,7 @@
 				ED74606F239113AC0011D1BE /* CCTAIConfig.h in Headers */,
 				ED74606A2391081A0011D1BE /* CCLineMADataSet.h in Headers */,
 				EDC02E5E2395192E00DA02B1 /* CCTAILegendRenderer.h in Headers */,
+				ED23F20A23966BAC005D672D /* CCVolumeDataEntity.h in Headers */,
 				ED23F20423960640005D672D /* CCRendererBase+LayerCache.h in Headers */,
 				EDDCD4602334CDAE005E46EA /* CCMacro.h in Headers */,
 				ED00E79223223C7800139A8C /* CCProtocolBase.h in Headers */,
@@ -753,6 +760,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED23F20B23966BAC005D672D /* CCVolumeDataEntity.m in Sources */,
 				EDABB2692320E68700C65D3F /* CCMain.m in Sources */,
 				ED92FE93238398CC00627725 /* CCSingleEventManager.m in Sources */,
 				ED1F17A12387879100E26247 /* CCAssembledChartView.m in Sources */,

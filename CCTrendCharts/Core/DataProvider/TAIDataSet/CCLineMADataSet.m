@@ -33,7 +33,7 @@
 #pragma mark - CCProtocolTAIDataSet
 
 - (void)calcIndicatorUseAppending:(NSArray<CCKLineDataEntity *> *)rawEntities {
-    // 该方法暂时无效, 一旦数据更新了, 指数都是重新计算的, 暂时没有发现性能问题, 所以改方法暂时为空
+    // 该方法暂时无效, 一旦数据更新了, 指标都是重新计算的, 暂时没有发现性能问题, 所以改方法暂时为空
 }
 
 + (NSArray<id<CCProtocolChartDataEntityBase> > *)rawEntitiesToEntities:(NSArray<CCKLineDataEntity *> *)rawEntities N:(id)N {
@@ -46,11 +46,13 @@
     NSMutableArray *ret = @[].mutableCopy;
     // 当前计算的位置
     NSInteger loc       = 0;
-    for (NSInteger i = loc; i <= rawEntities.count - n; i++) {
+    for (NSInteger i = loc; i <= (NSInteger)rawEntities.count - n; i++) {
         CGFloat sum = 0;
 
         for (NSInteger j = i; j < i + n; j++) {
-            sum += rawEntities[j].closing;
+            // 这里直接取value字段, 具体的value字段返回值的代码由实体自行实现
+            // 例如, k线实体, value返回的是对应的closing属性. 交易量实体返回的是volume属性
+            sum += rawEntities[j].value;
         }
 
         CCChartDataEntity *e = [[CCChartDataEntity alloc] initWithValue:sum / n xIndex:rawEntities[loc].xIndex data:nil];

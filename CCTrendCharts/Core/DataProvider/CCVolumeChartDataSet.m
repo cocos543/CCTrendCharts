@@ -18,7 +18,14 @@ CCDataSetName const kCCVolumeChartDataSet = @"VolumeChartDataSet";
 @synthesize minX = _minX;
 
 - (instancetype)initWithKLineChartDataSet:(CCKLineChartDataSet *)dataSet {
-    self = [super initWithVals:dataSet.entities withName:kCCVolumeChartDataSet];
+    // 把 kline dataset 中的实体转成交易量实体
+    NSMutableArray *arr = @[].mutableCopy;
+    for (id val in dataSet.entities) {
+        [arr addObject:[[CCVolumeDataEntity alloc] initWithKLineDataEntity:val]];
+    }
+    
+    self = [super initWithVals:arr withName:kCCVolumeChartDataSet];
+    
     if (self) {
         
         self.risingColor = [dataSet.risingColor copy];
@@ -48,7 +55,7 @@ CCDataSetName const kCCVolumeChartDataSet = @"VolumeChartDataSet";
 - (void)calcMinMaxStart:(NSInteger)start End:(NSInteger)end {
     [self resetValue];
     
-    for (CCKLineDataEntity *val in self.entities) {
+    for (CCVolumeDataEntity *val in self.entities) {
         if (val.xIndex < start || val.xIndex > end) {
             continue;
         }

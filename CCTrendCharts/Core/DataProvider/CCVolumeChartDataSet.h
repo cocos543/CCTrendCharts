@@ -7,6 +7,7 @@
 //
 
 #import "CCKLineChartDataSet.h"
+#import "CCVolumeDataEntity.h"
 
 extern CCDataSetName const _Nonnull kCCVolumeChartDataSet;
 
