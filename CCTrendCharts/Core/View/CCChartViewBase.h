@@ -17,6 +17,8 @@
 
 #import "CCSingleEventManager.h"
 
+#import "CCProtocolChartViewSync.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class CCChartViewBase;
@@ -43,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 目前有两种情况触发这个方法
 ///
 /// 1. 普通趋势图(非recentFirst), 视图向左滚动到出现右边界之后会触发.
-/// 
+///
 /// 2. recentFirst趋势图, 视图向右滚动到出现左边界之后会触发.
 ///
 /// 注意, 该方法只是通知用户"期待获取下一页数据", 但实际有没有新数据要提供, 由用户自行决定.
@@ -60,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  请不要直接使用基类视图!
  */
-@interface CCChartViewBase : UIView <CCGestureHandlerDelegate, CCProtocolChartViewBase, CCProtocolChartDataProvider>
+@interface CCChartViewBase : UIView <CCGestureHandlerDelegate, CCProtocolChartViewBase, CCProtocolChartDataProvider, CCProtocolChartViewSync>
 
 
 /// 添加默认手势
@@ -97,6 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 处理手势操作的具体功能
 @property (nonatomic, strong) id<CCGestureHandlerProtocol> gestureHandler;
+
 
 @end
 

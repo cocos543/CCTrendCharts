@@ -6,15 +6,19 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <CCTrendCharts/CCTrendCharts.h>
+#import "CCChartViewBase.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 
-/// 组装图
+/// 组合图
 ///
-/// 根据数据集类型, 使用匹配的渲染器渲染数据
-@interface CCAssembledChartView : CCChartViewBase
+/// 可以按照一定顺序组合传入的各类ChartView, 并提供事件同步功能, 这样所有ChartView就可以响应相同的事件了
+@interface CCAssembledChartView : UIView
+
+- (void)setNeedsPrepareChart;
+
+- (void)configChartViews:(NSArray<CCChartViewBase *> *)views;
 
 @end
 

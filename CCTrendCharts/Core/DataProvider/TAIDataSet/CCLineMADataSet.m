@@ -50,7 +50,7 @@
         CGFloat sum = 0;
 
         for (NSInteger j = i; j < i + n; j++) {
-            // 这里直接取value字段, 具体的value字段返回值的代码由实体自行实现
+            // 这里直接取value字段, 具体的value字段返回值是什么由实体自行实现
             // 例如, k线实体, value返回的是对应的closing属性. 交易量实体返回的是volume属性
             sum += rawEntities[j].value;
         }

@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumberFormatter *formatter;
 
 
-/// 数据集的名字, 用于动态创建对应的数据集
+/// 数据集的类名, 用于动态创建对应的数据集
 @property (nonatomic, strong) Class dataSetClass;
 
 @end

@@ -64,6 +64,9 @@
 		ED7E69492384DBF2006246F0 /* CCBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E69472384DBF2006246F0 /* CCBarChartView.m */; };
 		ED7E69502384E389006246F0 /* CCBarDataChartRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7E694E2384E389006246F0 /* CCBarDataChartRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED7E69512384E389006246F0 /* CCBarDataChartRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E694F2384E389006246F0 /* CCBarDataChartRenderer.m */; };
+		ED7EE8EB2397A9C100926172 /* CCProtocolChartViewSync.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7EE8EA2397A9C100926172 /* CCProtocolChartViewSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED7EE8EE2397B3F500926172 /* NSObject+CCEasyKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7EE8EC2397B3F500926172 /* NSObject+CCEasyKVO.m */; };
+		ED7EE8EF2397B3F500926172 /* NSObject+CCEasyKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7EE8ED2397B3F500926172 /* NSObject+CCEasyKVO.h */; };
 		ED8004E423700267005647C2 /* CCXAxisFixedFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8004E523700267005647C2 /* CCXAxisFixedFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */; };
 		ED8004E823701B61005647C2 /* CCProtocolCursorRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -174,6 +177,7 @@
 		ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeDataEntity.h; sourceTree = "<group>"; };
 		ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeDataEntity.m; sourceTree = "<group>"; };
 		ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolChartDataEntityBase.h; sourceTree = "<group>"; };
+		ED3FB10B23991793004A702E /* 1575542732977187.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1575542732977187.mp4; sourceTree = "<group>"; };
 		ED41C2D123853F5A004B640E /* CCVolumeChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeChartView.h; sourceTree = "<group>"; };
 		ED41C2D223853F5A004B640E /* CCVolumeChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeChartView.m; sourceTree = "<group>"; };
 		ED41C2D523853F9F004B640E /* CCVolumeDataChartRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeDataChartRenderer.h; sourceTree = "<group>"; };
@@ -195,6 +199,9 @@
 		ED7E69472384DBF2006246F0 /* CCBarChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCBarChartView.m; sourceTree = "<group>"; };
 		ED7E694E2384E389006246F0 /* CCBarDataChartRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCBarDataChartRenderer.h; sourceTree = "<group>"; };
 		ED7E694F2384E389006246F0 /* CCBarDataChartRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCBarDataChartRenderer.m; sourceTree = "<group>"; };
+		ED7EE8EA2397A9C100926172 /* CCProtocolChartViewSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolChartViewSync.h; sourceTree = "<group>"; };
+		ED7EE8EC2397B3F500926172 /* NSObject+CCEasyKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CCEasyKVO.m"; sourceTree = "<group>"; };
+		ED7EE8ED2397B3F500926172 /* NSObject+CCEasyKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CCEasyKVO.h"; sourceTree = "<group>"; };
 		ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCXAxisFixedFormatter.h; sourceTree = "<group>"; };
 		ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCXAxisFixedFormatter.m; sourceTree = "<group>"; };
 		ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolCursorRenderer.h; sourceTree = "<group>"; };
@@ -327,6 +334,31 @@
 			path = TAIDataSet;
 			sourceTree = "<group>";
 		};
+		ED7EE8E92397A97400926172 /* ViewSync */ = {
+			isa = PBXGroup;
+			children = (
+				ED7EE8EA2397A9C100926172 /* CCProtocolChartViewSync.h */,
+			);
+			path = ViewSync;
+			sourceTree = "<group>";
+		};
+		ED7EE8F02397B46300926172 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				ED7EE8F12397B47600926172 /* CCEasyKVO.h */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		ED7EE8F12397B47600926172 /* CCEasyKVO.h */ = {
+			isa = PBXGroup;
+			children = (
+				ED7EE8ED2397B3F500926172 /* NSObject+CCEasyKVO.h */,
+				ED7EE8EC2397B3F500926172 /* NSObject+CCEasyKVO.m */,
+			);
+			path = CCEasyKVO.h;
+			sourceTree = "<group>";
+		};
 		EDA3C4252328A0F000843C7A /* Formatter */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				ED7460622390C90F0011D1BE /* 3091574998318_.pic_hd.jpg */,
+				ED3FB10B23991793004A702E /* 1575542732977187.mp4 */,
 				ED23F20623965513005D672D /* IMG_7829.jpg */,
 				EDAFF46F237A8E2B00E8BA2B /* Doc.md */,
 				EDFA74B82320FC8600CDB6BC /* README.md */,
@@ -451,6 +484,7 @@
 		EDFA74AE2320F41B00CDB6BC /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				ED7EE8F02397B46300926172 /* Lib */,
 				EDA3C4252328A0F000843C7A /* Formatter */,
 				EDFA74B42320FB9600CDB6BC /* Animator */,
 				EDFA74B32320FB4600CDB6BC /* Common */,
@@ -566,6 +600,7 @@
 		EDFA74B52320FBC300CDB6BC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ED7EE8E92397A97400926172 /* ViewSync */,
 				ED1BFB58232231A700222820 /* CCChartViewBase.h */,
 				ED1BFB59232231A700222820 /* CCChartViewBase.m */,
 				ED00E79C2322419B00139A8C /* CCKLineChartView.h */,
@@ -619,6 +654,7 @@
 				EDABB2682320E68700C65D3F /* CCMain.h in Headers */,
 				ED03A15123337B540065DDA4 /* CCProtocolKLineDataChartRenderer.h in Headers */,
 				ED03A15523337CF00065DDA4 /* CCProtocolKLineChartDataProvider.h in Headers */,
+				ED7EE8EF2397B3F500926172 /* NSObject+CCEasyKVO.h in Headers */,
 				ED03A14D23332A9D0065DDA4 /* CCChartTransformer.h in Headers */,
 				ED052EA12338CF85000CED6C /* CCCoordinateUtility.h in Headers */,
 				ED35B7522339C79B0080FF5A /* CCProtocolChartDataEntityBase.h in Headers */,
@@ -654,6 +690,7 @@
 				EDC02E5E2395192E00DA02B1 /* CCTAILegendRenderer.h in Headers */,
 				ED23F20A23966BAC005D672D /* CCVolumeDataEntity.h in Headers */,
 				ED23F20423960640005D672D /* CCRendererBase+LayerCache.h in Headers */,
+				ED7EE8EB2397A9C100926172 /* CCProtocolChartViewSync.h in Headers */,
 				EDDCD4602334CDAE005E46EA /* CCMacro.h in Headers */,
 				ED00E79223223C7800139A8C /* CCProtocolBase.h in Headers */,
 			);
@@ -800,6 +837,7 @@
 				EDDA14542370356500756207 /* CCDefaultCursorRenderer.m in Sources */,
 				ED54969C2361889300BDBC37 /* CCGestureDefaultHandler.m in Sources */,
 				ED99B485237BF2C400388345 /* CCDataChartRenderer.m in Sources */,
+				ED7EE8EE2397B3F500926172 /* NSObject+CCEasyKVO.m in Sources */,
 				ED1F179D2387819900E26247 /* CCLineChartView.m in Sources */,
 				ED00E79F2322419B00139A8C /* CCKLineChartView.m in Sources */,
 				EDFA74B92320FC8600CDB6BC /* README.md in Sources */,

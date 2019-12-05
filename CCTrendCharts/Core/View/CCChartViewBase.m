@@ -59,13 +59,21 @@
 @end
 
 @implementation CCChartViewBase
-@synthesize xAxis            = _xAxis;
-@synthesize leftAxis         = _leftAxis;
-@synthesize rightAxis        = _rightAxis;
-@synthesize cursor           = _cursor;
-@synthesize viewPixelHandler = _viewPixelHandler;
-@synthesize transformer      = _transformer;
-@synthesize rightTransformer = _rightTransformer;
+@synthesize xAxis                  = _xAxis;
+@synthesize leftAxis               = _leftAxis;
+@synthesize rightAxis              = _rightAxis;
+@synthesize cursor                 = _cursor;
+@synthesize viewPixelHandler       = _viewPixelHandler;
+@synthesize transformer            = _transformer;
+@synthesize rightTransformer       = _rightTransformer;
+
+// CCProtocolChartViewSync
+@synthesize sync_pinchGesutreEnable     = _pinchGesutreEnable;
+@synthesize sync_panGesutreEnable       = _panGesutreEnable;
+@synthesize sync_longPressGesutreEnable = _longPressGesutreEnable;
+@synthesize sync_pinchObservable        = _pinchObservable;
+@synthesize sync_panObservable          = _sync_panObservable;
+@synthesize sync_longPressObservable    = _longPressObservable;
 
 // 渲染组件变量由子类合成
 @dynamic dataRenderer;
@@ -83,9 +91,14 @@
 @dynamic lowestVisibleXIndex;
 @dynamic highestVisibleXIndex;
 
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        _pinchGesutreEnable     = YES;
+        _panGesutreEnable       = YES;
+        _longPressGesutreEnable = YES;
+
         _eventManager               = [[CCSingleEventManager alloc] init];
 
         _scrollView                 = [[UIScrollView alloc] initWithFrame:frame];
@@ -387,6 +400,21 @@
     return _legendLayer;
 }
 
+- (void)setPanGesutreEnable:(BOOL)panGesutreEnable {
+    _panGesutreEnable = panGesutreEnable;
+    self.scrollView.scrollEnabled = _panGesutreEnable;
+}
+
+- (void)setPinchGesutreEnable:(BOOL)pinchGesutreEnable {
+    _pinchGesutreEnable = pinchGesutreEnable;
+    self.gestureHandler.pinchGesture.enabled = _pinchGesutreEnable;
+}
+
+- (void)setLongPressGesutreEnable:(BOOL)longPressGesutreEnable {
+    _longPressGesutreEnable = longPressGesutreEnable;
+    self.gestureHandler.longPressGesture.enabled = _longPressGesutreEnable;
+}
+
 #pragma mark - CALayerDelegate
 - (void)displayLayer:(CALayer *)layer {
     if (_needsPrepare) {
@@ -406,6 +434,8 @@
     [self.rightAxisRenderer beginRenderingInLayer:self.yAxisLayer];
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    // 这里后续可以优化, 毕竟使用Clear的效率还没有直接创建一个新画图高..
     CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
 
     [self.xAxisRenderer beginRenderingInLayer:self.xAxisLayer];
@@ -447,27 +477,32 @@
     _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
 
     [self _updateViewYAxisContent];
-
-    // 检查到边缘时, 通知代理期望获取下一页数据.
-    if (self.recentFirst) {
-        if (self.scrollView.contentOffset.x <= 0) {
-            if ([self.delegate respondsToSelector:@selector(chartViewExpectLoadNextPage:eventManager:)]) {
-                [_eventManager newEventWithBlock:^{
-                    [self->_delegate chartViewExpectLoadNextPage:self eventManager:self->_eventManager];
-                }];
-            }
-        }
-    } else {
-        if (self.scrollView.contentOffset.x + self.scrollView.bounds.size.width > self.scrollView.contentSize.width) {
-            if ([self.delegate respondsToSelector:@selector(chartViewExpectLoadNextPage:eventManager:)]) {
-                [_eventManager newEventWithBlock:^{
-                    [self->_delegate chartViewExpectLoadNextPage:self eventManager:self->_eventManager];
-                }];
-            }
-        }
-    }
-
+    
     [self setNeedsDisplay];
+    
+    // 该属性为NO时, 意味着当前滚动事件是从其他视图传递过来的, 所以直接返回即可.
+    if (self.sync_panGesutreEnable) {
+        // 检查到边缘时, 通知代理期望获取下一页数据.
+        if (self.recentFirst) {
+            if (self.scrollView.contentOffset.x <= 0) {
+                if ([self.delegate respondsToSelector:@selector(chartViewExpectLoadNextPage:eventManager:)]) {
+                    [_eventManager newEventWithBlock:^{
+                        [self->_delegate chartViewExpectLoadNextPage:self eventManager:self->_eventManager];
+                    }];
+                }
+            }
+        } else {
+            if (self.scrollView.contentOffset.x + self.scrollView.bounds.size.width > self.scrollView.contentSize.width) {
+                if ([self.delegate respondsToSelector:@selector(chartViewExpectLoadNextPage:eventManager:)]) {
+                    [_eventManager newEventWithBlock:^{
+                        [self->_delegate chartViewExpectLoadNextPage:self eventManager:self->_eventManager];
+                    }];
+                }
+            }
+        }
+        
+        self.sync_panObservable = [NSValue valueWithCGPoint:self.scrollView.contentOffset];
+    }
 }
 
 - (void)gestureDidPinchInLocation:(CGPoint)point matrix:(CGAffineTransform)matrix {
@@ -518,6 +553,10 @@
 
     [self _updateViewYAxisContent];
     [self setNeedsDisplay];
+    
+    if (self.sync_pinchGesutreEnable) {
+        self.sync_pinchObservable = [NSValue valueWithCGAffineTransform:self.viewPixelHandler.gestureMatrix];
+    }
 }
 
 - (void)gestureDidEndPinchInLocation:(CGPoint)point matrix:(CGAffineTransform)matrix {
@@ -536,6 +575,11 @@
             }
         }
     }
+    
+    if (self.sync_pinchGesutreEnable) {
+        self.sync_pinchObservable = NSNull.null;
+    }
+    
 }
 
 - (void)gestureDidLongPressInLocation:(CGPoint)point {
@@ -580,6 +624,43 @@
         [self.legendRenderer beginRenderingInLayer:self.legendLayer atIndex:0];
     });
 }
+
+#pragma mark - CCProtocolChartViewSync
+- (void)chartViewSyncForPan:(id)panEvent {
+    // 该方法被调用时, 说明滚动是从其他组成员传递过来的, 所以自身暂时禁用滚动手势, 这样也可以避免事件又从这里重复传递给其他人
+    self.sync_panGesutreEnable = NO;
+    [self.scrollView setContentOffset:[((NSValue *)panEvent) CGPointValue] animated:NO];
+    self.sync_panGesutreEnable = YES;
+}
+
+- (void)chartViewSyncEndForPan {}
+
+- (void)chartViewSyncForPinch:(id)pinchEvent {
+    self.sync_pinchGesutreEnable = NO;
+    
+    self.viewPixelHandler.gestureMatrix = [(NSValue *)pinchEvent CGAffineTransformValue];
+    
+    // location参数暂时没用到, 直接传0
+    [self gestureDidPinchInLocation:CGPointZero matrix:self.viewPixelHandler.gestureMatrix];
+    
+    self.sync_pinchGesutreEnable = YES;
+}
+
+- (void)chartViewSyncEndForPinch {
+    self.sync_pinchGesutreEnable = NO;
+    
+    [self gestureDidEndPinchInLocation:CGPointZero matrix:self.viewPixelHandler.gestureMatrix];
+    
+    self.sync_pinchGesutreEnable = YES;
+}
+
+- (void)chartViewSyncForLongPress:(id)longPressEvent {
+    self.sync_longPressGesutreEnable = NO;
+    
+    self.sync_longPressGesutreEnable = YES;
+}
+
+- (void)chartViewSyncEndForLongPress {}
 
 #pragma mark - CCProtocolChartDataProvider
 

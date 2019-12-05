@@ -28,5 +28,6 @@ FOUNDATION_EXPORT const unsigned char CCTrendChartsVersionString[];
 #import <CCTrendCharts/CCVolumeChartView.h>
 #import <CCTrendCharts/CCKLineChartView.h>
 #import <CCTrendCharts/CCLineChartView.h>
+#import <CCTrendCharts/CCAssembledChartView.h>
 
 
