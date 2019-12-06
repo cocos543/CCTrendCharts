@@ -16,7 +16,6 @@
     if (self) {
         _xVals = xVals;
         _dataSets = dataSets.mutableCopy;
-        _xSpace = 8;
         
         [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
     }

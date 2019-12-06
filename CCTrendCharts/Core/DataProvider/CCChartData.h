@@ -74,12 +74,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, assign) CGFloat maxX;
 
 
-/// x方向实体的间距, 默认是8
-@property (nonatomic, assign) CGFloat xSpace;
-
-
-
-
 @end
 
 NS_ASSUME_NONNULL_END

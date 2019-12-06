@@ -47,6 +47,7 @@
 
         _startMargin     = 0.5;
         _endMargin       = 0.5;
+        _xSpace = 8.f;
 
         // 设置默认的formatter对象
         _formatter       = [[CCXAxisDefaultFormatter alloc] init];

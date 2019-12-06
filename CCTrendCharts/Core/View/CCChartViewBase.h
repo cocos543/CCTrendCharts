@@ -52,6 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 如果有新数据提供, 请调用[charview setNeedsPrepareChart]通知图库, 之后提供相应数据源即可.
 - (void)chartViewExpectLoadNextPage:(CCChartViewBase *)view eventManager:(CCSingleEventManager *)eventManager;
 
+// 长按事件
+- (void)charViewDidLongPressAtIndex:(NSInteger)index;
+
 // 点击事件
 
 // 双击事件

@@ -262,12 +262,12 @@
     CGAffineTransform transform = CGAffineTransformIdentity;
 
     if (self.leftAxis) {
-        transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue startMargin:self.xAxis.startMargin xSpace:self.data.xSpace rentFirst:self.recentFirst];
+        transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue startMargin:self.xAxis.startMargin xSpace:self.xAxis.xSpace rentFirst:self.recentFirst];
         [self.transformer refreshMatrix:transform];
     }
 
     if (self.rightAxis) {
-        transform = [self.transformer calcMatrixWithMinValue:self.rightAxis.axisMinValue maxValue:self.rightAxis.axisMaxValue startMargin:self.xAxis.startMargin xSpace:self.data.xSpace rentFirst:self.recentFirst];
+        transform = [self.transformer calcMatrixWithMinValue:self.rightAxis.axisMinValue maxValue:self.rightAxis.axisMaxValue startMargin:self.xAxis.startMargin xSpace:self.xAxis.xSpace rentFirst:self.recentFirst];
         [self.rightTransformer refreshMatrix:transform];
     }
 }
@@ -413,6 +413,27 @@
 - (void)setLongPressGesutreEnable:(BOOL)longPressGesutreEnable {
     _longPressGesutreEnable = longPressGesutreEnable;
     self.gestureHandler.longPressGesture.enabled = _longPressGesutreEnable;
+}
+
+- (void)setLeftAxis:(CCDefaultYAxis *)leftAxis {
+    _leftAxis = leftAxis;
+    if (self.cursorRenderer) {
+        self.cursorRenderer.leftAxis = leftAxis;
+    }
+}
+
+- (void)setRightAxis:(CCDefaultYAxis *)rightAxis {
+    _rightAxis = rightAxis;
+    if (self.cursorRenderer) {
+        self.cursorRenderer.rightAxis = rightAxis;
+    }
+}
+
+- (void)setXAxis:(CCDefaultXAxis *)xAxis {
+    _xAxis = xAxis;
+    if (self.cursorRenderer) {
+        self.cursorRenderer.xAxis = xAxis;
+    }
 }
 
 #pragma mark - CALayerDelegate
@@ -608,6 +629,16 @@
         [self.markerRenderer beginRenderingInLayer:self.markerLayer atIndex:valuePoint.x];
 
         [self.legendRenderer beginRenderingInLayer:self.legendLayer atIndex:valuePoint.x];
+        
+        if ([self.delegate respondsToSelector:@selector(charViewDidLongPressAtIndex:)]) {
+            [self.delegate charViewDidLongPressAtIndex:_longPressLastSelcIndex];
+        }
+    }
+    
+    // 处理同步事件
+    // 这里需要把点转换成父视图的坐标系
+    if (self.sync_longPressGesutreEnable) {
+        self.sync_longPressObservable = [NSValue valueWithCGPoint:[self.superview convertPoint:point fromView:self]];
     }
 
     UIGraphicsEndImageContext();
@@ -623,6 +654,10 @@
 
         [self.legendRenderer beginRenderingInLayer:self.legendLayer atIndex:0];
     });
+    
+    if (self.sync_longPressGesutreEnable) {
+        self.sync_longPressObservable = NSNull.null;
+    }
 }
 
 #pragma mark - CCProtocolChartViewSync
@@ -656,11 +691,16 @@
 
 - (void)chartViewSyncForLongPress:(id)longPressEvent {
     self.sync_longPressGesutreEnable = NO;
-    
+    CGPoint point = [(NSValue *)longPressEvent CGPointValue];
+    [self gestureDidLongPressInLocation: [self convertPoint:point fromView:self.superview]];
     self.sync_longPressGesutreEnable = YES;
 }
 
-- (void)chartViewSyncEndForLongPress {}
+- (void)chartViewSyncEndForLongPress {
+    self.sync_longPressGesutreEnable = NO;
+    [self gestureDidEndLongPressInLocation:CGPointZero];
+    self.sync_longPressGesutreEnable = YES;
+}
 
 #pragma mark - CCProtocolChartDataProvider
 

@@ -87,6 +87,10 @@
     if (!self.leftAxis) {
         return;
     }
+    
+    if (center.y < self.viewPixelHandler.contentTop || center.y > self.viewPixelHandler.contentBottom) {
+        return;
+    }
 
     CGContextRef ctx  = UIGraphicsGetCurrentContext();
 
@@ -102,7 +106,8 @@
         return;
     }
 
-    if (center.y < self.viewPixelHandler.contentTop) {
+    if (center.y < self.viewPixelHandler.contentTop || center.y > self.viewPixelHandler.contentBottom) {
+        return;
     }
 
     CGContextRef ctx  = UIGraphicsGetCurrentContext();

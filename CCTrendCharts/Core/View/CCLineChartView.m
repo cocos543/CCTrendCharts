@@ -47,7 +47,7 @@
         _cursorRenderer.rightAxis = self.rightAxis;
         _cursorRenderer.xAxis = self.xAxis;
         
-        _markerRenderer = [[CCDefaultMarkerRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
+        _markerRenderer = nil;
         
         _dataRenderer = [[CCLineDataChartRenderer alloc] initWithViewHandler:self.viewPixelHandler transform:self.transformer DataProvider:self];
         

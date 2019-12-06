@@ -35,7 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 默认值0.5
 @property (nonatomic, assign) CGFloat endMargin;
 
-// x轴暂时不支持定义最大小值, 先根据具体可以显示的x轴上索引, 自动显示x轴上的信息
+/// x方向实体的间距, 默认是8
+@property (nonatomic, assign) CGFloat xSpace;
 
 @end
 
