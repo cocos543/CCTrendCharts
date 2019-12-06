@@ -28,7 +28,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.title = @"Demo";
-    self.titleArray = @[@"K线图", @"交易量图", @"线形图", @"组合图", @"其他类型开发中..."];
+    self.titleArray = @[@"K线图", @"交易量图", @"指标线形图", @"多种数据集的合成图", @"组合图", @"其他类型开发中..."];
     self.demoArray = @[@"Yunex交易所", @"涨乐富", @"富途牛牛", @"招商证券", @"陆续添加中..."];
     self.sectionTitleArray = @[@"各类趋势图", @"各平台的渲染器"];
     
