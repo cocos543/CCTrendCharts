@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:CCTrendCharts.xcodeproj">
+      location = "group:CCTrendCharts/CCTrendCharts.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:CCTrendChartsDemo/CCTrendChartsDemo.xcodeproj">

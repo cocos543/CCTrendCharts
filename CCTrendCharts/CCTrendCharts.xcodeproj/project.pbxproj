@@ -41,8 +41,13 @@
 		ED23F20523960640005D672D /* CCRendererBase+LayerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23F20323960640005D672D /* CCRendererBase+LayerCache.m */; };
 		ED23F20A23966BAC005D672D /* CCVolumeDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED23F20B23966BAC005D672D /* CCVolumeDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */; };
-		ED32584A239A678D00E08D67 /* screenshot001.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ED325849239A678D00E08D67 /* screenshot001.jpeg */; };
-		ED32584C239A69B300E08D67 /* screenshot002.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED32584B239A69B300E08D67 /* screenshot002.jpg */; };
+		ED32584E239A6BF600E08D67 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = ED32584D239A6BF600E08D67 /* LICENSE */; };
+		ED325854239A6C1F00E08D67 /* screenshot001.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ED32584F239A6C1F00E08D67 /* screenshot001.jpeg */; };
+		ED325855239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED325850239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg */; };
+		ED325856239A6C1F00E08D67 /* 1575542732977187.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = ED325851239A6C1F00E08D67 /* 1575542732977187.mp4 */; };
+		ED325857239A6C1F00E08D67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED325852239A6C1F00E08D67 /* README.md */; };
+		ED325858239A6C1F00E08D67 /* screenshot002.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED325853239A6C1F00E08D67 /* screenshot002.jpg */; };
+		ED32585A239A6C4500E08D67 /* Doc.md in Resources */ = {isa = PBXBuildFile; fileRef = ED325859239A6C4500E08D67 /* Doc.md */; };
 		ED35B7522339C79B0080FF5A /* CCProtocolChartDataEntityBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED41C2D323853F5A004B640E /* CCVolumeChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED41C2D123853F5A004B640E /* CCVolumeChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED41C2D423853F5A004B640E /* CCVolumeChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED41C2D223853F5A004B640E /* CCVolumeChartView.m */; };
@@ -55,7 +60,6 @@
 		ED5496A023618A1C00BDBC37 /* CCGestureHandlerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = ED54969E23618A1C00BDBC37 /* CCGestureHandlerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED54A1C52373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED54A1C32373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED54A1C62373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED54A1C42373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m */; };
-		ED7460632390C90F0011D1BE /* 3091574998318_.pic_hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED7460622390C90F0011D1BE /* 3091574998318_.pic_hd.jpg */; };
 		ED7460662391040F0011D1BE /* CCProtocolTAIDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7460642391040F0011D1BE /* CCProtocolTAIDataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED74606A2391081A0011D1BE /* CCLineMADataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7460682391081A0011D1BE /* CCLineMADataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED74606B2391081A0011D1BE /* CCLineMADataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7460692391081A0011D1BE /* CCLineMADataSet.m */; };
@@ -100,7 +104,6 @@
 		EDABB25D2320E46E00C65D3F /* CCTrendCharts.h in Headers */ = {isa = PBXBuildFile; fileRef = EDABB24F2320E46D00C65D3F /* CCTrendCharts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDABB2682320E68700C65D3F /* CCMain.h in Headers */ = {isa = PBXBuildFile; fileRef = EDABB2662320E68700C65D3F /* CCMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDABB2692320E68700C65D3F /* CCMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EDABB2672320E68700C65D3F /* CCMain.m */; };
-		EDAFF470237A8E2B00E8BA2B /* Doc.md in Resources */ = {isa = PBXBuildFile; fileRef = EDAFF46F237A8E2B00E8BA2B /* Doc.md */; };
 		EDAFF474237AB5D800E8BA2B /* 1daykline.json in Resources */ = {isa = PBXBuildFile; fileRef = EDAFF473237AB5D800E8BA2B /* 1daykline.json */; };
 		EDBEA2CC2328EAEB000F8852 /* CCProtocolAxisRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDBEA2CA2328EAEB000F8852 /* CCProtocolAxisRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDBEA2D02328EB87000F8852 /* CCProtocolDataChartRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDBEA2CE2328EB87000F8852 /* CCProtocolDataChartRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -125,8 +128,6 @@
 		EDDA14542370356500756207 /* CCDefaultCursorRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDA14522370356500756207 /* CCDefaultCursorRenderer.m */; };
 		EDDCD4602334CDAE005E46EA /* CCMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = EDDCD45E2334CDAE005E46EA /* CCMacro.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDDCD4632334DAB5005E46EA /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = EDDCD4622334DAB5005E46EA /* PrefixHeader.pch */; };
-		EDFA74B72320FC6900CDB6BC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDFA74B62320FC6900CDB6BC /* LICENSE */; };
-		EDFA74B92320FC8600CDB6BC /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EDFA74B82320FC8600CDB6BC /* README.md */; };
 		EDFA74BF2321079200CDB6BC /* UIColor+CCUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EDFA74BD2321079200CDB6BC /* UIColor+CCUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDFA74C02321079200CDB6BC /* UIColor+CCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFA74BE2321079200CDB6BC /* UIColor+CCUtility.m */; };
 /* End PBXBuildFile section */
@@ -176,10 +177,14 @@
 		ED23F20323960640005D672D /* CCRendererBase+LayerCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCRendererBase+LayerCache.m"; sourceTree = "<group>"; };
 		ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeDataEntity.h; sourceTree = "<group>"; };
 		ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeDataEntity.m; sourceTree = "<group>"; };
-		ED325849239A678D00E08D67 /* screenshot001.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshot001.jpeg; sourceTree = "<group>"; };
-		ED32584B239A69B300E08D67 /* screenshot002.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshot002.jpg; sourceTree = "<group>"; };
+		ED32584D239A6BF600E08D67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		ED32584F239A6C1F00E08D67 /* screenshot001.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = screenshot001.jpeg; path = ../screenshot001.jpeg; sourceTree = "<group>"; };
+		ED325850239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 3091574998318_.pic_hd.jpg; path = ../3091574998318_.pic_hd.jpg; sourceTree = "<group>"; };
+		ED325851239A6C1F00E08D67 /* 1575542732977187.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = 1575542732977187.mp4; path = ../1575542732977187.mp4; sourceTree = "<group>"; };
+		ED325852239A6C1F00E08D67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		ED325853239A6C1F00E08D67 /* screenshot002.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = screenshot002.jpg; path = ../screenshot002.jpg; sourceTree = "<group>"; };
+		ED325859239A6C4500E08D67 /* Doc.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = Doc.md; path = ../Doc.md; sourceTree = "<group>"; };
 		ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolChartDataEntityBase.h; sourceTree = "<group>"; };
-		ED3FB10B23991793004A702E /* 1575542732977187.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1575542732977187.mp4; sourceTree = "<group>"; };
 		ED41C2D123853F5A004B640E /* CCVolumeChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeChartView.h; sourceTree = "<group>"; };
 		ED41C2D223853F5A004B640E /* CCVolumeChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeChartView.m; sourceTree = "<group>"; };
 		ED41C2D523853F9F004B640E /* CCVolumeDataChartRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeDataChartRenderer.h; sourceTree = "<group>"; };
@@ -191,7 +196,6 @@
 		ED54969E23618A1C00BDBC37 /* CCGestureHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCGestureHandlerProtocol.h; sourceTree = "<group>"; };
 		ED54A1C32373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCDefaultMarkerRenderer.h; sourceTree = "<group>"; };
 		ED54A1C42373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCDefaultMarkerRenderer.m; sourceTree = "<group>"; };
-		ED7460622390C90F0011D1BE /* 3091574998318_.pic_hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3091574998318_.pic_hd.jpg; sourceTree = "<group>"; };
 		ED7460642391040F0011D1BE /* CCProtocolTAIDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolTAIDataSet.h; sourceTree = "<group>"; };
 		ED7460682391081A0011D1BE /* CCLineMADataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCLineMADataSet.h; sourceTree = "<group>"; };
 		ED7460692391081A0011D1BE /* CCLineMADataSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCLineMADataSet.m; sourceTree = "<group>"; };
@@ -239,7 +243,6 @@
 		EDABB25C2320E46E00C65D3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDABB2662320E68700C65D3F /* CCMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCMain.h; sourceTree = "<group>"; };
 		EDABB2672320E68700C65D3F /* CCMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCMain.m; sourceTree = "<group>"; };
-		EDAFF46F237A8E2B00E8BA2B /* Doc.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Doc.md; sourceTree = "<group>"; };
 		EDAFF473237AB5D800E8BA2B /* 1daykline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 1daykline.json; sourceTree = "<group>"; };
 		EDBEA2CA2328EAEB000F8852 /* CCProtocolAxisRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolAxisRenderer.h; sourceTree = "<group>"; };
 		EDBEA2CE2328EB87000F8852 /* CCProtocolDataChartRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolDataChartRenderer.h; sourceTree = "<group>"; };
@@ -264,8 +267,6 @@
 		EDDA14522370356500756207 /* CCDefaultCursorRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCDefaultCursorRenderer.m; sourceTree = "<group>"; };
 		EDDCD45E2334CDAE005E46EA /* CCMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCMacro.h; sourceTree = "<group>"; };
 		EDDCD4622334DAB5005E46EA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		EDFA74B62320FC6900CDB6BC /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		EDFA74B82320FC8600CDB6BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EDFA74BD2321079200CDB6BC /* UIColor+CCUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+CCUtility.h"; sourceTree = "<group>"; };
 		EDFA74BE2321079200CDB6BC /* UIColor+CCUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CCUtility.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -404,13 +405,13 @@
 		EDABB2422320E46D00C65D3F = {
 			isa = PBXGroup;
 			children = (
-				ED32584B239A69B300E08D67 /* screenshot002.jpg */,
-				ED325849239A678D00E08D67 /* screenshot001.jpeg */,
-				ED7460622390C90F0011D1BE /* 3091574998318_.pic_hd.jpg */,
-				ED3FB10B23991793004A702E /* 1575542732977187.mp4 */,
-				EDAFF46F237A8E2B00E8BA2B /* Doc.md */,
-				EDFA74B82320FC8600CDB6BC /* README.md */,
-				EDFA74B62320FC6900CDB6BC /* LICENSE */,
+				ED32584F239A6C1F00E08D67 /* screenshot001.jpeg */,
+				ED325853239A6C1F00E08D67 /* screenshot002.jpg */,
+				ED325850239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg */,
+				ED325851239A6C1F00E08D67 /* 1575542732977187.mp4 */,
+				ED325859239A6C4500E08D67 /* Doc.md */,
+				ED325852239A6C1F00E08D67 /* README.md */,
+				ED32584D239A6BF600E08D67 /* LICENSE */,
 				EDABB24E2320E46D00C65D3F /* CCTrendCharts */,
 				EDABB2592320E46E00C65D3F /* CCTrendChartsTests */,
 				EDABB24D2320E46D00C65D3F /* Products */,
@@ -778,12 +779,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED32584C239A69B300E08D67 /* screenshot002.jpg in Resources */,
-				EDFA74B72320FC6900CDB6BC /* LICENSE in Resources */,
-				ED7460632390C90F0011D1BE /* 3091574998318_.pic_hd.jpg in Resources */,
+				ED325854239A6C1F00E08D67 /* screenshot001.jpeg in Resources */,
+				ED325857239A6C1F00E08D67 /* README.md in Resources */,
+				ED32584E239A6BF600E08D67 /* LICENSE in Resources */,
+				ED32585A239A6C4500E08D67 /* Doc.md in Resources */,
 				EDAFF474237AB5D800E8BA2B /* 1daykline.json in Resources */,
-				ED32584A239A678D00E08D67 /* screenshot001.jpeg in Resources */,
-				EDAFF470237A8E2B00E8BA2B /* Doc.md in Resources */,
+				ED325858239A6C1F00E08D67 /* screenshot002.jpg in Resources */,
+				ED325856239A6C1F00E08D67 /* 1575542732977187.mp4 in Resources */,
+				ED325855239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,7 +847,6 @@
 				ED7EE8EE2397B3F500926172 /* NSObject+CCEasyKVO.m in Sources */,
 				ED1F179D2387819900E26247 /* CCLineChartView.m in Sources */,
 				ED00E79F2322419B00139A8C /* CCKLineChartView.m in Sources */,
-				EDFA74B92320FC8600CDB6BC /* README.md in Sources */,
 				ED8004E523700267005647C2 /* CCXAxisFixedFormatter.m in Sources */,
 				ED21EACD232642740087AE67 /* CCChartViewPixelHandler.m in Sources */,
 			);
