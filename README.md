@@ -67,7 +67,7 @@
 
 <div>
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.jpeg"  width="40%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpeg"  width="40%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpg"  width="40%"/>
 </div>
 
 
