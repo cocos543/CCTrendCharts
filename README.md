@@ -1,10 +1,12 @@
 # CCTrendChart 
 
+![](https://img.shields.io/github/license/cocos543/CCTrendCharts)
+![](https://img.shields.io/cocoapods/p/CCTrendCharts)
+![](https://img.shields.io/github/last-commit/cocos543/CCTrendCharts)
+![](https://img.shields.io/github/commit-activity/w/cocos543/CCTrendCharts)
+![](https://img.shields.io/github/languages/code-size/cocos543/CCTrendCharts)
 
-开发中...
-
-Coding...
-
+> 项目正在积极开发中, 基本功能已完成, 即将添加使用Demo, 喜欢请点个start, 谢谢 ~
 
 ## 已完成功能
 
@@ -63,9 +65,12 @@ Coding...
 
 ## 开发中的界面预览
 
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.png"  width=400/>
+<div>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.png"  width="40%"/>
+</div>
 
 
 滚动缩放画面稳定在60 FPS左右
-
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/3091574998318_.pic_hd.jpg" width=400/>
+<div>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/3091574998318_.pic_hd.jpg" width="%50"/>
+</div>
