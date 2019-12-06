@@ -66,7 +66,8 @@
 ## 开发中的界面预览
 
 <div>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.png"  width="40%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.jpeg"  width="40%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpeg"  width="40%"/>
 </div>
 
 

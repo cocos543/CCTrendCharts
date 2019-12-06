@@ -41,7 +41,8 @@
 		ED23F20523960640005D672D /* CCRendererBase+LayerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23F20323960640005D672D /* CCRendererBase+LayerCache.m */; };
 		ED23F20A23966BAC005D672D /* CCVolumeDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED23F20B23966BAC005D672D /* CCVolumeDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */; };
-		ED3257F2239A48D500E08D67 /* screenshot001.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3257F1239A48D500E08D67 /* screenshot001.png */; };
+		ED325848239A675600E08D67 /* screenshot002.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ED325847239A675600E08D67 /* screenshot002.jpeg */; };
+		ED32584A239A678D00E08D67 /* screenshot001.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ED325849239A678D00E08D67 /* screenshot001.jpeg */; };
 		ED35B7522339C79B0080FF5A /* CCProtocolChartDataEntityBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED41C2D323853F5A004B640E /* CCVolumeChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED41C2D123853F5A004B640E /* CCVolumeChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED41C2D423853F5A004B640E /* CCVolumeChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED41C2D223853F5A004B640E /* CCVolumeChartView.m */; };
@@ -175,7 +176,8 @@
 		ED23F20323960640005D672D /* CCRendererBase+LayerCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CCRendererBase+LayerCache.m"; sourceTree = "<group>"; };
 		ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeDataEntity.h; sourceTree = "<group>"; };
 		ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeDataEntity.m; sourceTree = "<group>"; };
-		ED3257F1239A48D500E08D67 /* screenshot001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot001.png; sourceTree = "<group>"; };
+		ED325847239A675600E08D67 /* screenshot002.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshot002.jpeg; sourceTree = "<group>"; };
+		ED325849239A678D00E08D67 /* screenshot001.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshot001.jpeg; sourceTree = "<group>"; };
 		ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolChartDataEntityBase.h; sourceTree = "<group>"; };
 		ED3FB10B23991793004A702E /* 1575542732977187.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1575542732977187.mp4; sourceTree = "<group>"; };
 		ED41C2D123853F5A004B640E /* CCVolumeChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeChartView.h; sourceTree = "<group>"; };
@@ -402,7 +404,8 @@
 		EDABB2422320E46D00C65D3F = {
 			isa = PBXGroup;
 			children = (
-				ED3257F1239A48D500E08D67 /* screenshot001.png */,
+				ED325849239A678D00E08D67 /* screenshot001.jpeg */,
+				ED325847239A675600E08D67 /* screenshot002.jpeg */,
 				ED7460622390C90F0011D1BE /* 3091574998318_.pic_hd.jpg */,
 				ED3FB10B23991793004A702E /* 1575542732977187.mp4 */,
 				EDAFF46F237A8E2B00E8BA2B /* Doc.md */,
@@ -776,9 +779,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDFA74B72320FC6900CDB6BC /* LICENSE in Resources */,
+				ED325848239A675600E08D67 /* screenshot002.jpeg in Resources */,
 				ED7460632390C90F0011D1BE /* 3091574998318_.pic_hd.jpg in Resources */,
 				EDAFF474237AB5D800E8BA2B /* 1daykline.json in Resources */,
-				ED3257F2239A48D500E08D67 /* screenshot001.png in Resources */,
+				ED32584A239A678D00E08D67 /* screenshot001.jpeg in Resources */,
 				EDAFF470237A8E2B00E8BA2B /* Doc.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
