@@ -50,7 +50,7 @@
     NSInteger count = ceil(contentWidth / fabs(space));
     
     
-    // 为了避免label太密集, 这里假设label的宽度更长一下
+    // 为了避免label太密集, 这里假设label的宽度更长一些
     CGSize hhh = [@"hhh" sizeWithAttributes:nil];
     size.width += hhh.width;
     

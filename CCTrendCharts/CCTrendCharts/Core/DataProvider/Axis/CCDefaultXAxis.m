@@ -55,6 +55,8 @@
     return self;
 }
 
+
+/// 这里取第一个元素的文案信息
 - (CGSize)requireSize {
     if (_customRequireSize) {
         return _requireSize;

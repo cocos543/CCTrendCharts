@@ -2,7 +2,10 @@
 //  CCChartViewBase.m
 //  CCTrendCharts
 //
-//  核心基类, 提供坐标系, 参考系, 基本轴绘制, 基本手势等功能
+//  核心基类, 提供坐标系, 参考系, 基本轴绘制, 基本手势等功能.
+//
+//  框架部分设计灵感来自Charts, 感谢.
+//
 //
 //  Created by Cocos on 2019/9/6.
 //  Copyright © 2019 Cocos. All rights reserved.
@@ -138,10 +141,6 @@
 
     [self addSubview:_scrollView];
 
-    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
-    l.text = @"testtets";
-    [self.scrollView addSubview:l];
-
     self.yAxisLayer.frame  = frame;
     self.xAxisLayer.frame  = frame;
     self.cursorLayer.frame = frame;
@@ -165,6 +164,7 @@
 #pragma mark - Non-SYS-func
 /// scroll view的滚动区间大小, 决定了渲染区域的横向大小
 - (void)_updateScrollContent {
+    
     // 滚动区间大小计算公式:
     // 滚动视图内容宽度 = 绘制总长度 - 绘制区间宽度 + 滚动视图宽度
     // 这里需要特别说明totalWidth变量的由来, 假设边缘值都是0
@@ -173,9 +173,9 @@
     //
     // 如上图, "|"表示一个轴, count=4, 它的总长度其实就是3个线段的大小相加, 所以distanceBetweenSpace函数的参数值是(count-1)
     // 此时左右边缘两个实体的轴分别贴到左右Y轴上.
-
+    
     CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count - 1 + self.xAxis.startMargin + self.xAxis.endMargin]);
-
+    
     CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
     self.scrollView.contentSize = CGSizeMake(needExtraWidth + self.bounds.size.width, 0);
 }
@@ -187,11 +187,13 @@
 
 ///  计算view handle的初始矩阵
 - (void)_calcViewPixelInitMatrix {
+    
     // 如果视图属于最近信息优先显示的话, 还需要调整初始矩阵, 让最后一个元素在绘制区间里
     // 当前正在进行手势操作的, 表示正在浏览数据, 所以不应该重新计算手势矩阵了
     if (self.recentFirst) {
         if (![self.viewPixelHandler isGestureProcessing]) {
             CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count - 1 + self.xAxis.startMargin + self.xAxis.endMargin]);
+
             CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
 
             // recentFirst模式下, 初始矩阵的偏移量和scrollview的偏移量是不同步的, 所以需要重新更新一下lastTx
@@ -226,6 +228,7 @@
 
 /// 重新计算x,y轴的位置信息. 两个轴的位置和轴文案是紧密相关的.
 - (void)_calcviewPixelHandlerOffset {
+    
     // 先恢复ViewPixel的初始值
     [self _updateViewPixelHandler];
 
@@ -259,8 +262,9 @@
 }
 
 - (void)_updateStandardMatrix {
-    CGAffineTransform transform = CGAffineTransformIdentity;
 
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    
     if (self.leftAxis) {
         transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue startMargin:self.xAxis.startMargin xSpace:self.xAxis.xSpace rentFirst:self.recentFirst];
         [self.transformer refreshMatrix:transform];
@@ -304,6 +308,7 @@
 
 - (void)setNeedsPrepareChart {
     _needsPrepare = YES;
+    _isFirstDisplay = YES;
     [self setNeedsDisplay];
 }
 
@@ -322,8 +327,10 @@
     [self.data calcMinMaxStart:self.data.minX End:self.data.maxX];
 
     // 将数据集的数据同步到X轴上
-    if (self.data.xVals) {
+    if (self.data.xVals.count) {
         self.xAxis.entities = self.data.xVals;
+    }else {
+        return;
     }
 
     // 计算出y轴上需要绘制的信息

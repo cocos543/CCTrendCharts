@@ -68,53 +68,53 @@
         NSInteger lastX = 0;
 
         // 只有一个点, 无需绘制
-        if (dataSet.entities.count < 1) {
-            return;
-        }
-        for (int i = 1; i < dataSet.entities.count; i++) {
-            id<CCProtocolChartDataEntityBase> entity    = dataSet.entities[i];
-            id<CCProtocolChartDataEntityBase> perEntity = dataSet.entities[i - 1];
+        if (dataSet.entities.count > 1) {
+            for (int i = 1; i < dataSet.entities.count; i++) {
+                id<CCProtocolChartDataEntityBase> entity    = dataSet.entities[i];
+                id<CCProtocolChartDataEntityBase> perEntity = dataSet.entities[i - 1];
 
-            CGPoint start = [self.transformer pointToPixel:CGPointMake(perEntity.xIndex, perEntity.value) forAnimationPhaseY:1];
-            CGPoint end   = [self.transformer pointToPixel:CGPointMake(entity.xIndex, entity.value) forAnimationPhaseY:1];
+                CGPoint start = [self.transformer pointToPixel:CGPointMake(perEntity.xIndex, perEntity.value) forAnimationPhaseY:1];
+                CGPoint end   = [self.transformer pointToPixel:CGPointMake(entity.xIndex, entity.value) forAnimationPhaseY:1];
 
-            // 线段两个点都在区域外时, 不需要绘制
-            if (start.x < self.viewPixelHandler.contentLeft && end.x < self.viewPixelHandler.contentLeft) {
-                continue;
-            }
-            if (start.x > self.viewPixelHandler.contentRight && end.x > self.viewPixelHandler.contentRight) {
-                continue;
-            }
-
-            // 因为当前的layer和contentLayer的frame不同, 所以需要把点的坐标系调整到layer的坐标系上
-            start = [layer convertPoint:start fromLayer:contentLayer];
-            end   = [layer convertPoint:end fromLayer:contentLayer];
-
-            // 填充和非填充分开绘制
-            if (fillRequire) {
-                if (!flag) {
-                    // 确保起始位置从y轴原点位置开始
-                    [path moveToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(perEntity.xIndex, self.dataProvider.chartMinY - dataSet.lineWidth) forAnimationPhaseY:1] fromLayer:contentLayer]];
-                    [path addLineToPoint:start];
-
-                    flag = YES;
+                // 线段两个点都在区域外时, 不需要绘制
+                if (start.x < self.viewPixelHandler.contentLeft && end.x < self.viewPixelHandler.contentLeft) {
+                    continue;
+                }
+                if (start.x > self.viewPixelHandler.contentRight && end.x > self.viewPixelHandler.contentRight) {
+                    continue;
                 }
 
-                [self _addLineInPath:path start:start end:end using:dataSet.drawType];
-                lastX = i;
-            } else {
-                // 非填充的, 只需要把每个线段都作为子线段单独绘制即可
-                [path moveToPoint:start];
-                [self _addLineInPath:path start:start end:end using:dataSet.drawType];
+                // 因为当前的layer和contentLayer的frame不同, 所以需要把点的坐标系调整到layer的坐标系上
+                start = [layer convertPoint:start fromLayer:contentLayer];
+                end   = [layer convertPoint:end fromLayer:contentLayer];
+
+                // 填充和非填充分开绘制
+                if (fillRequire) {
+                    if (!flag) {
+                        // 确保起始位置从y轴原点位置开始
+                        [path moveToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(perEntity.xIndex, self.dataProvider.chartMinY - dataSet.lineWidth) forAnimationPhaseY:1] fromLayer:contentLayer]];
+                        [path addLineToPoint:start];
+
+                        flag = YES;
+                    }
+
+                    [self _addLineInPath:path start:start end:end using:dataSet.drawType];
+                    lastX = i;
+                } else {
+                    // 非填充的, 只需要把每个线段都作为子线段单独绘制即可
+                    [path moveToPoint:start];
+                    [self _addLineInPath:path start:start end:end using:dataSet.drawType];
+                }
             }
-        }
 
-        if (fillRequire) {
-            [path addLineToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(lastX, self.dataProvider.chartMinY - dataSet.lineWidth) forAnimationPhaseY:1] fromLayer:contentLayer]];
-            [path closePath];
-        }
+            if (fillRequire) {
+                [path addLineToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(lastX, self.dataProvider.chartMinY - dataSet.lineWidth) forAnimationPhaseY:1] fromLayer:contentLayer]];
+                [path closePath];
+            }
 
-        layer.path = path.CGPath;
+            layer.path = path.CGPath;
+        }
+        
     }
 }
 

@@ -56,7 +56,10 @@
 - (void)renderDataWithRising:(UIBezierPath *)risingPath fallingPath:(UIBezierPath *)fallingPath flatPath:(UIBezierPath *)flatPath usingDataSetName:(CCDataSetName)name inContentLayer:(CALayer *)contentLayer {
     CCKLineChartData *data       = self.dataProvider.klineChartData;
     CCKLineChartDataSet *dataSet = [[data dataSetWithName:name] lastObject];
-
+    if (dataSet == nil) {
+        return;
+    }
+    
     // 上升图层
     CAShapeLayer *risingLayer    = self.risingLayer;
     risingLayer.frame       = CGRectMake(0, 0, contentLayer.frame.size.width, contentLayer.frame.size.height);
