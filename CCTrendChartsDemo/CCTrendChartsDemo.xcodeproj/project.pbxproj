@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		ED325826239A5E8000E08D67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED325825239A5E8000E08D67 /* AppDelegate.m */; };
-		ED325829239A5E8000E08D67 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED325828239A5E8000E08D67 /* SceneDelegate.m */; };
 		ED32582F239A5E8000E08D67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED32582D239A5E8000E08D67 /* Main.storyboard */; };
 		ED325831239A5E8100E08D67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED325830239A5E8100E08D67 /* Assets.xcassets */; };
 		ED325834239A5E8100E08D67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED325832239A5E8100E08D67 /* LaunchScreen.storyboard */; };
@@ -16,6 +15,9 @@
 		ED32583F239A5FB500E08D67 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED32583E239A5FB500E08D67 /* MainTableViewController.m */; };
 		ED325843239A65EC00E08D67 /* CCTrendCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED325842239A65EC00E08D67 /* CCTrendCharts.framework */; };
 		ED325844239A65EC00E08D67 /* CCTrendCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED325842239A65EC00E08D67 /* CCTrendCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ED4CA364239F4D3300A7F2DE /* KLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA363239F4D3300A7F2DE /* KLineViewController.m */; };
+		ED742B76239F4E0200A14F66 /* KLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED742B75239F4E0200A14F66 /* KLineViewController.xib */; };
+		EDC5955F239F88DB002D362B /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5955E239F88DB002D362B /* NetworkHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,8 +38,6 @@
 		ED325821239A5E8000E08D67 /* CCTrendChartsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCTrendChartsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED325824239A5E8000E08D67 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ED325825239A5E8000E08D67 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		ED325827239A5E8000E08D67 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		ED325828239A5E8000E08D67 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		ED32582E239A5E8000E08D67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED325830239A5E8100E08D67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED325833239A5E8100E08D67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -46,6 +46,12 @@
 		ED32583D239A5FB500E08D67 /* MainTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		ED32583E239A5FB500E08D67 /* MainTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 		ED325842239A65EC00E08D67 /* CCTrendCharts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CCTrendCharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED4CA362239F4D3300A7F2DE /* KLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLineViewController.h; sourceTree = "<group>"; };
+		ED4CA363239F4D3300A7F2DE /* KLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLineViewController.m; sourceTree = "<group>"; };
+		ED742B75239F4E0200A14F66 /* KLineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLineViewController.xib; sourceTree = "<group>"; };
+		EDC5955C239F8754002D362B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		EDC5955D239F88DB002D362B /* NetworkHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkHelper.h; sourceTree = "<group>"; };
+		EDC5955E239F88DB002D362B /* NetworkHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,11 +86,12 @@
 		ED325823239A5E8000E08D67 /* CCTrendChartsDemo */ = {
 			isa = PBXGroup;
 			children = (
-				ED325840239A657D00E08D67 /* ThirdLib */,
+				EDC5955C239F8754002D362B /* PrefixHeader.pch */,
+				EDC5955D239F88DB002D362B /* NetworkHelper.h */,
+				EDC5955E239F88DB002D362B /* NetworkHelper.m */,
+				ED4CA365239F4D3A00A7F2DE /* ViewDemo */,
 				ED325824239A5E8000E08D67 /* AppDelegate.h */,
 				ED325825239A5E8000E08D67 /* AppDelegate.m */,
-				ED325827239A5E8000E08D67 /* SceneDelegate.h */,
-				ED325828239A5E8000E08D67 /* SceneDelegate.m */,
 				ED32583D239A5FB500E08D67 /* MainTableViewController.h */,
 				ED32583E239A5FB500E08D67 /* MainTableViewController.m */,
 				ED32582D239A5E8000E08D67 /* Main.storyboard */,
@@ -96,19 +103,22 @@
 			path = CCTrendChartsDemo;
 			sourceTree = "<group>";
 		};
-		ED325840239A657D00E08D67 /* ThirdLib */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ThirdLib;
-			sourceTree = "<group>";
-		};
 		ED325841239A65EC00E08D67 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED325842239A65EC00E08D67 /* CCTrendCharts.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED4CA365239F4D3A00A7F2DE /* ViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				ED4CA362239F4D3300A7F2DE /* KLineViewController.h */,
+				ED4CA363239F4D3300A7F2DE /* KLineViewController.m */,
+				ED742B75239F4E0200A14F66 /* KLineViewController.xib */,
+			);
+			path = ViewDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +181,7 @@
 			files = (
 				ED325834239A5E8100E08D67 /* LaunchScreen.storyboard in Resources */,
 				ED325831239A5E8100E08D67 /* Assets.xcassets in Resources */,
+				ED742B76239F4E0200A14F66 /* KLineViewController.xib in Resources */,
 				ED32582F239A5E8000E08D67 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,7 +196,8 @@
 				ED32583F239A5FB500E08D67 /* MainTableViewController.m in Sources */,
 				ED325826239A5E8000E08D67 /* AppDelegate.m in Sources */,
 				ED325837239A5E8100E08D67 /* main.m in Sources */,
-				ED325829239A5E8000E08D67 /* SceneDelegate.m in Sources */,
+				ED4CA364239F4D3300A7F2DE /* KLineViewController.m in Sources */,
+				EDC5955F239F88DB002D362B /* NetworkHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +273,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -313,7 +325,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -327,6 +339,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XNC7CRYM5X;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/CCTrendChartsDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = CCTrendChartsDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -345,6 +360,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XNC7CRYM5X;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/CCTrendChartsDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = CCTrendChartsDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

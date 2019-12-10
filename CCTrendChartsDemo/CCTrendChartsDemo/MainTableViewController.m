@@ -7,7 +7,8 @@
 //
 
 #import "MainTableViewController.h"
-#import <CCTrendCharts/CCTrendCharts.h>
+#import "KLineViewController.h"
+#import "NetworkHelper.h"
 
 @interface MainTableViewController ()
 
@@ -32,7 +33,8 @@
     self.demoArray = @[@"Yunex交易所", @"涨乐富", @"富途牛牛", @"招商证券", @"陆续添加中..."];
     self.sectionTitleArray = @[@"各类趋势图", @"各平台的渲染器"];
     
-    NSLog(@"%@", [[CCKLineChartView alloc] init]);
+    [NetworkHelper share];
+
 }
 
 #pragma mark - Table view data source
@@ -69,6 +71,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.0001f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            KLineViewController *vc = [[KLineViewController alloc] init];
+            vc.title = self.titleArray[indexPath.row];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }else {
+        
+    }
+    
 }
 
 #pragma mark - DataSource

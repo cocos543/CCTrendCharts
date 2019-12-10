@@ -48,9 +48,14 @@
 
 * 移动平均线MA(Moving average), 均线系数N可配置
 
+### Demo
+
+* K线图+指标Demo
+
 ## 正在开发
  
 * 各项趋势图的指标计算
+* 各类Demo
 
 ## 未完成功能
 
@@ -66,8 +71,9 @@
 ## 开发中的界面预览
 
 <div>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.jpeg"  width="40%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.jpg"  width="40%"/>
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpg"  width="40%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot003.jpg"  width="40%"/>
 </div>
 
 

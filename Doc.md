@@ -5,7 +5,7 @@
 1. 分时图
 https://stock.xueqiu.com/v5/stock/realtime/quotec.json?symbol=SH600519&_=1573541018175
 
-其中symbol是市场+股票代码, 茅台为 SH600519
+其中symbol是市场+股票代码, 深圳市场为SZ, 上海市场为SH, 茅台为 SH600519
 
 2. 日线
 https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=SH600519&begin=1573627598525&period=day&type=before&count=-30&indicator=kline,pe,pb,ps,pcf,market_capital,agt,ggt,balance

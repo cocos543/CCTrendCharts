@@ -42,7 +42,7 @@
 		ED23F20A23966BAC005D672D /* CCVolumeDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED23F20B23966BAC005D672D /* CCVolumeDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */; };
 		ED32584E239A6BF600E08D67 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = ED32584D239A6BF600E08D67 /* LICENSE */; };
-		ED325854239A6C1F00E08D67 /* screenshot001.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ED32584F239A6C1F00E08D67 /* screenshot001.jpeg */; };
+		ED325854239A6C1F00E08D67 /* screenshot001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED32584F239A6C1F00E08D67 /* screenshot001.jpg */; };
 		ED325855239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED325850239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg */; };
 		ED325856239A6C1F00E08D67 /* 1575542732977187.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = ED325851239A6C1F00E08D67 /* 1575542732977187.mp4 */; };
 		ED325857239A6C1F00E08D67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED325852239A6C1F00E08D67 /* README.md */; };
@@ -111,6 +111,7 @@
 		EDC02E5A2395160E00DA02B1 /* CCProtocolLegendRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC02E582395160E00DA02B1 /* CCProtocolLegendRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDC02E5E2395192E00DA02B1 /* CCTAILegendRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC02E5C2395192E00DA02B1 /* CCTAILegendRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDC02E5F2395192E00DA02B1 /* CCTAILegendRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC02E5D2395192E00DA02B1 /* CCTAILegendRenderer.m */; };
+		EDC59564239FC356002D362B /* screenshot003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDC59563239FC355002D362B /* screenshot003.jpg */; };
 		EDCCDB9E2379584000BDD823 /* CCKLineDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EDCCDB9C2379584000BDD823 /* CCKLineDataEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDCCDB9F2379584000BDD823 /* CCKLineDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCCDB9D2379584000BDD823 /* CCKLineDataEntity.m */; };
 		EDD0F258234C7370005ED4DD /* NSString+CCUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EDD0F256234C7370005ED4DD /* NSString+CCUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -178,7 +179,7 @@
 		ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeDataEntity.h; sourceTree = "<group>"; };
 		ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeDataEntity.m; sourceTree = "<group>"; };
 		ED32584D239A6BF600E08D67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		ED32584F239A6C1F00E08D67 /* screenshot001.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = screenshot001.jpeg; path = ../screenshot001.jpeg; sourceTree = "<group>"; };
+		ED32584F239A6C1F00E08D67 /* screenshot001.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = screenshot001.jpg; path = ../screenshot001.jpg; sourceTree = "<group>"; };
 		ED325850239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 3091574998318_.pic_hd.jpg; path = ../3091574998318_.pic_hd.jpg; sourceTree = "<group>"; };
 		ED325851239A6C1F00E08D67 /* 1575542732977187.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = 1575542732977187.mp4; path = ../1575542732977187.mp4; sourceTree = "<group>"; };
 		ED325852239A6C1F00E08D67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -250,6 +251,7 @@
 		EDC02E582395160E00DA02B1 /* CCProtocolLegendRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolLegendRenderer.h; sourceTree = "<group>"; };
 		EDC02E5C2395192E00DA02B1 /* CCTAILegendRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTAILegendRenderer.h; sourceTree = "<group>"; };
 		EDC02E5D2395192E00DA02B1 /* CCTAILegendRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTAILegendRenderer.m; sourceTree = "<group>"; };
+		EDC59563239FC355002D362B /* screenshot003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshot003.jpg; sourceTree = "<group>"; };
 		EDCCDB9C2379584000BDD823 /* CCKLineDataEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKLineDataEntity.h; sourceTree = "<group>"; };
 		EDCCDB9D2379584000BDD823 /* CCKLineDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKLineDataEntity.m; sourceTree = "<group>"; };
 		EDD0F256234C7370005ED4DD /* NSString+CCUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CCUtility.h"; sourceTree = "<group>"; };
@@ -405,7 +407,8 @@
 		EDABB2422320E46D00C65D3F = {
 			isa = PBXGroup;
 			children = (
-				ED32584F239A6C1F00E08D67 /* screenshot001.jpeg */,
+				EDC59563239FC355002D362B /* screenshot003.jpg */,
+				ED32584F239A6C1F00E08D67 /* screenshot001.jpg */,
 				ED325853239A6C1F00E08D67 /* screenshot002.jpg */,
 				ED325850239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg */,
 				ED325851239A6C1F00E08D67 /* 1575542732977187.mp4 */,
@@ -779,11 +782,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED325854239A6C1F00E08D67 /* screenshot001.jpeg in Resources */,
+				ED325854239A6C1F00E08D67 /* screenshot001.jpg in Resources */,
 				ED325857239A6C1F00E08D67 /* README.md in Resources */,
 				ED32584E239A6BF600E08D67 /* LICENSE in Resources */,
 				ED32585A239A6C4500E08D67 /* Doc.md in Resources */,
 				EDAFF474237AB5D800E8BA2B /* 1daykline.json in Resources */,
+				EDC59564239FC356002D362B /* screenshot003.jpg in Resources */,
 				ED325858239A6C1F00E08D67 /* screenshot002.jpg in Resources */,
 				ED325856239A6C1F00E08D67 /* 1575542732977187.mp4 in Resources */,
 				ED325855239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg in Resources */,
@@ -923,7 +927,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -980,7 +984,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1004,6 +1008,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CCTrendCharts/PrefixHeader.pch";
 				INFOPLIST_FILE = CCTrendCharts/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1012,6 +1017,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cocos.com.CCTrendCharts;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1029,6 +1035,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CCTrendCharts/PrefixHeader.pch";
 				INFOPLIST_FILE = CCTrendCharts/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1037,6 +1044,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cocos.com.CCTrendCharts;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
