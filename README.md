@@ -71,13 +71,13 @@
 ## 开发中的界面预览
 
 <div>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.jpg"  width="40%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpg"  width="40%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot003.jpg"  width="40%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.jpg"  width="33%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpg"  width="33%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot003.jpg"  width="33%"/>
 </div>
 
 
 滚动缩放画面稳定在60 FPS左右
 <div>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/3091574998318_.pic_hd.jpg" width="%50"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/gpu_state.jpg" width="50%"/>
 </div>

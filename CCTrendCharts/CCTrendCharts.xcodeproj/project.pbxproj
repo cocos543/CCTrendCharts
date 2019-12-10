@@ -43,7 +43,6 @@
 		ED23F20B23966BAC005D672D /* CCVolumeDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */; };
 		ED32584E239A6BF600E08D67 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = ED32584D239A6BF600E08D67 /* LICENSE */; };
 		ED325854239A6C1F00E08D67 /* screenshot001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED32584F239A6C1F00E08D67 /* screenshot001.jpg */; };
-		ED325855239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED325850239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg */; };
 		ED325856239A6C1F00E08D67 /* 1575542732977187.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = ED325851239A6C1F00E08D67 /* 1575542732977187.mp4 */; };
 		ED325857239A6C1F00E08D67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED325852239A6C1F00E08D67 /* README.md */; };
 		ED325858239A6C1F00E08D67 /* screenshot002.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED325853239A6C1F00E08D67 /* screenshot002.jpg */; };
@@ -111,7 +110,8 @@
 		EDC02E5A2395160E00DA02B1 /* CCProtocolLegendRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC02E582395160E00DA02B1 /* CCProtocolLegendRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDC02E5E2395192E00DA02B1 /* CCTAILegendRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC02E5C2395192E00DA02B1 /* CCTAILegendRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDC02E5F2395192E00DA02B1 /* CCTAILegendRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC02E5D2395192E00DA02B1 /* CCTAILegendRenderer.m */; };
-		EDC59564239FC356002D362B /* screenshot003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDC59563239FC355002D362B /* screenshot003.jpg */; };
+		EDC59566239FC58D002D362B /* screenshot003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDC59565239FC58D002D362B /* screenshot003.jpg */; };
+		EDC59568239FC5AD002D362B /* gpu_state.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDC59567239FC5AD002D362B /* gpu_state.jpg */; };
 		EDCCDB9E2379584000BDD823 /* CCKLineDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EDCCDB9C2379584000BDD823 /* CCKLineDataEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDCCDB9F2379584000BDD823 /* CCKLineDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCCDB9D2379584000BDD823 /* CCKLineDataEntity.m */; };
 		EDD0F258234C7370005ED4DD /* NSString+CCUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EDD0F256234C7370005ED4DD /* NSString+CCUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -180,7 +180,6 @@
 		ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeDataEntity.m; sourceTree = "<group>"; };
 		ED32584D239A6BF600E08D67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		ED32584F239A6C1F00E08D67 /* screenshot001.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = screenshot001.jpg; path = ../screenshot001.jpg; sourceTree = "<group>"; };
-		ED325850239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 3091574998318_.pic_hd.jpg; path = ../3091574998318_.pic_hd.jpg; sourceTree = "<group>"; };
 		ED325851239A6C1F00E08D67 /* 1575542732977187.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = 1575542732977187.mp4; path = ../1575542732977187.mp4; sourceTree = "<group>"; };
 		ED325852239A6C1F00E08D67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		ED325853239A6C1F00E08D67 /* screenshot002.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = screenshot002.jpg; path = ../screenshot002.jpg; sourceTree = "<group>"; };
@@ -251,7 +250,8 @@
 		EDC02E582395160E00DA02B1 /* CCProtocolLegendRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolLegendRenderer.h; sourceTree = "<group>"; };
 		EDC02E5C2395192E00DA02B1 /* CCTAILegendRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTAILegendRenderer.h; sourceTree = "<group>"; };
 		EDC02E5D2395192E00DA02B1 /* CCTAILegendRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTAILegendRenderer.m; sourceTree = "<group>"; };
-		EDC59563239FC355002D362B /* screenshot003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshot003.jpg; sourceTree = "<group>"; };
+		EDC59565239FC58D002D362B /* screenshot003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = screenshot003.jpg; path = ../screenshot003.jpg; sourceTree = "<group>"; };
+		EDC59567239FC5AD002D362B /* gpu_state.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = gpu_state.jpg; path = ../gpu_state.jpg; sourceTree = "<group>"; };
 		EDCCDB9C2379584000BDD823 /* CCKLineDataEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCKLineDataEntity.h; sourceTree = "<group>"; };
 		EDCCDB9D2379584000BDD823 /* CCKLineDataEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCKLineDataEntity.m; sourceTree = "<group>"; };
 		EDD0F256234C7370005ED4DD /* NSString+CCUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CCUtility.h"; sourceTree = "<group>"; };
@@ -407,10 +407,10 @@
 		EDABB2422320E46D00C65D3F = {
 			isa = PBXGroup;
 			children = (
-				EDC59563239FC355002D362B /* screenshot003.jpg */,
 				ED32584F239A6C1F00E08D67 /* screenshot001.jpg */,
 				ED325853239A6C1F00E08D67 /* screenshot002.jpg */,
-				ED325850239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg */,
+				EDC59565239FC58D002D362B /* screenshot003.jpg */,
+				EDC59567239FC5AD002D362B /* gpu_state.jpg */,
 				ED325851239A6C1F00E08D67 /* 1575542732977187.mp4 */,
 				ED325859239A6C4500E08D67 /* Doc.md */,
 				ED325852239A6C1F00E08D67 /* README.md */,
@@ -786,11 +786,11 @@
 				ED325857239A6C1F00E08D67 /* README.md in Resources */,
 				ED32584E239A6BF600E08D67 /* LICENSE in Resources */,
 				ED32585A239A6C4500E08D67 /* Doc.md in Resources */,
+				EDC59566239FC58D002D362B /* screenshot003.jpg in Resources */,
 				EDAFF474237AB5D800E8BA2B /* 1daykline.json in Resources */,
-				EDC59564239FC356002D362B /* screenshot003.jpg in Resources */,
+				EDC59568239FC5AD002D362B /* gpu_state.jpg in Resources */,
 				ED325858239A6C1F00E08D67 /* screenshot002.jpg in Resources */,
 				ED325856239A6C1F00E08D67 /* 1575542732977187.mp4 in Resources */,
-				ED325855239A6C1F00E08D67 /* 3091574998318_.pic_hd.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
