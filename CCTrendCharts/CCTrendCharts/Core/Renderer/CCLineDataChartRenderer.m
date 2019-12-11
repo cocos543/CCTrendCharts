@@ -37,24 +37,36 @@
     NSArray <CCLineChartDataSet *> *array = [self.dataProvider.data dataSetWithName:kCCNameLineDataSet];
 
     // 每一个dataSet都对应一条完整的线型, 这里直接遍历dataSet数组进行渲染
+    // 每一个dataset需要配置2个layer, 分别绘制填充内容和线条内容.
     for (int i = 0; i < array.count; i++) {
         CCLineChartDataSet *dataSet = array[i];
 
         UIBezierPath *path = UIBezierPath.bezierPath;
+        UIBezierPath *fillPath      = UIBezierPath.bezierPath;
 
-        CAShapeLayer *layer         = [self requestLayersCacheByIndex:i layerClass:^CALayer *{
+        // 线形图层
+        CAShapeLayer *layer         = [self requestLayersCacheByIndex:i * 2 layerClass:^CALayer *{
             return CAShapeLayer.layer;
         }];
 
-        layer.masksToBounds = YES;
-        layer.frame         = self.viewPixelHandler.contentRect;
+        // 填充图层
+        CAShapeLayer *fillLayer = [self requestLayersCacheByIndex:i * 2 + 1 layerClass:^CALayer *{
+            return CAShapeLayer.layer;
+        }];
+
+        layer.masksToBounds     = YES;
+        layer.frame             = self.viewPixelHandler.contentRect;
         [contentLayer addSublayer:layer];
 
-        layer.strokeColor   = dataSet.color.CGColor;
-        layer.lineWidth     = dataSet.lineWidth;
-        layer.lineCap       = dataSet.lineCap;
-        layer.lineJoin      = dataSet.lineJoin;
-        layer.fillColor     = dataSet.fillColor.CGColor;
+        fillLayer.frame         = self.viewPixelHandler.contentRect;
+        fillLayer.masksToBounds = YES;
+        [contentLayer addSublayer:fillLayer];
+
+        layer.strokeColor       = dataSet.color.CGColor;
+        layer.lineWidth         = dataSet.lineWidth;
+        layer.lineCap           = dataSet.lineCap;
+        layer.lineJoin          = dataSet.lineJoin;
+        fillLayer.fillColor     = dataSet.fillColor.CGColor;
 
         BOOL fillRequire = NO;
         if (![dataSet.fillColor isEqual:UIColor.clearColor]) {
@@ -88,33 +100,32 @@
                 start = [layer convertPoint:start fromLayer:contentLayer];
                 end   = [layer convertPoint:end fromLayer:contentLayer];
 
+                [path moveToPoint:start];
+                [self _addLineInPath:path start:start end:end using:dataSet.drawType];
+
                 // 填充和非填充分开绘制
                 if (fillRequire) {
                     if (!flag) {
                         // 确保起始位置从y轴原点位置开始
-                        [path moveToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(perEntity.xIndex, self.dataProvider.chartMinY - dataSet.lineWidth) forAnimationPhaseY:1] fromLayer:contentLayer]];
-                        [path addLineToPoint:start];
+                        [fillPath moveToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(perEntity.xIndex, self.dataProvider.chartMinY - dataSet.lineWidth) forAnimationPhaseY:1] fromLayer:contentLayer]];
+                        [fillPath addLineToPoint:start];
 
                         flag = YES;
                     }
 
-                    [self _addLineInPath:path start:start end:end using:dataSet.drawType];
+                    [self _addLineInPath:fillPath start:start end:end using:dataSet.drawType];
                     lastX = i;
-                } else {
-                    // 非填充的, 只需要把每个线段都作为子线段单独绘制即可
-                    [path moveToPoint:start];
-                    [self _addLineInPath:path start:start end:end using:dataSet.drawType];
                 }
             }
 
             if (fillRequire) {
-                [path addLineToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(lastX, self.dataProvider.chartMinY - dataSet.lineWidth) forAnimationPhaseY:1] fromLayer:contentLayer]];
-                [path closePath];
+                [fillPath addLineToPoint:[layer convertPoint:[self.transformer pointToPixel:CGPointMake(lastX, self.dataProvider.chartMinY - dataSet.lineWidth) forAnimationPhaseY:1] fromLayer:contentLayer]];
+                [fillPath closePath];
             }
 
-            layer.path = path.CGPath;
+            layer.path     = path.CGPath;
+            fillLayer.path = fillPath.CGPath;
         }
-        
     }
 }
 

@@ -90,7 +90,7 @@
 
     CGContextSaveGState(ctx);
     {
-        // 临时代码, 画地基用.
+
         CGContextSetStrokeColorWithColor(ctx, self.axis.axisColor.CGColor);
         CGContextSetLineWidth(ctx, self.axis.axisLineWidth);
 

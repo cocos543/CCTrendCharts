@@ -149,15 +149,6 @@
                 continue;
             }
 
-            // 临时代码, 绘制地基
-            if (self.axis.dependency == CCYAsixDependencyLeft) {
-                CGContextMoveToPoint(ctx, self.viewPixelHandler.contentLeft, position.y);
-                CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentLeft + 5, position.y);
-            } else {
-                CGContextMoveToPoint(ctx, self.viewPixelHandler.contentRight, position.y);
-                CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentRight - 5, position.y);
-            }
-
             NSString *text = [self.axis.formatter stringFromNumber:num];
             [text drawTextIn:ctx x:position.x y:position.y + self.axis.yLabelOffset anchor:anchor attributes:@{ NSFontAttributeName: self.axis.font, NSForegroundColorAttributeName: self.axis.labelColor }];
         }
