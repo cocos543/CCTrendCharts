@@ -9,26 +9,9 @@
 //
 
 #import "KLineViewController.h"
-#import "NetworkHelper.h"
 
-@import CCTrendCharts;
+@interface KLineViewController ()
 
-@interface KLineViewController () <CCChartViewDataSource, CCChartViewDelegate>
-
-@property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UITextField *codeTextField;
-
-
-@property (nonatomic, strong) CCKLineChartView *klineChartView;
-@property (nonatomic, strong) CCSingleEventManager *eventManager;
-
-@property (nonatomic, strong) NSArray<CCTAIConfigItem *> *taiItems;
-
-// 简单记录股票数据已加载到的时间点
-@property (nonatomic, assign) NSTimeInterval minTime;
-
-// 已获取的全部数据
-@property (nonatomic, strong) NSArray *chartDataArr;
 @end
 
 @implementation KLineViewController
@@ -39,8 +22,9 @@
 
     // 配置数据视图以及轴信息
     CCKLineChartView *view = [[CCKLineChartView alloc] initWithFrame:CGRectMake(5, 8, SCREEN_WIDTH - 10, 250)];
+    view.indicatorStyle                    = UIScrollViewIndicatorStyleWhite;
     [self.contentView addSubview:view];
-    self.klineChartView                    = view;
+    self.chartView                         = view;
 
     // 开启"最近优先", 数据将从右往左渲染
     view.recentFirst                       = YES;
@@ -95,28 +79,25 @@
     tai3.dataSetClass = CCLineMADataSet.class;
 
     self.taiItems     = @[tai, tai2, tai3];
-    
+
     CCTAIConfig *conf = [[CCTAIConfig alloc] initWithConfig:self.taiItems];
     // 为视图配置技术指标
     [view setTAIConfig:conf];
 }
 
-- (IBAction)clickBtnAction:(id)sender {
-    [self.view endEditing:YES];
-    if (self.codeTextField.text != nil) {
-        self.chartDataArr = nil;
-        // 这里需要重置一下图标..需要增加一个重置接口
-        [self loadDataWithStokeCode:self.codeTextField.text time:(NSInteger)[NSDate.date timeIntervalSince1970] * 1000];
-    }
-    
+- (void)clickBtnAction:(id)sender {
+    // 重置一下视图手势状态
+    [self.chartView resetViewGesture];
+
+    [super clickBtnAction:sender];
 }
 
 - (IBAction)segemntAction:(UISegmentedControl *)sender {
-    NSString *text = [sender titleForSegmentAtIndex:sender.selectedSegmentIndex];
+    NSString *text        = [sender titleForSegmentAtIndex:sender.selectedSegmentIndex];
     CCTAIConfigItem *item = self.taiItems[sender.tag];
     item.label = text;
-    item.N = @([text substringFromIndex:2].integerValue);
-    [self.klineChartView setNeedsPrepareChart];
+    item.N     = @([text substringFromIndex:2].integerValue);
+    [self.chartView setNeedsPrepareChart];
 }
 
 - (void)loadDataWithStokeCode:(NSString *)code time:(NSInteger)time {
@@ -133,12 +114,12 @@
         items = [[items reverseObjectEnumerator] allObjects];
         if (!self.chartDataArr) {
             self.chartDataArr = items;
-        }else {
+        } else {
             self.chartDataArr = [self.chartDataArr arrayByAddingObjectsFromArray:items];
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-                           [self.klineChartView setNeedsPrepareChart];
+                           [self.chartView setNeedsPrepareChart];
                        });
 
         // 这里延迟执行代码, 是为了避免当网络响应太快时, UI还在尝试调用newEventWithBlock, 这样token标记为yes的话, 会导致事件多次触发.(后续可能会优化一下)
@@ -149,23 +130,31 @@
     }] resume];
 }
 
+- (id<CCProtocolChartDataSet>)getDataSetFrom:(NSArray *)entities {
+    return [[CCKLineChartDataSet alloc] initWithVals:entities withName:kCCNameKLineDataSet];
+}
+
+- (id<CCProtocolChartDataEntityBase>)getEntityWith:(NSInteger)xIndex {
+    return [[CCKLineDataEntity alloc] initWithValue:0 xIndex:xIndex data:nil];
+}
+
 #pragma mark - CCChartViewDataSource
 // 下面代码演示如何构建数据
 - (CCChartData *)chartDataInView:(CCChartViewBase *)chartView {
-    NSArray *items = self.chartDataArr;
+    NSArray *items             = self.chartDataArr;
 
     // 根据数据信息构建x轴, x轴文案间距支持自动调整
-    NSMutableArray *xVals = @[].mutableCopy;
+    NSMutableArray *xVals      = @[].mutableCopy;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 
     formatter.dateFormat = @"yyyy-MM-dd";
 
-    NSMutableArray *entities = @[].mutableCopy;
-    
-    self.minTime = NSIntegerMax;
+    NSMutableArray *entities   = @[].mutableCopy;
+
+    self.minTime         = NSIntegerMax;
     for (int i = 0; i < items.count; i++) {
         //"timestamp","volume","open","high","low","close","chg","percent","turnoverrate","amount"
-        CCKLineDataEntity *entity = [[CCKLineDataEntity alloc] initWithValue:[CCBaseUtility floatRandomBetween:0 and:10] xIndex:i data:nil];
+        CCKLineDataEntity *entity = [self getEntityWith:i];
         entity.timeInt      = [items[i][0] integerValue] / 1000;
         entity.volume       = [items[i][1] integerValue];
         entity.opening      = [items[i][2] doubleValue];
@@ -184,13 +173,12 @@
         }
     }
 
-    CCKLineChartDataSet *dataSet = [[CCKLineChartDataSet alloc] initWithVals:entities withName:kCCNameKLineDataSet];
+    CCKLineChartDataSet *dataSet = [self getDataSetFrom:entities];
 
     // 创建数据整体: x轴信息 + 包含y信息的数据集数组
-    CCKLineChartData *chartData = [[CCKLineChartData alloc] initWithXVals:xVals dataSets:@[dataSet]];
+    CCKLineChartData *chartData  = [[CCKLineChartData alloc] initWithXVals:xVals dataSets:@[dataSet]];
 
     return chartData;
-        
 }
 
 #pragma CCChartViewDelegate

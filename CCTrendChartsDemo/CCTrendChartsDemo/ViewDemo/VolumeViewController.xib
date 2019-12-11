@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VolumeViewController">
+            <connections>
+                <outlet property="codeTextField" destination="6ry-hr-AhH" id="SeT-JV-VJ4"/>
+                <outlet property="contentView" destination="foq-2e-zjc" id="oTQ-l5-PGA"/>
+                <outlet property="view" destination="id6-Cu-Dti" id="T4e-OC-G3v"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="id6-Cu-Dti">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hs5-TG-yzg">
+                    <rect key="frame" x="24" y="165" width="223" height="32"/>
+                    <segments>
+                        <segment title="MD05"/>
+                        <segment title="MD10"/>
+                        <segment title="MD15"/>
+                        <segment title="MD20"/>
+                    </segments>
+                    <color key="selectedSegmentTintColor" red="0.94509803920000002" green="0.59607843140000005" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedSegmentIndex">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="segemntAction:" destination="-1" eventType="valueChanged" id="rIg-55-ByY"/>
+                    </connections>
+                </segmentedControl>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SH600519" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ry-hr-AhH">
+                    <rect key="frame" x="24" y="119" width="80" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="Lyy-8g-B57"/>
+                        <constraint firstAttribute="width" constant="80" id="cCh-Vb-sBa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1G-Ce-aF7">
+                    <rect key="frame" x="116" y="121" width="31" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="31" id="awc-k7-FCG"/>
+                    </constraints>
+                    <state key="normal" title="确定"/>
+                    <connections>
+                        <action selector="clickBtnAction:" destination="-1" eventType="touchUpInside" id="naw-4K-fl7"/>
+                    </connections>
+                </button>
+                <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tSc-rn-QRd">
+                    <rect key="frame" x="24" y="204" width="227" height="32"/>
+                    <segments>
+                        <segment title="MD25"/>
+                        <segment title="MD30"/>
+                        <segment title="MD35"/>
+                        <segment title="MD40"/>
+                    </segments>
+                    <color key="selectedSegmentTintColor" red="0.3411764706" green="0.52549019610000003" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedSegmentIndex">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="segemntAction:" destination="-1" eventType="valueChanged" id="Gf6-Pl-MyY"/>
+                    </connections>
+                </segmentedControl>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里演示了如何设置多个指标信息." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SI-Zx-4Xc">
+                    <rect key="frame" x="265" y="176.5" width="141" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="foq-2e-zjc">
+                    <rect key="frame" x="0.0" y="298" width="414" height="564"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+                <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WZb-EO-rki">
+                    <rect key="frame" x="24" y="243" width="227" height="32"/>
+                    <segments>
+                        <segment title="MD45"/>
+                        <segment title="MD50"/>
+                        <segment title="MD55"/>
+                        <segment title="MD60"/>
+                    </segments>
+                    <color key="selectedSegmentTintColor" red="0.79607843140000001" green="0.1843137255" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedSegmentIndex">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="segemntAction:" destination="-1" eventType="valueChanged" id="AW8-WF-ivY"/>
+                    </connections>
+                </segmentedControl>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入A股公司代码: (SH上海, SZ深圳)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xH9-tz-l6D">
+                    <rect key="frame" x="24" y="90" width="250" height="18"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Oyc-6e-6dL">
+                    <rect key="frame" x="155" y="120.5" width="251" height="32"/>
+                    <segments>
+                        <segment title="茅台"/>
+                        <segment title="平安银行"/>
+                        <segment title="小米"/>
+                        <segment title="阿里"/>
+                    </segments>
+                    <color key="selectedSegmentTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedSegmentIndex">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="stockAction:" destination="-1" eventType="valueChanged" id="agd-20-lVW"/>
+                    </connections>
+                </segmentedControl>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="X1G-Ce-aF7" firstAttribute="leading" secondItem="6ry-hr-AhH" secondAttribute="trailing" constant="12" id="4VQ-Po-DdE"/>
+                <constraint firstItem="Mq0-te-2p0" firstAttribute="trailing" secondItem="foq-2e-zjc" secondAttribute="trailing" id="5c5-wD-qRF"/>
+                <constraint firstItem="6ry-hr-AhH" firstAttribute="leading" secondItem="Mq0-te-2p0" secondAttribute="leading" constant="24" id="67x-zF-RSh"/>
+                <constraint firstItem="X1G-Ce-aF7" firstAttribute="centerY" secondItem="6ry-hr-AhH" secondAttribute="centerY" id="6oy-Pj-5fB"/>
+                <constraint firstItem="Mq0-te-2p0" firstAttribute="bottom" secondItem="foq-2e-zjc" secondAttribute="bottom" id="7zQ-mj-rjY"/>
+                <constraint firstItem="xH9-tz-l6D" firstAttribute="leading" secondItem="Mq0-te-2p0" secondAttribute="leading" constant="24" id="8UW-7I-9tR"/>
+                <constraint firstItem="WZb-EO-rki" firstAttribute="leading" secondItem="hs5-TG-yzg" secondAttribute="leading" id="Cwm-Bd-zVO"/>
+                <constraint firstItem="tSc-rn-QRd" firstAttribute="top" secondItem="hs5-TG-yzg" secondAttribute="bottom" constant="8" id="Hwz-lO-ZCr"/>
+                <constraint firstItem="xH9-tz-l6D" firstAttribute="top" secondItem="Mq0-te-2p0" secondAttribute="top" constant="46" id="Lpl-fx-bCq"/>
+                <constraint firstItem="foq-2e-zjc" firstAttribute="leading" secondItem="Mq0-te-2p0" secondAttribute="leading" id="Qdj-zj-efW"/>
+                <constraint firstItem="Oyc-6e-6dL" firstAttribute="centerY" secondItem="6ry-hr-AhH" secondAttribute="centerY" id="RMA-2X-7lU"/>
+                <constraint firstItem="hs5-TG-yzg" firstAttribute="leading" secondItem="6ry-hr-AhH" secondAttribute="leading" id="S9M-Sb-a5P"/>
+                <constraint firstAttribute="trailing" secondItem="8SI-Zx-4Xc" secondAttribute="trailing" constant="8" id="T7r-Hf-Vil"/>
+                <constraint firstItem="8SI-Zx-4Xc" firstAttribute="leading" secondItem="hs5-TG-yzg" secondAttribute="trailing" constant="18" id="XmR-8u-Rn0"/>
+                <constraint firstItem="WZb-EO-rki" firstAttribute="top" secondItem="tSc-rn-QRd" secondAttribute="bottom" constant="8" id="cSk-rg-Nzt"/>
+                <constraint firstItem="hs5-TG-yzg" firstAttribute="top" secondItem="6ry-hr-AhH" secondAttribute="bottom" constant="12" id="g3d-R5-YSp"/>
+                <constraint firstItem="Oyc-6e-6dL" firstAttribute="leading" secondItem="X1G-Ce-aF7" secondAttribute="trailing" constant="8" id="g6c-Du-c3F"/>
+                <constraint firstItem="6ry-hr-AhH" firstAttribute="top" secondItem="Mq0-te-2p0" secondAttribute="top" constant="75" id="gHd-i4-0vc"/>
+                <constraint firstItem="8SI-Zx-4Xc" firstAttribute="centerY" secondItem="hs5-TG-yzg" secondAttribute="centerY" constant="8" id="k55-Gj-s7C"/>
+                <constraint firstItem="tSc-rn-QRd" firstAttribute="leading" secondItem="hs5-TG-yzg" secondAttribute="leading" id="rJ3-8U-xU4"/>
+                <constraint firstItem="foq-2e-zjc" firstAttribute="top" secondItem="WZb-EO-rki" secondAttribute="bottom" constant="24" id="snK-1a-v2X"/>
+                <constraint firstItem="Mq0-te-2p0" firstAttribute="trailing" secondItem="Oyc-6e-6dL" secondAttribute="trailing" constant="8" id="svu-vB-dR5"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Mq0-te-2p0"/>
+            <point key="canvasLocation" x="137.68115942028987" y="103.79464285714285"/>
+        </view>
+    </objects>
+</document>

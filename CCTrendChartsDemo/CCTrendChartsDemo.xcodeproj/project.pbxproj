@@ -18,6 +18,11 @@
 		ED4CA364239F4D3300A7F2DE /* KLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA363239F4D3300A7F2DE /* KLineViewController.m */; };
 		ED742B76239F4E0200A14F66 /* KLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED742B75239F4E0200A14F66 /* KLineViewController.xib */; };
 		EDC5955F239F88DB002D362B /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5955E239F88DB002D362B /* NetworkHelper.m */; };
+		EDF56B4523A08DD700858765 /* VolumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF56B4323A08DD700858765 /* VolumeViewController.m */; };
+		EDF56B4623A08DD700858765 /* VolumeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF56B4423A08DD700858765 /* VolumeViewController.xib */; };
+		EDF56B4923A08E5400858765 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF56B4823A08E5400858765 /* BaseViewController.m */; };
+		EDF56B4D23A0EA5300858765 /* RealTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF56B4B23A0EA5300858765 /* RealTimeLineViewController.m */; };
+		EDF56B4E23A0EA5300858765 /* RealTimeLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF56B4C23A0EA5300858765 /* RealTimeLineViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +57,14 @@
 		EDC5955C239F8754002D362B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		EDC5955D239F88DB002D362B /* NetworkHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkHelper.h; sourceTree = "<group>"; };
 		EDC5955E239F88DB002D362B /* NetworkHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkHelper.m; sourceTree = "<group>"; };
+		EDF56B4223A08DD700858765 /* VolumeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolumeViewController.h; sourceTree = "<group>"; };
+		EDF56B4323A08DD700858765 /* VolumeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VolumeViewController.m; sourceTree = "<group>"; };
+		EDF56B4423A08DD700858765 /* VolumeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumeViewController.xib; sourceTree = "<group>"; };
+		EDF56B4723A08E5400858765 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		EDF56B4823A08E5400858765 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		EDF56B4A23A0EA5300858765 /* RealTimeLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealTimeLineViewController.h; sourceTree = "<group>"; };
+		EDF56B4B23A0EA5300858765 /* RealTimeLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTimeLineViewController.m; sourceTree = "<group>"; };
+		EDF56B4C23A0EA5300858765 /* RealTimeLineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RealTimeLineViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +127,17 @@
 		ED4CA365239F4D3A00A7F2DE /* ViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				EDF56B4723A08E5400858765 /* BaseViewController.h */,
+				EDF56B4823A08E5400858765 /* BaseViewController.m */,
 				ED4CA362239F4D3300A7F2DE /* KLineViewController.h */,
 				ED4CA363239F4D3300A7F2DE /* KLineViewController.m */,
 				ED742B75239F4E0200A14F66 /* KLineViewController.xib */,
+				EDF56B4223A08DD700858765 /* VolumeViewController.h */,
+				EDF56B4323A08DD700858765 /* VolumeViewController.m */,
+				EDF56B4423A08DD700858765 /* VolumeViewController.xib */,
+				EDF56B4A23A0EA5300858765 /* RealTimeLineViewController.h */,
+				EDF56B4B23A0EA5300858765 /* RealTimeLineViewController.m */,
+				EDF56B4C23A0EA5300858765 /* RealTimeLineViewController.xib */,
 			);
 			path = ViewDemo;
 			sourceTree = "<group>";
@@ -181,6 +202,8 @@
 			files = (
 				ED325834239A5E8100E08D67 /* LaunchScreen.storyboard in Resources */,
 				ED325831239A5E8100E08D67 /* Assets.xcassets in Resources */,
+				EDF56B4623A08DD700858765 /* VolumeViewController.xib in Resources */,
+				EDF56B4E23A0EA5300858765 /* RealTimeLineViewController.xib in Resources */,
 				ED742B76239F4E0200A14F66 /* KLineViewController.xib in Resources */,
 				ED32582F239A5E8000E08D67 /* Main.storyboard in Resources */,
 			);
@@ -194,9 +217,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED32583F239A5FB500E08D67 /* MainTableViewController.m in Sources */,
+				EDF56B4D23A0EA5300858765 /* RealTimeLineViewController.m in Sources */,
 				ED325826239A5E8000E08D67 /* AppDelegate.m in Sources */,
+				EDF56B4523A08DD700858765 /* VolumeViewController.m in Sources */,
 				ED325837239A5E8100E08D67 /* main.m in Sources */,
 				ED4CA364239F4D3300A7F2DE /* KLineViewController.m in Sources */,
+				EDF56B4923A08E5400858765 /* BaseViewController.m in Sources */,
 				EDC5955F239F88DB002D362B /* NetworkHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
