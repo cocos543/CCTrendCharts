@@ -27,6 +27,7 @@
     return self;
 }
 
+
 - (void)longPressGestureStateChanging:(UILongPressGestureRecognizer *)gr {
     
     CGPoint center = [gr locationInView:self.baseView];

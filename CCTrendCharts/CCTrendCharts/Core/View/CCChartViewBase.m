@@ -155,6 +155,97 @@
     [super setNeedsDisplayInRect:rect];
 }
 
+#pragma mark - Getter & Setter
+- (CALayer *)yAxisLayer {
+    if (!_yAxisLayer) {
+        _yAxisLayer = CALayer.layer;
+
+        // Y轴渲染层放到所有图层的底部
+        [self.layer addSublayer:_yAxisLayer];
+    }
+
+    return _yAxisLayer;
+}
+
+- (CALayer *)xAxisLayer {
+    if (!_xAxisLayer) {
+        _xAxisLayer = CALayer.layer;
+
+        // X轴渲染层放到滚动视图的最下层, 这样做是方便x轴上元素的滚动
+        [self.layer addSublayer:_xAxisLayer];
+    }
+
+    return _xAxisLayer;
+}
+
+- (CALayer *)cursorLayer {
+    if (!_cursorLayer) {
+        _cursorLayer = CALayer.layer;
+        _cursorLayer.zPosition = 888;
+        [self.layer addSublayer:_cursorLayer];
+    }
+
+    return _cursorLayer;
+}
+
+- (CALayer *)markerLayer {
+    if (!_markerLayer) {
+        _markerLayer = CALayer.layer;
+        _markerLayer.zPosition = 999;
+        [self.layer addSublayer:_markerLayer];
+    }
+    return _markerLayer;
+}
+
+- (CALayer *)legendLayer {
+    if (!_legendLayer) {
+        _legendLayer = CALayer.layer;
+        _legendLayer.zPosition = 999;
+        [self.layer addSublayer:_legendLayer];
+    }
+    return _legendLayer;
+}
+
+- (void)setPanGesutreEnable:(BOOL)panGesutreEnable {
+    _panGesutreEnable = panGesutreEnable;
+    self.scrollView.scrollEnabled = _panGesutreEnable;
+}
+
+- (void)setPinchGesutreEnable:(BOOL)pinchGesutreEnable {
+    _pinchGesutreEnable = pinchGesutreEnable;
+    self.gestureHandler.pinchGesture.enabled = _pinchGesutreEnable;
+}
+
+- (void)setLongPressGesutreEnable:(BOOL)longPressGesutreEnable {
+    _longPressGesutreEnable = longPressGesutreEnable;
+    self.gestureHandler.longPressGesture.enabled = _longPressGesutreEnable;
+}
+
+- (void)setLeftAxis:(CCDefaultYAxis *)leftAxis {
+    _leftAxis = leftAxis;
+    if (self.cursorRenderer) {
+        self.cursorRenderer.leftAxis = leftAxis;
+    }
+}
+
+- (void)setRightAxis:(CCDefaultYAxis *)rightAxis {
+    _rightAxis = rightAxis;
+    if (self.cursorRenderer) {
+        self.cursorRenderer.rightAxis = rightAxis;
+    }
+}
+
+- (void)setXAxis:(CCDefaultXAxis *)xAxis {
+    _xAxis = xAxis;
+    if (self.cursorRenderer) {
+        self.cursorRenderer.xAxis = xAxis;
+    }
+}
+
+- (void)setIndicatorStyle:(UIScrollViewIndicatorStyle)indicatorStyle {
+    self.scrollView.indicatorStyle = indicatorStyle;
+}
+
 #pragma mark - Scroll-func
 
 - (void)_setScrollViewXOffset:(CGFloat)chartTX {
@@ -308,7 +399,6 @@
 
 - (void)setNeedsPrepareChart {
     _needsPrepare = YES;
-    _isFirstDisplay = YES;
     [self setNeedsDisplay];
 }
 
@@ -344,7 +434,15 @@
     [self _updateOffsetMatrix];
 
     // 根据当前数据集, 设置好滚动区域长度
-    [self _updateScrollContent];
+    if (_isFirstDisplay) {
+        // _isFirstDisplay为YES的情况包括调用了resetViewGesture方法, 这个时候不需要重复处理滚动手势了.
+        _needTriggerScrollGesture = NO;
+        [self _updateScrollContent];
+        _needTriggerScrollGesture = YES;
+    }else {
+        [self _updateScrollContent];
+    }
+    
 
     // 确定好绘制的内容和滚动区域一起同步偏移的量, 完成同步滚动.
     [self _calcViewPixelInitMatrix];
@@ -352,95 +450,14 @@
     [self _updateViewYAxisContent];
 }
 
+- (void)resetViewGesture {
+    [self.viewPixelHandler resetGestureMatrix];
+    // 重置标志
+    _isFirstDisplay = YES;
+}
+
 - (void)dataRendering {
     // 不做任何事
-}
-
-#pragma mark - Getter & Setter
-- (CALayer *)yAxisLayer {
-    if (!_yAxisLayer) {
-        _yAxisLayer = CALayer.layer;
-
-        // Y轴渲染层放到所有图层的底部
-        [self.layer addSublayer:_yAxisLayer];
-    }
-
-    return _yAxisLayer;
-}
-
-- (CALayer *)xAxisLayer {
-    if (!_xAxisLayer) {
-        _xAxisLayer = CALayer.layer;
-
-        // X轴渲染层放到滚动视图的最下层, 这样做是方便x轴上元素的滚动
-        [self.layer addSublayer:_xAxisLayer];
-    }
-
-    return _xAxisLayer;
-}
-
-- (CALayer *)cursorLayer {
-    if (!_cursorLayer) {
-        _cursorLayer = CALayer.layer;
-        _cursorLayer.zPosition = 888;
-        [self.layer addSublayer:_cursorLayer];
-    }
-
-    return _cursorLayer;
-}
-
-- (CALayer *)markerLayer {
-    if (!_markerLayer) {
-        _markerLayer = CALayer.layer;
-        _markerLayer.zPosition = 999;
-        [self.layer addSublayer:_markerLayer];
-    }
-    return _markerLayer;
-}
-
-- (CALayer *)legendLayer {
-    if (!_legendLayer) {
-        _legendLayer = CALayer.layer;
-        _legendLayer.zPosition = 999;
-        [self.layer addSublayer:_legendLayer];
-    }
-    return _legendLayer;
-}
-
-- (void)setPanGesutreEnable:(BOOL)panGesutreEnable {
-    _panGesutreEnable = panGesutreEnable;
-    self.scrollView.scrollEnabled = _panGesutreEnable;
-}
-
-- (void)setPinchGesutreEnable:(BOOL)pinchGesutreEnable {
-    _pinchGesutreEnable = pinchGesutreEnable;
-    self.gestureHandler.pinchGesture.enabled = _pinchGesutreEnable;
-}
-
-- (void)setLongPressGesutreEnable:(BOOL)longPressGesutreEnable {
-    _longPressGesutreEnable = longPressGesutreEnable;
-    self.gestureHandler.longPressGesture.enabled = _longPressGesutreEnable;
-}
-
-- (void)setLeftAxis:(CCDefaultYAxis *)leftAxis {
-    _leftAxis = leftAxis;
-    if (self.cursorRenderer) {
-        self.cursorRenderer.leftAxis = leftAxis;
-    }
-}
-
-- (void)setRightAxis:(CCDefaultYAxis *)rightAxis {
-    _rightAxis = rightAxis;
-    if (self.cursorRenderer) {
-        self.cursorRenderer.rightAxis = rightAxis;
-    }
-}
-
-- (void)setXAxis:(CCDefaultXAxis *)xAxis {
-    _xAxis = xAxis;
-    if (self.cursorRenderer) {
-        self.cursorRenderer.xAxis = xAxis;
-    }
 }
 
 #pragma mark - CALayerDelegate

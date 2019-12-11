@@ -29,6 +29,11 @@
     return self;
 }
 
+- (void)resetGestureMatrix {
+    _gestureMatrix = CGAffineTransformIdentity;
+    _anInitMatrix  = CGAffineTransformIdentity;
+}
+
 - (BOOL)isInBoundsTop:(CGFloat)y {
     if (y < self.contentTop - 0.000001) {
         return YES;
@@ -182,6 +187,8 @@
     [str appendFormat:@"offsetRight:%f\n", self.offsetRight];
     [str appendFormat:@"offsetTop:%f\n", self.offsetTop];
     [str appendFormat:@"offsetBottom:%f\n", self.offsetBottom];
+    [str appendFormat:@"anInitMatrix:%@\n", NSStringFromCGAffineTransform(self.anInitMatrix)];
+    [str appendFormat:@"gestureMatrix:%@\n", NSStringFromCGAffineTransform(self.gestureMatrix)];
 
     return str;
 }

@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CCChartViewPixelHandler : NSObject
 
+- (void)resetGestureMatrix;
+
 - (BOOL)isInBoundsTop:(CGFloat)y;
 
 /// 是否正处于平移或者缩放状态

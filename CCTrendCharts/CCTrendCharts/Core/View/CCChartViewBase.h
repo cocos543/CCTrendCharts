@@ -28,10 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 分页提供数据
 - (CCChartData *)chartDataInView:(CCChartViewBase *)chartView;
 
-
 /// 提供实时更新最后一个节点的数据
 - (CCChartData *)chartDataForRealTimeInView:(CCChartViewBase *)chartView;
-
 
 /// 切换数据数据类型时, 提供全部新数据
 - (CCChartData *)chartDataForSwitchTypeInView:(CCChartViewBase *)chartView;
@@ -59,7 +57,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 双击事件
 
-
 @end
 
 /**
@@ -67,6 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface CCChartViewBase : UIView <CCGestureHandlerDelegate, CCProtocolChartViewBase, CCProtocolChartDataProvider, CCProtocolChartViewSync>
 
+
+/// 重置视图状态, 该方法只是让手势矩阵重置为初始值, 并没有重新渲染视图.
+- (void)resetViewGesture;
 
 /// 添加默认手势
 - (void)addDefualtGesture;
@@ -82,7 +82,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)prepareChart;
 
-
 @property (nonatomic, weak) id<CCChartViewDataSource> dataSource;
 @property (nonatomic, weak) id<CCChartViewDelegate> delegate;
 
@@ -91,10 +90,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) CCChartData *data;
 
-
 /// 用于确定xy轴距离整个视图边缘的大小. 两轴文案加上该属性的值即为最终距离
 @property (nonatomic, assign) UIEdgeInsets clipEdgeInsets;
-
 
 /// 最近优先显示, 默认为YES, 适合趋势交易图的显示习惯, 此时page(页码)向左递增
 /// 如果是按照早期到当前的顺序显示, 则将该参数设置为NO, 此时page(页码)向右递增
@@ -103,6 +100,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 处理手势操作的具体功能
 @property (nonatomic, strong) id<CCGestureHandlerProtocol> gestureHandler;
 
+
+/// 指示器风格
+///
+/// 这是个可能会被删除的属性, 因为后期横向滚动可能从ScrollView实现改为PanGesture实现.
+@property (nonatomic, assign) UIScrollViewIndicatorStyle indicatorStyle;
 
 @end
 

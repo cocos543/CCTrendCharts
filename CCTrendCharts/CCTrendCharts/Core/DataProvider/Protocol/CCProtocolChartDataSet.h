@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CCProtocolChartDataEntityBase.h"
 
-typedef NSString * CCDataSetName;
+typedef NSString *CCDataSetName;
 
 @protocol CCProtocolChartDataSet <NSObject>
 @required
