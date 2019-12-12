@@ -206,18 +206,18 @@
     return _legendLayer;
 }
 
-- (void)setPanGesutreEnable:(BOOL)panGesutreEnable {
-    _panGesutreEnable = panGesutreEnable;
+- (void)setSync_panGesutreEnable:(BOOL)sync_panGesutreEnable {
+    _panGesutreEnable = sync_panGesutreEnable;
     self.scrollView.scrollEnabled = _panGesutreEnable;
 }
 
-- (void)setPinchGesutreEnable:(BOOL)pinchGesutreEnable {
-    _pinchGesutreEnable = pinchGesutreEnable;
+- (void)setSync_pinchGesutreEnable:(BOOL)sync_pinchGesutreEnable {
+    _pinchGesutreEnable = sync_pinchGesutreEnable;
     self.gestureHandler.pinchGesture.enabled = _pinchGesutreEnable;
 }
 
-- (void)setLongPressGesutreEnable:(BOOL)longPressGesutreEnable {
-    _longPressGesutreEnable = longPressGesutreEnable;
+- (void)setSync_longPressGesutreEnable:(BOOL)sync_longPressGesutreEnable {
+    _longPressGesutreEnable = sync_longPressGesutreEnable;
     self.gestureHandler.longPressGesture.enabled = _longPressGesutreEnable;
 }
 
@@ -378,14 +378,21 @@
 
 - (void)_calcYAxisMinMax {
     if (self.leftAxis) {
-        if (!self.leftAxis.customValue) {
-            [self.leftAxis calculateMinMax:self.data];
-        }
+        [self.leftAxis calculateMinMax:self.data];
     }
 
     if (self.rightAxis) {
-        if (!self.rightAxis.customValue) {
-            [self.rightAxis calculateMinMax:self.data];
+        [self.rightAxis calculateMinMax:self.data];
+    }
+}
+
+- (void)_calcXAxis {
+    if (self.xAxis.autoXSapce) {
+        if (self.xAxis.totalCount != 0) {
+            // 实体个数n, 则实体中心轴总距离是 (n-1) * space, 所以单个距离是self.viewPixelHandler.contentWidth / (n-1) * space
+            self.xAxis.xSpace = self.viewPixelHandler.contentWidth / (self.xAxis.totalCount + self.xAxis.startMargin + self.xAxis.endMargin - 1);
+        }else {
+            self.xAxis.xSpace = self.viewPixelHandler.contentWidth / (self.xAxis.entities.count + self.xAxis.startMargin + self.xAxis.endMargin - 1);
         }
     }
 }
@@ -428,6 +435,9 @@
 
     // 全部数据计算好之后, 重新调整一下绘制区域的大小
     [self _calcviewPixelHandlerOffset];
+    
+    // 确定一下X轴需要更新的信息
+    [self _calcXAxis];
 
     // 根据新的绘制区域,重新计算反射参数
     [self _updateStandardMatrix];

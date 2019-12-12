@@ -47,8 +47,10 @@ typedef NS_ENUM(NSUInteger, CCKLineDataEntityState) {
 /// 换手率
 @property (nonatomic, assign) CGFloat turnoverrate;
 
+/// 涨跌幅度百分比
+@property (nonatomic, assign) CGFloat percent;
 
-/// 价格变化百分比
+/// 涨跌额
 ///
 /// 这里需要注意, 股票和虚拟币不同, 股票不是24小时交易, 而且有盘前盘后竞价, 第2天的开盘价不一定等于第1天的收盘价.
 /// 所以当天开盘价等于收盘价时, 需要配合changing属性来确定绘制的颜色.

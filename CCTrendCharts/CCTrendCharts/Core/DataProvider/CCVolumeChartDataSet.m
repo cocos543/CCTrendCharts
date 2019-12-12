@@ -42,7 +42,7 @@ CCDataSetName const kCCVolumeChartDataSet = @"VolumeChartDataSet";
 
 // 这里需要重写, 因为父类修改的是父类的私有变量
 - (void)resetValue {
-    _maxY = CGFLOAT_MIN;
+    _maxY = -CGFLOAT_MAX;
     _minY = CGFLOAT_MAX;
     
     _maxX = NSIntegerMin;

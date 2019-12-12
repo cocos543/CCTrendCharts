@@ -121,15 +121,11 @@
 #pragma mark - Func
 
 - (void)calculateMinMax:(CCChartData *)charData {
-    if (self.customValue) {
-        return;
+    if (!self.customValue) {
+        CGFloat range = charData.maxY - charData.minY;
+        _axisMinValue = charData.minY - _minMaxRangeExtraPrecent * range;
+        _axisMaxValue = charData.maxY + _minMaxRangeExtraPrecent * range;
     }
-
-    CGFloat range = charData.maxY - charData.minY;
-
-    _axisMinValue = charData.minY - _minMaxRangeExtraPrecent * range;
-
-    _axisMaxValue = charData.maxY + _minMaxRangeExtraPrecent * range;
 
     [self generateEntities];
 }

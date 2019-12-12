@@ -35,7 +35,14 @@
 }
 
 - (BOOL)isInBoundsTop:(CGFloat)y {
-    if (y < self.contentTop - 0.000001) {
+    if (y > self.contentTop - 0.000001) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isInBoundsBottom:(CGFloat)y {
+    if (y < self.contentBottom + 0.000001) {
         return YES;
     }
     return NO;

@@ -48,13 +48,14 @@
         _startMargin     = 0.5;
         _endMargin       = 0.5;
         _xSpace = 8.f;
+        _autoXSapce      = NO;
+        _totalCount      = 0;
 
         // 设置默认的formatter对象
         _formatter       = [[CCXAxisDefaultFormatter alloc] init];
     }
     return self;
 }
-
 
 /// 这里取第一个元素的文案信息
 - (CGSize)requireSize {
@@ -78,6 +79,11 @@
 - (void)setRequireSize:(CGSize)requireSize {
     _customRequireSize = YES;
     _requireSize       = requireSize;
+}
+
+- (void)setTotalCount:(NSInteger)totalCount {
+    self.autoXSapce = YES;
+    _totalCount = totalCount;
 }
 
 #pragma mark - NSCopying

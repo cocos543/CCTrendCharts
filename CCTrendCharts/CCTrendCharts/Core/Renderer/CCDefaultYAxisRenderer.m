@@ -94,12 +94,10 @@
             position = [self.transformer pointToPixel:position forAnimationPhaseY:1];
             xPos     = self.viewPixelHandler.contentLeft;
 
-            if ([self.viewPixelHandler isInBoundsTop:position.y]) {
-                continue;
+            if ([self.viewPixelHandler isInBoundsTop:position.y] && [self.viewPixelHandler isInBoundsBottom:position.y]) {
+                CGContextMoveToPoint(ctx, xPos, position.y);
+                CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentRight, position.y);
             }
-
-            CGContextMoveToPoint(ctx, xPos, position.y);
-            CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentRight, position.y);
         }
     }
 
@@ -145,12 +143,10 @@
             CGPoint position = CGPointMake(0, num.doubleValue);
             position   = [self.transformer pointToPixel:position forAnimationPhaseY:1];
             position.x = xPos;
-            if ([self.viewPixelHandler isInBoundsTop:position.y]) {
-                continue;
+            if ([self.viewPixelHandler isInBoundsTop:position.y] && [self.viewPixelHandler isInBoundsBottom:position.y]) {
+                NSString *text = [self.axis.formatter stringFromNumber:num];
+                [text drawTextIn:ctx x:position.x y:position.y + self.axis.yLabelOffset anchor:anchor attributes:@{ NSFontAttributeName: self.axis.font, NSForegroundColorAttributeName: self.axis.labelColor }];
             }
-
-            NSString *text = [self.axis.formatter stringFromNumber:num];
-            [text drawTextIn:ctx x:position.x y:position.y + self.axis.yLabelOffset anchor:anchor attributes:@{ NSFontAttributeName: self.axis.font, NSForegroundColorAttributeName: self.axis.labelColor }];
         }
         CGContextStrokePath(ctx);
     }
@@ -158,7 +154,7 @@
     CGContextRestoreGState(ctx);
 }
 
-- (void)processAxisEntities:(CGFloat)min :(CGFloat)max {
+- (void)processAxisEntities:(CGFloat)min:(CGFloat)max {
 }
 
 @end

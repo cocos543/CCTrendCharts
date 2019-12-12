@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)isInBoundsTop:(CGFloat)y;
 
+- (BOOL)isInBoundsBottom:(CGFloat)y;
+
 /// 是否正处于平移或者缩放状态
 - (BOOL)isGestureProcessing;
 

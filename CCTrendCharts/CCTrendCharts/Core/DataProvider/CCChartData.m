@@ -17,13 +17,13 @@
         _xVals = xVals;
         _dataSets = dataSets.mutableCopy;
         
-        [self calcMinMaxStart:NSIntegerMin End:NSIntegerMax];
+        [self calcMinMaxStart:0 End:xVals.count];
     }
     return self;
 }
 
 - (void)resetValue {
-    _maxY = CGFLOAT_MIN;
+    _maxY = -CGFLOAT_MAX;
     _minY = CGFLOAT_MAX;
     
     _maxX = NSIntegerMin;

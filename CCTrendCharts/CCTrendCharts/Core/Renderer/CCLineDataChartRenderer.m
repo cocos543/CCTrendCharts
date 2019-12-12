@@ -60,7 +60,7 @@
 
         fillLayer.frame         = self.viewPixelHandler.contentRect;
         fillLayer.masksToBounds = YES;
-        [contentLayer addSublayer:fillLayer];
+        [contentLayer insertSublayer:fillLayer below:layer];
 
         layer.strokeColor       = dataSet.color.CGColor;
         layer.lineWidth         = dataSet.lineWidth;

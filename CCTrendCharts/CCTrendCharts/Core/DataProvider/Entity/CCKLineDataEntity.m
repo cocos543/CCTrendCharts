@@ -43,7 +43,7 @@
 
 - (NSString *)description {
     NSString *str = [super description];
-    return [NSString stringWithFormat:@"%@\nhighest=%f\nlowest=%f\nopening=%f\nclosing=%f\nvolume=%f\namount=%f\nturnoverrate=%f\nchanging=%f", str, self.highest, self.lowest, self.opening, self.closing, self.volume, self.amount, self.turnoverrate, self.changing];
+    return [NSString stringWithFormat:@"%@\nhighest = %f\nlowest = %f\nopening = %f\nclosing = %f\nvolume = %f\namount = %f\nturnoverrate = %f\nchanging = %f\npercent = %f", str, self.highest, self.lowest, self.opening, self.closing, self.volume, self.amount, self.turnoverrate, self.changing, self.percent];
 }
 
 @end
