@@ -21,9 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UITextField *codeTextField;
 
-// 简单记录股票数据已加载到的时间点
-@property (nonatomic, assign) NSTimeInterval minTime;
-
 // 已获取的全部数据
 @property (nonatomic, strong, nullable) NSArray *chartDataArr;
 

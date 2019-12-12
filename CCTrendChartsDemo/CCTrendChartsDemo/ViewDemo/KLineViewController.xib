@@ -106,8 +106,8 @@
                         <action selector="segemntAction:" destination="-1" eventType="valueChanged" id="fio-Ih-OvQ"/>
                     </connections>
                 </segmentedControl>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入代号+ A股公司代码: (SH上海, SZ深圳, 其他无代号)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBz-Q3-SBx">
-                    <rect key="frame" x="24" y="90" width="355.5" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入代号+ 公司代码: (SH上海, SZ深圳, 其他无代号)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBz-Q3-SBx">
+                    <rect key="frame" x="24" y="90" width="331" height="17"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>

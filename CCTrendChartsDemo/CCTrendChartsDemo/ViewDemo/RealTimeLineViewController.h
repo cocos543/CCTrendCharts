@@ -7,10 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "NetworkHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RealTimeLineViewController : BaseViewController
+
+@property (nonatomic, strong) CCSingleEventManager *eventManager;
 
 @end
 

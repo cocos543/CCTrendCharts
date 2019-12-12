@@ -50,7 +50,9 @@
 
 ### Demo
 
-* K线图+指标Demo
+* K线图+指标
+* 交易量图+指标
+* 分时图
 
 ## 正在开发
  
@@ -71,9 +73,10 @@
 ## 开发中的界面预览
 
 <div>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.jpg"  width="33%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpg"  width="33%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot003.jpg"  width="33%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.jpg"  width="25%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpg"  width="25%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot003.jpg"  width="25%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot004.jpg"  width="25%"/>
 </div>
 
 

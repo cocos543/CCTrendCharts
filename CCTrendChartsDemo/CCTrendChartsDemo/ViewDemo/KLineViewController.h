@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSArray<CCTAIConfigItem *> *taiItems;
 
+// 简单记录股票数据已加载到的时间点
+@property (nonatomic, assign) NSTimeInterval minTime;
+
 
 @end
 

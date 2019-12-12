@@ -162,8 +162,9 @@
         entity.lowest       = [items[i][4] doubleValue];
         entity.closing      = [items[i][5] doubleValue];
         entity.changing     = [items[i][6] doubleValue];
-        entity.turnoverrate = [items[i][7] doubleValue];
-        entity.amount       = [items[i][8] doubleValue];
+        entity.percent      = [items[i][7] doubleValue];
+        entity.turnoverrate = [items[i][8] doubleValue];
+        entity.amount       = [items[i][9] doubleValue];
 
         [entities addObject:entity];
         [xVals addObject:[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:entity.timeInt]]];

@@ -49,26 +49,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wGt-zc-gvr">
-                    <rect key="frame" x="155" y="120.5" width="251" height="32"/>
-                    <segments>
-                        <segment title="茅台"/>
-                        <segment title="平安银行"/>
-                        <segment title="小米"/>
-                        <segment title="阿里"/>
-                    </segments>
-                    <color key="selectedSegmentTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="selectedSegmentIndex">
-                            <integer key="value" value="0"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="stockAction:" destination="-1" eventType="valueChanged" id="gms-UZ-i99"/>
-                    </connections>
-                </segmentedControl>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昨日完整分时图:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ar-Zt-P84">
-                    <rect key="frame" x="24" y="177" width="105" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完整分时图:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ar-Zt-P84">
+                    <rect key="frame" x="24" y="177" width="76.5" height="17"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -78,15 +60,12 @@
             <constraints>
                 <constraint firstItem="zj1-LF-OzI" firstAttribute="leading" secondItem="FR1-Sq-QHg" secondAttribute="leading" constant="24" id="7Qh-Y9-QPM"/>
                 <constraint firstItem="FR1-Sq-QHg" firstAttribute="trailing" secondItem="3lf-Cd-e3g" secondAttribute="trailing" id="DHe-e7-9oQ"/>
-                <constraint firstItem="wGt-zc-gvr" firstAttribute="centerY" secondItem="zj1-LF-OzI" secondAttribute="centerY" id="MtL-vd-o4j"/>
                 <constraint firstItem="zj1-LF-OzI" firstAttribute="top" secondItem="88x-ed-YCi" secondAttribute="bottom" constant="12" id="NN0-UH-co3"/>
                 <constraint firstItem="aqI-Vh-Q7i" firstAttribute="leading" secondItem="zj1-LF-OzI" secondAttribute="trailing" constant="12" id="QmB-iJ-oN6"/>
                 <constraint firstItem="88x-ed-YCi" firstAttribute="top" secondItem="FR1-Sq-QHg" secondAttribute="top" constant="46" id="Qpr-fW-Bjm"/>
-                <constraint firstItem="wGt-zc-gvr" firstAttribute="leading" secondItem="aqI-Vh-Q7i" secondAttribute="trailing" constant="8" id="Xpw-8B-wbN"/>
                 <constraint firstItem="FR1-Sq-QHg" firstAttribute="bottom" secondItem="3lf-Cd-e3g" secondAttribute="bottom" id="b5T-XX-hjh"/>
                 <constraint firstItem="3lf-Cd-e3g" firstAttribute="top" secondItem="4ar-Zt-P84" secondAttribute="bottom" constant="12" id="lha-iV-ObU"/>
                 <constraint firstItem="88x-ed-YCi" firstAttribute="leading" secondItem="FR1-Sq-QHg" secondAttribute="leading" constant="24" id="nOC-GP-jik"/>
-                <constraint firstItem="FR1-Sq-QHg" firstAttribute="trailing" secondItem="wGt-zc-gvr" secondAttribute="trailing" constant="8" id="rWn-fo-yXp"/>
                 <constraint firstItem="3lf-Cd-e3g" firstAttribute="leading" secondItem="FR1-Sq-QHg" secondAttribute="leading" id="vzc-VK-Vah"/>
                 <constraint firstItem="aqI-Vh-Q7i" firstAttribute="centerY" secondItem="zj1-LF-OzI" secondAttribute="centerY" id="xBQ-fb-rxh"/>
                 <constraint firstItem="4ar-Zt-P84" firstAttribute="leading" secondItem="zj1-LF-OzI" secondAttribute="leading" id="xdm-YY-mfM"/>
