@@ -154,7 +154,6 @@
     CCKLineChartData *chartData = [[CCKLineChartData alloc] initWithXVals:xVals dataSets:@[dataSet]];
 
     // 这里需要手动计算出右轴涨跌幅的最大最小值, 计算原理就是先得到左y轴的最大最小值, 然后查看数据实体里面对应价格和涨跌幅, 再推算出
-    // 右轴对应的最大最小涨跌幅...比较麻烦...
     
     // 先得到左轴信息
     [self.chartView.leftAxis calculateMinMax:chartData];
@@ -162,15 +161,13 @@
     CGFloat leftMax = self.chartView.leftAxis.axisMaxValue;
     
     if (entities.count) {
-        // 再随便找一个数据实体, 看一下数值和涨跌幅对应关系
-        // 比如价格1156.96, 对应的是-0.17; 那么就可以推算出平价是 1156.96 - 1156.96*(-0.17%) = 1158.926
-        CGFloat originalVal = entities[0].opening - entities[0].opening * entities[0].percent;
+        // 再随便找一个数据实体, 计算出前平价价格多少, 然后就可以轻松算出涨跌幅了
+        CGFloat originalVal = entities[0].opening - entities[0].changing;
         
         // 然后就可以计算出leftMin, leftMax对应的涨跌幅是多少了.
         self.chartView.rightAxis.axisMinValue = (leftMin - originalVal) / originalVal;
         self.chartView.rightAxis.axisMaxValue = (leftMax - originalVal) / originalVal;
     }
-    
 
     return chartData;
 }

@@ -20,6 +20,7 @@
 		ED03A15523337CF00065DDA4 /* CCProtocolKLineChartDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED03A15323337CF00065DDA4 /* CCProtocolKLineChartDataProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED052EA12338CF85000CED6C /* CCCoordinateUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = ED052E9F2338CF85000CED6C /* CCCoordinateUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED052EA22338CF85000CED6C /* CCCoordinateUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ED052EA02338CF85000CED6C /* CCCoordinateUtility.m */; };
+		ED0B388423A3A87D0064B265 /* screenshot005.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED0B388323A3A87C0064B265 /* screenshot005.jpg */; };
 		ED1BFB5A232231A700222820 /* CCChartViewBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED1BFB58232231A700222820 /* CCChartViewBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED1BFB5B232231A700222820 /* CCChartViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1BFB59232231A700222820 /* CCChartViewBase.m */; };
 		ED1BFB5E232234FC00222820 /* CCProtocolChartViewBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED1BFB5C232234FC00222820 /* CCProtocolChartViewBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -158,6 +159,7 @@
 		ED03A15323337CF00065DDA4 /* CCProtocolKLineChartDataProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolKLineChartDataProvider.h; sourceTree = "<group>"; };
 		ED052E9F2338CF85000CED6C /* CCCoordinateUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCCoordinateUtility.h; sourceTree = "<group>"; };
 		ED052EA02338CF85000CED6C /* CCCoordinateUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCCoordinateUtility.m; sourceTree = "<group>"; };
+		ED0B388323A3A87C0064B265 /* screenshot005.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = screenshot005.jpg; path = ../screenshot005.jpg; sourceTree = "<group>"; };
 		ED1BFB58232231A700222820 /* CCChartViewBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCChartViewBase.h; sourceTree = "<group>"; };
 		ED1BFB59232231A700222820 /* CCChartViewBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCChartViewBase.m; sourceTree = "<group>"; };
 		ED1BFB5C232234FC00222820 /* CCProtocolChartViewBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolChartViewBase.h; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 		EDABB2422320E46D00C65D3F = {
 			isa = PBXGroup;
 			children = (
+				ED0B388323A3A87C0064B265 /* screenshot005.jpg */,
 				ED65BCF323A25CE7007160D7 /* screenshot004.jpg */,
 				ED32584F239A6C1F00E08D67 /* screenshot001.jpg */,
 				ED325853239A6C1F00E08D67 /* screenshot002.jpg */,
@@ -786,6 +789,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED325854239A6C1F00E08D67 /* screenshot001.jpg in Resources */,
+				ED0B388423A3A87D0064B265 /* screenshot005.jpg in Resources */,
 				ED325857239A6C1F00E08D67 /* README.md in Resources */,
 				ED32584E239A6BF600E08D67 /* LICENSE in Resources */,
 				ED32585A239A6C4500E08D67 /* Doc.md in Resources */,

@@ -17,6 +17,8 @@
 		ED325844239A65EC00E08D67 /* CCTrendCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED325842239A65EC00E08D67 /* CCTrendCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED4CA364239F4D3300A7F2DE /* KLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA363239F4D3300A7F2DE /* KLineViewController.m */; };
 		ED742B76239F4E0200A14F66 /* KLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED742B75239F4E0200A14F66 /* KLineViewController.xib */; };
+		ED85B18C23A3418D004865C0 /* AssembledViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85B18A23A3418D004865C0 /* AssembledViewController.m */; };
+		ED85B18D23A3418D004865C0 /* AssembledViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED85B18B23A3418D004865C0 /* AssembledViewController.xib */; };
 		EDC5955F239F88DB002D362B /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5955E239F88DB002D362B /* NetworkHelper.m */; };
 		EDF56B4523A08DD700858765 /* VolumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF56B4323A08DD700858765 /* VolumeViewController.m */; };
 		EDF56B4623A08DD700858765 /* VolumeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF56B4423A08DD700858765 /* VolumeViewController.xib */; };
@@ -54,6 +56,9 @@
 		ED4CA362239F4D3300A7F2DE /* KLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLineViewController.h; sourceTree = "<group>"; };
 		ED4CA363239F4D3300A7F2DE /* KLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLineViewController.m; sourceTree = "<group>"; };
 		ED742B75239F4E0200A14F66 /* KLineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLineViewController.xib; sourceTree = "<group>"; };
+		ED85B18923A3418D004865C0 /* AssembledViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssembledViewController.h; sourceTree = "<group>"; };
+		ED85B18A23A3418D004865C0 /* AssembledViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssembledViewController.m; sourceTree = "<group>"; };
+		ED85B18B23A3418D004865C0 /* AssembledViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssembledViewController.xib; sourceTree = "<group>"; };
 		EDC5955C239F8754002D362B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		EDC5955D239F88DB002D362B /* NetworkHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkHelper.h; sourceTree = "<group>"; };
 		EDC5955E239F88DB002D362B /* NetworkHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkHelper.m; sourceTree = "<group>"; };
@@ -138,6 +143,9 @@
 				EDF56B4A23A0EA5300858765 /* RealTimeLineViewController.h */,
 				EDF56B4B23A0EA5300858765 /* RealTimeLineViewController.m */,
 				EDF56B4C23A0EA5300858765 /* RealTimeLineViewController.xib */,
+				ED85B18923A3418D004865C0 /* AssembledViewController.h */,
+				ED85B18A23A3418D004865C0 /* AssembledViewController.m */,
+				ED85B18B23A3418D004865C0 /* AssembledViewController.xib */,
 			);
 			path = ViewDemo;
 			sourceTree = "<group>";
@@ -205,6 +213,7 @@
 				EDF56B4623A08DD700858765 /* VolumeViewController.xib in Resources */,
 				EDF56B4E23A0EA5300858765 /* RealTimeLineViewController.xib in Resources */,
 				ED742B76239F4E0200A14F66 /* KLineViewController.xib in Resources */,
+				ED85B18D23A3418D004865C0 /* AssembledViewController.xib in Resources */,
 				ED32582F239A5E8000E08D67 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +229,7 @@
 				EDF56B4D23A0EA5300858765 /* RealTimeLineViewController.m in Sources */,
 				ED325826239A5E8000E08D67 /* AppDelegate.m in Sources */,
 				EDF56B4523A08DD700858765 /* VolumeViewController.m in Sources */,
+				ED85B18C23A3418D004865C0 /* AssembledViewController.m in Sources */,
 				ED325837239A5E8100E08D67 /* main.m in Sources */,
 				ED4CA364239F4D3300A7F2DE /* KLineViewController.m in Sources */,
 				EDF56B4923A08E5400858765 /* BaseViewController.m in Sources */,

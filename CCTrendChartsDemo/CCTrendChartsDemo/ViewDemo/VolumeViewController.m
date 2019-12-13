@@ -19,11 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+
     // 配置数据视图以及轴信息
     CCVolumeChartView *view = [[CCVolumeChartView alloc] initWithFrame:CGRectMake(5, 8, SCREEN_WIDTH - 10, 250)];
+    view.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+
+    self.chartView      = view;
+
     [self.contentView addSubview:view];
-    self.chartView                    = view;
 
     // 开启"最近优先", 数据将从右往左渲染
     view.recentFirst                       = YES;
@@ -78,7 +81,7 @@
     tai3.dataSetClass = CCLineMADataSet.class;
 
     self.taiItems     = @[tai, tai2, tai3];
-    
+
     CCTAIConfig *conf = [[CCTAIConfig alloc] initWithConfig:self.taiItems];
     // 为视图配置技术指标
     [view setTAIConfig:conf];

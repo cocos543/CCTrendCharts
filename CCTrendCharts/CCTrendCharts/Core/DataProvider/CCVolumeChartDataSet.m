@@ -17,6 +17,14 @@ CCDataSetName const kCCVolumeChartDataSet = @"VolumeChartDataSet";
 @synthesize maxX = _maxX;
 @synthesize minX = _minX;
 
+- (instancetype)initWithVals:(NSArray<CCKLineDataEntity *> *)entities withName:(NSString *)name {
+    if (name == nil) {
+        name = kCCVolumeChartDataSet;
+    }
+    self = [super initWithVals:entities withName:name];
+    return self;
+}
+
 - (instancetype)initWithKLineChartDataSet:(CCKLineChartDataSet *)dataSet {
     // 把 kline dataset 中的实体转成交易量实体
     NSMutableArray *arr = @[].mutableCopy;
@@ -24,7 +32,7 @@ CCDataSetName const kCCVolumeChartDataSet = @"VolumeChartDataSet";
         [arr addObject:[[CCVolumeDataEntity alloc] initWithKLineDataEntity:val]];
     }
     
-    self = [super initWithVals:arr withName:kCCVolumeChartDataSet];
+    self = [self initWithVals:arr withName:nil];
     
     if (self) {
         

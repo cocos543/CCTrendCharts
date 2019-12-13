@@ -30,9 +30,9 @@
     CCDefaultXAxis *xAxis = self.views[0].xAxis;
     for (CCChartViewBase *view in self.views) {
         if (view == self.views[0]) {
-            view.frame = CGRectMake(0, 0, frame.size.width, view.frame.size.height);
+            view.frame = CGRectMake(0, 0, self.frame.size.width, view.frame.size.height);
         }else {
-            view.frame = CGRectMake(0, CGRectGetMaxY(frame), frame.size.width, view.frame.size.height);
+            view.frame = CGRectMake(0, CGRectGetMaxY(frame), self.frame.size.width, view.frame.size.height);
         }
         
         frame = view.frame;

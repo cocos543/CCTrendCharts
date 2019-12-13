@@ -13,6 +13,10 @@ CCDataSetName const kCCNameLineDataSet = @"LineDataSet";
 @implementation CCLineChartDataSet
 
 - (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name {
+    if (name == nil) {
+        name = kCCNameLineDataSet;
+    }
+    
     self = [super initWithVals:entities withName:name];
     if (self) {
         _lineJoin = kCALineJoinRound;

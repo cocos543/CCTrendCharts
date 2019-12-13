@@ -10,6 +10,7 @@
 #import "KLineViewController.h"
 #import "VolumeViewController.h"
 #import "RealTimeLineViewController.h"
+#import "AssembledViewController.h"
 
 #import "NetworkHelper.h"
 
@@ -32,7 +33,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.title = @"Demo(金融数据来自雪球)";
-    self.titleArray = @[@"K线图", @"交易量图", @"分时图", @"指标线形图", @"多种数据集的合成图", @"组合图", @"其他类型开发中..."];
+    self.titleArray = @[@"K线图", @"交易量图", @"分时图", @"组合图", @"多种数据集的合成图", @"其他类型开发中..."];
     self.demoArray = @[@"Yunex交易所", @"涨乐富", @"富途牛牛", @"招商证券", @"陆续添加中..."];
     self.sectionTitleArray = @[@"各类趋势图", @"各平台的渲染器"];
     
@@ -85,6 +86,8 @@
             vc = [[VolumeViewController alloc] init];
         }else if (indexPath.row == 2) {
             vc = [[RealTimeLineViewController alloc] init];
+        }else if (indexPath.row == 3) {
+            vc = [[AssembledViewController alloc] init];
         }
         vc.title = self.titleArray[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
