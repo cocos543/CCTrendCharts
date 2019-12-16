@@ -62,13 +62,13 @@
 @end
 
 @implementation CCChartViewBase
-@synthesize xAxis                  = _xAxis;
-@synthesize leftAxis               = _leftAxis;
-@synthesize rightAxis              = _rightAxis;
-@synthesize cursor                 = _cursor;
-@synthesize viewPixelHandler       = _viewPixelHandler;
-@synthesize transformer            = _transformer;
-@synthesize rightTransformer       = _rightTransformer;
+@synthesize xAxis                       = _xAxis;
+@synthesize leftAxis                    = _leftAxis;
+@synthesize rightAxis                   = _rightAxis;
+@synthesize cursor                      = _cursor;
+@synthesize viewPixelHandler            = _viewPixelHandler;
+@synthesize transformer                 = _transformer;
+@synthesize rightTransformer            = _rightTransformer;
 
 // CCProtocolChartViewSync
 @synthesize sync_pinchGesutreEnable     = _pinchGesutreEnable;
@@ -93,7 +93,6 @@
 @dynamic chartMaxY;
 @dynamic lowestVisibleXIndex;
 @dynamic highestVisibleXIndex;
-
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -137,7 +136,7 @@
 
 - (void)layoutSubviews {
     CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    self.scrollView.frame = frame;
+    self.scrollView.frame  = frame;
 
     [self addSubview:_scrollView];
 
@@ -255,7 +254,6 @@
 #pragma mark - Non-SYS-func
 /// scroll view的滚动区间大小, 决定了渲染区域的横向大小
 - (void)_updateScrollContent {
-    
     // 滚动区间大小计算公式:
     // 滚动视图内容宽度 = 绘制总长度 - 绘制区间宽度 + 滚动视图宽度
     // 这里需要特别说明totalWidth变量的由来, 假设边缘值都是0
@@ -264,9 +262,9 @@
     //
     // 如上图, "|"表示一个轴, count=4, 它的总长度其实就是3个线段的大小相加, 所以distanceBetweenSpace函数的参数值是(count-1)
     // 此时左右边缘两个实体的轴分别贴到左右Y轴上.
-    
+
     CGFloat totalWidth     = fabs([self.transformer distanceBetweenSpace:self.data.xVals.count - 1 + self.xAxis.startMargin + self.xAxis.endMargin]);
-    
+
     CGFloat needExtraWidth = totalWidth - self.viewPixelHandler.contentWidth;
     self.scrollView.contentSize = CGSizeMake(needExtraWidth + self.bounds.size.width, 0);
 }
@@ -278,7 +276,6 @@
 
 ///  计算view handle的初始矩阵
 - (void)_calcViewPixelInitMatrix {
-    
     // 如果视图属于最近信息优先显示的话, 还需要调整初始矩阵, 让最后一个元素在绘制区间里
     // 当前正在进行手势操作的, 表示正在浏览数据, 所以不应该重新计算手势矩阵了
     if (self.recentFirst) {
@@ -319,7 +316,6 @@
 
 /// 重新计算x,y轴的位置信息. 两个轴的位置和轴文案是紧密相关的.
 - (void)_calcviewPixelHandlerOffset {
-    
     // 先恢复ViewPixel的初始值
     [self _updateViewPixelHandler];
 
@@ -353,9 +349,8 @@
 }
 
 - (void)_updateStandardMatrix {
-
     CGAffineTransform transform = CGAffineTransformIdentity;
-    
+
     if (self.leftAxis) {
         transform = [self.transformer calcMatrixWithMinValue:self.leftAxis.axisMinValue maxValue:self.leftAxis.axisMaxValue startMargin:self.xAxis.startMargin xSpace:self.xAxis.xSpace rentFirst:self.recentFirst];
         [self.transformer refreshMatrix:transform];
@@ -391,7 +386,7 @@
         if (self.xAxis.totalCount != 0) {
             // 实体个数n, 则实体中心轴总距离是 (n-1) * space, 所以单个距离是self.viewPixelHandler.contentWidth / (n-1) * space
             self.xAxis.xSpace = self.viewPixelHandler.contentWidth / (self.xAxis.totalCount + self.xAxis.startMargin + self.xAxis.endMargin - 1);
-        }else {
+        } else {
             self.xAxis.xSpace = self.viewPixelHandler.contentWidth / (self.xAxis.entities.count + self.xAxis.startMargin + self.xAxis.endMargin - 1);
         }
     }
@@ -426,7 +421,7 @@
     // 将数据集的数据同步到X轴上
     if (self.data.xVals.count) {
         self.xAxis.entities = self.data.xVals;
-    }else {
+    } else {
         return;
     }
 
@@ -435,7 +430,7 @@
 
     // 全部数据计算好之后, 重新调整一下绘制区域的大小
     [self _calcviewPixelHandlerOffset];
-    
+
     // 确定一下X轴需要更新的信息
     [self _calcXAxis];
 
@@ -449,10 +444,9 @@
         _needTriggerScrollGesture = NO;
         [self _updateScrollContent];
         _needTriggerScrollGesture = YES;
-    }else {
+    } else {
         [self _updateScrollContent];
     }
-    
 
     // 确定好绘制的内容和滚动区域一起同步偏移的量, 完成同步滚动.
     [self _calcViewPixelInitMatrix];
@@ -489,7 +483,7 @@
     [self.rightAxisRenderer beginRenderingInLayer:self.yAxisLayer];
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    
+
     // 这里后续可以优化, 毕竟使用Clear的效率还没有直接创建一个新画图高..
     CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
 
@@ -519,6 +513,10 @@
     [self.gestureHandler didScrollIncrementOffsetX:scrollView.contentOffset.x - _lastOffsetX];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    self.sync_panObservable = NSNull.null;
+}
+
 #pragma mark - Gesture-func
 - (void)addDefualtGesture {
     // 指示器反馈
@@ -532,9 +530,9 @@
     _lastTx      =  self.viewPixelHandler.gestureMatrix.tx;
 
     [self _updateViewYAxisContent];
-    
+
     [self setNeedsDisplay];
-    
+
     // 该属性为NO时, 意味着当前滚动事件是从其他视图传递过来的, 所以直接返回即可.
     if (self.sync_panGesutreEnable) {
         // 检查到边缘时, 通知代理期望获取下一页数据.
@@ -555,7 +553,7 @@
                 }
             }
         }
-        
+
         self.sync_panObservable = [NSValue valueWithCGPoint:self.scrollView.contentOffset];
     }
 }
@@ -608,7 +606,7 @@
 
     [self _updateViewYAxisContent];
     [self setNeedsDisplay];
-    
+
     if (self.sync_pinchGesutreEnable) {
         self.sync_pinchObservable = [NSValue valueWithCGAffineTransform:self.viewPixelHandler.gestureMatrix];
     }
@@ -630,11 +628,10 @@
             }
         }
     }
-    
+
     if (self.sync_pinchGesutreEnable) {
         self.sync_pinchObservable = NSNull.null;
     }
-    
 }
 
 - (void)gestureDidLongPressInLocation:(CGPoint)point {
@@ -663,12 +660,12 @@
         [self.markerRenderer beginRenderingInLayer:self.markerLayer atIndex:valuePoint.x];
 
         [self.legendRenderer beginRenderingInLayer:self.legendLayer atIndex:valuePoint.x];
-        
+
         if ([self.delegate respondsToSelector:@selector(charViewDidLongPressAtIndex:)]) {
             [self.delegate charViewDidLongPressAtIndex:_longPressLastSelcIndex];
         }
     }
-    
+
     // 处理同步事件
     // 这里需要把点转换成父视图的坐标系
     if (self.sync_longPressGesutreEnable) {
@@ -688,7 +685,7 @@
 
         [self.legendRenderer beginRenderingInLayer:self.legendLayer atIndex:0];
     });
-    
+
     if (self.sync_longPressGesutreEnable) {
         self.sync_longPressObservable = NSNull.null;
     }
@@ -699,39 +696,31 @@
     // 该方法被调用时, 说明滚动是从其他组成员传递过来的, 所以自身暂时禁用滚动手势, 这样也可以避免事件又从这里重复传递给其他人
     self.sync_panGesutreEnable = NO;
     [self.scrollView setContentOffset:[((NSValue *)panEvent) CGPointValue] animated:NO];
+}
+
+- (void)chartViewSyncEndForPan {
     self.sync_panGesutreEnable = YES;
 }
 
-- (void)chartViewSyncEndForPan {}
-
 - (void)chartViewSyncForPinch:(id)pinchEvent {
-    self.sync_pinchGesutreEnable = NO;
-    
+    self.sync_pinchGesutreEnable        = NO;
     self.viewPixelHandler.gestureMatrix = [(NSValue *)pinchEvent CGAffineTransformValue];
-    
     // location参数暂时没用到, 直接传0
     [self gestureDidPinchInLocation:CGPointZero matrix:self.viewPixelHandler.gestureMatrix];
-    
-    self.sync_pinchGesutreEnable = YES;
 }
 
 - (void)chartViewSyncEndForPinch {
-    self.sync_pinchGesutreEnable = NO;
-    
     [self gestureDidEndPinchInLocation:CGPointZero matrix:self.viewPixelHandler.gestureMatrix];
-    
     self.sync_pinchGesutreEnable = YES;
 }
 
 - (void)chartViewSyncForLongPress:(id)longPressEvent {
     self.sync_longPressGesutreEnable = NO;
     CGPoint point = [(NSValue *)longPressEvent CGPointValue];
-    [self gestureDidLongPressInLocation: [self convertPoint:point fromView:self.superview]];
-    self.sync_longPressGesutreEnable = YES;
+    [self gestureDidLongPressInLocation:[self convertPoint:point fromView:self.superview]];
 }
 
 - (void)chartViewSyncEndForLongPress {
-    self.sync_longPressGesutreEnable = NO;
     [self gestureDidEndLongPressInLocation:CGPointZero];
     self.sync_longPressGesutreEnable = YES;
 }

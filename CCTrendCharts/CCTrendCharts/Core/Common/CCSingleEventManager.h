@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)done;
 
 
+/// 延迟标记事件完成
+/// @param interval 延迟时长(秒)
+- (void)doneDelay:(NSTimeInterval)interval;
+
+
 /// 新事件产生时, 调用该方法传入事件Block, 调用该方法之后必须调用done, 才能响应下一个事件
 /// @param eventBlock void(^)(void)
 - (void)newEventWithBlock:(nonnull dispatch_block_t)eventBlock;

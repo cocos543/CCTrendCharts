@@ -34,6 +34,12 @@
     });
 }
 
+- (void)doneDelay:(NSTimeInterval)interval {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self done];
+    });
+}
+
 - (void)newEventWithBlock:(dispatch_block_t)eventBlock {
     // 确保所有事件都是顺序执行的
     dispatch_async(_serialQ, ^{
