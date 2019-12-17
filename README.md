@@ -79,7 +79,7 @@
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpg"  width="30%"/>
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot003.jpg"  width="30%"/>
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot004.jpg"  width="30%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot001.jpg"  width="30%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot005.jpg"  width="30%"/>
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot006.jpg"  width="30%"/>
 </div>
 
