@@ -30,10 +30,7 @@
 - (void)beginRenderingInLayer:(CALayer *)contentLayer {
     [self renderAxisLine:contentLayer];
     [self renderGridLines:contentLayer];
-
-    if (self.axis.entities) {
-        [self renderLabels:contentLayer];
-    }
+    [self renderLabels:contentLayer];
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     //    CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
@@ -53,7 +50,9 @@
 }
 
 - (void)renderAxisLine:(CALayer *)contentLayer {
-//    NSLog(@"渲染层接到画y轴直线通知~");
+    if (self.axis.axisLineDisabled) {
+        return;
+    }
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
@@ -107,7 +106,9 @@
 }
 
 - (void)renderLabels:(CALayer *)contentLayer {
-//    NSLog(@"准备开始渲染y轴 label 信息");
+    if (self.axis.labelDisable) {
+        return;
+    }
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 

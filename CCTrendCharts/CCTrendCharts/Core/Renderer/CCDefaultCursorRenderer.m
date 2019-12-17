@@ -66,8 +66,8 @@
         horizontalStart = CGPointMake(self.viewPixelHandler.contentLeft, center.y);
         horizontalEnd   = CGPointMake(self.viewPixelHandler.contentRight, center.y);
 
-        verticalStart   = CGPointMake(center.x, self.viewPixelHandler.contentTop);
-        verticalEnd     = CGPointMake(center.x, self.viewPixelHandler.contentBottom);
+        verticalStart   = CGPointMake(center.x, 0);
+        verticalEnd     = CGPointMake(center.x, self.viewPixelHandler.viewHeight);
 
         CGContextMoveToPoint(ctx, horizontalStart.x, center.y);
         CGContextAddLineToPoint(ctx, horizontalEnd.x, center.y);

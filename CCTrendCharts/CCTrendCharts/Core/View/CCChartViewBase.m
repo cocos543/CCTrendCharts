@@ -222,27 +222,35 @@
 
 - (void)setLeftAxis:(CCDefaultYAxis *)leftAxis {
     _leftAxis = leftAxis;
-    if (self.cursorRenderer) {
-        self.cursorRenderer.leftAxis = leftAxis;
-    }
+
+    self.cursorRenderer.leftAxis = leftAxis;
+    self.leftAxisRenderer.axis = leftAxis;
 }
 
 - (void)setRightAxis:(CCDefaultYAxis *)rightAxis {
     _rightAxis = rightAxis;
-    if (self.cursorRenderer) {
-        self.cursorRenderer.rightAxis = rightAxis;
-    }
+
+    self.cursorRenderer.rightAxis = rightAxis;
+    self.rightAxisRenderer.axis = rightAxis;
 }
 
 - (void)setXAxis:(CCDefaultXAxis *)xAxis {
     _xAxis = xAxis;
-    if (self.cursorRenderer) {
-        self.cursorRenderer.xAxis = xAxis;
-    }
+
+    self.cursorRenderer.xAxis = xAxis;
+    self.xAxisRenderer.axis = xAxis;
 }
 
 - (void)setIndicatorStyle:(UIScrollViewIndicatorStyle)indicatorStyle {
     self.scrollView.indicatorStyle = indicatorStyle;
+}
+
+- (void)setShowsHorizontalScrollIndicator:(BOOL)showsHorizontalScrollIndicator {
+    self.scrollView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator;
+}
+
+- (BOOL)showsHorizontalScrollIndicator {
+    return self.scrollView.showsHorizontalScrollIndicator;
 }
 
 #pragma mark - Scroll-func
@@ -517,6 +525,12 @@
     self.sync_panObservable = NSNull.null;
 }
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
+        self.sync_panObservable = NSNull.null;
+    }
+}
+
 #pragma mark - Gesture-func
 - (void)addDefualtGesture {
     // 指示器反馈
@@ -707,9 +721,11 @@
     self.viewPixelHandler.gestureMatrix = [(NSValue *)pinchEvent CGAffineTransformValue];
     // location参数暂时没用到, 直接传0
     [self gestureDidPinchInLocation:CGPointZero matrix:self.viewPixelHandler.gestureMatrix];
+    self.sync_pinchGesutreEnable        = YES;
 }
 
 - (void)chartViewSyncEndForPinch {
+    self.sync_pinchGesutreEnable = NO;
     [self gestureDidEndPinchInLocation:CGPointZero matrix:self.viewPixelHandler.gestureMatrix];
     self.sync_pinchGesutreEnable = YES;
 }
@@ -718,9 +734,11 @@
     self.sync_longPressGesutreEnable = NO;
     CGPoint point = [(NSValue *)longPressEvent CGPointValue];
     [self gestureDidLongPressInLocation:[self convertPoint:point fromView:self.superview]];
+    self.sync_longPressGesutreEnable = YES;
 }
 
 - (void)chartViewSyncEndForLongPress {
+    self.sync_longPressGesutreEnable = NO;
     [self gestureDidEndLongPressInLocation:CGPointZero];
     self.sync_longPressGesutreEnable = YES;
 }

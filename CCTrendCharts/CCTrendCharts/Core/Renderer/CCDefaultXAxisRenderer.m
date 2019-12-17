@@ -22,10 +22,7 @@
 - (void)beginRenderingInLayer:(CALayer *)contentLayer {
     [self renderAxisLine:contentLayer];
     [self renderGridLines:contentLayer];
-
-    if (self.axis.entities) {
-        [self renderLabels:contentLayer];
-    }
+    [self renderLabels:contentLayer];
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGImageRef img   = CGBitmapContextCreateImage(ctx);
@@ -37,7 +34,9 @@
 }
 
 - (void)renderAxisLine:(CALayer *)contentLayer {
-//    NSLog(@"渲染层接到画x轴直线通知~");
+    if (self.axis.axisLineDisabled) {
+        return;
+    }
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
@@ -83,14 +82,16 @@
 }
 
 - (void)renderLabels:(CALayer *)contentLayer {
-//    NSLog(@"准备开始渲染x轴 label 信息");
+    if (self.axis.labelDisable) {
+        return;
+    }
+    
     [self.axis.formatter calcModulusWith:self.viewPixelHandler.contentWidth xSpace:[self.transformer distanceBetweenSpace:1] labelSize:self.axis.requireSize];
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
     CGContextSaveGState(ctx);
     {
-
         CGContextSetStrokeColorWithColor(ctx, self.axis.axisColor.CGColor);
         CGContextSetLineWidth(ctx, self.axis.axisLineWidth);
 

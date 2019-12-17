@@ -16,21 +16,22 @@
 
 @implementation CCDefaultYAxis
 
-@synthesize font            = _font;
-@synthesize labelColor      = _labelColor;
-
-@synthesize axisColor       = _axisColor;
-@synthesize axisLineWidth   = _axisLineWidth;
+@synthesize font             = _font;
+@synthesize labelColor       = _labelColor;
+@synthesize labelDisable     = _labelDisable;
+@synthesize axisColor        = _axisColor;
+@synthesize axisLineWidth    = _axisLineWidth;
+@synthesize axisLineDisabled = _axisLineDisabled;
 //@synthesize labelMaxLine = _labelMaxLine;
-@synthesize xLabelOffset    = _xLabelOffset;
-@synthesize yLabelOffset    = _yLabelOffset;
+@synthesize xLabelOffset     = _xLabelOffset;
+@synthesize yLabelOffset     = _yLabelOffset;
 
-@synthesize labelCount      = _labelCount;
-@synthesize requireSize     = _requireSize;
+@synthesize labelCount       = _labelCount;
+@synthesize requireSize      = _requireSize;
 
-@synthesize gridColor       = _gridColor;
-@synthesize gridLineWidth   = _gridLineWidth;
-@synthesize gridLineEnabled = _gridLineEnabled;
+@synthesize gridColor        = _gridColor;
+@synthesize gridLineWidth    = _gridLineWidth;
+@synthesize gridLineEnabled  = _gridLineEnabled;
 
 - (instancetype)initWithDependency:(CCYAsixDependency)dependency {
     self = [super init];
@@ -38,7 +39,7 @@
         _formatter                       = [[NSNumberFormatter alloc] init];
         _formatter.minimumFractionDigits = 2;
 
-        _axisColor                       = UIColor.redColor;
+        _axisColor                       = UIColor.grayColor;
         _axisLineWidth                   = 1.f;
         _labelColor                      = UIColor.grayColor;
         _font = [UIFont systemFontOfSize:10];
@@ -131,6 +132,11 @@
 }
 
 - (void)generateEntities {
+    if (self.labelDisable) {
+        self.entities = @[];
+        return;
+    }
+    
     CGFloat range = fabs(self.axisMaxValue - self.axisMinValue);
     if (range == 0) {
         self.entities = @[];
@@ -156,10 +162,12 @@
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
     typeof(self) axis            = [[self.class allocWithZone:zone] init];
 
+    axis.axisLineDisabled        = self.axisLineDisabled;
     axis.axisColor               = [self.axisColor copy];
     axis.axisLineWidth           = self.axisLineWidth;
     axis.font = [self.font copy];
     axis.labelColor              = [self.labelColor copy];
+    axis.labelDisable            = self.labelDisable;
     axis.xLabelOffset            = self.xLabelOffset;
     axis.yLabelOffset            = self.yLabelOffset;
     axis.requireSize             = self.requireSize;
@@ -174,7 +182,7 @@
     axis.minMaxRangeExtraPrecent = self.minMaxRangeExtraPrecent;
     axis.labelPosition           = self.labelPosition;
     axis.dependency              = self.dependency;
-    
+
     // 最大最小值实时计算的, 无需copy;
     return axis;
 }

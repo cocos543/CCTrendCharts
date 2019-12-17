@@ -15,24 +15,26 @@
 @end
 
 @implementation CCDefaultXAxis
+@synthesize labelDisable     = _labelDisable;
 
-@synthesize axisColor       = _axisColor;
-@synthesize axisLineWidth   = _axisLineWidth;
+@synthesize axisColor        = _axisColor;
+@synthesize axisLineWidth    = _axisLineWidth;
+@synthesize axisLineDisabled = _axisLineDisabled;
 @synthesize font = _font;
-@synthesize labelColor      = _labelColor;
+@synthesize labelColor       = _labelColor;
 
-@synthesize xLabelOffset    = _xLabelOffset;
-@synthesize yLabelOffset    = _yLabelOffset;
-@synthesize requireSize     = _requireSize;
+@synthesize xLabelOffset     = _xLabelOffset;
+@synthesize yLabelOffset     = _yLabelOffset;
+@synthesize requireSize      = _requireSize;
 
-@synthesize gridColor       = _gridColor;
-@synthesize gridLineWidth   = _gridLineWidth;
-@synthesize gridLineEnabled = _gridLineEnabled;
+@synthesize gridColor        = _gridColor;
+@synthesize gridLineWidth    = _gridLineWidth;
+@synthesize gridLineEnabled  = _gridLineEnabled;
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _axisColor       = UIColor.blueColor;
+        _axisColor       = UIColor.grayColor;
         _axisLineWidth   = 1.f;
 
         _gridLineWidth   = 1.f;
@@ -83,19 +85,21 @@
 
 - (void)setTotalCount:(NSInteger)totalCount {
     self.autoXSapce = YES;
-    _totalCount = totalCount;
+    _totalCount     = totalCount;
 }
 
 #pragma mark - NSCopying
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    typeof(self) axis  = [[self.class allocWithZone:zone] init];
+    typeof(self) axis     = [[self.class allocWithZone:zone] init];
 
-    axis.axisColor     = [self.axisColor copy];
-    axis.axisLineWidth = self.axisLineWidth;
+    axis.axisLineDisabled = self.axisLineDisabled;
+    axis.axisColor        = [self.axisColor copy];
+    axis.axisLineWidth    = self.axisLineWidth;
     axis.font = [self.font copy];
-    axis.labelColor    = [self.labelColor copy];
-    axis.xLabelOffset  = self.xLabelOffset;
-    axis.yLabelOffset  = self.yLabelOffset;
+    axis.labelColor       = [self.labelColor copy];
+    axis.labelDisable     = self.labelDisable;
+    axis.xLabelOffset     = self.xLabelOffset;
+    axis.yLabelOffset     = self.yLabelOffset;
 
     if (_customRequireSize) {
         axis.requireSize = self.requireSize;

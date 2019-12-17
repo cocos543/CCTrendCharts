@@ -41,6 +41,12 @@ typedef NS_ENUM (NSUInteger, CCYAsixDependency) {
  */
 @property (nonatomic, strong) UIColor *labelColor;
 
+
+/// 禁止渲染Label
+///
+/// 默认 NO
+@property (nonatomic, assign) BOOL labelDisable;
+
 /**
  label最大行数, 支持文本多行摆放
  */
@@ -65,6 +71,12 @@ typedef NS_ENUM (NSUInteger, CCYAsixDependency) {
  轴上文案y方向偏移量, 负值表示向上偏移. x轴默认是5, y轴默认是0.
  */
 @property (nonatomic, assign) CGFloat yLabelOffset;
+
+
+/// 是否禁止绘制轴线
+///
+/// 默认 NO
+@property (nonatomic, assign) BOOL axisLineDisabled;
 
 /// 返回轴上文案区域最大需要的尺寸
 @property (nonatomic, assign, readwrite) CGSize requireSize;

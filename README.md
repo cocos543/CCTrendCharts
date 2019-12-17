@@ -54,6 +54,7 @@
 * 交易量图+指标
 * 分时图
 * 组合图
+* Yunex交易所风格
 
 ## 正在开发
  
@@ -70,7 +71,7 @@
 * 专业数据分析工具
 * 支持swift最新版本
 * 支持flutter?
- 1p
+ 
 ## 开发中的界面预览
 
 <div>
@@ -79,6 +80,7 @@
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot003.jpg"  width="30%"/>
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot004.jpg"  width="30%"/>
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot005.jpg"  width="30%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot006.jpg"  width="30%"/>
 </div>
 
 

@@ -106,6 +106,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 这是个可能会被删除的属性, 因为后期横向滚动可能从ScrollView实现改为PanGesture实现.
 @property (nonatomic, assign) UIScrollViewIndicatorStyle indicatorStyle;
 
+
+/// 显示横向滚动条
+///
+/// 默认 YES
+@property (nonatomic, assign) BOOL showsHorizontalScrollIndicator;
+
 @end
 
 NS_ASSUME_NONNULL_END

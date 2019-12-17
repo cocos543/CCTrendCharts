@@ -48,6 +48,7 @@
 		ED325857239A6C1F00E08D67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED325852239A6C1F00E08D67 /* README.md */; };
 		ED32585A239A6C4500E08D67 /* Doc.md in Resources */ = {isa = PBXBuildFile; fileRef = ED325859239A6C4500E08D67 /* Doc.md */; };
 		ED35B7522339C79B0080FF5A /* CCProtocolChartDataEntityBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED36C46923A8BBB7009C3115 /* screenshot006.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED36C46823A8BBB7009C3115 /* screenshot006.jpg */; };
 		ED41C2D323853F5A004B640E /* CCVolumeChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED41C2D123853F5A004B640E /* CCVolumeChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED41C2D423853F5A004B640E /* CCVolumeChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED41C2D223853F5A004B640E /* CCVolumeChartView.m */; };
 		ED41C2D723853F9F004B640E /* CCVolumeDataChartRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED41C2D523853F9F004B640E /* CCVolumeDataChartRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -187,6 +188,7 @@
 		ED325852239A6C1F00E08D67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		ED325859239A6C4500E08D67 /* Doc.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = Doc.md; path = ../Doc.md; sourceTree = "<group>"; };
 		ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCProtocolChartDataEntityBase.h; sourceTree = "<group>"; };
+		ED36C46823A8BBB7009C3115 /* screenshot006.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = screenshot006.jpg; path = ../screenshot006.jpg; sourceTree = "<group>"; };
 		ED41C2D123853F5A004B640E /* CCVolumeChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeChartView.h; sourceTree = "<group>"; };
 		ED41C2D223853F5A004B640E /* CCVolumeChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCVolumeChartView.m; sourceTree = "<group>"; };
 		ED41C2D523853F9F004B640E /* CCVolumeDataChartRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCVolumeDataChartRenderer.h; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 		EDABB2422320E46D00C65D3F = {
 			isa = PBXGroup;
 			children = (
+				ED36C46823A8BBB7009C3115 /* screenshot006.jpg */,
 				ED0B388323A3A87C0064B265 /* screenshot005.jpg */,
 				ED65BCF323A25CE7007160D7 /* screenshot004.jpg */,
 				ED32584F239A6C1F00E08D67 /* screenshot001.jpg */,
@@ -792,6 +795,7 @@
 				ED0B388423A3A87D0064B265 /* screenshot005.jpg in Resources */,
 				ED325857239A6C1F00E08D67 /* README.md in Resources */,
 				ED32584E239A6BF600E08D67 /* LICENSE in Resources */,
+				ED36C46923A8BBB7009C3115 /* screenshot006.jpg in Resources */,
 				ED7B949C23A726A10056C0D3 /* screenshot002.jpg in Resources */,
 				ED32585A239A6C4500E08D67 /* Doc.md in Resources */,
 				EDC59566239FC58D002D362B /* screenshot003.jpg in Resources */,

@@ -32,7 +32,11 @@
         if (@available(iOS 13.0, *)) {
             _impactFeedback = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight];
         } else {
-            _impactFeedback = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight];
+            if (@available(iOS 10.0, *)) {
+                _impactFeedback = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight];
+            } else {
+                // Fallback on earlier versions
+            }
         }
         _intensity = 0.5;
     }
