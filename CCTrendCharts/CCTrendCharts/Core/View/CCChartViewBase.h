@@ -4,6 +4,8 @@
 //
 //  基类视图, 所有不同的趋势图都将继承该类
 //
+//  框架部分设计灵感来自Charts, 感谢.
+//
 //  Created by Cocos on 2019/9/6.
 //  Copyright © 2019 Cocos. All rights reserved.
 //
