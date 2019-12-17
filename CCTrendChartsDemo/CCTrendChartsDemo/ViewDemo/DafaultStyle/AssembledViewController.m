@@ -10,17 +10,6 @@
 
 @interface AssembledViewController ()
 
-@property (nonatomic, strong) CCKLineChartView *klineView;
-
-@property (nonatomic, strong) CCVolumeChartView *volumeView;
-
-@property (nonatomic, strong) CCLineChartView *lineView;
-
-@property (nonatomic, strong) CCAssembledChartView *assembleView;
-
-@property (nonatomic, strong) UIScrollView *scrollView;
-
-
 @end
 
 @implementation AssembledViewController
@@ -34,14 +23,7 @@
     [self configVolumeView];
     [self configLineView];
 
-    // 利用组合视图实现多视图关联
-    CCAssembledChartView *assView = [[CCAssembledChartView alloc] initWithFrame:CGRectMake(5, 0, SCREEN_WIDTH - 10, 0)];
-    self.assembleView = assView;
-    [assView configChartViews:@[self.klineView, self.volumeView, self.lineView]];
-    
-    self.scrollView = [[UIScrollView alloc] init];
-    [self.scrollView addSubview:self.assembleView];
-    [self.contentView addSubview:self.scrollView];
+    [self configAssmbleView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -49,13 +31,13 @@
 }
 
 - (void)viewDidLayoutSubviews {
-    self.scrollView.contentSize = self.assembleView.bounds.size;
+    self.scrollView.contentSize   = self.assembleView.bounds.size;
     self.scrollView.scrollEnabled = YES;
 }
 
 - (IBAction)segemntAction:(UISegmentedControl *)sender {
-    NSMutableArray *arr = @[self.klineView, self.volumeView, self.lineView].mutableCopy;
-    
+    NSMutableArray *arr   = @[self.klineView, self.volumeView, self.lineView].mutableCopy;
+
     NSMutableArray *views = @[arr[sender.selectedSegmentIndex]].mutableCopy;
     for (int i = 0; i < arr.count; i++) {
         if (i == sender.selectedSegmentIndex) {
@@ -63,15 +45,25 @@
         }
         [views addObject:arr[i]];
     }
-    
+
     [self.assembleView removeFromSuperview];
     self.assembleView = [[CCAssembledChartView alloc] initWithFrame:CGRectMake(5, 0, SCREEN_WIDTH - 10, 0)];
     [self.scrollView addSubview:self.assembleView];
-    
-    
+
     [self.assembleView configChartViews:views];
-    
+
     [self.assembleView setNeedsPrepareChart];
+}
+
+- (void)configAssmbleView {
+    // 利用组合视图实现多视图关联
+    CCAssembledChartView *assView = [[CCAssembledChartView alloc] initWithFrame:CGRectMake(5, 0, SCREEN_WIDTH - 10, 0)];
+    self.assembleView = assView;
+    [assView configChartViews:@[self.klineView, self.volumeView, self.lineView]];
+
+    self.scrollView   = [[UIScrollView alloc] init];
+    [self.scrollView addSubview:self.assembleView];
+    [self.contentView addSubview:self.scrollView];
 }
 
 - (void)configKlineView {
@@ -208,18 +200,12 @@
     self.lineView                   = lineView;
     lineView.clipEdgeInsets         = UIEdgeInsetsMake(24, 24, 5, 24);
     lineView.dataSource             = self;
+    lineView.delegate               = self;
     lineView.backgroundColor        = [UIColor stringToColor:@"#1a1a1a" opacity:1];
 
     lineView.leftAxis               = [self.klineView.leftAxis copy];
     lineView.rightAxis              = [self.klineView.rightAxis copy];
     lineView.xAxis                  = [self.klineView.xAxis copy];
-    lineView.xAxis.startMargin      = 0;
-    lineView.xAxis.endMargin        = 0;
-
-    // 重新把轴的数据提供者关联到渲染器上
-    lineView.leftAxisRenderer.axis  = lineView.leftAxis;
-    lineView.rightAxisRenderer.axis = lineView.rightAxis;
-    lineView.xAxisRenderer.axis     = lineView.xAxis;
 
     [lineView setNeedsPrepareChart];
 }
@@ -247,11 +233,12 @@
                        });
 
         // 这里延迟执行代码, 是为了避免当网络响应太快时, UI还在尝试调用newEventWithBlock, 这样token标记为yes的话, 会导致事件多次触发.(后续可能会优化一下)
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                           // 标记事件完成
-                           [self.eventManager done];
-                       });
+        [self.eventManager doneDelay:1];
     }] resume];
+}
+
+- (NSString *)getXAxisLabelFormat {
+    return @"yyyy-MM-dd";
 }
 
 #pragma mark - CCChartViewDataSource
@@ -263,7 +250,7 @@
     NSMutableArray *xVals      = @[].mutableCopy;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 
-    formatter.dateFormat = @"yyyy-MM-dd";
+    formatter.dateFormat = [self getXAxisLabelFormat];
 
     NSMutableArray *entities   = @[].mutableCopy;
 
@@ -273,7 +260,7 @@
         CCChartDataEntity *e;
         if (chartView == self.lineView) {
             e = [[CCChartDataEntity alloc] initWithValue:[items[i][5] doubleValue] xIndex:i data:nil];
-        }else {
+        } else {
             CCKLineDataEntity *entity = [[CCKLineDataEntity alloc] initWithValue:0 xIndex:i data:nil];
             if (chartView == self.volumeView) {
                 entity = [[CCVolumeDataEntity alloc] initWithValue:0 xIndex:i data:nil];
@@ -290,7 +277,7 @@
             entity.amount       = [items[i][9] doubleValue];
             e = entity;
         }
-        
+
         [entities addObject:e];
         [xVals addObject:[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:e.timeInt]]];
 
@@ -307,7 +294,7 @@
         CCVolumeChartDataSet *dataSet = [[CCVolumeChartDataSet alloc] initWithVals:entities withName:nil];
         // 交易量数据集可以直接关联到CCKLineChartData中.
         chartData = [[CCKLineChartData alloc] initWithXVals:xVals dataSets:@[dataSet]];
-    }else if (chartView == self.lineView) {
+    } else if (chartView == self.lineView) {
         CCLineChartDataSet *dataSet = [[CCLineChartDataSet alloc] initWithVals:entities withName:nil];
         chartData = [[CCChartData alloc] initWithXVals:xVals dataSets:@[dataSet]];
     }
@@ -320,12 +307,12 @@
 #pragma CCChartViewDelegate
 // 下面代码演示如何响应框架请求, 加载下一页数据
 - (void)chartViewExpectLoadNextPage:(CCChartViewBase *)view eventManager:(CCSingleEventManager *)eventManager {
+    NSLog(@"%@", view);
     // 记录好本次事件的管理器
     self.eventManager = eventManager;
     // 加载下一个时间点的数据, 当前演示的是日K线, 所以时间为下一日
     NSInteger time = self.minTime - (60 * 60 * 24);
     [self loadDataWithStokeCode:self.codeTextField.text time:time * 1000];
 }
-
 
 @end

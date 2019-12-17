@@ -15,10 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KLineViewController : BaseViewController <CCChartViewDataSource, CCChartViewDelegate>
 
-// 这里把数据集和实体的创建拆出来是为了方便子demo中的其他子类实现自己的对应类型的数据
+// 下面几个函数是把部分变量值拆出来, 是为了方便子demo中的其他子类实现自己的对应类型的数据, 方便代码复用, 除此之外没有其他任何含义.
 - (id<CCProtocolChartDataSet>)getDataSetFrom:(NSArray *)entities;
 
 - (id<CCProtocolChartDataEntityBase>)getEntityWith:(NSInteger)xIndex;
+
+- (NSString *)getXAxisLabelFormat;
+
 
 @property (nonatomic, strong) CCKLineChartView *chartView;
 

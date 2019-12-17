@@ -11,6 +11,7 @@
 #import "VolumeViewController.h"
 #import "RealTimeLineViewController.h"
 #import "AssembledViewController.h"
+#import "YunexViewController.h"
 
 #import "NetworkHelper.h"
 
@@ -78,8 +79,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIViewController *vc;
     if (indexPath.section == 0) {
-        UIViewController *vc;
         if (indexPath.row == 0) {
             vc = [[KLineViewController alloc] init];
         }else if (indexPath.row == 1) {
@@ -90,10 +91,17 @@
             vc = [[AssembledViewController alloc] init];
         }
         vc.title = self.titleArray[indexPath.row];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else {
         
+    }else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            vc = [[YunexViewController alloc] init];
+        }
+        vc.title = self.demoArray[indexPath.row];
     }
+    if (vc) {
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
     
 }
 

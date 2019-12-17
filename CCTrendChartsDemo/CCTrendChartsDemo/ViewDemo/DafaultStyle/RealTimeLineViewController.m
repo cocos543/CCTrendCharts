@@ -88,10 +88,7 @@
                        });
 
         // 这里延迟执行代码, 是为了避免当网络响应太快时, UI还在尝试调用newEventWithBlock, 这样token标记为yes的话, 会导致事件多次触发.(后续可能会优化一下)
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                           // 标记事件完成
-                           [self.eventManager done];
-                       });
+        [self.eventManager doneDelay:1];
     }] resume];
 }
 
@@ -154,16 +151,16 @@
     CCKLineChartData *chartData = [[CCKLineChartData alloc] initWithXVals:xVals dataSets:@[dataSet]];
 
     // 这里需要手动计算出右轴涨跌幅的最大最小值, 计算原理就是先得到左y轴的最大最小值, 然后查看数据实体里面对应价格和涨跌幅, 再推算出
-    
+
     // 先得到左轴信息
     [self.chartView.leftAxis calculateMinMax:chartData];
     CGFloat leftMin = self.chartView.leftAxis.axisMinValue;
     CGFloat leftMax = self.chartView.leftAxis.axisMaxValue;
-    
+
     if (entities.count) {
         // 再随便找一个数据实体, 计算出前平价价格多少, 然后就可以轻松算出涨跌幅了
         CGFloat originalVal = entities[0].opening - entities[0].changing;
-        
+
         // 然后就可以计算出leftMin, leftMax对应的涨跌幅是多少了.
         self.chartView.rightAxis.axisMinValue = (leftMin - originalVal) / originalVal;
         self.chartView.rightAxis.axisMaxValue = (leftMax - originalVal) / originalVal;

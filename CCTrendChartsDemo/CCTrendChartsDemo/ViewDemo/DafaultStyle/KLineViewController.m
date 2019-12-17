@@ -123,10 +123,7 @@
                        });
 
         // 这里延迟执行代码, 是为了避免当网络响应太快时, UI还在尝试调用newEventWithBlock, 这样token标记为yes的话, 会导致事件多次触发.(后续可能会优化一下)
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                           // 标记事件完成
-                           [self.eventManager done];
-                       });
+        [self.eventManager doneDelay:1];
     }] resume];
 }
 
@@ -138,6 +135,10 @@
     return [[CCKLineDataEntity alloc] initWithValue:0 xIndex:xIndex data:nil];
 }
 
+- (NSString *)getXAxisLabelFormat {
+    return @"yyyy-MM-dd";
+}
+
 #pragma mark - CCChartViewDataSource
 // 下面代码演示如何构建数据
 - (CCChartData *)chartDataInView:(CCChartViewBase *)chartView {
@@ -147,7 +148,7 @@
     NSMutableArray *xVals      = @[].mutableCopy;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 
-    formatter.dateFormat = @"yyyy-MM-dd";
+    formatter.dateFormat = [self getXAxisLabelFormat];
 
     NSMutableArray *entities   = @[].mutableCopy;
 

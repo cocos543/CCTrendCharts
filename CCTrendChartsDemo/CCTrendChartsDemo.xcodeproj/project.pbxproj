@@ -17,6 +17,8 @@
 		ED325844239A65EC00E08D67 /* CCTrendCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED325842239A65EC00E08D67 /* CCTrendCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED4CA364239F4D3300A7F2DE /* KLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA363239F4D3300A7F2DE /* KLineViewController.m */; };
 		ED742B76239F4E0200A14F66 /* KLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED742B75239F4E0200A14F66 /* KLineViewController.xib */; };
+		ED7B94A223A7618A0056C0D3 /* YunexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7B94A023A7618A0056C0D3 /* YunexViewController.m */; };
+		ED7B94A323A7618A0056C0D3 /* YunexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7B94A123A7618A0056C0D3 /* YunexViewController.xib */; };
 		ED85B18C23A3418D004865C0 /* AssembledViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85B18A23A3418D004865C0 /* AssembledViewController.m */; };
 		ED85B18D23A3418D004865C0 /* AssembledViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED85B18B23A3418D004865C0 /* AssembledViewController.xib */; };
 		EDC5955F239F88DB002D362B /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5955E239F88DB002D362B /* NetworkHelper.m */; };
@@ -25,6 +27,7 @@
 		EDF56B4923A08E5400858765 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF56B4823A08E5400858765 /* BaseViewController.m */; };
 		EDF56B4D23A0EA5300858765 /* RealTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF56B4B23A0EA5300858765 /* RealTimeLineViewController.m */; };
 		EDF56B4E23A0EA5300858765 /* RealTimeLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF56B4C23A0EA5300858765 /* RealTimeLineViewController.xib */; };
+		EDF8342623A7935D00F0FCB2 /* YunexCursorRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF8342523A7935D00F0FCB2 /* YunexCursorRenderer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +59,9 @@
 		ED4CA362239F4D3300A7F2DE /* KLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLineViewController.h; sourceTree = "<group>"; };
 		ED4CA363239F4D3300A7F2DE /* KLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLineViewController.m; sourceTree = "<group>"; };
 		ED742B75239F4E0200A14F66 /* KLineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLineViewController.xib; sourceTree = "<group>"; };
+		ED7B949F23A7618A0056C0D3 /* YunexViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YunexViewController.h; sourceTree = "<group>"; };
+		ED7B94A023A7618A0056C0D3 /* YunexViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YunexViewController.m; sourceTree = "<group>"; };
+		ED7B94A123A7618A0056C0D3 /* YunexViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YunexViewController.xib; sourceTree = "<group>"; };
 		ED85B18923A3418D004865C0 /* AssembledViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssembledViewController.h; sourceTree = "<group>"; };
 		ED85B18A23A3418D004865C0 /* AssembledViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssembledViewController.m; sourceTree = "<group>"; };
 		ED85B18B23A3418D004865C0 /* AssembledViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssembledViewController.xib; sourceTree = "<group>"; };
@@ -70,6 +76,8 @@
 		EDF56B4A23A0EA5300858765 /* RealTimeLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealTimeLineViewController.h; sourceTree = "<group>"; };
 		EDF56B4B23A0EA5300858765 /* RealTimeLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTimeLineViewController.m; sourceTree = "<group>"; };
 		EDF56B4C23A0EA5300858765 /* RealTimeLineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RealTimeLineViewController.xib; sourceTree = "<group>"; };
+		EDF8342423A7935D00F0FCB2 /* YunexCursorRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YunexCursorRenderer.h; sourceTree = "<group>"; };
+		EDF8342523A7935D00F0FCB2 /* YunexCursorRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YunexCursorRenderer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +140,15 @@
 		ED4CA365239F4D3A00A7F2DE /* ViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				ED7B949E23A75F590056C0D3 /* YunexStyle */,
+				ED7B949D23A75F380056C0D3 /* DafaultStyle */,
+			);
+			path = ViewDemo;
+			sourceTree = "<group>";
+		};
+		ED7B949D23A75F380056C0D3 /* DafaultStyle */ = {
+			isa = PBXGroup;
+			children = (
 				EDF56B4723A08E5400858765 /* BaseViewController.h */,
 				EDF56B4823A08E5400858765 /* BaseViewController.m */,
 				ED4CA362239F4D3300A7F2DE /* KLineViewController.h */,
@@ -147,7 +164,19 @@
 				ED85B18A23A3418D004865C0 /* AssembledViewController.m */,
 				ED85B18B23A3418D004865C0 /* AssembledViewController.xib */,
 			);
-			path = ViewDemo;
+			path = DafaultStyle;
+			sourceTree = "<group>";
+		};
+		ED7B949E23A75F590056C0D3 /* YunexStyle */ = {
+			isa = PBXGroup;
+			children = (
+				EDF8342423A7935D00F0FCB2 /* YunexCursorRenderer.h */,
+				EDF8342523A7935D00F0FCB2 /* YunexCursorRenderer.m */,
+				ED7B949F23A7618A0056C0D3 /* YunexViewController.h */,
+				ED7B94A023A7618A0056C0D3 /* YunexViewController.m */,
+				ED7B94A123A7618A0056C0D3 /* YunexViewController.xib */,
+			);
+			path = YunexStyle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7B94A323A7618A0056C0D3 /* YunexViewController.xib in Resources */,
 				ED325834239A5E8100E08D67 /* LaunchScreen.storyboard in Resources */,
 				ED325831239A5E8100E08D67 /* Assets.xcassets in Resources */,
 				EDF56B4623A08DD700858765 /* VolumeViewController.xib in Resources */,
@@ -225,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF8342623A7935D00F0FCB2 /* YunexCursorRenderer.m in Sources */,
 				ED32583F239A5FB500E08D67 /* MainTableViewController.m in Sources */,
 				EDF56B4D23A0EA5300858765 /* RealTimeLineViewController.m in Sources */,
 				ED325826239A5E8000E08D67 /* AppDelegate.m in Sources */,
@@ -233,6 +264,7 @@
 				ED325837239A5E8100E08D67 /* main.m in Sources */,
 				ED4CA364239F4D3300A7F2DE /* KLineViewController.m in Sources */,
 				EDF56B4923A08E5400858765 /* BaseViewController.m in Sources */,
+				ED7B94A223A7618A0056C0D3 /* YunexViewController.m in Sources */,
 				EDC5955F239F88DB002D362B /* NetworkHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
