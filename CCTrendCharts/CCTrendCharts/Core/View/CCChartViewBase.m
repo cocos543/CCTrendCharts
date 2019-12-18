@@ -205,9 +205,9 @@
     return _legendLayer;
 }
 
-- (void)setSync_panGesutreEnable:(BOOL)sync_panGesutreEnable {
-    _panGesutreEnable = sync_panGesutreEnable;
-    self.scrollView.scrollEnabled = _panGesutreEnable;
+- (BOOL)sync_panGesutreEnable {
+    // 如果当前滚动视图被拖动或者正在减速, 说名当前视图是主视图, 否则就是从视图了.
+    return self.scrollView.isDragging || self.scrollView.isDecelerating;
 }
 
 - (void)setSync_pinchGesutreEnable:(BOOL)sync_pinchGesutreEnable {

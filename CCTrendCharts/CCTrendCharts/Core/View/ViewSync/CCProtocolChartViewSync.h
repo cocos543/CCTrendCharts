@@ -34,14 +34,14 @@
 @property (nonatomic, strong) id sync_longPressObservable;
 
 /// 缩放手势, 默认YES
-@property (nonatomic, assign, getter = isPinchGestureEnabled) BOOL sync_pinchGesutreEnable;
+@property (nonatomic, assign) BOOL sync_pinchGesutreEnable;
 
 /// 拖动手势, 默认YES
 ///
 /// 禁用时, 可以避免滚动事件重复传递给其他人
-@property (nonatomic, assign, getter = isPanGestureEnabled) BOOL sync_panGesutreEnable;
+@property (nonatomic, assign) BOOL sync_panGesutreEnable;
 
 /// 长按手势, 默认YES
-@property (nonatomic, assign, getter = isLongPressGestureEnabled) BOOL sync_longPressGesutreEnable;
+@property (nonatomic, assign) BOOL sync_longPressGesutreEnable;
 
 @end

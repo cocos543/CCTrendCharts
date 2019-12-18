@@ -300,14 +300,12 @@
     }
 
     // 创建数据整体: x轴信息 + 包含y信息的数据集数组
-
     return chartData;
 }
 
 #pragma CCChartViewDelegate
 // 下面代码演示如何响应框架请求, 加载下一页数据
 - (void)chartViewExpectLoadNextPage:(CCChartViewBase *)view eventManager:(CCSingleEventManager *)eventManager {
-    NSLog(@"%@", view);
     // 记录好本次事件的管理器
     self.eventManager = eventManager;
     // 加载下一个时间点的数据, 当前演示的是日K线, 所以时间为下一日
