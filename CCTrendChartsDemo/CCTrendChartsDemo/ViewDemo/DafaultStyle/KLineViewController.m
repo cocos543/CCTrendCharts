@@ -50,7 +50,6 @@
     //view.xAxis.formatter = [[CCXAxisFixedFormatter alloc] init];
     view.xAxis.formatter.modulusStartIndex = 0;
     view.xAxis.yLabelOffset                = 0;
-    view.xAxis.axisColor                   = [UIColor clearColor];
     view.xAxis.labelColor                  = [UIColor stringToColor:@"#585858" opacity:1];
 
     view.cursor.labelColor                 = [UIColor stringToColor:@"#c8c6c2" opacity:1];

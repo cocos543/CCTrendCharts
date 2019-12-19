@@ -7,12 +7,22 @@
 //
 
 #import "CCLineDataChartRenderer.h"
+#import "CCRendererBase+LayerCache.h"
 
 @interface CCLineDataChartRenderer ()
 
 @end
 
 @implementation CCLineDataChartRenderer
+- (instancetype)initWithViewHandler:(CCChartViewPixelHandler *)viewPixelHandler transform:(CCChartTransformer *)transformer DataProvider:(id<CCProtocolChartDataProvider>)dataProvider {
+    self = [super initWithViewHandler:viewPixelHandler transform:transformer DataProvider:dataProvider];
+    if (self) {
+        [self cc_registerLayerMaker:^__kindof CALayer *_Nonnull {
+            return CAShapeLayer.layer;
+        } forKey:NSStringFromClass(CAShapeLayer.class)];
+    }
+    return self;
+}
 
 /// 根据传入的类型, 绘制直线或者贝塞尔线
 /// @param path 贝塞尔对象
@@ -32,12 +42,12 @@
 #pragma mark - CCProtocolDataChartRenderer
 
 - (void)renderData:(CALayer *)contentLayer {
-    [self removeAllLayersFromSuperLayer];
+    [self cc_releaseAllLayerBackToBufferPool];
 
     NSArray <CCLineChartDataSet *> *array = [self.dataProvider.data dataSetWithName:kCCNameLineDataSet];
 
     // 每一个dataSet都对应一条完整的线型, 这里直接遍历dataSet数组进行渲染
-    // 每一个dataset需要配置2个layer, 分别绘制填充内容和线条内容.
+    // 每一个dataSet需要配置2个layer, 分别绘制填充内容和线条内容.
     for (int i = 0; i < array.count; i++) {
         CCLineChartDataSet *dataSet = array[i];
 
@@ -45,14 +55,9 @@
         UIBezierPath *fillPath      = UIBezierPath.bezierPath;
 
         // 线形图层
-        CAShapeLayer *layer         = [self requestLayersCacheByIndex:i * 2 layerClass:^CALayer *{
-            return CAShapeLayer.layer;
-        }];
-
+        CAShapeLayer *layer         = [self cc_requestLayersCacheWithMakerKey:NSStringFromClass(CAShapeLayer.class)];
         // 填充图层
-        CAShapeLayer *fillLayer = [self requestLayersCacheByIndex:i * 2 + 1 layerClass:^CALayer *{
-            return CAShapeLayer.layer;
-        }];
+        CAShapeLayer *fillLayer     = [self cc_requestLayersCacheWithMakerKey:NSStringFromClass(CAShapeLayer.class)];
 
         layer.masksToBounds     = YES;
         layer.frame             = self.viewPixelHandler.contentRect;

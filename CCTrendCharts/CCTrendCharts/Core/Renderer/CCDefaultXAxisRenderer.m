@@ -7,6 +7,8 @@
 //
 
 #import "CCDefaultXAxisRenderer.h"
+#import "CCRendererBase+LayerCache.h"
+@import CoreText.CTFont;
 
 @implementation CCDefaultXAxisRenderer
 
@@ -14,23 +16,26 @@
     self = [super initWithViewHandler:viewPixelHandler transform:transformer DataProvider:nil];
     if (self) {
         _axis = axis;
+
+        [self cc_registerLayerMaker:^__kindof CALayer *_Nonnull {
+            return CAShapeLayer.layer;
+        } forKey:NSStringFromClass(CAShapeLayer.class)];
+
+        [self cc_registerLayerMaker:^__kindof CALayer *_Nonnull {
+            return CATextLayer.layer;
+        } forKey:NSStringFromClass(CATextLayer.class)];
     }
 
     return self;
 }
 
 - (void)beginRenderingInLayer:(CALayer *)contentLayer {
+    [self cc_releaseAllLayerBackToBufferPool];
+    [self.axis.formatter calcModulusWith:self.viewPixelHandler.contentWidth xSpace:[self.transformer distanceBetweenSpace:1] labelSize:self.axis.requireSize];
+
     [self renderAxisLine:contentLayer];
     [self renderGridLines:contentLayer];
     [self renderLabels:contentLayer];
-
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGImageRef img   = CGBitmapContextCreateImage(ctx);
-
-    // 这里使用__bridge_transfer关键字, img引用计数-1, 所以不需要再调用release方法了
-    [CALayer quickUpdateLayer:^{
-        contentLayer.contents = (__bridge_transfer id)img;
-    }];
 }
 
 - (void)renderAxisLine:(CALayer *)contentLayer {
@@ -38,17 +43,22 @@
         return;
     }
 
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CAShapeLayer *layer = [self cc_requestLayersCacheWithMakerKey:NSStringFromClass(CAShapeLayer.class)];
+    [CALayer quickUpdateLayer:^{
+        layer.frame         = self.viewPixelHandler.contentRect;
+        [contentLayer addSublayer:layer];
+    }];
 
-    CGContextSaveGState(ctx);
-    {
-        CGContextSetStrokeColorWithColor(ctx, self.axis.axisColor.CGColor);
-        CGContextSetLineWidth(ctx, self.axis.axisLineWidth);
-        CGContextMoveToPoint(ctx, self.viewPixelHandler.contentLeft, self.viewPixelHandler.contentBottom);
-        CGContextAddLineToPoint(ctx, self.viewPixelHandler.contentRight, self.viewPixelHandler.contentBottom);
-        CGContextStrokePath(ctx);
-    }
-    CGContextRestoreGState(ctx);
+    UIBezierPath *path = UIBezierPath.bezierPath;
+    [path moveToPoint:[contentLayer convertPoint:CGPointMake(self.viewPixelHandler.contentLeft, self.viewPixelHandler.contentBottom) toLayer:layer]];
+    [path addLineToPoint:[contentLayer convertPoint:CGPointMake(self.viewPixelHandler.contentRight, self.viewPixelHandler.contentBottom) toLayer:layer]];
+
+    [CALayer quickUpdateLayer:^{
+        layer.masksToBounds = YES;
+        layer.strokeColor   = self.axis.axisColor.CGColor;
+        layer.lineWidth     = self.axis.axisLineWidth;
+        layer.path = path.CGPath;
+    }];
 }
 
 - (void)renderGridLines:(CALayer *)contentLayer {
@@ -56,77 +66,72 @@
         return;
     }
 
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CAShapeLayer *layer = [self cc_requestLayersCacheWithMakerKey:NSStringFromClass(CAShapeLayer.class)];
+    [CALayer quickUpdateLayer:^{
+        layer.frame         = self.viewPixelHandler.contentRect;
+        [contentLayer addSublayer:layer];
+    }];
 
-    CGContextSaveGState(ctx);
-    {
-        CGContextSetStrokeColorWithColor(ctx, self.axis.gridColor.CGColor);
-        CGContextSetLineWidth(ctx, self.axis.gridLineWidth);
-        CGFloat yPos = 0.f;
-        for (int i = 0; i < self.axis.entities.count; i++) {
-            CGPoint position = CGPointMake(i, 0);
-            position = [self.transformer pointToPixel:position forAnimationPhaseY:1];
-            yPos     = self.viewPixelHandler.contentBottom;
-            if (position.x > self.viewPixelHandler.contentLeft && position.x < self.viewPixelHandler.contentRight) {
-                if ([self.axis.formatter needToDrawLabelAt:i]) {
-                    CGContextMoveToPoint(ctx, position.x, yPos);
-                    CGContextAddLineToPoint(ctx, position.x, self.viewPixelHandler.contentTop);
-                }
+    UIBezierPath *path = UIBezierPath.bezierPath;
+    for (int i = 0; i < self.axis.entities.count; i++) {
+        CGPoint position = CGPointMake(i, 0);
+        position = [self.transformer pointToPixel:position forAnimationPhaseY:1];
+        if (position.x > self.viewPixelHandler.contentLeft && position.x < self.viewPixelHandler.contentRight) {
+            if ([self.axis.formatter needToDrawLabelAt:i]) {
+                [path moveToPoint:[contentLayer convertPoint:CGPointMake(position.x, self.viewPixelHandler.contentBottom) toLayer:layer]];
+                [path addLineToPoint:[contentLayer convertPoint:CGPointMake(position.x, self.viewPixelHandler.contentTop) toLayer:layer]];
             }
         }
     }
 
-    CGContextStrokePath(ctx);
-
-    CGContextRestoreGState(ctx);
+    [CALayer quickUpdateLayer:^{
+        layer.masksToBounds = YES;
+        layer.strokeColor   = self.axis.gridColor.CGColor;
+        layer.lineWidth     = self.axis.gridLineWidth;
+        layer.path = path.CGPath;
+        [contentLayer addSublayer:layer];
+    }];
 }
 
 - (void)renderLabels:(CALayer *)contentLayer {
     if (self.axis.labelDisable) {
         return;
     }
-    
-    [self.axis.formatter calcModulusWith:self.viewPixelHandler.contentWidth xSpace:[self.transformer distanceBetweenSpace:1] labelSize:self.axis.requireSize];
 
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    // 把文案绘制在x轴底部
+    CGFloat yPos = 0.f;
+    if (self.axis.labelPosition == CCXAxisLabelPositionBottom) {
+        yPos = self.viewPixelHandler.contentBottom + self.axis.yLabelOffset;
 
-    CGContextSaveGState(ctx);
-    {
-        CGContextSetStrokeColorWithColor(ctx, self.axis.axisColor.CGColor);
-        CGContextSetLineWidth(ctx, self.axis.axisLineWidth);
+        for (int i = 0; i < self.axis.entities.count; i++) {
+            CGPoint position = CGPointMake(i, 0);
+            position = [self.transformer pointToPixel:position forAnimationPhaseY:1];
 
-        // 把文案绘制在x轴底部
-        CGFloat yPos = 0.f;
-        if (self.axis.labelPosition == CCXAxisLabelPositionBottom) {
-            yPos = self.viewPixelHandler.contentBottom + self.axis.yLabelOffset;
+            // 只绘制可视区域内的元素
+            if (position.x >= self.viewPixelHandler.contentLeft && position.x <= self.viewPixelHandler.contentRight) {
+                if ([self.axis.formatter needToDrawLabelAt:i]) {
+                    CATextLayer *layer = [self cc_requestLayersCacheWithMakerKey:NSStringFromClass(CATextLayer.class)];
 
-            for (int i = 0; i < self.axis.entities.count; i++) {
-                CGPoint position = CGPointMake(i, 0);
-                position = [self.transformer pointToPixel:position forAnimationPhaseY:1];
+                    NSString *text     = self.axis.entities[i];
+                    text = [self.axis.formatter stringForIndex:i origin:text];
+                    [CALayer quickUpdateLayer:^{
+                        layer.masksToBounds = YES;
+                        layer.font          = (__bridge CTFontRef)self.axis.font;
+                        layer.fontSize        = self.axis.font.pointSize;
+                        layer.foregroundColor = self.axis.labelColor.CGColor;
+                        layer.contentsScale   = CCBaseUtility.currentScale;
+                        layer.alignmentMode   = kCAAlignmentCenter;
 
-                // 只绘制可视区域内的元素
-                if (position.x >= self.viewPixelHandler.contentLeft && position.x <= self.viewPixelHandler.contentRight) {
-                    CGContextMoveToPoint(ctx, position.x, yPos);
-                    CGContextAddLineToPoint(ctx, position.x, yPos - 5);
-                    //NSLog(@"x轴渲染层: 正在绘制第%@个中心轴地基, 坐标(%@,%@)", @(i), @(position.x), @(yPos));
+                        [text drawTextInLayer:layer point:CGPointMake(position.x, yPos) anchor:CGPointMake(0.5, 0) attributes:@{ NSFontAttributeName: self.axis.font, NSForegroundColorAttributeName: self.axis.labelColor }];
 
-                    if ([self.axis.formatter needToDrawLabelAt:i]) {
-                        NSString *text = self.axis.entities[i];
-                        text = [self.axis.formatter stringForIndex:i origin:text];
-
-                        [text drawTextIn:ctx x:position.x y:yPos anchor:CGPointMake(0.5, 0) attributes:@{ NSFontAttributeName: self.axis.font, NSForegroundColorAttributeName: self.axis.labelColor }];
-                    }
-                } else {
-                    //NSLog(@"x轴渲染层: 忽略绘制第%@个中心轴地基, 坐标(%@,%@)", @(i), @(position.x), @(yPos));
+                        [contentLayer addSublayer:layer];
+                    }];
                 }
             }
-        } else if (self.axis.labelPosition == CCXAxisLabelPositionTop) {
-            // 文案绘制在x轴顶部
         }
-
-        CGContextStrokePath(ctx);
+    } else if (self.axis.labelPosition == CCXAxisLabelPositionTop) {
+        // 文案绘制在x轴顶部
     }
-    CGContextRestoreGState(ctx);
 }
 
 @end

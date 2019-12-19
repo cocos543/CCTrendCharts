@@ -170,7 +170,7 @@
     if (!_xAxisLayer) {
         _xAxisLayer = CALayer.layer;
 
-        // X轴渲染层放到滚动视图的最下层, 这样做是方便x轴上元素的滚动
+        // X轴渲染层放到滚动视图的最下层
         [self.layer addSublayer:_xAxisLayer];
     }
 
@@ -485,19 +485,12 @@
         return;
     }
 
-    UIGraphicsBeginImageContextWithOptions(self.viewPixelHandler.viewFrame.size, NO, 0);
-
     [self.leftAxisRenderer beginRenderingInLayer:self.yAxisLayer];
     [self.rightAxisRenderer beginRenderingInLayer:self.yAxisLayer];
 
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-
-    // 这里后续可以优化, 毕竟使用Clear的效率还没有直接创建一个新画图高..
-    CGContextClearRect(ctx, CGContextGetClipBoundingBox(ctx));
 
     [self.xAxisRenderer beginRenderingInLayer:self.xAxisLayer];
 
-    UIGraphicsEndImageContext();
 
     // 单独渲染数据层
     [self dataRendering];

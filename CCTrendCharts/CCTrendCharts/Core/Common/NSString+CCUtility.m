@@ -28,4 +28,16 @@
     UIGraphicsPopContext();
 }
 
+- (void)drawTextInLayer:(CATextLayer *)layer point:(CGPoint)point anchor:(CGPoint)anchor attributes:(NSDictionary<NSAttributedStringKey,id> *)attr {
+
+    // 获取文本尺寸
+    CGSize labelSize = [self sizeWithAttributes:attr];
+    
+    point.x = point.x - labelSize.width * anchor.x;
+    point.y = point.y - labelSize.height * anchor.y;
+    
+    layer.frame = CGRectMake(point.x, point.y, labelSize.width, labelSize.height);
+    layer.string = self;
+}
+
 @end

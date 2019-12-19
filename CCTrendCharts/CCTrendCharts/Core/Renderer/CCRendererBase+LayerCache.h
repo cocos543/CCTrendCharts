@@ -16,18 +16,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 提供Layer缓存池, 用于快速获取layer
 @interface CCRendererBase (LayerCache)
+/// 注册图层生成器
+/// @param maker 图层生成器
+/// @param key 标记, 用于获取图层生成器
+- (void)cc_registerLayerMaker:(nonnull LayerMaker)maker forKey:(NSString *)key;
 
+/// 请求获取缓冲池中的图层
+/// @param key 指定
+- (__kindof CALayer *)cc_requestLayersCacheWithMakerKey:(NSString *)key;
 
-
-/// 请求获取指定索引下的图层
-/// @param index 索引
-/// @param maker 创建实例的block, 需要时才会被调用
-- (__kindof CALayer *)requestLayersCacheByIndex:(NSInteger)index layerClass:(LayerMaker)maker;
-
-- (void)removeAllLayersFromSuperLayer;
-
-/// 图层池, 可以动态添加新的图层
-@property (nonatomic, readonly) NSMutableArray<__kindof CALayer *> *layersCache;
+/// 释放所有图层, 将所有图层移出父图层, 但是不会从缓存池中删除
+- (void)cc_releaseAllLayerBackToBufferPool;
 
 @end
 
