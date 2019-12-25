@@ -21,7 +21,7 @@ CCDataSetName const kCCNameBaseDataSet = @"BaseDataSet";
 @synthesize minX  = _minX;
 
 
-- (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name {
+- (instancetype)initWithEntities:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name {
     self = [super init];
     if (self) {
         _entities = entities;

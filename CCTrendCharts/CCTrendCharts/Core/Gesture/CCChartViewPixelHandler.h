@@ -16,6 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)resetGestureMatrix;
 
+- (BOOL)isInBounds:(CGPoint)point;
+
+- (BOOL)isInBoundsLeft:(CGFloat)y;
+
+- (BOOL)isInBoundsRight:(CGFloat)y;
+
 - (BOOL)isInBoundsTop:(CGFloat)y;
 
 - (BOOL)isInBoundsBottom:(CGFloat)y;

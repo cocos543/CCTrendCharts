@@ -7,6 +7,7 @@
 //
 
 #import "CCDataChartRenderer.h"
+#import "CCBarChartDataSet.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -30,6 +30,10 @@
 }
 
 - (void)beginRenderingInLayer:(CALayer *)contentLayer {
+    if (!self.axis) {
+        return;
+    }
+    
     [self cc_releaseAllLayerBackToBufferPool];
     [self.axis.formatter calcModulusWith:self.viewPixelHandler.contentWidth xSpace:[self.transformer distanceBetweenSpace:1] labelSize:self.axis.requireSize];
 

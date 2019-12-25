@@ -18,7 +18,7 @@
 - (instancetype)initWithRawEntities:(NSArray<CCKLineDataEntity *> *)rawEntities N:(id)N {
     id e = [CCLineMADataSet rawEntitiesToEntities:rawEntities N:N];
 
-    self = [super initWithVals:e withName:kCCNameLineDataSet];
+    self = [super initWithEntities:e withName:kCCNameLineDataSet];
     if (self) {
         _N    = N;
         _font = [UIFont systemFontOfSize:10];

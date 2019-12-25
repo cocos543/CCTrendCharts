@@ -21,6 +21,8 @@
 #import "CCProtocolMarkerRenderer.h"
 #import "CCProtocolLegendRenderer.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol CCProtocolChartViewBase <CCProtocolBase>
 @required
 
@@ -40,21 +42,23 @@
 
 
 /// 专供右轴使用的变形器
-@property (nonatomic, readonly) CCChartTransformer *rightTransformer;
+@property (nonatomic, readonly, nullable) CCChartTransformer *rightTransformer;
 
 /**
- 提供Y轴上文案的信息
+ 提供Y轴上文案的信息, 左轴不能为nil
  */
 @property (nonatomic, strong) CCDefaultYAxis *leftAxis;
 
-@property (nonatomic, strong) CCDefaultYAxis *rightAxis;
+
+/// 右轴功能同左轴, 右轴可以为nil
+@property (nonatomic, strong, nullable) CCDefaultYAxis *rightAxis;
 
 /**
  提供X轴上文案信息
  */
 @property (nonatomic, strong) CCDefaultXAxis *xAxis;
 
-@property (nonatomic, strong) id<CCProtocolCursorBase> cursor;
+@property (nonatomic, strong, nullable) id<CCProtocolCursorBase> cursor;
 
 /**
  渲染组件
@@ -68,12 +72,14 @@
 
 @property (nonatomic, strong) id<CCProtocolAxisRenderer> leftAxisRenderer;
 
-@property (nonatomic, strong) id<CCProtocolAxisRenderer> rightAxisRenderer;
+@property (nonatomic, strong, nullable) id<CCProtocolAxisRenderer> rightAxisRenderer;
 
-@property (nonatomic, strong) id<CCProtocolMarkerRenderer> markerRenderer;
+@property (nonatomic, strong, nullable) id<CCProtocolMarkerRenderer> markerRenderer;
 
-@property (nonatomic, strong) id<CCProtocolCursorRenderer> cursorRenderer;
+@property (nonatomic, strong, nullable) id<CCProtocolCursorRenderer> cursorRenderer;
 
-@property (nonatomic, strong) id<CCProtocolLegendRenderer> legendRenderer;
+@property (nonatomic, strong, nullable) id<CCProtocolLegendRenderer> legendRenderer;
 
 @end
+
+NS_ASSUME_NONNULL_END

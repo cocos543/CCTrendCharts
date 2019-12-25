@@ -23,12 +23,12 @@ CCDataSetName const kCCNameKLineDataSet = @"KLineDataSet";
 /// 指定的初始化方法
 /// @param entities 实体
 /// @param name 数据集名字, 默认是kCCNameKLineDataSet
-- (instancetype)initWithVals:(NSArray<CCKLineDataEntity *> *)entities withName:(CCDataSetName)name {
+- (instancetype)initWithEntities:(NSArray<CCKLineDataEntity *> *)entities withName:(CCDataSetName)name {
     if (name == nil) {
         name = kCCNameKLineDataSet;
     }
 
-    self = [super initWithVals:entities withName:name];
+    self = [super initWithEntities:entities withName:name];
     if (self) {
         _risingColor   = [UIColor stringToColor:@"#de4e43" opacity:1];
         _fallingColor  = [UIColor stringToColor:@"#4ba74a" opacity:1];

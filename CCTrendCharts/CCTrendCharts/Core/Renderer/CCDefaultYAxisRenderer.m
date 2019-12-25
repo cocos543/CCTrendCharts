@@ -34,6 +34,10 @@
 }
 
 - (void)beginRenderingInLayer:(CALayer *)contentLayer {
+    if (!self.axis) {
+        return;
+    }
+    
     [self cc_releaseAllLayerBackToBufferPool];
 
     [self renderAxisLine:contentLayer];

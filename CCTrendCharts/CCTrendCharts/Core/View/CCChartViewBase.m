@@ -324,9 +324,6 @@
 
 /// 重新计算x,y轴的位置信息. 两个轴的位置和轴文案是紧密相关的.
 - (void)_calcviewPixelHandlerOffset {
-    // 先恢复ViewPixel的初始值
-    [self _updateViewPixelHandler];
-
     CGFloat offsetLeft = 0, offsetRight = 0, offsetTop = 0, offsetBottom = 0;
 
     CGSize size;
@@ -432,13 +429,16 @@
     } else {
         return;
     }
+    
+    // 设置ViewPixel初始值
+    [self _updateViewPixelHandler];
 
     // 计算出y轴上需要绘制的信息
     [self _calcYAxisMinMax];
 
     // 全部数据计算好之后, 重新调整一下绘制区域的大小
     [self _calcviewPixelHandlerOffset];
-
+    
     // 确定一下X轴需要更新的信息
     [self _calcXAxis];
 
@@ -488,9 +488,7 @@
     [self.leftAxisRenderer beginRenderingInLayer:self.yAxisLayer];
     [self.rightAxisRenderer beginRenderingInLayer:self.yAxisLayer];
 
-
     [self.xAxisRenderer beginRenderingInLayer:self.xAxisLayer];
-
 
     // 单独渲染数据层
     [self dataRendering];
@@ -650,7 +648,6 @@
     // 某个对应的实体只连续触发最多1次
     if ((NSInteger)valuePoint.x != _longPressLastSelcIndex) {
         _longPressLastSelcIndex = (NSInteger)valuePoint.x;
-
         // 添加了震动效果
         if (self.cursor.impactFeedback) {
             if (@available(iOS 13.0, *)) {

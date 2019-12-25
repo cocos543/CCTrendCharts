@@ -12,6 +12,17 @@
 @protocol CCProtocolCursorBase <CCProtocolBase>
 
 
+
+/// X轴上文案的y方向偏移量
+///
+/// 默认值 0
+@property (nonatomic, assign) CGFloat xAxisYLabelOffset;
+
+/// Y轴上文案的y方向偏移量
+///
+/// 默认值 0
+@property (nonatomic, assign) CGFloat yAxisYLabelOffset;
+
 /// 指示器颜色
 @property (nonatomic, strong) UIColor *lineColor;
 
@@ -26,6 +37,7 @@
 
 /// CGContext - setLineDash
 @property (nonatomic, assign) CGFloat lineDashPhase;
+
 @property (nonatomic, strong) NSArray *lineDashLengths;
 
 @property (nonatomic, assign) CGLineCap lineCap;

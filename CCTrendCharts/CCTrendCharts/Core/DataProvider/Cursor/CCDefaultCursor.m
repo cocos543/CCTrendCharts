@@ -18,6 +18,8 @@
 @synthesize labelColor      = _labelColor;
 @synthesize impactFeedback  = _impactFeedback;
 @synthesize intensity       = _intensity;
+@synthesize yAxisYLabelOffset = _yAxisYLabelOffset;
+@synthesize xAxisYLabelOffset = _xAxisYLabelOffset;
 
 - (instancetype)init {
     self = [super init];
@@ -28,6 +30,7 @@
         _lineCap       = kCGLineCapRound;
         _labelColor    = UIColor.whiteColor;
         _lineDashPhase = 0.f;
+        _yAxisYLabelOffset = _xAxisYLabelOffset = 0.f;
 
         if (@available(iOS 13.0, *)) {
             _impactFeedback = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight];

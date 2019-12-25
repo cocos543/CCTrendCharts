@@ -13,7 +13,7 @@ typedef NSString *CCDataSetName;
 
 @protocol CCProtocolChartDataSet <NSObject>
 @required
-- (instancetype)initWithVals:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name;
+- (instancetype)initWithEntities:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name;
 
 
 /// 计算数据集在指定范围内的最值

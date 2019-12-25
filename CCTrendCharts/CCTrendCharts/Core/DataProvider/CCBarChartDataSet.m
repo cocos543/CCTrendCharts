@@ -1,27 +1,25 @@
 //
-//  CCLineChartDataSet.m
+//  CCBarChartDataSet.m
 //  CCTrendCharts
 //
-//  Created by Cocos on 2019/11/22.
+//  Created by Cocos on 2019/12/24.
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import "CCLineChartDataSet.h"
+#import "CCBarChartDataSet.h"
 
-CCDataSetName const kCCNameLineDataSet = @"LineDataSet";
+CCDataSetName const kCCNameBarDataSet = @"kCCNameBarDataSet";
 
-@implementation CCLineChartDataSet
+@implementation CCBarChartDataSet
 
 - (instancetype)initWithEntities:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name {
     if (name == nil) {
-        name = kCCNameLineDataSet;
+        name = kCCNameBarDataSet;
     }
     
     self = [super initWithEntities:entities withName:name];
     if (self) {
-        _lineJoin = kCALineJoinRound;
-        _lineWidth = 1.f;
-        _fillColor = UIColor.clearColor;
+        _entityDistancePercent = 0.7;
     }
     return self;
 }

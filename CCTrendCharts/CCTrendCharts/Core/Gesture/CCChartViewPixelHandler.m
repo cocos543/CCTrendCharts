@@ -34,15 +34,34 @@
     _anInitMatrix  = CGAffineTransformIdentity;
 }
 
+- (BOOL)isInBounds:(CGPoint)point {
+    return [self isInBoundsTop:point.y] && [self isInBoundsBottom:point.y] && [self isInBoundsLeft:point.x] && [self isInBoundsRight:point.x];
+}
+
+
+- (BOOL)isInBoundsLeft:(CGFloat)y {
+    if (y > self.contentLeft - 0.00001) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isInBoundsRight:(CGFloat)y {
+    if (y < self.contentRight + 0.00001) {
+        return YES;
+    }
+    return NO;
+}
+
 - (BOOL)isInBoundsTop:(CGFloat)y {
-    if (y > self.contentTop - 0.000001) {
+    if (y > self.contentTop - 0.00001) {
         return YES;
     }
     return NO;
 }
 
 - (BOOL)isInBoundsBottom:(CGFloat)y {
-    if (y < self.contentBottom + 0.000001) {
+    if (y < self.contentBottom + 0.00001) {
         return YES;
     }
     return NO;

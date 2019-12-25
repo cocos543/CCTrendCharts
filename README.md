@@ -41,6 +41,7 @@
 9. 贝塞尔曲线
 10. TAI指标图例渲染器
 11. 支持便捷组合各种视图, 并提供事件同步协议, 能将多个视图只要组合到一起, 共同响应手势.
+12. 条形图渲染器
 
 ###  四. 趋势图技术指标 (Technical Analysis Indicators)
 
@@ -54,6 +55,7 @@
 * 交易量图+指标
 * 分时图
 * 组合图
+* 条形图
 * Yunex交易所风格
 
 ## 正在开发
@@ -81,6 +83,7 @@
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot004.jpg"  width="30%"/>
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot005.jpg"  width="30%"/>
 <img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot006.jpg"  width="30%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot007.jpg"  width="30%"/>
 </div>
 
 
