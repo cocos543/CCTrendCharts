@@ -65,17 +65,15 @@
     // 下面是针对x, y轴信息的配置, 不懂得可以自己修改后运行一下看看效果就懂了.
     view.leftAxis.axisLineDisabled         = YES;
     view.leftAxis.labelDisable             = YES;
-    view.leftAxis.labelCount               = 0;
     view.leftAxis.labelPosition            = CCYAxisLabelPositionInside;
     view.leftAxis.yLabelOffset             = -5;
     view.leftAxis.labelColor               = [UIColor stringToColor:@"#585858" opacity:1];
     view.leftAxis.gridLineEnabled          = NO;
 
+    
+    //view.rightAxis = nil; 直接设置成nil关闭右轴, 或者分别设置禁用
     view.rightAxis.axisLineDisabled        = YES;
     view.rightAxis.labelDisable            = YES;
-    view.rightAxis.labelColor              = [UIColor stringToColor:@"#585858" opacity:1];
-    view.rightAxis.labelCount              = 0;
-    view.rightAxis.yLabelOffset            = -5;
     view.rightAxis.gridLineEnabled         = NO;
 
     // 下面代码可以自定义X轴的文案格式化器, 默认格式化器就是直接把数据源的数据展示出来

@@ -21,6 +21,8 @@
 		ED7B94A323A7618A0056C0D3 /* YunexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7B94A123A7618A0056C0D3 /* YunexViewController.xib */; };
 		ED85B18C23A3418D004865C0 /* AssembledViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED85B18A23A3418D004865C0 /* AssembledViewController.m */; };
 		ED85B18D23A3418D004865C0 /* AssembledViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED85B18B23A3418D004865C0 /* AssembledViewController.xib */; };
+		ED9C47E823B1E59C000523C4 /* BarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9C47E623B1E59C000523C4 /* BarViewController.m */; };
+		ED9C47E923B1E59C000523C4 /* BarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9C47E723B1E59C000523C4 /* BarViewController.xib */; };
 		EDC5955F239F88DB002D362B /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5955E239F88DB002D362B /* NetworkHelper.m */; };
 		EDF56B4523A08DD700858765 /* VolumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF56B4323A08DD700858765 /* VolumeViewController.m */; };
 		EDF56B4623A08DD700858765 /* VolumeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF56B4423A08DD700858765 /* VolumeViewController.xib */; };
@@ -65,6 +67,9 @@
 		ED85B18923A3418D004865C0 /* AssembledViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssembledViewController.h; sourceTree = "<group>"; };
 		ED85B18A23A3418D004865C0 /* AssembledViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssembledViewController.m; sourceTree = "<group>"; };
 		ED85B18B23A3418D004865C0 /* AssembledViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssembledViewController.xib; sourceTree = "<group>"; };
+		ED9C47E523B1E59C000523C4 /* BarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarViewController.h; sourceTree = "<group>"; };
+		ED9C47E623B1E59C000523C4 /* BarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarViewController.m; sourceTree = "<group>"; };
+		ED9C47E723B1E59C000523C4 /* BarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarViewController.xib; sourceTree = "<group>"; };
 		EDC5955C239F8754002D362B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		EDC5955D239F88DB002D362B /* NetworkHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkHelper.h; sourceTree = "<group>"; };
 		EDC5955E239F88DB002D362B /* NetworkHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkHelper.m; sourceTree = "<group>"; };
@@ -163,6 +168,9 @@
 				ED85B18923A3418D004865C0 /* AssembledViewController.h */,
 				ED85B18A23A3418D004865C0 /* AssembledViewController.m */,
 				ED85B18B23A3418D004865C0 /* AssembledViewController.xib */,
+				ED9C47E523B1E59C000523C4 /* BarViewController.h */,
+				ED9C47E623B1E59C000523C4 /* BarViewController.m */,
+				ED9C47E723B1E59C000523C4 /* BarViewController.xib */,
 			);
 			path = DafaultStyle;
 			sourceTree = "<group>";
@@ -238,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED7B94A323A7618A0056C0D3 /* YunexViewController.xib in Resources */,
+				ED9C47E923B1E59C000523C4 /* BarViewController.xib in Resources */,
 				ED325834239A5E8100E08D67 /* LaunchScreen.storyboard in Resources */,
 				ED325831239A5E8100E08D67 /* Assets.xcassets in Resources */,
 				EDF56B4623A08DD700858765 /* VolumeViewController.xib in Resources */,
@@ -265,6 +274,7 @@
 				ED4CA364239F4D3300A7F2DE /* KLineViewController.m in Sources */,
 				EDF56B4923A08E5400858765 /* BaseViewController.m in Sources */,
 				ED7B94A223A7618A0056C0D3 /* YunexViewController.m in Sources */,
+				ED9C47E823B1E59C000523C4 /* BarViewController.m in Sources */,
 				EDC5955F239F88DB002D362B /* NetworkHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

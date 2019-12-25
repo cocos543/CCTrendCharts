@@ -49,10 +49,11 @@
     // 下面代码可以自定义X轴的文案格式化器, 默认格式化器就是直接把数据源的数据展示出来
     //view.xAxis.formatter = [[CCXAxisFixedFormatter alloc] init];
     view.xAxis.formatter.modulusStartIndex = 0;
-    view.xAxis.yLabelOffset                = 0;
+    view.xAxis.yLabelOffset                = 5;
     view.xAxis.labelColor                  = [UIColor stringToColor:@"#585858" opacity:1];
 
     view.cursor.labelColor                 = [UIColor stringToColor:@"#c8c6c2" opacity:1];
+    view.cursor.xAxisYLabelOffset          = 5;
     [view setNeedsPrepareChart];
 
     // 如果需要为趋势图配置指标的话, 按照下面代码配置即可, 需要多个就配置多个.
@@ -127,7 +128,7 @@
 }
 
 - (id<CCProtocolChartDataSet>)getDataSetFrom:(NSArray *)entities {
-    return [[CCKLineChartDataSet alloc] initWithVals:entities withName:kCCNameKLineDataSet];
+    return [[CCKLineChartDataSet alloc] initWithEntities:entities withName:kCCNameKLineDataSet];
 }
 
 - (id<CCProtocolChartDataEntityBase>)getEntityWith:(NSInteger)xIndex {

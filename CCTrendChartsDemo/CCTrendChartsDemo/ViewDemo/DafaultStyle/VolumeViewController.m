@@ -88,7 +88,7 @@
 }
 
 - (id<CCProtocolChartDataSet>)getDataSetFrom:(NSArray *)entities {
-    return [[CCVolumeChartDataSet alloc] initWithVals:entities withName:kCCVolumeChartDataSet];
+    return [[CCVolumeChartDataSet alloc] initWithEntities:entities withName:kCCVolumeChartDataSet];
 }
 
 - (id<CCProtocolChartDataEntityBase>)getEntityWith:(NSInteger)xIndex {

@@ -93,7 +93,7 @@
 }
 
 - (id<CCProtocolChartDataSet>)getDataSetFrom:(NSArray *)entities {
-    return [[CCLineChartDataSet alloc] initWithVals:entities withName:kCCNameLineDataSet];
+    return [[CCLineChartDataSet alloc] initWithEntities:entities withName:kCCNameLineDataSet];
 }
 
 - (id<CCProtocolChartDataEntityBase>)getEntityWith:(NSInteger)xIndex {

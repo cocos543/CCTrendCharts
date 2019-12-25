@@ -288,14 +288,14 @@
 
     CCChartData *chartData;
     if (chartView == self.klineView) {
-        CCKLineChartDataSet *dataSet = [[CCKLineChartDataSet alloc] initWithVals:entities withName:nil];
+        CCKLineChartDataSet *dataSet = [[CCKLineChartDataSet alloc] initWithEntities:entities withName:nil];
         chartData = [[CCKLineChartData alloc] initWithXVals:xVals dataSets:@[dataSet]];
     } else if (chartView == self.volumeView) {
-        CCVolumeChartDataSet *dataSet = [[CCVolumeChartDataSet alloc] initWithVals:entities withName:nil];
+        CCVolumeChartDataSet *dataSet = [[CCVolumeChartDataSet alloc] initWithEntities:entities withName:nil];
         // 交易量数据集可以直接关联到CCKLineChartData中.
         chartData = [[CCKLineChartData alloc] initWithXVals:xVals dataSets:@[dataSet]];
     } else if (chartView == self.lineView) {
-        CCLineChartDataSet *dataSet = [[CCLineChartDataSet alloc] initWithVals:entities withName:nil];
+        CCLineChartDataSet *dataSet = [[CCLineChartDataSet alloc] initWithEntities:entities withName:nil];
         chartData = [[CCChartData alloc] initWithXVals:xVals dataSets:@[dataSet]];
     }
 
