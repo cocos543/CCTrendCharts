@@ -67,7 +67,7 @@
 		ED7E69512384E389006246F0 /* CCBarDataChartRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E694F2384E389006246F0 /* CCBarDataChartRenderer.m */; };
 		ED7EE8EB2397A9C100926172 /* CCProtocolChartViewSync.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7EE8EA2397A9C100926172 /* CCProtocolChartViewSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED7EE8EE2397B3F500926172 /* NSObject+CCEasyKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7EE8EC2397B3F500926172 /* NSObject+CCEasyKVO.m */; };
-		ED7EE8EF2397B3F500926172 /* NSObject+CCEasyKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7EE8ED2397B3F500926172 /* NSObject+CCEasyKVO.h */; };
+		ED7EE8EF2397B3F500926172 /* NSObject+CCEasyKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7EE8ED2397B3F500926172 /* NSObject+CCEasyKVO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8004E423700267005647C2 /* CCXAxisFixedFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E223700267005647C2 /* CCXAxisFixedFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8004E523700267005647C2 /* CCXAxisFixedFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8004E323700267005647C2 /* CCXAxisFixedFormatter.m */; };
 		ED8004E823701B61005647C2 /* CCProtocolCursorRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8004E623701B61005647C2 /* CCProtocolCursorRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -668,7 +668,6 @@
 				EDABB2682320E68700C65D3F /* CCMain.h in Headers */,
 				ED03A15123337B540065DDA4 /* CCProtocolKLineDataChartRenderer.h in Headers */,
 				ED03A15523337CF00065DDA4 /* CCProtocolKLineChartDataProvider.h in Headers */,
-				ED7EE8EF2397B3F500926172 /* NSObject+CCEasyKVO.h in Headers */,
 				ED03A14D23332A9D0065DDA4 /* CCChartTransformer.h in Headers */,
 				ED052EA12338CF85000CED6C /* CCCoordinateUtility.h in Headers */,
 				ED35B7522339C79B0080FF5A /* CCProtocolChartDataEntityBase.h in Headers */,
@@ -707,6 +706,7 @@
 				ED9C47ED23B1EF41000523C4 /* CCBarChartDataSet.h in Headers */,
 				ED7EE8EB2397A9C100926172 /* CCProtocolChartViewSync.h in Headers */,
 				EDDCD4602334CDAE005E46EA /* CCMacro.h in Headers */,
+				ED7EE8EF2397B3F500926172 /* NSObject+CCEasyKVO.h in Headers */,
 				ED00E79223223C7800139A8C /* CCProtocolBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

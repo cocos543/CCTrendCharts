@@ -22,7 +22,7 @@ static void *_ccObserverBlockMapKey = &_ccObserverBlockMapKey;
 /**
  内部观察者
  */
-@interface CCInternalObserver : NSObject
+@interface CCInternalObserver_CCTrendCharts : NSObject
 
 - (NSMapTable *)observeMap;
 
@@ -30,7 +30,7 @@ static void *_ccObserverBlockMapKey = &_ccObserverBlockMapKey;
 
 @end
 
-@implementation CCInternalObserver
+@implementation CCInternalObserver_CCTrendCharts
 
 - (void)dealloc {
     [self removeAll];
@@ -103,16 +103,16 @@ static void *_ccObserverBlockMapKey = &_ccObserverBlockMapKey;
  
  @return observer
  */
-- (CCInternalObserver *)observer {
+- (CCInternalObserver_CCTrendCharts *)observer {
     
-    CCInternalObserver *obj;
+    CCInternalObserver_CCTrendCharts *obj;
     obj = objc_getAssociatedObject(self, _ccObserverKey);
     
     if (obj) {
         return obj;
     }
     
-    obj = [[CCInternalObserver alloc] init];
+    obj = [[CCInternalObserver_CCTrendCharts alloc] init];
     objc_setAssociatedObject(self, _ccObserverKey, obj, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     return obj;
 }
