@@ -20,7 +20,6 @@
 		ED03A15523337CF00065DDA4 /* CCProtocolKLineChartDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED03A15323337CF00065DDA4 /* CCProtocolKLineChartDataProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED052EA12338CF85000CED6C /* CCCoordinateUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = ED052E9F2338CF85000CED6C /* CCCoordinateUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED052EA22338CF85000CED6C /* CCCoordinateUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ED052EA02338CF85000CED6C /* CCCoordinateUtility.m */; };
-		ED10B86623B36CED003C9F73 /* screenshot007.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED10B86523B36CED003C9F73 /* screenshot007.jpg */; };
 		ED1BFB5A232231A700222820 /* CCChartViewBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED1BFB58232231A700222820 /* CCChartViewBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED1BFB5B232231A700222820 /* CCChartViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1BFB59232231A700222820 /* CCChartViewBase.m */; };
 		ED1BFB5E232234FC00222820 /* CCProtocolChartViewBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED1BFB5C232234FC00222820 /* CCProtocolChartViewBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,12 +42,9 @@
 		ED23F20A23966BAC005D672D /* CCVolumeDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = ED23F20823966BAC005D672D /* CCVolumeDataEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED23F20B23966BAC005D672D /* CCVolumeDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED23F20923966BAC005D672D /* CCVolumeDataEntity.m */; };
 		ED32584E239A6BF600E08D67 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = ED32584D239A6BF600E08D67 /* LICENSE */; };
-		ED325854239A6C1F00E08D67 /* screenshot005.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED32584F239A6C1F00E08D67 /* screenshot005.jpg */; };
-		ED325856239A6C1F00E08D67 /* 1575542732977187.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = ED325851239A6C1F00E08D67 /* 1575542732977187.mp4 */; };
 		ED325857239A6C1F00E08D67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED325852239A6C1F00E08D67 /* README.md */; };
 		ED32585A239A6C4500E08D67 /* Doc.md in Resources */ = {isa = PBXBuildFile; fileRef = ED325859239A6C4500E08D67 /* Doc.md */; };
 		ED35B7522339C79B0080FF5A /* CCProtocolChartDataEntityBase.h in Headers */ = {isa = PBXBuildFile; fileRef = ED35B7502339C79B0080FF5A /* CCProtocolChartDataEntityBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED36C46923A8BBB7009C3115 /* screenshot006.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED36C46823A8BBB7009C3115 /* screenshot006.jpg */; };
 		ED41C2D323853F5A004B640E /* CCVolumeChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED41C2D123853F5A004B640E /* CCVolumeChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED41C2D423853F5A004B640E /* CCVolumeChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED41C2D223853F5A004B640E /* CCVolumeChartView.m */; };
 		ED41C2D723853F9F004B640E /* CCVolumeDataChartRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED41C2D523853F9F004B640E /* CCVolumeDataChartRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,13 +56,11 @@
 		ED5496A023618A1C00BDBC37 /* CCGestureHandlerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = ED54969E23618A1C00BDBC37 /* CCGestureHandlerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED54A1C52373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED54A1C32373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED54A1C62373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED54A1C42373EEEF00C1E7A6 /* CCDefaultMarkerRenderer.m */; };
-		ED65BCF423A25CE7007160D7 /* screenshot004.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED65BCF323A25CE7007160D7 /* screenshot004.jpg */; };
 		ED7460662391040F0011D1BE /* CCProtocolTAIDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7460642391040F0011D1BE /* CCProtocolTAIDataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED74606A2391081A0011D1BE /* CCLineMADataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7460682391081A0011D1BE /* CCLineMADataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED74606B2391081A0011D1BE /* CCLineMADataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7460692391081A0011D1BE /* CCLineMADataSet.m */; };
 		ED74606F239113AC0011D1BE /* CCTAIConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = ED74606D239113AC0011D1BE /* CCTAIConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED746070239113AC0011D1BE /* CCTAIConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = ED74606E239113AC0011D1BE /* CCTAIConfig.m */; };
-		ED7B949C23A726A10056C0D3 /* screenshot002.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED7B949B23A726A00056C0D3 /* screenshot002.jpg */; };
 		ED7E69482384DBF2006246F0 /* CCBarChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7E69462384DBF2006246F0 /* CCBarChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED7E69492384DBF2006246F0 /* CCBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7E69472384DBF2006246F0 /* CCBarChartView.m */; };
 		ED7E69502384E389006246F0 /* CCBarDataChartRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7E694E2384E389006246F0 /* CCBarDataChartRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -115,8 +109,6 @@
 		EDC02E5A2395160E00DA02B1 /* CCProtocolLegendRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC02E582395160E00DA02B1 /* CCProtocolLegendRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDC02E5E2395192E00DA02B1 /* CCTAILegendRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC02E5C2395192E00DA02B1 /* CCTAILegendRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDC02E5F2395192E00DA02B1 /* CCTAILegendRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC02E5D2395192E00DA02B1 /* CCTAILegendRenderer.m */; };
-		EDC59566239FC58D002D362B /* screenshot003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDC59565239FC58D002D362B /* screenshot003.jpg */; };
-		EDC59568239FC5AD002D362B /* gpu_state.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDC59567239FC5AD002D362B /* gpu_state.jpg */; };
 		EDCCDB9E2379584000BDD823 /* CCKLineDataEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EDCCDB9C2379584000BDD823 /* CCKLineDataEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDCCDB9F2379584000BDD823 /* CCKLineDataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCCDB9D2379584000BDD823 /* CCKLineDataEntity.m */; };
 		EDD0F258234C7370005ED4DD /* NSString+CCUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EDD0F256234C7370005ED4DD /* NSString+CCUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -798,18 +790,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED325854239A6C1F00E08D67 /* screenshot005.jpg in Resources */,
-				ED10B86623B36CED003C9F73 /* screenshot007.jpg in Resources */,
 				ED325857239A6C1F00E08D67 /* README.md in Resources */,
 				ED32584E239A6BF600E08D67 /* LICENSE in Resources */,
-				ED36C46923A8BBB7009C3115 /* screenshot006.jpg in Resources */,
-				ED7B949C23A726A10056C0D3 /* screenshot002.jpg in Resources */,
 				ED32585A239A6C4500E08D67 /* Doc.md in Resources */,
-				EDC59566239FC58D002D362B /* screenshot003.jpg in Resources */,
 				EDAFF474237AB5D800E8BA2B /* 1daykline.json in Resources */,
-				EDC59568239FC5AD002D362B /* gpu_state.jpg in Resources */,
-				ED325856239A6C1F00E08D67 /* 1575542732977187.mp4 in Resources */,
-				ED65BCF423A25CE7007160D7 /* screenshot004.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
