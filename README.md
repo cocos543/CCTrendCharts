@@ -9,7 +9,7 @@
 > 项目正在积极开发中, 基本功能已完成, 即将添加使用Demo, 喜欢请点个start, 谢谢 ~
 
 ## 安装方法
-CocoaPods
+CocoaPods方式
 
 ```
 pod 'CCTrendCharts'
