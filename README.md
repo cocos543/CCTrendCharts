@@ -85,12 +85,12 @@ pod 'CCTrendCharts'
 ## 开发中的界面预览
 
 <div>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpg"  width="30%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot003.jpg"  width="30%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot004.jpg"  width="30%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot005.jpg"  width="30%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot006.jpg"  width="30%"/>
-<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot007.jpg"  width="30%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/Screenshot/screenshot002.jpg"  width="30%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/Screenshot/screenshot003.jpg"  width="30%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/Screenshot/screenshot004.jpg"  width="30%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/Screenshot/screenshot005.jpg"  width="30%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/Screenshot/screenshot006.jpg"  width="30%"/>
+<img src="https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/Screenshot/screenshot007.jpg"  width="30%"/>
 </div>
 
 
