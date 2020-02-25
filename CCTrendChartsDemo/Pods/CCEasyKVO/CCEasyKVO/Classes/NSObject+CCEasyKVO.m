@@ -14,15 +14,15 @@
 
 #endif
 
-static void *_ccObserverKey = &_ccObserverKey;
-static void *_ccObserveMapKey = &_ccObserveMapKey;
+static void *_ccObserverKey         = &_ccObserverKey;
+static void *_ccObserveMapKey       = &_ccObserveMapKey;
 
 static void *_ccObserverBlockMapKey = &_ccObserverBlockMapKey;
 
 /**
  内部观察者
  */
-@interface CCInternalObserver_CCTrendCharts : NSObject
+@interface CCInternalObserver : NSObject
 
 - (NSMapTable *)observeMap;
 
@@ -30,13 +30,11 @@ static void *_ccObserverBlockMapKey = &_ccObserverBlockMapKey;
 
 @end
 
-@implementation CCInternalObserver_CCTrendCharts
+@implementation CCInternalObserver
 
 - (void)dealloc {
     [self removeAll];
 }
-
-
 
 /**
  持有观察者加入的block, 对block进行内存管理
@@ -46,11 +44,11 @@ static void *_ccObserverBlockMapKey = &_ccObserverBlockMapKey;
 - (NSMutableDictionary *)observerBlockDic {
     NSMutableDictionary *dic;
     dic = objc_getAssociatedObject(self, _ccObserverBlockMapKey);
-    
+
     if (dic) {
         return dic;
     }
-    
+
     dic = @{}.mutableCopy;
     objc_setAssociatedObject(self, _ccObserverBlockMapKey, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     return dic;
@@ -59,19 +57,25 @@ static void *_ccObserverBlockMapKey = &_ccObserverBlockMapKey;
 /**
  哈希表, 存放被观察对象, 用于实现自动释放
  
+ 0: 被观察者
+ 
+ 1: 观察的key
+ 
+ 2: context
+
  @return map
  */
 - (NSMapTable *)observeMap {
     NSMapTable *map;
     map = objc_getAssociatedObject(self, _ccObserveMapKey);
-    
+
     if (map) {
         return map;
     }
-    
+
     // 默认强引用被观察者, 使用指针数据内容作为key标识符
-    map = [[NSMapTable alloc] initWithKeyOptions:NSPointerFunctionsStrongMemory|NSPointerFunctionsObjectPersonality  valueOptions:NSPointerFunctionsStrongMemory|NSPointerFunctionsObjectPointerPersonality capacity:1];
-    
+    map = [[NSMapTable alloc] initWithKeyOptions:NSPointerFunctionsStrongMemory | NSPointerFunctionsObjectPersonality valueOptions:NSPointerFunctionsStrongMemory | NSPointerFunctionsObjectPointerPersonality capacity:1];
+
     objc_setAssociatedObject(self, _ccObserveMapKey, map, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     return map;
 }
@@ -80,14 +84,14 @@ static void *_ccObserverBlockMapKey = &_ccObserverBlockMapKey;
  移除所有观者对象
  */
 - (void)removeAll {
-    for(NSObject *obj in self.observeMap) {
+    for (NSObject *obj in self.observeMap) {
         NSArray *arr = [self.observeMap objectForKey:obj];
-        [arr[0] removeObserver:self forKeyPath:arr[1]];
+        // 这里移除每一个不同context指针.
+        [arr[0] removeObserver:self forKeyPath:arr[1] context:(__bridge void *)(self.observerBlockDic[arr[2]])];
     }
 }
 
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context {
     // 其实就是strong
     __strong CC_EasyBlock b = (__bridge CC_EasyBlock)context;
     b(object, change);
@@ -100,36 +104,31 @@ static void *_ccObserverBlockMapKey = &_ccObserverBlockMapKey;
 
 /**
  使用自定义的对象作为观者者
- 
+
  @return observer
  */
-- (CCInternalObserver_CCTrendCharts *)observer {
-    
-    CCInternalObserver_CCTrendCharts *obj;
+- (CCInternalObserver *)observer {
+    CCInternalObserver *obj;
     obj = objc_getAssociatedObject(self, _ccObserverKey);
-    
+
     if (obj) {
         return obj;
     }
-    
-    obj = [[CCInternalObserver_CCTrendCharts alloc] init];
+
+    obj = [[CCInternalObserver alloc] init];
     objc_setAssociatedObject(self, _ccObserverKey, obj, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     return obj;
 }
 
-
-
 # pragma mark - API
 - (void)cc_easyObserve:(NSObject *)observe forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options block:(CC_EasyBlock)block {
     
-    [self.observer.observeMap setObject:@[observe, keyPath] forKey:@(observe.hash).stringValue];
-    
-    // 用户传入的block可能是NSStackBlock, 所以在转为泛型指针的时候必须将所有权转移给CoreFoundatin层, 这样一来block类型会转为NSMallocBlock并被持有
-
-    // 对block进行内存管理, 把block copy到堆中, 然后用block在堆中的地址作为key, 存入哈希表中
+    // 用户传入的block可能是NSStackBlock, 这里把block copy到堆中, 然后用block在堆中的地址作为key, 存入哈希表中
     CC_EasyBlock b = [block copy];
+    NSString *bAddr = [NSString stringWithFormat:@"%p", b];
     
-    self.observer.observerBlockDic[[NSString stringWithFormat:@"%p", b]] = b;
+    [self.observer.observeMap setObject:@[observe, keyPath, bAddr] forKey:[NSString stringWithFormat:@"%lu %p", (unsigned long)observe.hash, b]];
+    self.observer.observerBlockDic[bAddr] = b;
     
     [observe addObserver:self.observer forKeyPath:keyPath options:options context:(void *)b];
 }

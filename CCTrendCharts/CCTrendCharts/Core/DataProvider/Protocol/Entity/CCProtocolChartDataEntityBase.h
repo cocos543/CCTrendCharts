@@ -6,13 +6,13 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "CCProtocolBase.h"
 
 
 /**
  所有实体都需要实现基础协议
  */
-@protocol CCProtocolChartDataEntityBase <NSObject>
+@protocol CCProtocolChartDataEntityBase <CCProtocolBase>
 
 /**
  实体附加信息, 一般用于扩展信息

@@ -6,9 +6,9 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CCProtocolBase.h"
 
-@protocol CCProtocolAnimatorBase <NSObject>
+@protocol CCProtocolAnimatorBase <CCProtocolBase>
 
 @property (nonatomic, assign) CGFloat *phaseX;
 

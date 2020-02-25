@@ -6,12 +6,12 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CCProtocolBase.h"
 #import "CCProtocolChartDataEntityBase.h"
 
 typedef NSString *CCDataSetName;
 
-@protocol CCProtocolChartDataSet <NSObject>
+@protocol CCProtocolChartDataSet <CCProtocolBase>
 @required
 - (instancetype)initWithEntities:(NSArray<id<CCProtocolChartDataEntityBase>> *)entities withName:(CCDataSetName)name;
 

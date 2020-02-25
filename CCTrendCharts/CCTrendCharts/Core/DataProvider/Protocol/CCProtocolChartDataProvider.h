@@ -10,10 +10,10 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <CCProtocolBase.h>
 #import "CCChartData.h"
 
-@protocol CCProtocolChartDataProvider <NSObject>
+@protocol CCProtocolChartDataProvider <CCProtocolBase>
 @required
 //  getTransformer
 

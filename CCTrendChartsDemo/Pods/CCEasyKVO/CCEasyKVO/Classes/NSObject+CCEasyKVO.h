@@ -2,8 +2,6 @@
 //  CCEasyKVO.h
 //  OCSimpleView
 //
-//  https://github.com/cocos543/CCEasyKVO
-//
 //  Created by Cocos on 2019/7/3.
 //  Copyright © 2019 Cocos. All rights reserved.
 //

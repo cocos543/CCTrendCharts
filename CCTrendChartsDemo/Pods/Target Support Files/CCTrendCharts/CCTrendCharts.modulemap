@@ -1,0 +1,6 @@
+framework module CCTrendCharts {
+  umbrella header "CCTrendCharts-umbrella.h"
+
+  export *
+  module * { export * }
+}

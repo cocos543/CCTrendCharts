@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import <NSObject+CCEasyKVO.h>
+
 @import CCTrendCharts;
 
 NS_ASSUME_NONNULL_BEGIN

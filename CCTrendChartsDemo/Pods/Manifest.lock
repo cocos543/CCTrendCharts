@@ -1,0 +1,24 @@
+PODS:
+  - CCEasyKVO (0.1.0)
+  - CCTrendCharts (0.9.1):
+    - CCEasyKVO
+
+DEPENDENCIES:
+  - CCEasyKVO
+  - CCTrendCharts (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - CCEasyKVO
+
+EXTERNAL SOURCES:
+  CCTrendCharts:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CCEasyKVO: 1aae5d892be60f07b9e5a3591008a4bd3b07a93e
+  CCTrendCharts: 22f4cfb405c9dd1531ea56506127c0d459076fb1
+
+PODFILE CHECKSUM: c7a4f9e15720d1863dabc984da6b2b2c80f330e1
+
+COCOAPODS: 1.9.0.beta.2

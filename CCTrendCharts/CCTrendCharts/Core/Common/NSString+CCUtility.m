@@ -21,9 +21,9 @@
     drawPoint.x = x - labelSize.width * anchor.x;
     drawPoint.y = y - labelSize.height * anchor.y;
     
-    CGContextIndependent(ctx, {
-        [self drawAtPoint:drawPoint withAttributes:attr];
-    })
+    CGContextSaveGState(ctx);
+    [self drawAtPoint:drawPoint withAttributes:attr];
+    CGContextRestoreGState(ctx);
     
     UIGraphicsPopContext();
 }

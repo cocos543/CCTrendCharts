@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithRawEntities:(NSArray<CCKLineDataEntity *> *)rawEntities N:(id)N NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithEntities:(NSArray<CCKLineDataEntity *> *)entities withName:(CCDataSetName)name NS_UNAVAILABLE;
+- (instancetype)initWithEntities:(NSArray<CCKLineDataEntity *> *)entities withName:(nullable CCDataSetName)name NS_UNAVAILABLE;
 
 + (nullable NSArray<id<CCProtocolChartDataEntityBase>> *)rawEntitiesToEntities:(NSArray<CCKLineDataEntity *> *)rawEntities N:(id)N;
 

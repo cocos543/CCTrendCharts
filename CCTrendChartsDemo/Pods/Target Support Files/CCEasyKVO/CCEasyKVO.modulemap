@@ -1,0 +1,6 @@
+framework module CCEasyKVO {
+  umbrella header "CCEasyKVO-umbrella.h"
+
+  export *
+  module * { export * }
+}

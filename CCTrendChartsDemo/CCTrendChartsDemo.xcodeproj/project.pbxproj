@@ -3,19 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A16E5DF0232E1FD9AB1AF15A /* Pods_CCTrendChartsDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 615080B5E979C1218AA6B30F /* Pods_CCTrendChartsDemo.framework */; };
 		ED325826239A5E8000E08D67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED325825239A5E8000E08D67 /* AppDelegate.m */; };
 		ED32582F239A5E8000E08D67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED32582D239A5E8000E08D67 /* Main.storyboard */; };
 		ED325831239A5E8100E08D67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED325830239A5E8100E08D67 /* Assets.xcassets */; };
 		ED325834239A5E8100E08D67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED325832239A5E8100E08D67 /* LaunchScreen.storyboard */; };
 		ED325837239A5E8100E08D67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED325836239A5E8100E08D67 /* main.m */; };
 		ED32583F239A5FB500E08D67 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED32583E239A5FB500E08D67 /* MainTableViewController.m */; };
-		ED325843239A65EC00E08D67 /* CCTrendCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED325842239A65EC00E08D67 /* CCTrendCharts.framework */; };
-		ED325844239A65EC00E08D67 /* CCTrendCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED325842239A65EC00E08D67 /* CCTrendCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED4CA364239F4D3300A7F2DE /* KLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4CA363239F4D3300A7F2DE /* KLineViewController.m */; };
+		ED6293E42405344B00B21355 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED6293E02405344B00B21355 /* README.md */; };
+		ED6293E52405344B00B21355 /* CCTrendCharts.podspec in Resources */ = {isa = PBXBuildFile; fileRef = ED6293E12405344B00B21355 /* CCTrendCharts.podspec */; };
+		ED6293E62405344B00B21355 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = ED6293E22405344B00B21355 /* LICENSE */; };
+		ED6293E72405344B00B21355 /* Doc.md in Resources */ = {isa = PBXBuildFile; fileRef = ED6293E32405344B00B21355 /* Doc.md */; };
 		ED742B76239F4E0200A14F66 /* KLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED742B75239F4E0200A14F66 /* KLineViewController.xib */; };
 		ED7B94A223A7618A0056C0D3 /* YunexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7B94A023A7618A0056C0D3 /* YunexViewController.m */; };
 		ED7B94A323A7618A0056C0D3 /* YunexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7B94A123A7618A0056C0D3 /* YunexViewController.xib */; };
@@ -39,7 +42,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ED325844239A65EC00E08D67 /* CCTrendCharts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,6 +49,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		11F65DD46F2DFB50269D0C0A /* Pods-CCTrendChartsDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCTrendChartsDemo.release.xcconfig"; path = "Target Support Files/Pods-CCTrendChartsDemo/Pods-CCTrendChartsDemo.release.xcconfig"; sourceTree = "<group>"; };
+		615080B5E979C1218AA6B30F /* Pods_CCTrendChartsDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCTrendChartsDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77A23EE7A7F44CAED7ECF038 /* Pods-CCTrendChartsDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCTrendChartsDemo.debug.xcconfig"; path = "Target Support Files/Pods-CCTrendChartsDemo/Pods-CCTrendChartsDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		ED325821239A5E8000E08D67 /* CCTrendChartsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCTrendChartsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED325824239A5E8000E08D67 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ED325825239A5E8000E08D67 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -57,9 +62,12 @@
 		ED325836239A5E8100E08D67 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ED32583D239A5FB500E08D67 /* MainTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		ED32583E239A5FB500E08D67 /* MainTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
-		ED325842239A65EC00E08D67 /* CCTrendCharts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CCTrendCharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4CA362239F4D3300A7F2DE /* KLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLineViewController.h; sourceTree = "<group>"; };
 		ED4CA363239F4D3300A7F2DE /* KLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLineViewController.m; sourceTree = "<group>"; };
+		ED6293E02405344B00B21355 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		ED6293E12405344B00B21355 /* CCTrendCharts.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CCTrendCharts.podspec; path = ../CCTrendCharts.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		ED6293E22405344B00B21355 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		ED6293E32405344B00B21355 /* Doc.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = Doc.md; path = ../Doc.md; sourceTree = "<group>"; };
 		ED742B75239F4E0200A14F66 /* KLineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLineViewController.xib; sourceTree = "<group>"; };
 		ED7B949F23A7618A0056C0D3 /* YunexViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YunexViewController.h; sourceTree = "<group>"; };
 		ED7B94A023A7618A0056C0D3 /* YunexViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YunexViewController.m; sourceTree = "<group>"; };
@@ -90,19 +98,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED325843239A65EC00E08D67 /* CCTrendCharts.framework in Frameworks */,
+				A16E5DF0232E1FD9AB1AF15A /* Pods_CCTrendChartsDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D616A2755356EB831EC14CB2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				77A23EE7A7F44CAED7ECF038 /* Pods-CCTrendChartsDemo.debug.xcconfig */,
+				11F65DD46F2DFB50269D0C0A /* Pods-CCTrendChartsDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		ED325818239A5E8000E08D67 = {
 			isa = PBXGroup;
 			children = (
+				ED6293DF2405343700B21355 /* Podspec Metadata */,
 				ED325823239A5E8000E08D67 /* CCTrendChartsDemo */,
 				ED325822239A5E8000E08D67 /* Products */,
 				ED325841239A65EC00E08D67 /* Frameworks */,
+				D616A2755356EB831EC14CB2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,7 +156,7 @@
 		ED325841239A65EC00E08D67 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ED325842239A65EC00E08D67 /* CCTrendCharts.framework */,
+				615080B5E979C1218AA6B30F /* Pods_CCTrendChartsDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -149,6 +168,17 @@
 				ED7B949D23A75F380056C0D3 /* DafaultStyle */,
 			);
 			path = ViewDemo;
+			sourceTree = "<group>";
+		};
+		ED6293DF2405343700B21355 /* Podspec Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				ED6293E12405344B00B21355 /* CCTrendCharts.podspec */,
+				ED6293E32405344B00B21355 /* Doc.md */,
+				ED6293E22405344B00B21355 /* LICENSE */,
+				ED6293E02405344B00B21355 /* README.md */,
+			);
+			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
 		ED7B949D23A75F380056C0D3 /* DafaultStyle */ = {
@@ -194,10 +224,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED32583A239A5E8100E08D67 /* Build configuration list for PBXNativeTarget "CCTrendChartsDemo" */;
 			buildPhases = (
+				902AED98F3A425CCECA7A618 /* [CP] Check Pods Manifest.lock */,
 				ED32581D239A5E8000E08D67 /* Sources */,
 				ED32581E239A5E8000E08D67 /* Frameworks */,
 				ED32581F239A5E8000E08D67 /* Resources */,
 				ED325845239A65EC00E08D67 /* Embed Frameworks */,
+				D16401CEAA3213F2426F6A2D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -245,11 +277,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED6293E72405344B00B21355 /* Doc.md in Resources */,
 				ED7B94A323A7618A0056C0D3 /* YunexViewController.xib in Resources */,
 				ED9C47E923B1E59C000523C4 /* BarViewController.xib in Resources */,
+				ED6293E42405344B00B21355 /* README.md in Resources */,
 				ED325834239A5E8100E08D67 /* LaunchScreen.storyboard in Resources */,
 				ED325831239A5E8100E08D67 /* Assets.xcassets in Resources */,
 				EDF56B4623A08DD700858765 /* VolumeViewController.xib in Resources */,
+				ED6293E62405344B00B21355 /* LICENSE in Resources */,
+				ED6293E52405344B00B21355 /* CCTrendCharts.podspec in Resources */,
 				EDF56B4E23A0EA5300858765 /* RealTimeLineViewController.xib in Resources */,
 				ED742B76239F4E0200A14F66 /* KLineViewController.xib in Resources */,
 				ED85B18D23A3418D004865C0 /* AssembledViewController.xib in Resources */,
@@ -258,6 +294,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		902AED98F3A425CCECA7A618 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CCTrendChartsDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D16401CEAA3213F2426F6A2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CCTrendChartsDemo/Pods-CCTrendChartsDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CCTrendChartsDemo/Pods-CCTrendChartsDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CCTrendChartsDemo/Pods-CCTrendChartsDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ED32581D239A5E8000E08D67 /* Sources */ = {
@@ -351,7 +429,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -403,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -413,7 +491,9 @@
 		};
 		ED32583B239A5E8100E08D67 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77A23EE7A7F44CAED7ECF038 /* Pods-CCTrendChartsDemo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XNC7CRYM5X;
@@ -421,7 +501,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CCTrendChartsDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = CCTrendChartsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -434,7 +514,9 @@
 		};
 		ED32583C239A5E8100E08D67 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11F65DD46F2DFB50269D0C0A /* Pods-CCTrendChartsDemo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XNC7CRYM5X;
@@ -442,7 +524,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CCTrendChartsDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = CCTrendChartsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -8,7 +8,12 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "CCMacro.h"
+#import "CCBaseUtility.h"
+#import "CCCoordinateUtility.h"
+#import "NSString+CCUtility.h"
+#import "UIColor+CCUtility.h"
 
 @protocol CCProtocolBase <NSObject>
 

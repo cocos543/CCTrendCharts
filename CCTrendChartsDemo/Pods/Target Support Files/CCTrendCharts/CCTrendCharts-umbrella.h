@@ -1,0 +1,82 @@
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern "C"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
+#endif
+
+#import "CCTrendCharts.h"
+#import "CCProtocolAnimatorBase.h"
+#import "CALayer+CCUtility.h"
+#import "CCBaseUtility.h"
+#import "CCCoordinateUtility.h"
+#import "CCMacro.h"
+#import "CCSingleEventManager.h"
+#import "CCTAIConfig.h"
+#import "NSString+CCUtility.h"
+#import "CCProtocolBase.h"
+#import "UIColor+CCUtility.h"
+#import "CCDefaultXAxis.h"
+#import "CCDefaultYAxis.h"
+#import "CCBarChartDataSet.h"
+#import "CCChartData.h"
+#import "CCChartDataSetBase.h"
+#import "CCKLineChartData.h"
+#import "CCKLineChartDataSet.h"
+#import "CCLineChartDataSet.h"
+#import "CCVolumeChartDataSet.h"
+#import "CCDefaultCursor.h"
+#import "CCChartDataEntity.h"
+#import "CCKLineDataEntity.h"
+#import "CCVolumeDataEntity.h"
+#import "CCProtocolAxisBase.h"
+#import "CCProtocolChartDataProvider.h"
+#import "CCProtocolChartDataSet.h"
+#import "CCProtocolCursorBase.h"
+#import "CCProtocolKLineChartDataProvider.h"
+#import "CCProtocolTAIDataSet.h"
+#import "CCProtocolChartDataEntityBase.h"
+#import "CCLineMADataSet.h"
+#import "CCXAxisDefaultFormatter.h"
+#import "CCXAxisFixedFormatter.h"
+#import "CCProtocolXAxisFormatterBase.h"
+#import "CCChartTransformer.h"
+#import "CCChartViewPixelHandler.h"
+#import "CCGestureDefaultHandler.h"
+#import "CCGestureHandlerProtocol.h"
+#import "CCBarDataChartRenderer.h"
+#import "CCDataChartRenderer.h"
+#import "CCDefaultCursorRenderer.h"
+#import "CCDefaultMarkerRenderer.h"
+#import "CCDefaultXAxisRenderer.h"
+#import "CCDefaultYAxisRenderer.h"
+#import "CCKLineDataChartRenderer.h"
+#import "CCLineDataChartRenderer.h"
+#import "CCRendererBase+LayerCache.h"
+#import "CCRendererBase.h"
+#import "CCTAILegendRenderer.h"
+#import "CCVolumeDataChartRenderer.h"
+#import "CCProtocolAxisRenderer.h"
+#import "CCProtocolChartRendererBase.h"
+#import "CCProtocolCursorRenderer.h"
+#import "CCProtocolDataChartRenderer.h"
+#import "CCProtocolKLineDataChartRenderer.h"
+#import "CCProtocolLegendRenderer.h"
+#import "CCProtocolMarkerRenderer.h"
+#import "CCAssembledChartView.h"
+#import "CCBarChartView.h"
+#import "CCChartViewBase.h"
+#import "CCKLineChartView.h"
+#import "CCLineChartView.h"
+#import "CCVolumeChartView.h"
+#import "CCProtocolChartViewBase.h"
+#import "CCProtocolChartViewSync.h"
+
+FOUNDATION_EXPORT double CCTrendChartsVersionNumber;
+FOUNDATION_EXPORT const unsigned char CCTrendChartsVersionString[];
+

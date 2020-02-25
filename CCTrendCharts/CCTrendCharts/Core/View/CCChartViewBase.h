@@ -10,8 +10,6 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "CCProtocolChartViewBase.h"
 #import "CCProtocolChartDataProvider.h"
 

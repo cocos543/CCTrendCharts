@@ -8,7 +8,7 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CCProtocolBase.h"
 
 #import "CCProtocolDataChartRenderer.h"
 #import "CCProtocolAxisRenderer.h"

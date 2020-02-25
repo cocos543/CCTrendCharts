@@ -6,7 +6,7 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CCProtocolBase.h"
 #import "CCChartViewPixelHandler.h"
 
 @protocol CCGestureHandlerDelegate <NSObject>
@@ -38,7 +38,7 @@
 @end
 
 
-@protocol CCGestureHandlerProtocol <NSObject>
+@protocol CCGestureHandlerProtocol <CCProtocolBase>
 
 
 /// 平移手势触发

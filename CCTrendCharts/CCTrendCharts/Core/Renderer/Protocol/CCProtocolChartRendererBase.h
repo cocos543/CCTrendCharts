@@ -8,12 +8,15 @@
 //  Copyright © 2019 Cocos. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "CCProtocolBase.h"
+
 #import "CCChartViewPixelHandler.h"
 #import "CCChartTransformer.h"
 #import "CCProtocolChartDataProvider.h"
 
-@protocol CCProtocolChartRendererBase <NSObject>
+#import "CALayer+CCUtility.h"
+
+@protocol CCProtocolChartRendererBase <CCProtocolBase>
 @required
 // 持有一个视图操作者CCChartViewPixelHandler, 所有放大缩小平移等信息都存储在viewHandler里面的CGAffineTransform, 这样方便运算数据的最终座标
 @property (nonatomic, readonly) CCChartViewPixelHandler *viewPixelHandler;

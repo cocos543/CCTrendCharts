@@ -165,7 +165,7 @@
     }
 }
 
-- (void)processAxisEntities:(CGFloat)min:(CGFloat)max {
+- (void)processAxisEntities:(CGFloat)min :(CGFloat)max {
 }
 
 @end
