@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = 'https://github.com/cocos543/CCTrendCharts'
-  s.screenshots     = 'https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot002.jpg', 'https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot006.jpg', 'https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/screenshot007.jpg'
+  s.screenshots     = 'https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/Screenshot/screenshot002.jpg', 'https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/Screenshot/screenshot006.jpg', 'https://raw.githubusercontent.com/cocos543/CCTrendCharts/dev/Screenshot/screenshot007.jpg'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Cocos543' => '543314602@qq.com' }
   s.source           = { :git => 'https://github.com/cocos543/CCTrendCharts.git', :tag => s.version.to_s }
