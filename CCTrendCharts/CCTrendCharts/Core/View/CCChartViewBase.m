@@ -649,13 +649,11 @@
     if ((NSInteger)valuePoint.x != _longPressLastSelcIndex) {
         _longPressLastSelcIndex = (NSInteger)valuePoint.x;
         // 添加了震动效果
-        if (self.cursor.impactFeedback) {
-            if (@available(iOS 13.0, *)) {
-                [self.cursor.impactFeedback impactOccurredWithIntensity:self.cursor.intensity];
-            } else {
-                // Fallback on earlier versions
-                [self.cursor.impactFeedback impactOccurred];
-            }
+        if (@available(iOS 13.0, *)) {
+            [self.cursor.impactFeedback impactOccurredWithIntensity:self.cursor.intensity];
+        } else if (@available(iOS 10, *)) {
+            // Fallback on earlier versions
+            [self.cursor.impactFeedback impactOccurred];
         }
 
         // 绘制标记

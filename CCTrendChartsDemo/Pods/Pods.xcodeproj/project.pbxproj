@@ -1178,42 +1178,6 @@
 			};
 			name = Debug;
 		};
-		8468C21D2722806E070C2AD3D5494999 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A18B321A2160AB39CF14D815FCB3E52 /* CCTrendCharts.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CCTrendCharts/CCTrendCharts-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CCTrendCharts/CCTrendCharts-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/CCTrendCharts/CCTrendCharts.modulemap";
-				PRODUCT_MODULE_NAME = CCTrendCharts;
-				PRODUCT_NAME = CCTrendCharts;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		8F17DC3A99F99FBAD606CE6963886315 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1338,11 +1302,10 @@
 			};
 			name = Debug;
 		};
-		B15F9F3AF4D77886E7AD49CEDF660854 /* Debug */ = {
+		C405E779A5DD724535C69CA28776EC9F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E595F615A7C8765B59F48106171795CF /* CCTrendCharts.debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1355,7 +1318,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CCTrendCharts/CCTrendCharts-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CCTrendCharts/CCTrendCharts-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1372,6 +1335,41 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		D65C731B6188727A14340DBFCB023778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A18B321A2160AB39CF14D815FCB3E52 /* CCTrendCharts.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CCTrendCharts/CCTrendCharts-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CCTrendCharts/CCTrendCharts-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/CCTrendCharts/CCTrendCharts.modulemap";
+				PRODUCT_MODULE_NAME = CCTrendCharts;
+				PRODUCT_NAME = CCTrendCharts;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		D86ED573C9B981E6185E9BD1FFD93F26 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1443,8 +1441,8 @@
 		8E92A01C0DCD72B07AAE06DC5DD61E48 /* Build configuration list for PBXNativeTarget "CCTrendCharts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B15F9F3AF4D77886E7AD49CEDF660854 /* Debug */,
-				8468C21D2722806E070C2AD3D5494999 /* Release */,
+				C405E779A5DD724535C69CA28776EC9F /* Debug */,
+				D65C731B6188727A14340DBFCB023778 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

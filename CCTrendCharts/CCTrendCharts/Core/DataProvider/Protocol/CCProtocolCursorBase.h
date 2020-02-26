@@ -44,7 +44,7 @@
 
 
 /// 提供震动反馈, 默认是UIImpactFeedbackStyleLight类型
-@property (nonatomic, strong) UIImpactFeedbackGenerator *impactFeedback;
+@property (nonatomic, strong) UIImpactFeedbackGenerator *impactFeedback API_AVAILABLE(ios(10.0));
 
 
 /// 震动强度, 取值0.0 ~ 1.0
