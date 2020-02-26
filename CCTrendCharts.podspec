@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CCTrendCharts'
-  s.version          = '0.9.1'
+  s.version          = '0.9.2'
   s.summary          = '趋势图表库'
 
 # This description is used to generate tags and improve search results.
