@@ -106,10 +106,8 @@
         CGAffineTransform transform = CGAffineTransformMakeScale(space, 1);
         
         // 注意这里都是在做了缩放之后的平移, 所以n表示n个单位, 对应的真实数据如下:
-        // x方向对应的实际数值是n*transform.a
-        // y方向对应的实际数值是n*transform.d
-        
-        // 全部元素中心轴向右平移CC_X_INIT_TRANSLATION个单位, 确保第一个数据实体不会和y轴重叠
+        // x方向对应的平移实际数值是n*transform.a
+        // y方向对应的平移实际数值是n*transform.d
         transform = CGAffineTransformTranslate(transform, startMargin, 0);
         return transform;
     }

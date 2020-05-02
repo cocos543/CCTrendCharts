@@ -127,13 +127,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) CGFloat maxScaleX;
 
 /**
- Y轴最小缩放比例, 默认为1
+ Y轴最小缩放比例, 默认为0.3
  */
 @property (nonatomic, assign, readonly) CGFloat minScaleY;
 
 
 /**
- X轴最小缩放比例, 默认为1
+ X轴最小缩放比例, 默认为0.3
  */
 @property (nonatomic, assign, readonly) CGFloat minScaleX;
 

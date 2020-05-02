@@ -55,7 +55,7 @@
 - (void)didScrollIncrementOffsetX:(CGFloat)incrementOffsetX {
     CGAffineTransform matrix =  self.viewPixelHandler.gestureMatrix;
     
-    //offsetX是正数时, 说明视图正在显示左侧内容, 所以数据绘制时需要左平移, 所以需要 -= incrementOffsetX
+    //offsetX是正数时, 说明视图正在显示右侧内容, 所以数据绘制时需要左平移, 所以需要 -= incrementOffsetX
     matrix.tx -= incrementOffsetX;
     self.viewPixelHandler.gestureMatrix = matrix;
     
