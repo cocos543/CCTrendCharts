@@ -224,6 +224,9 @@
         items = [[items reverseObjectEnumerator] allObjects];
         if (!self.chartDataArr) {
             self.chartDataArr = items;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.assembleView resetViewGesture];
+            });
         } else {
             self.chartDataArr = [self.chartDataArr arrayByAddingObjectsFromArray:items];
         }

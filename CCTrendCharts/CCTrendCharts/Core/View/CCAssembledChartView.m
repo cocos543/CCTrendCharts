@@ -54,6 +54,12 @@
     }
 }
 
+- (void)resetViewGesture {
+    for (CCChartViewBase *view in self.views) {
+        [view resetViewGesture];
+    }
+}
+
 - (void)configChartViews:(NSArray<CCChartViewBase *> *)views {
     self.views = views;
     

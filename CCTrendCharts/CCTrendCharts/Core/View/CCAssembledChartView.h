@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setNeedsPrepareChart;
 
+- (void)resetViewGesture;
+
 
 /// 配置需要组合的视图
 /// @param views 视图组
